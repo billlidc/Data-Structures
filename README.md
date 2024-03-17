@@ -16,7 +16,7 @@
 * Generalized metric for measuring performance
 
 * Definition: $T(n)=O(f(n))$ if and only if there exists constants $c > 0$ and $n_0 > 0$ such that $T(n) \leq c \cdot f(n)$, $\forall n \geq n_0$.
-![Graph of T(n), f(n) and 2f(n)](./graph_of_T_n_f_n_and_2f_n.png)
+![Graph of T(n), f(n) and 2f(n)](./res/graph_of_T_n_f_n_and_2f_n.png)
 
 * Characterstics
     * Ignore constants: $1000n = O(n)$
@@ -25,7 +25,7 @@
 ### Big-O Classifications
 
 [Time complexity (Big O) cheat sheet](https://leetcode.com/explore/interview/card/cheatsheets/720/resources/4725/)
-![Big O](./big_o.png)
+![Big O](./res/big_o.png)
 
 * $O(1)$: ```Constant```
     * An algorithm does NOT depend on the input size.
@@ -50,7 +50,7 @@
 * **Graphs**
 
 ### Flow Chart
-![Flow Chart](./flowchart.png)
+![Flow Chart](./res/flowchart.png)
 
 
 ## 2. Collections
@@ -68,7 +68,7 @@ Java Collection: ```java.util.Collection```
 * **Map** does not extend Collection, but still considered to be part of the Collection Framework. Map is a collection of pairs (key, value). Map cannot contain duplicate keys.
 
 ### Hierarchy
-![Hiearachy](./hierarchy.png)
+![Hiearachy](./res/hierarchy.png)
 
 
 ### General Operations
