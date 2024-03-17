@@ -214,7 +214,7 @@ public static char[] delete(char[] data, int index) {
 
 
 ### Binary Search
-* Prerequisite: **The array should already be ordered**.
+* Prerequisite: **The array should be ordered**.
 
 ```Java
 public static int binarySearch(int[] data, int key) {
@@ -239,11 +239,11 @@ public static int binarySearch(int[] data, int key) {
 }
 ```
 #### One's Complement
-* The ones' complement of a binary number is the value obtained by inverting (flipping) all the bits in the binary representation of the number.
+* The **ones' complement** of a binary number is the value obtained by inverting (flipping) all the bits in the binary representation of the number.
 
 #### Two's Complement
-* The most significant bit (MSB), i.e. the number on the left, is known as the sign bit, which is used to represent whether the number is positive (0) or negative (1).
-* The twos' complement, which is the negative equivalent of the original binary number, is get by taking ones' complement and adding 1.
+* The **most significant bit (MSB)**, i.e. the number on the left, is known as the sign bit, which is used to represent whether the number is positive (0) or negative (1).
+* The **twos' complement**, which is the negative equivalent of the original binary number, is get by **taking ones' complement** and **adding 1**.
 
 | Bits | Unsigned value | One's Complement | Two's Complement | Signed value (Two's complement) |
 |------|----------------|------------------|------------------|---------------------------------|
