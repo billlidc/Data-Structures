@@ -210,7 +210,9 @@ public static char[] delete(char[] data, int index) {
 
 ### Amortized Analysis
 
-```List<Integer> numbers = new ArrayList<Integer>(4);```
+```
+List<Integer> numbers = new ArrayList<Integer>(4);
+```
 
 
 | Running time | # of elements | Array length | Allocated dollars | Cost | Saved dollars | Balance |
@@ -219,11 +221,11 @@ public static char[] delete(char[] data, int index) {
 | 1            | 2             | 4            | 3                 | 1    | 2             | 4       |
 | 1            | 3             | 4            | 3                 | 1    | 2             | 6       |
 | 1            | 4             | 4            | 3                 | 1    | 2             | 8       |
-| **5**        | **5**         | **8**        | 3                 | 5    |-2             | 6       |
+| 5            | 5             | 8            | 3                 | 5    |-2             | 6       |
 | 1            | 6             | 8            | 3                 | 1    | 2             | 10      |
 | 1            | 7             | 8            | 3                 | 1    | 2             | 12      |
 | 1            | 8             | 8            | 3                 | 1    | 2             | 12      |
-| **9**        | **9**         | **16**       | 3                 | 9    |-6             | 6       |
+| 9            | 9             | 16           | 3                 | 9    |-6             | 6       |
 
 * ```add(E e)``` method has **amortized constant time**
 * Latency Issue  
