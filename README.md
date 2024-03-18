@@ -147,7 +147,7 @@ System.out.println(c.toString());
     * The above three ways of copying perform **Shallow Copy/Cloning**, which means it creates a new instance and copies all the fields of the object to that new instance where both are referencing to the same memory in heap memory.
         * Arrays of **primitive data types**: copies the value;
         * Arrays of **objects** or **references**: copies the reference of every single object; modifying a object affects other arrays
-            * Write code to perform Deep Copy
+            * Write code to perform **Deep Copy**
 
 ### Resizing an Array
 
@@ -249,7 +249,7 @@ public static int binarySearch(int[] data, int key) {
 ```
 
 #### One's Complement
-* The **ones' complement** of a binary number is the value obtained by inverting (flipping) all the bits in the binary representation of the number.
+* The **ones' complement** of a binary number is the value obtained by **inverting (flipping) all the bits** in the binary representation of the number.
 
 #### Two's Complement
 * The **most significant bit (MSB)**, i.e. the number on the left, is known as the sign bit, which is used to represent whether the number is positive (0) or negative (1).
