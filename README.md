@@ -16,7 +16,7 @@
 * Generalized metric for measuring performance
 
 * Definition: $T(n)=O(f(n))$ if and only if there exists constants $c > 0$ and $n_0 > 0$ such that $T(n) \leq c \cdot f(n)$, $\forall n \geq n_0$.
-![Graph of T(n), f(n) and 2f(n)](./res/graph_of_T_n_f_n_and_2f_n.png)
+![](./res/graph_of_T_n_f_n_and_2f_n.png){ width=50% }
 
 * Characterstics
     * Ignore constants: $1000n = O(n)$
@@ -26,7 +26,7 @@
 
 [Time complexity (Big O) cheat sheet](https://leetcode.com/explore/interview/card/cheatsheets/720/resources/4725/)
 
-![Big O](./res/big_o.png)
+![](./res/big_o.png){ width=50% }
 
 * $O(1)$: ```Constant```
     * An algorithm does NOT depend on the input size.
@@ -51,7 +51,7 @@
 * **Graphs**
 
 ### Flow Chart
-![Flow Chart](./res/flowchart.png)
+![](./res/flowchart.png){ width=50% }
 
 
 ## 2. Collections
@@ -72,7 +72,7 @@
     * Map cannot contain duplicate keys.
 
 ### Hierarchy
-![Hiearachy](./res/hierarchy.png)
+![](./res/hierarchy.png){ width=50% }
 
 
 ### General Operations
@@ -229,7 +229,7 @@ List<Integer> numbers = new ArrayList<Integer>(4);
 
 * ```add(E e)``` method has **amortized constant time**
 * Latency Issue  
-    ![List Append Time Per Operation](./res/list-append-time-per-operation-showing-amortised-linear-complexity.png)
+    ![](./res/list-append-time-per-operation-showing-amortised-linear-complexity.png){ width=50% }
 
 
 ### Binary Search
