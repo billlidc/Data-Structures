@@ -57,6 +57,7 @@
 
 ### Interface
 ```java.util.Collection```
+
 | Interface | Implementation          |
 |-----------|-------------------------|
 | List      | ArrayList, LinkedList   |
@@ -119,6 +120,7 @@ System.out.println(c.toString());
 
 * Copying
     1. ```Arrays.copyOf(sA, length);```
+
         ```Java
         int[] d = Arrays.copyOf(a, 2);
         // d = [1, 2]
@@ -128,12 +130,15 @@ System.out.println(c.toString());
         ```
 
     2. ```System.arraycopy(sA, sI, dA, dI, length);```
+
         ```Java
         int[] e = new int[5];
         System.arraycopy(a, 0, e, 0, 3);
         // e = [1, 2, 3, 0, 0]
         ```
+
     3. ```clone()```
+
         ```Java
         int[] g = {1, 2, 3, 4, 5};
         int[] h = g.clone();
@@ -145,6 +150,7 @@ System.out.println(c.toString());
             * Write code to perform Deep Copy
 
 ### Resizing an Array
+
 ```Java
 // Removes item at specified index and returns a new array;
 // If not within bounds, return the same array
@@ -175,6 +181,7 @@ public static char[] delete(char[] data, int index) {
 * Whenever an instance of ArrayList in Java is created then **by default** the capacity of Arraylist is ```10```.
 
 * **Expand** when ```add()``` is called, but **DOES NOT shrink** when ```delete()```.
+
     ```Java
     // Initialize an arraylist with initial length of 0
     List<Integer> numbers = new ArrayList<Integer>(0);
@@ -189,7 +196,8 @@ public static char[] delete(char[] data, int index) {
     }
     System.out.println(numbers);
     ```
-    If there is issue with unused memory, manually invoke ```trimToSize()``` method to free up the memory by shrinking size to the number of elements.
+
+    * If there is issue with unused memory, manually invoke ```trimToSize()``` method to free up the memory by shrinking size to the number of elements.
 
 * ArrayList used to implement the **doubling-up policy**; In Java 6, there has been a change to be $(oldCapacity * 3) / 2 + 1$.
     * For corner cases where $oldCapacity = 0$ or $oldCapacity = 1$, we must $+ 1$ to expand the array
@@ -239,6 +247,7 @@ public static int binarySearch(int[] data, int key) {
     }
 }
 ```
+
 #### One's Complement
 * The **ones' complement** of a binary number is the value obtained by inverting (flipping) all the bits in the binary representation of the number.
 
