@@ -34,8 +34,11 @@ class="math inline"><em>n</em><sup>3</sup> + <em>n</em><sup>2</sup> + <e
 <h3 id="big-o-classifications">Big-O Classifications</h3>
 <p><a
 href="https://leetcode.com/explore/interview/card/cheatsheets/720/resources/4725/">Time
-complexity (Big O) cheat sheet</a> <img src="./res/big_o.png"
-alt="Big O" /></p>
+complexity (Big O) cheat sheet</a></p>
+<figure>
+<img src="./res/big_o.png" alt="Big O" />
+<figcaption aria-hidden="true">Big O</figcaption>
+</figure>
 <ul>
 <li><span class="math inline"><em>O</em>(1)</span>:
 <code>Constant</code>
@@ -207,7 +210,7 @@ value;</li>
 copies the reference of every single object; modifying a object affects
 other arrays
 <ul>
-<li>Write code to perform Deep Copy</li>
+<li>Write code to perform <strong>Deep Copy</strong></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -277,15 +280,112 @@ we must <span class="math inline"> + 1</span> to expand the array</li>
 </ul></li>
 </ul>
 <h3 id="amortized-analysis">Amortized Analysis</h3>
-<p><code>List&lt;Integer&gt; numbers = new ArrayList&lt;Integer&gt;(4);</code>
-| Running time | # of elements | Array length | Allocated dollars | Cost
-| Saved dollars | Balance | |————–|—————|————–|——————-|——|—————|———| | 1
-| 1 | 4 | 3 | 1 | 2 | 2 | | 1 | 2 | 4 | 3 | 1 | 2 | 4 | | 1 | 3 | 4 | 3
-| 1 | 2 | 6 | | 1 | 4 | 4 | 3 | 1 | 2 | 8 | | <strong>5</strong> |
-<strong>5</strong> | <strong>8</strong> | 3 | 5 |-2 | 6 | | 1 | 6 | 8 |
-3 | 1 | 2 | 10 | | 1 | 7 | 8 | 3 | 1 | 2 | 12 | | 1 | 8 | 8 | 3 | 1 | 2
-| 12 | | <strong>9</strong> | <strong>9</strong> | <strong>16</strong> |
-3 | 9 |-6 | 6 |</p>
+<p><code>List&lt;Integer&gt; numbers = new ArrayList&lt;Integer&gt;(4);</code></p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 16%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 6%" />
+<col style="width: 16%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Running time</th>
+<th># of elements</th>
+<th>Array length</th>
+<th>Allocated dollars</th>
+<th>Cost</th>
+<th>Saved dollars</th>
+<th>Balance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td><strong>5</strong></td>
+<td><strong>5</strong></td>
+<td><strong>8</strong></td>
+<td>3</td>
+<td>5</td>
+<td>-2</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>6</td>
+<td>8</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>7</td>
+<td>8</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>8</td>
+<td>8</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td><strong>9</strong></td>
+<td><strong>9</strong></td>
+<td><strong>16</strong></td>
+<td>3</td>
+<td>9</td>
+<td>-6</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li><code>add(E e)</code> method has <strong>amortized constant
 time</strong></li>
@@ -322,8 +422,8 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="
 <h4 id="ones-complement">One’s Complement</h4>
 <ul>
 <li>The <strong>ones’ complement</strong> of a binary number is the
-value obtained by inverting (flipping) all the bits in the binary
-representation of the number.</li>
+value obtained by <strong>inverting (flipping) all the bits</strong> in
+the binary representation of the number.</li>
 </ul>
 <h4 id="twos-complement">Two’s Complement</h4>
 <ul>
