@@ -25,6 +25,7 @@
 ### Big-O Classifications
 
 [Time complexity (Big O) cheat sheet](https://leetcode.com/explore/interview/card/cheatsheets/720/resources/4725/)
+
 ![Big O](./res/big_o.png)
 
 * $O(1)$: ```Constant```
@@ -103,6 +104,7 @@ Array ```a``` and ```b``` are two instances,
 ---
 
 Hexadecimal representation of hashcode of the memory address will be printed
+
 ```Java
 System.out.println(c); // the same as c.toString()
 System.out.println(c.toString());
@@ -110,6 +112,7 @@ System.out.println(c.toString());
 
 
 ### Arrays Class
+
 ```java.util.Arrays```
 
 * Check equality: ```Arrays.equals(a, b)```
@@ -119,6 +122,7 @@ System.out.println(c.toString());
 * Sorting: ```Arrays.sort(c);```
 
 * Copying
+
     1. ```Arrays.copyOf(sA, length);```
 
         ```Java
@@ -167,6 +171,7 @@ public static char[] delete(char[] data, int index) {
 
 
 ## 4. ArrayList and Binary Search
+
 ```java.util.ArrayList```
 
 ### ArrayList Methods
@@ -204,7 +209,10 @@ public static char[] delete(char[] data, int index) {
 
 
 ### Amortized Analysis
+
 ```List<Integer> numbers = new ArrayList<Integer>(4);```
+
+
 | Running time | # of elements | Array length | Allocated dollars | Cost | Saved dollars | Balance |
 |--------------|---------------|--------------|-------------------|------|---------------|---------|
 | 1            | 1             | 4            | 3                 | 1    | 2             | 2       |
