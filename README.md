@@ -196,6 +196,7 @@ public static char[] delete(char[] data, int index) {
 
 
 ### Amortized Analysis
+```List<Integer> numbers = new ArrayList<Integer>(4);```
 | Running time | # of elements | Array length | Allocated dollars | Cost | Saved dollars | Balance |
 |--------------|---------------|--------------|-------------------|------|---------------|---------|
 | 1            | 1             | 4            | 3                 | 1    | 2             | 2       |
@@ -245,19 +246,19 @@ public static int binarySearch(int[] data, int key) {
 * The **most significant bit (MSB)**, i.e. the number on the left, is known as the sign bit, which is used to represent whether the number is positive (0) or negative (1).
 * The **twos' complement**, which is the negative equivalent of the original binary number, is get by **taking ones' complement** and **adding 1**.
 
-| Bits | Unsigned value | One's Complement | Two's Complement | Signed value (Two's complement) |
-|------|----------------|------------------|------------------|---------------------------------|
-| 000  | 0              | 111              | 000              | 0                               |
-| 001  | 1              | 110              | 111              | 1                               |
-| 010  | 2              | 101              | 110              | 2                               |
-| 011  | 3              | 100              | 101              | 3                               |
-| 100  | 4              | 011              | 100              | -4                              |
-| 101  | 5              | 010              | 011              | -3                              |
-| 110  | 6              | 001              | 010              | -2                              |
-| 111  | 7              | 000              | 001              | -1                              |
+| Bits | Unsigned value | Signed value (Two's complement) | One's Complement | Two's Complement |
+|------|----------------|---------------------------------|------------------|------------------|
+| 000  | 0              | 0                               | 111              | 000              |
+| 001  | 1              | 1                               | 110              | 111              |
+| 010  | 2              | 2                               | 101              | 110              |
+| 011  | 3              | 3                               | 100              | 101              |
+| 100  | 4              | -4                              | 011              | 100              |
+| 101  | 5              | -3                              | 010              | 011              |
+| 110  | 6              | -2                              | 001              | 010              |
+| 111  | 7              | -1                              | 000              | 001              |
 
 * With $n$ bits, we can represent unsigned numbers $0$ to $2^{(n-1)}$.
 * With $n$ bits, we can represent signed numbers $–2^{(n-1)}$ to $2^{(n-1)}–1$.
 
 #### Tweak
-* Change ```mid = (l + r)/2;``` to ```mid = l + (r - l)/2;```
+* Use ```mid = l + (r - l)/2;``` instead of ```mid = (l + r)/2;```
