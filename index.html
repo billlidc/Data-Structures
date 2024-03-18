@@ -1,0 +1,390 @@
+<h1 id="data-structures-for-application-programmers">Data Structures for
+Application Programmers</h1>
+<h2 id="the-big-picture---when-to-use-what-and-how-much-does-it-cost">1.
+The Big Picture - When to use what and how much does it cost?</h2>
+<h3 id="perspective">Perspective</h3>
+<ul>
+<li><strong>The first priority</strong> as an application programmer is
+to make the code <strong>work</strong> and <strong>clear</strong> to
+understand.</li>
+<li><strong>Performance</strong> is important.</li>
+<li>Focusing too much on <strong>performance</strong> can lead to
+complicated code that is difficult to understand.</li>
+</ul>
+<h3 id="big-o-notation">“Big O” Notation</h3>
+<ul>
+<li><p>Generalized metric for measuring performance</p></li>
+<li><p>Definition: <span
+class="math inline"><em>T</em>(<em>n</em>) = <em>O</em>(<em>f</em>(<em>n</em>))</span>
+if and only if there exists constants <span
+class="math inline"><em>c</em> &gt; 0</span> and <span
+class="math inline"><em>n</em><sub>0</sub> &gt; 0</span> such that <span
+class="math inline"><em>T</em>(<em>n</em>) ≤ <em>c</em> ⋅ <em>f</em>(<em>n</em>)</span>,
+<span class="math inline">∀<em>n</em> ≥ <em>n</em><sub>0</sub></span>.
+<img src="./res/graph_of_T_n_f_n_and_2f_n.png"
+alt="Graph of T(n), f(n) and 2f(n)" /></p></li>
+<li><p>Characterstics</p>
+<ul>
+<li>Ignore constants: <span
+class="math inline">1000<em>n</em> = <em>O</em>(<em>n</em>)</span></li>
+<li>Ignore low order terms: <span
+class="math inline"><em>n</em><sup>3</sup> + <em>n</em><sup>2</sup> + <em>n</em> = <em>O</em>(<em>n</em><sup>3</sup>)</span></li>
+</ul></li>
+</ul>
+<h3 id="big-o-classifications">Big-O Classifications</h3>
+<p><a
+href="https://leetcode.com/explore/interview/card/cheatsheets/720/resources/4725/">Time
+complexity (Big O) cheat sheet</a> <img src="./res/big_o.png"
+alt="Big O" /></p>
+<ul>
+<li><span class="math inline"><em>O</em>(1)</span>:
+<code>Constant</code>
+<ul>
+<li>An algorithm does NOT depend on the input size.</li>
+</ul></li>
+<li><span
+class="math inline"><em>O</em>(<em>l</em><em>o</em><em>g</em><em>n</em>)</span>:
+<code>Logarithmic</code>
+<ul>
+<li>An algorithm gets <strong>slightly slower</strong> as <span
+class="math inline"><em>n</em></span> grows.</li>
+</ul></li>
+<li><span class="math inline"><em>O</em>(<em>n</em>)</span>:
+<code>Linear</code>
+<ul>
+<li>The running time grows as much as <span
+class="math inline"><em>n</em></span> grows (When <span
+class="math inline"><em>n</em></span> doubles, runtime doubles).</li>
+</ul></li>
+<li><span
+class="math inline"><em>O</em>(<em>n</em>⋅<em>l</em><em>o</em><em>g</em><em>n</em>)</span>:
+<code>Linearithmic</code>
+<ul>
+<li>Usually the result of performing <span
+class="math inline"><em>O</em>(<em>l</em><em>o</em><em>g</em><em>n</em>)</span>
+operation <span class="math inline"><em>n</em></span> times or
+performing <span class="math inline"><em>O</em>(<em>n</em>)</span>
+operation <span
+class="math inline"><em>l</em><em>o</em><em>g</em><em>n</em></span>
+times.</li>
+</ul></li>
+<li><span class="math inline"><em>O</em>(<em>n</em><sup>2</sup>)</span>:
+<code>Quadratic</code></li>
+<li><span class="math inline"><em>O</em>(2<sup><em>n</em></sup>)</span>:
+<code>Exponential</code></li>
+<li><span class="math inline"><em>O</em>(<em>n</em>!)</span>:
+<code>Factorial</code></li>
+</ul>
+<h3 id="categories-of-data-structures">Categories of Data
+Structures</h3>
+<ul>
+<li><strong>General-Purpose Data Structures</strong>
+<ul>
+<li>Arrays, Linked Lists, Binary Search Trees and Hash Tables.</li>
+</ul></li>
+<li><strong>Special-Purpose Data Structures (Abstract Data Types
+(ADTs))</strong>
+<ul>
+<li>Stack (LIFO), Queue (FIFO) and Priority Queue</li>
+</ul></li>
+<li><strong>Sorting and Searching</strong>
+<ul>
+<li>Bubble Sort, Selection Sort, Insertion Sort, Quick Sort, Merge Sort,
+Heap Sort, Linear Search and Binary Search</li>
+</ul></li>
+<li><strong>Graphs</strong></li>
+</ul>
+<h3 id="flow-chart">Flow Chart</h3>
+<figure>
+<img src="./res/flowchart.png" alt="Flow Chart" />
+<figcaption aria-hidden="true">Flow Chart</figcaption>
+</figure>
+<h2 id="collections">2. Collections</h2>
+<h3 id="interface">Interface</h3>
+<p><code>java.util.Collection</code> | Interface | Implementation |
+|———–|————————-| | List | ArrayList, LinkedList | | Set | HashSet,
+TreeSet | | Map | HashMap, TreeMap |</p>
+<ul>
+<li><strong>Set</strong> extends Collection but forbids duplicates.</li>
+<li><strong>List</strong> extends Collection also and allows duplicates
+and introduces positional indexing.</li>
+<li><strong>Map</strong> does not extend Collection, but still
+considered to be part of the Collection Framework.
+<ul>
+<li>Map is a collection of pairs (key, value).</li>
+<li>Map cannot contain duplicate keys.</li>
+</ul></li>
+</ul>
+<h3 id="hierarchy">Hierarchy</h3>
+<figure>
+<img src="./res/hierarchy.png" alt="Hiearachy" />
+<figcaption aria-hidden="true">Hiearachy</figcaption>
+</figure>
+<h3 id="general-operations">General Operations</h3>
+<ul>
+<li>Addition (Insertion)</li>
+<li>Removal (Deletion)</li>
+<li>Sorting</li>
+<li>Searching</li>
+<li>Iteration (Traversal)</li>
+<li>Copying (Cloning)</li>
+</ul>
+<h2 id="arrays">3. Arrays</h2>
+<h3 id="arrays-in-java">Arrays in Java</h3>
+<ul>
+<li>Manipulating data: <code>clone()</code></li>
+<li>Immutable field: <code>length</code>, once an array is created, its
+length is fixed and cannot be changed.</li>
+</ul>
+<hr />
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">[]</span> a <span class="op">=</span> <span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span> <span class="op">};</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">[]</span> b <span class="op">=</span> <span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span> <span class="op">};</span></span></code></pre></div>
+<p>Array <code>a</code> and <code>b</code> are two instances, *
+<code>a == b</code> checks reference/identity * <code>a.equals(b)</code>
+of the Object class also checks reference/identity</p>
+<hr />
+<p>Hexadecimal representation of hashcode of the memory address will be
+printed</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>c<span class="op">);</span> <span class="co">// the same as c.toString()</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>c<span class="op">.</span><span class="fu">toString</span><span class="op">());</span></span></code></pre></div>
+<h3 id="arrays-class">Arrays Class</h3>
+<p><code>java.util.Arrays</code></p>
+<ul>
+<li><p>Check equality: <code>Arrays.equals(a, b)</code></p></li>
+<li><p>Printing values:
+<code>System.out.print(Arrays.toString(c));</code></p></li>
+<li><p>Sorting: <code>Arrays.sort(c);</code></p></li>
+<li><p>Copying</p>
+<ol type="1">
+<li><p><code>Arrays.copyOf(sA, length);</code> ```Java int[] d =
+Arrays.copyOf(a, 2); // d = [1, 2]</p>
+<p>int[] d = Arrays.copyOf(a, 10); // d = [1, 2, 3, 4, 5, 0, 0, 0, 0, 0]
+```</p></li>
+<li><p><code>System.arraycopy(sA, sI, dA, dI, length);</code>
+<code>Java       int[] e = new int[5];       System.arraycopy(a, 0, e, 0, 3);       // e = [1, 2, 3, 0, 0]</code></p></li>
+<li><p><code>clone()</code>
+<code>Java       int[] g = {1, 2, 3, 4, 5};       int[] h = g.clone();</code></p></li>
+</ol>
+<ul>
+<li>The above three ways of copying perform <strong>Shallow
+Copy/Cloning</strong>, which means it creates a new instance and copies
+all the fields of the object to that new instance where both are
+referencing to the same memory in heap memory.
+<ul>
+<li>Arrays of <strong>primitive data types</strong>: copies the
+value;</li>
+<li>Arrays of <strong>objects</strong> or <strong>references</strong>:
+copies the reference of every single object; modifying a object affects
+other arrays
+<ul>
+<li>Write code to perform Deep Copy</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="resizing-an-array">Resizing an Array</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Removes item at specified index and returns a new array;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">// If not within bounds, return the same array</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">char</span><span class="op">[]</span> <span class="fu">delete</span><span class="op">(</span><span class="dt">char</span><span class="op">[]</span> data<span class="op">,</span> <span class="dt">int</span> index<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>index <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> index <span class="op">&lt;</span> data<span class="op">.</span><span class="fu">length</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">char</span><span class="op">[]</span> tmp <span class="op">=</span> <span class="kw">new</span> <span class="dt">char</span><span class="op">[</span>data<span class="op">.</span><span class="fu">length</span> <span class="op">-</span> <span class="dv">1</span><span class="op">];</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">arraycopy</span><span class="op">(</span>data<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> tmp<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> index<span class="op">);</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">arraycopy</span><span class="op">(</span>data<span class="op">,</span> index <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> tmp<span class="op">,</span> index<span class="op">,</span> data<span class="op">.</span><span class="fu">length</span> <span class="op">-</span> index <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tmp<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="arraylist-and-binary-search">4. ArrayList and Binary Search</h2>
+<p><code>java.util.ArrayList</code></p>
+<h3 id="arraylist-methods">ArrayList Methods</h3>
+<ul>
+<li><code>add(object)</code>: adds a new element to the end.</li>
+<li><code>add(index, object)</code>: inserts a new element at the
+specified index.</li>
+<li><code>set(index, object)</code>: replaces an existing element at the
+specified index with the new element.</li>
+<li><code>get(index)</code>: returns the element at the specified
+index.</li>
+<li><code>remove(index)</code>: deletes the element at the specified
+index.</li>
+<li><code>size()</code>: returns the number of elements.</li>
+</ul>
+<h3 id="java-arraylist">Java ArrayList</h3>
+<ul>
+<li><p>Whenever an instance of ArrayList in Java is created then
+<strong>by default</strong> the capacity of Arraylist is
+<code>10</code>.</p></li>
+<li><p><strong>Expand</strong> when <code>add()</code> is called, but
+<strong>DOES NOT shrink</strong> when <code>delete()</code>. ```Java //
+Initialize an arraylist with initial length of 0 List<Integer> numbers =
+new ArrayList<Integer>(0);</p>
+<p>// Add numbers for (int i = 0; i &lt; 10; i++) numbers.add(i);
+System.out.println(numbers);</p>
+<p>// Delete numbers for (int i = numbers.size() – 1; i &gt;= 0; i–) {
+if (numbers.get(i) % 2 == 0) numbers.remove(i); }
+System.out.println(numbers);
+<code>If there is issue with unused memory, manually invoke</code>trimToSize()```
+method to free up the memory by shrinking size to the number of
+elements.</p></li>
+<li><p>ArrayList used to implement the <strong>doubling-up
+policy</strong>; In Java 6, there has been a change to be <span
+class="math inline">(<em>o</em><em>l</em><em>d</em><em>C</em><em>a</em><em>p</em><em>a</em><em>c</em><em>i</em><em>t</em><em>y</em>*3)/2 + 1</span>.</p>
+<ul>
+<li>For corner cases where <span
+class="math inline"><em>o</em><em>l</em><em>d</em><em>C</em><em>a</em><em>p</em><em>a</em><em>c</em><em>i</em><em>t</em><em>y</em> = 0</span>
+or <span
+class="math inline"><em>o</em><em>l</em><em>d</em><em>C</em><em>a</em><em>p</em><em>a</em><em>c</em><em>i</em><em>t</em><em>y</em> = 1</span>,
+we must <span class="math inline"> + 1</span> to expand the array</li>
+</ul></li>
+</ul>
+<h3 id="amortized-analysis">Amortized Analysis</h3>
+<p><code>List&lt;Integer&gt; numbers = new ArrayList&lt;Integer&gt;(4);</code>
+| Running time | # of elements | Array length | Allocated dollars | Cost
+| Saved dollars | Balance | |————–|—————|————–|——————-|——|—————|———| | 1
+| 1 | 4 | 3 | 1 | 2 | 2 | | 1 | 2 | 4 | 3 | 1 | 2 | 4 | | 1 | 3 | 4 | 3
+| 1 | 2 | 6 | | 1 | 4 | 4 | 3 | 1 | 2 | 8 | | <strong>5</strong> |
+<strong>5</strong> | <strong>8</strong> | 3 | 5 |-2 | 6 | | 1 | 6 | 8 |
+3 | 1 | 2 | 10 | | 1 | 7 | 8 | 3 | 1 | 2 | 12 | | 1 | 8 | 8 | 3 | 1 | 2
+| 12 | | <strong>9</strong> | <strong>9</strong> | <strong>16</strong> |
+3 | 9 |-6 | 6 |</p>
+<ul>
+<li><code>add(E e)</code> method has <strong>amortized constant
+time</strong></li>
+<li>Latency Issue<br />
+<img
+src="./res/list-append-time-per-operation-showing-amortised-linear-complexity.png"
+alt="List Append Time Per Operation" /></li>
+</ul>
+<h3 id="binary-search">Binary Search</h3>
+<ul>
+<li>Prerequisite: <strong>The array should be ordered</strong>.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">binarySearch</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> data<span class="op">,</span> <span class="dt">int</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> l <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> r <span class="op">=</span> data<span class="op">.</span><span class="fu">length</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> mid<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>l <span class="op">&gt;</span> r<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        mid <span class="op">=</span> <span class="op">(</span>l <span class="op">+</span> r<span class="op">)/</span><span class="dv">2</span><span class="op">;</span> <span class="co">// Overflow issue</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>data<span class="op">[</span>mid<span class="op">]</span> <span class="op">==</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> mid<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>data<span class="op">[</span>mid<span class="op">]</span> <span class="op">&lt;</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            l <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            r <span class="op">=</span> mid <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="ones-complement">One’s Complement</h4>
+<ul>
+<li>The <strong>ones’ complement</strong> of a binary number is the
+value obtained by inverting (flipping) all the bits in the binary
+representation of the number.</li>
+</ul>
+<h4 id="twos-complement">Two’s Complement</h4>
+<ul>
+<li>The <strong>most significant bit (MSB)</strong>, i.e. the number on
+the left, is known as the sign bit, which is used to represent whether
+the number is positive (0) or negative (1).</li>
+<li>The <strong>twos’ complement</strong>, which is the negative
+equivalent of the original binary number, is get by <strong>taking ones’
+complement</strong> and <strong>adding 1</strong>.</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 17%" />
+<col style="width: 36%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bits</th>
+<th>Unsigned value</th>
+<th>Signed value (Two’s complement)</th>
+<th>One’s Complement</th>
+<th>Two’s Complement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>000</td>
+<td>0</td>
+<td>0</td>
+<td>111</td>
+<td>000</td>
+</tr>
+<tr class="even">
+<td>001</td>
+<td>1</td>
+<td>1</td>
+<td>110</td>
+<td>111</td>
+</tr>
+<tr class="odd">
+<td>010</td>
+<td>2</td>
+<td>2</td>
+<td>101</td>
+<td>110</td>
+</tr>
+<tr class="even">
+<td>011</td>
+<td>3</td>
+<td>3</td>
+<td>100</td>
+<td>101</td>
+</tr>
+<tr class="odd">
+<td>100</td>
+<td>4</td>
+<td>-4</td>
+<td>011</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>101</td>
+<td>5</td>
+<td>-3</td>
+<td>010</td>
+<td>011</td>
+</tr>
+<tr class="odd">
+<td>110</td>
+<td>6</td>
+<td>-2</td>
+<td>001</td>
+<td>010</td>
+</tr>
+<tr class="even">
+<td>111</td>
+<td>7</td>
+<td>-1</td>
+<td>000</td>
+<td>001</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>With <span class="math inline"><em>n</em></span> bits, we can
+represent unsigned numbers <span class="math inline">0</span> to <span
+class="math inline">2<sup>(<em>n</em>−1)</sup></span>.</li>
+<li>With <span class="math inline"><em>n</em></span> bits, we can
+represent signed numbers <span
+class="math inline">–2<sup>(<em>n</em>−1)</sup></span> to <span
+class="math inline">2<sup>(<em>n</em>−1)</sup>–1</span>.</li>
+</ul>
+<h4 id="tweak">Tweak</h4>
+<ul>
+<li>Use <code>mid = l + (r - l)/2;</code> instead of
+<code>mid = (l + r)/2;</code></li>
+</ul>
