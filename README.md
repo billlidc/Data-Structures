@@ -589,9 +589,15 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 
 ### ArrayList v.s. LinkedList
 ArrayList
-* Locate element: `O(1)`
-* Perform insertion/deletion: `O(n)`
+* Locate element: `O(1)`  
+* Perform insertion/deletion: `O(n)`  
 
 LinkedList
-* Locate element: `O(n)`
-* Perform insertion/deletion: `O(1)`
+* Locate element: `O(n)`  
+* Perform insertion/deletion: `O(1)`  
+
+
+## 6. Stack (LIFO)
+
+
+## 7. Queue (FIFO)
