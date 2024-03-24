@@ -216,10 +216,7 @@ public static char[] delete(char[] data, int index) {
 
 ### Amortized Analysis
 
-```
-List<Integer> numbers = new ArrayList<Integer>(4);
-```
-
+`List<Integer> numbers = new ArrayList<Integer>(4);`
 
 | Running time | # of elements | Array length | Allocated dollars | Cost | Saved dollars | Balance |
 |--------------|---------------|--------------|-------------------|------|---------------|---------|
@@ -284,9 +281,317 @@ public static int binarySearch(int[] data, int key) {
 
 * With $n$ bits, we can represent unsigned numbers $0$ to $2^{(n-1)}$.
 * With $n$ bits, we can represent signed numbers $–2^{(n-1)}$ to $2^{(n-1)}–1$.
-
-#### Tweak
-* Use `mid = l + (r - l)/2;` instead of `mid = (l + r)/2;`
+* Therefore, use `mid = l + (r - l)/2` instead of `mid = (l + r)/2` in Binary Search to avoid potential integer overflow issues.
 
 
-## 5. The Big Picture - When to use what and how much does it cost?
+#### Time Complexity of Binary Search
+
+`O(log n)`
+
+* In general, it takes $\lfloor \log_{2} n \rfloor+ 1$ times to split an array in half before it becomes empty.
+
+* $c * \log_{10}(x) = \log_2(x)$ where $c = \frac{\log (10)}{\log (2)} = 3.3219$
+
+* The time complexity of an algorithm with `O(log n)` does not grow proportionally with the input size $n$ but only increases by a constant factor.
+    $$
+    \begin{align*}
+    c \cdot \log_2(2 * n) & = c \cdot (\log_2 2 + \log_2 n) \\
+    & = c + c \cdot \log_2 n
+    \end{align*}
+    $$
+
+
+### Big O Caveat
+When analyzing algorithms using Big O notation, it is essential to consider constants because Big O notation represents an upper bound on the growth rate of an algorithm's complexity.
+
+Consider:
+    $$
+    \begin{align*}
+    T(n) &= n \log n\\
+    U(n) &= 50 n
+    \end{align*}
+    $$
+
+* $n \text{ is small} \Rightarrow T(n) \text{ might be slower than } U(n)$  
+* $n \text{ is large} \Rightarrow T(n) \text{ grows more slowly than } U(n)$  
+
+### Array/AL Summary
+1. Random access
+2. No holes allowed -> Shifts
+3. Immutable length -> Memory, latency issue
+
+
+
+
+## 5. LinkedList
+
+### Java LinkedList
+* `addFirst(element: Object)`: void
+* `addLast(element: Object)`: void
+* `getFirst()`: Object
+* `getLast()`: Object
+* `removeFirst()`: Object
+* `removeLast()`: Object
+
+### Types
+1. Singly Linked List
+2. Doubly Linked List
+3. Circular Linked List
+
+### Implementation
+
+```Java
+public class LinkedList<AnyType> {
+    private Node<AnyType> head;
+
+    // Constructs an empty list
+    public LinkedList() {
+        head = null;
+    }
+
+
+    // TODO: implement all the methods below.
+    ...
+
+
+    // Static inner class
+    public static class Node<AnyType> {
+        private AnyType data;
+        private Node<AnyType> next;
+
+        // Constructor with data and next node
+        Node(AnyType d, Node<AnyType> n) {
+            data = d;
+            next = n;
+        }
+    }
+
+}
+```
+
+* Types of nested (inner) classes
+    * **Static**: do not have access to the instance variables and methods of the outer class directly.
+    * **Non-static**:  have access to the instance variables and methods of the outer class.
+
+
+### Methods
+
+#### addFirst
+
+```Java
+// Inserts a new item at the beginning of the list
+public void addFirst(AnyType item) {
+    head = new Node<AnyType>(item, head);
+}
+```
+
+#### Traverse to the last node
+
+```Java
+Node<AnyType> tmp = head;
+while (tmp.next != null) {
+    tmp = tmp.next;
+}
+```
+
+#### addLast
+
+```Java
+/**
+ * Inserts a new item to the end of the list.
+ */
+public void addLast(AnyType item) {
+    // If the list is empty, insert head
+    if (head == null) {
+        head = new Node<AnyType>(item, null);
+        return;
+    }
+    
+    // Traverse to the last element
+    Node<AnyType> tmp = head;
+    while (tmp.next != null) {
+        tmp = tmp.next;
+    }
+    
+    // Insert to the end of the list
+    tmp.next = new Node<AnyType>(item, null);
+}
+
+```
+
+#### insertAfter
+
+```Java
+/**
+ * Finds a node containing the key and inserts a new item after the node.
+ */
+public void insertAfter(AnyType key, AnyType item) {
+    Node<AnyType> tmp = head;
+
+    // Find the location with the given key
+    while (tmp != null && !tmp.data.equals(key)) {
+        tmp = tmp.next;
+    }
+    
+    // If the key is found
+    if (tmp != null) {
+        // Insert after the node
+        Node<AnyType> newNode = new Node<AnyType>(item, tmp.next);
+        tmp.next = newNode;
+    }
+}
+```
+
+
+#### insertBefore
+
+```Java
+/**
+ * Finds a node containing the key and inserts a new item before the node.
+ * @param key, a key to be found to add a new element
+ * @param item, a data to be added into the list
+ */
+public void insertBefore(AnyType key, AnyType item) {
+    // If the list is empty
+    if (head == null) {
+        return;
+    }
+    
+    // If head has the key
+    if (head.data.equals(key)) {
+        head = new Node<AnyType>(item, head); // Insert before head
+        return;
+    }
+    
+    /*
+     * If key is not in the head;
+     * Needs to keep track of previous node of current node
+     */
+    Node<AnyType> prev = null;
+    Node<AnyType> cur = head;
+    while (cur != null && !cur.data.equals(key)) {
+        prev = cur;
+        cur = cur.next;
+    }
+    
+    // Found it, add new node before the current node
+    if (cur != null) {
+        prev.next = new Node<AnyType>(item, cur);
+    }
+}
+
+```
+
+
+#### remove
+
+```Java
+/**
+ * Removes the first occurrence of a key from the list.
+ * @param key, a key to be deleted
+ */
+public void remove(AnyType key) {
+    // If the list is empty
+    if (head == null) {
+        return;
+    }
+    
+    // If head has the key
+    if (head.data.equals(key)) {
+        head = head.next;
+        return;
+    }
+    
+    /*
+     * If key is not in the head;
+     * Needs to keep track of previous node of current node
+     */
+    Node<AnyType> prev = null;
+    Node<AnyType> cur = head;
+    while (cur != null && !cur.data.equals(key)) {
+        prev = cur;
+        cur = cur.next;
+    }
+    
+    // If current node has the key
+    if (cur != null) {
+        prev.next = cur.next;
+    }
+}
+
+```
+
+### Time Complexities
+* addFirst: `O(1)`
+* insertBefore/insertAfter: `O(n)`
+* remove: `O(n)`
+* search: `O(n)`
+
+
+### Iterator
+
+Modifications to the LinkedList class:
+
+```Java
+import java.util.*;
+
+public class LinkedList<AnyType> implements Iterable<AnyType> {
+    private Node<AnyType> head;
+
+    // Constructs an empty list
+    public LinkedList() {
+        head = null;
+    }
+
+
+    ...
+
+
+
+    /**
+     * Iterator implementation that returns iterator object.
+     */
+    @Override
+    public Iterator<AnyType> iterator() {
+        return new LinkedListIterator<>();
+    }
+
+    /**
+     * (Non-static) inner class for LinkedListIterator that implements Iterator interface.
+     */
+    private class LinkedListIterator implements Iterator<AnyType> {
+        private Node<AnyType> nextNode;
+
+        LinkedListIterator() {
+            nextNode = head;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return nextNode != null;
+        }
+
+        @Override
+        public AnyType next() {
+            // When there is no next element
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            AnyType tmp = nextNode.data;
+            nextNode = nextNode.next;
+            return tmp;
+        }
+    }
+}
+```
+
+
+### ArrayList v.s. LinkedList
+ArrayList
+* Locate element: `O(1)`
+* Perform insertion/deletion: `O(n)`
+
+LinkedList
+* Locate element: `O(n)`
+* Perform insertion/deletion: `O(1)`
