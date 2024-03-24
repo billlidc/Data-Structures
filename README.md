@@ -28,17 +28,17 @@
 
 ![](./res/big_o.png){ width=50% }
 
-* $O(1)$: ```Constant```
+* $O(1)$: `Constant`
     * An algorithm does NOT depend on the input size.
-* $O(log n)$: ```Logarithmic```
+* $O(log n)$: `Logarithmic`
     * An algorithm gets **slightly slower** as $n$ grows.
-* $O(n)$: ```Linear```
+* $O(n)$: `Linear`
     * The running time grows as much as $n$ grows (When $n$ doubles, runtime doubles).
-* $O(n \cdot log n)$: ```Linearithmic```
+* $O(n \cdot log n)$: `Linearithmic`
     * Usually the result of performing $O(log n)$ operation $n$ times or performing $O(n)$ operation $log n$ times.
-* $O(n^2)$: ```Quadratic```
-* $O(2^n)$: ```Exponential```
-* $O(n!)$: ```Factorial```
+* $O(n^2)$: `Quadratic`
+* $O(2^n)$: `Exponential`
+* $O(n!)$: `Factorial`
 
 ### Categories of Data Structures
 
@@ -57,7 +57,7 @@
 ## 2. Collections
 
 ### Interface
-```java.util.Collection```
+`java.util.Collection`
 
 | Interface | Implementation          |
 |-----------|-------------------------|
@@ -88,8 +88,8 @@
 ## 3. Arrays
 
 ### Arrays in Java
-* Manipulating data: ```clone()```
-* Immutable field: ```length```, once an array is created, its length is fixed and cannot be changed.
+* Manipulating data: `clone()`
+* Immutable field: `length`, once an array is created, its length is fixed and cannot be changed.
 
 ---
 
@@ -97,9 +97,11 @@
 int[] a = { 1, 2, 3, 4, 5 };
 int[] b = { 1, 2, 3, 4, 5 };
 ```
-Array ```a``` and ```b``` are two instances,
-* ```a == b``` checks reference/identity
-* ```a.equals(b)``` of the Object class also checks reference/identity
+Array `a` and `b` are two instances,
+
+* `a == b` checks reference/identity, returns false;
+
+* `a.equals(b)` of Object class also checks reference/identity, returns false.
 
 ---
 
@@ -110,20 +112,24 @@ System.out.println(c); // the same as c.toString()
 System.out.println(c.toString());
 ```
 
+---
+Array indexing conventionally begins at 0:
+    `Element's memory location = Array's memory location + Element length * Element`
+
 
 ### Arrays Class
 
-```java.util.Arrays```
+`java.util.Arrays`
 
-* Check equality: ```Arrays.equals(a, b)```
+* Check equality: `Arrays.equals(a, b)`
 
-* Printing values: ```System.out.print(Arrays.toString(c));```
+* Printing values: `System.out.print(Arrays.toString(c));`
 
-* Sorting: ```Arrays.sort(c);```
+* Sorting: `Arrays.sort(c);`
 
 * Copying
 
-    1. ```Arrays.copyOf(sA, length);```
+    1. `Arrays.copyOf(sA, length);`
 
         ```Java
         int[] d = Arrays.copyOf(a, 2);
@@ -133,7 +139,7 @@ System.out.println(c.toString());
         // d = [1, 2, 3, 4, 5, 0, 0, 0, 0, 0]
         ```
 
-    2. ```System.arraycopy(sA, sI, dA, dI, length);```
+    2. `System.arraycopy(sA, sI, dA, dI, length);`
 
         ```Java
         int[] e = new int[5];
@@ -141,7 +147,7 @@ System.out.println(c.toString());
         // e = [1, 2, 3, 0, 0]
         ```
 
-    3. ```clone()```
+    3. `clone()`
 
         ```Java
         int[] g = {1, 2, 3, 4, 5};
@@ -172,20 +178,20 @@ public static char[] delete(char[] data, int index) {
 
 ## 4. ArrayList and Binary Search
 
-```java.util.ArrayList```
+`java.util.ArrayList`
 
 ### ArrayList Methods
-* ```add(object)```: adds a new element to the end.
-* ```add(index, object)```: inserts a new element at the specified index.
-* ```set(index, object)```: replaces an existing element at the specified index with the new element.
-* ```get(index)```: returns the element at the specified index.
-* ```remove(index)```: deletes the element at the specified index.
-* ```size()```: returns the number of elements.
+* `add(object)`: adds a new element to the end.
+* `add(index, object)`: inserts a new element at the specified index.
+* `set(index, object)`: replaces an existing element at the specified index with the new element.
+* `get(index)`: returns the element at the specified index.
+* `remove(index)`: deletes the element at the specified index.
+* `size()`: returns the number of elements.
 
 ### Java ArrayList
-* Whenever an instance of ArrayList in Java is created then **by default** the capacity of Arraylist is ```10```.
+* Whenever an instance of ArrayList in Java is created then **by default** the capacity of Arraylist is `10`.
 
-* **Expand** when ```add()``` is called, but **DOES NOT shrink** when ```delete()```.
+* **Expand** when `add()` is called, but **DOES NOT shrink** when `delete()`.
 
     ```Java
     // Initialize an arraylist with initial length of 0
@@ -202,7 +208,7 @@ public static char[] delete(char[] data, int index) {
     System.out.println(numbers);
     ```
 
-    * If there is issue with unused memory, manually invoke ```trimToSize()``` method to free up the memory by shrinking size to the number of elements.
+    * If there is issue with unused memory, manually invoke `trimToSize()` method to free up the memory by shrinking size to the number of elements.
 
 * ArrayList used to implement the **doubling-up policy**; In Java 6, there has been a change to be $(oldCapacity * 3) / 2 + 1$.
     * For corner cases where $oldCapacity = 0$ or $oldCapacity = 1$, we must $+ 1$ to expand the array
@@ -227,7 +233,7 @@ List<Integer> numbers = new ArrayList<Integer>(4);
 | 1            | 8             | 8            | 3                 | 1    | 2             | 12      |
 | 9            | 9             | 16           | 3                 | 9    |-6             | 6       |
 
-* ```add(E e)``` method has **amortized constant time**
+* `add(E e)` method has **amortized constant time**
 * Latency Issue  
     ![](./res/list-append-time-per-operation-showing-amortised-linear-complexity.png){ width=50% }
 
@@ -280,4 +286,7 @@ public static int binarySearch(int[] data, int key) {
 * With $n$ bits, we can represent signed numbers $–2^{(n-1)}$ to $2^{(n-1)}–1$.
 
 #### Tweak
-* Use ```mid = l + (r - l)/2;``` instead of ```mid = (l + r)/2;```
+* Use `mid = l + (r - l)/2;` instead of `mid = (l + r)/2;`
+
+
+## 5. The Big Picture - When to use what and how much does it cost?
