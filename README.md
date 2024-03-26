@@ -56,11 +56,14 @@
 * Generalized metric for measuring performance
 
 * Definition: $T(n)=O(f(n))$ if and only if there exists constants $c > 0$ and $n_0 > 0$ such that $T(n) \leq c \cdot f(n)$, $\forall n \geq n_0$.
+
+
 ![](./res/graph_of_T_n_f_n_and_2f_n.png)
 
+
 * Characterstics
-    * Ignore constants: $1000n = O(n)$
-    * Ignore low order terms: $n^3 + n^2 + n = O(n^3)$
+    - Ignore constants: $1000n = O(n)$
+    - Ignore low order terms: $n^3 + n^2 + n = O(n^3)$
 
 ### Big-O Classifications
 
