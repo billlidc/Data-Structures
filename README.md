@@ -1,15 +1,43 @@
+<a name="top"></a>
+
+
 # Data Structures for Application Programmers
+
+
 
 
 ## Table of Contents
 1. [The Big Picture - When to use what and how much does it cost?](#1-the-big-picture---when-to-use-what-and-how-much-does-it-cost)
+    - [Big-O Classifications](#big-o-classifications)
+
 2. [Collections](#2-collections)
+    - [Java Collection Hierarchy](#java-collection-hierarchy)
+
 3. [Arrays](#3-arrays)
+    - [Arrays Class](#arrays-class)
+
 4. [ArrayList and Binary Search](#4-arraylist-and-binary-search)
+    - [Java ArrayList](#java-arraylist)
+    - [Amortized Analysis](#amortized-analysis)
+    - [Binary Search](#binary-search)
+
 5. [LinkedList](#5-linkedlist)
+    - [Java LinkedList Implementation](#java-linkedlist-implementation)
+    - [LinkedList Methods](#linkedlist-methods)
+    - [Iterator](#iterator)
+
 6. [Stack (LIFO)](#6-stack-lifo)
+    - [Stack Implementation using Array](#stack-implementation-using-array)
+    - [Stack Methods using Array](#stack-methods-using-array)
+
 7. [Queue (FIFO)](#7-queue-fifo)
+    - [Queue Implementation using Array](#queue-implementation-using-array)
+    - [Queue Methods using Array](#queue-methods-using-array)
+
 8. [Sorting](#8-sorting)
+
+
+
 
 
 
@@ -65,9 +93,18 @@
 ![](./res/flowchart.png){ width=50% }
 
 
+
+
+
+[Back to Top](#)
+
+
+
+
+
 ## 2. Collections
 
-### Interface
+### Java Collection Interface
 `java.util.Collection`
 
 | Interface | Implementation          |
@@ -82,7 +119,7 @@
     * Map is a collection of pairs (key, value).
     * Map cannot contain duplicate keys.
 
-### Hierarchy
+### Java Collection Hierarchy
 ![](./res/hierarchy.png){ width=50% }
 
 
@@ -93,6 +130,14 @@
 * Searching
 * Iteration (Traversal)
 * Copying (Cloning)
+
+
+
+
+
+[Back to Top](#)
+
+
 
 
 
@@ -108,11 +153,10 @@
 int[] a = { 1, 2, 3, 4, 5 };
 int[] b = { 1, 2, 3, 4, 5 };
 ```
+
 Array `a` and `b` are two instances,
-
-* `a == b` checks reference/identity, returns false;
-
-* `a.equals(b)` of Object class also checks reference/identity, returns false.
+- `a == b` checks reference/identity, returns false;
+- `a.equals(b)` of Object class also checks reference/identity, returns false.
 
 ---
 
@@ -170,6 +214,8 @@ Array indexing conventionally begins at 0:
         * Arrays of **objects** or **references**: copies the reference of every single object; modifying a object affects other arrays
             * Write code to perform **Deep Copy**
 
+
+
 ### Resizing an Array
 
 ```Java
@@ -185,6 +231,15 @@ public static char[] delete(char[] data, int index) {
     return data;
 }
 ```
+
+
+
+
+
+[Back to Top](#)
+
+
+
 
 
 ## 4. ArrayList and Binary Search
@@ -326,10 +381,23 @@ Consider:
 * $n \text{ is small} \Rightarrow T(n) \text{ might be slower than } U(n)$  
 * $n \text{ is large} \Rightarrow T(n) \text{ grows more slowly than } U(n)$  
 
+
+
+
 ### Array/AL Summary
 1. Random access
 2. No holes allowed -> Shifts
 3. Immutable length -> Memory, latency issue
+
+
+
+
+
+
+[Back to Top](#)
+
+
+
 
 
 
@@ -349,7 +417,7 @@ Consider:
 2. Doubly Linked List
 3. Circular Linked List
 
-### Implementation
+### Java LinkedList Implementation
 
 ```Java
 public class LinkedList<AnyType> {
@@ -385,7 +453,7 @@ public class LinkedList<AnyType> {
     * **Non-static**:  have access to the instance variables and methods of the outer class.
 
 
-### Methods
+### LinkedList Methods
 
 #### addFirst
 
@@ -600,6 +668,7 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 ```
 
 
+
 ### ArrayList v.s. LinkedList
 ArrayList
 * Locate element: `O(1)`  
@@ -608,6 +677,17 @@ ArrayList
 LinkedList
 * Locate element: `O(n)`  
 * Perform insertion/deletion: `O(1)`  
+
+
+
+
+
+[Back to Top](#)
+
+
+
+
+
 
 
 ## 6. Stack (LIFO)
@@ -797,6 +877,11 @@ public class Reverser {
 ```
 
 
+
+[Back to Top](#)
+
+
+
 ## 7. Queue (FIFO)
 
 
@@ -949,6 +1034,18 @@ theQueue.addLast(5);
 // Dequeue from the queue
 theQueue.removeFirst();
 ```
+
+
+
+
+
+[Back to Top](#)
+
+
+
+
+
+
 
 
 ## 8. Sorting
