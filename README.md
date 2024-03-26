@@ -678,13 +678,13 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 
 
 ### ArrayList v.s. LinkedList
-ArrayList
-* Locate element: `O(1)`  
-* Perform insertion/deletion: `O(n)`  
+* ArrayList:
+    - Locate element: `O(1)`
+    - Perform insertion/deletion: `O(n)`  
 
-LinkedList
-* Locate element: `O(n)`  
-* Perform insertion/deletion: `O(1)`  
+* LinkedList
+    - Locate element: `O(n)`
+    - Perform insertion/deletion: `O(1)`  
 
 
 
