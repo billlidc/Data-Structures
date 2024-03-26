@@ -56,7 +56,7 @@
 * Generalized metric for measuring performance
 
 * Definition: $T(n)=O(f(n))$ if and only if there exists constants $c > 0$ and $n_0 > 0$ such that $T(n) \leq c \cdot f(n)$, $\forall n \geq n_0$.
-![](./res/graph_of_T_n_f_n_and_2f_n.png){ width=50% }
+![](./res/graph_of_T_n_f_n_and_2f_n.png)
 
 * Characterstics
     * Ignore constants: $1000n = O(n)$
@@ -66,7 +66,7 @@
 
 [Time complexity (Big O) cheat sheet](https://leetcode.com/explore/interview/card/cheatsheets/720/resources/4725/)
 
-![](./res/big_o.png){ width=50% }
+![](./res/big_o.png)
 
 * $O(1)$: `Constant`
     * An algorithm does NOT depend on the input size.
@@ -91,7 +91,7 @@
 * **Graphs**
 
 ### Flow Chart
-![](./res/flowchart.png){ width=50% }
+![](./res/flowchart.png)
 
 
 
@@ -121,7 +121,7 @@
     * Map cannot contain duplicate keys.
 
 ### Java Collection Hierarchy
-![](./res/hierarchy.png){ width=50% }
+![](./res/hierarchy.png)
 
 
 ### General Operations
@@ -299,7 +299,7 @@ public static char[] delete(char[] data, int index) {
 
 * `add(E e)` method has **amortized constant time**
 * Latency Issue  
-    ![](./res/list-append-time-per-operation-showing-amortised-linear-complexity.png){ width=50% }
+    ![](./res/list-append-time-per-operation-showing-amortised-linear-complexity.png)
 
 
 ### Binary Search
