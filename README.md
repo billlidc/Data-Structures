@@ -62,7 +62,9 @@
 
 
 * Characterstics
+
     - Ignore constants: $1000n = O(n)$
+
     - Ignore low order terms: $n^3 + n^2 + n = O(n^3)$
 
 ### Big-O Classifications
@@ -159,7 +161,9 @@ int[] b = { 1, 2, 3, 4, 5 };
 ```
 
 Array `a` and `b` are two instances,
+
 - `a == b` checks reference/identity, returns false;
+
 - `a.equals(b)` of Object class also checks reference/identity, returns false.
 
 ---
