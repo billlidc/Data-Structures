@@ -789,7 +789,7 @@ public void push(AnyType item) {
 /**
  * Gets and removes the top item in O(1).
  * @return top, item on the top
- * @throws StackException indicates that stack is empty
+ * @throws StackException indicating the stack is empty
  */
 @Override
 public AnyType pop() {
@@ -817,7 +817,7 @@ public AnyType pop() {
 /**
  * Gets (peeks) the top element but does not delete it in O(1).
  * @return top, item on the top
- * @throws StackException indicating that stack is empty
+ * @throws StackException indicating the stack is empty
  */
 @SuppressWarnings("unchecked")
 @Override
@@ -1019,7 +1019,7 @@ public AnyType dequeue() {
 /**
  * Gets an item from the front of the queue but does not delete it in O(1).
  * @return the first item in the queue
- * @throws NoSuchElementException indicating that queue is empty
+ * @throws NoSuchElementException indicating the queue is empty
  */
 @SuppressWarnings("unchecked")
 @Override
