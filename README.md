@@ -815,9 +815,9 @@ public AnyType pop() {
 #### Peek
 ```Java
 /**
- * Gets (peeks) the top element in O(1). Does not delete it!
+ * Gets (peeks) the top element but does not delete it in O(1).
  * @return top, item on the top
- * @throws StackException indicates that stack is empty
+ * @throws StackException indicating that stack is empty
  */
 @SuppressWarnings("unchecked")
 @Override
@@ -847,6 +847,7 @@ Also, `addLast()`/`removeLast()` methods can be used to implement a stack that t
 
 
 ### Stack Usage: Reverse a String
+
 ```Java
 /**
  * Simple Application to reverse a String using Stack.
@@ -1031,7 +1032,7 @@ public AnyType peekFront() {
 ```
 
 
-#### Queue using LinkedList Methods
+### Queue using LinkedList Methods
 
 ```Java
 LinkedList<Integer> theQueue = new LinkedList<Integer>();
