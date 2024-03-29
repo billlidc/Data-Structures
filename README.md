@@ -1093,10 +1093,14 @@ public static void bubbleSort(int[] data) {
 }
 ```
 
-* Total comparisons: $$\frac{(n-1)n}{2}$$
-* Total swaps: $$\frac{(n-1)n}{4}$$
+* Total comparisons:
+    $$ \frac{(n-1)n}{2} $$
+
+* Total swaps:
+    $$ \frac{(n-1)n}{4} $$
     - Arithmetic series formula
-    - Binomial coefficient: $$ {n \choose k} = \frac{n!}{k!(n-k)!} $$
+    - Binomial coefficient:
+        $$ {n \choose k} = \frac{n!}{k!(n-k)!} $$
 
 
 
@@ -1163,7 +1167,13 @@ public static void insertionSort(int[] data) {
 }
 ```
 
-* Total comparisons: $$\frac{n(n-1)}{4}$$
+* Total comparisons:
+    $$ \frac{n(n-1)}{4} $$
+
+
+
+
+
 
 [Back to Top](#)
 
