@@ -41,14 +41,13 @@
 9. [Comparable/Comparator](#9-comparablecomparator)
     - [Comparable](#comparable)
     - [Comparator](#comparator)
-    - [Collections](#collections)
-
 
 10. [Recursion](#10-recursion)
     - [Characteristics](#characteristics)
     - [Iterative/Recursive Comparison](#iterativerecursive-comparison)
     - [Fibonacci Numbers](#fibonacci-numbers)
     - [Binary Search (Recursive)](#binary-search-recursive)
+
 
 
 
@@ -1362,7 +1361,7 @@ public class CompareBySuitRank implements Comparator<Card> {
 ```
 
 
-### Collections
+### Collections.sort
 
 ```Java
 // Default: uses compareTo method implemented
