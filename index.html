@@ -280,7 +280,13 @@ using Array</a></li>
 <li><a href="#queue-methods-using-array">Queue Methods using
 Array</a></li>
 </ul></li>
-<li><a href="#8-sorting">Sorting</a></li>
+<li><a href="#8-sorting">Sorting</a>
+<ul>
+<li><a href="#bubble-sort">Bubble Sort</a></li>
+<li><a href="#selection-sort">Selection Sort</a></li>
+<li><a href="#insertion-sort">Insertion Sort</a></li>
+</ul></li>
+<li><a href="#9-comparablecomparator">Comparable/Comparator</a></li>
 </ol>
 <h2 id="the-big-picture---when-to-use-what-and-how-much-does-it-cost">1.
 The Big Picture - When to use what and how much does it cost?</h2>
@@ -1415,5 +1421,378 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb32-1"><a href=
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>theQueue<span class="op">.</span><span class="fu">removeFirst</span><span class="op">();</span></span></code></pre></div>
 <p><a href="#">Back to Top</a></p>
 <h2 id="sorting">8. Sorting</h2>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> A helper method that swaps two values in an integer array<span class="co">.</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">swap</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> data<span class="op">,</span> <span class="dt">int</span> one<span class="op">,</span> <span class="dt">int</span> two<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> temp <span class="op">=</span> data<span class="op">[</span>one<span class="op">];</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    data<span class="op">[</span>one<span class="op">]</span> <span class="op">=</span> data<span class="op">[</span>two<span class="op">];</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    data<span class="op">[</span>two<span class="op">]</span> <span class="op">=</span> temp<span class="op">;</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="bubble-sort">Bubble Sort</h3>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Bubble sort<span class="co">,</span> O<span class="co">(</span>n<span class="co">^2)</span> in the worst<span class="co">-</span>case<span class="co">.</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Focus on the largest value<span class="co">!</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Simple but slow<span class="co">.</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">data,</span><span class="co"> </span>an array of int to sort</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">bubbleSort</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> data<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> out <span class="op">=</span> data<span class="op">.</span><span class="fu">length</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> out <span class="op">&gt;=</span> <span class="dv">1</span><span class="op">;</span> out<span class="op">--)</span> <span class="op">{</span> <span class="co">// The remaining element is the smallest</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> in <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> in <span class="op">&lt;</span> out<span class="op">;</span> in<span class="op">++)</span> <span class="op">{</span> <span class="co">// The largest elements are bubbled up to the end, no need to check</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>data<span class="op">[</span>in<span class="op">]</span> <span class="op">&gt;</span> data<span class="op">[</span>in <span class="op">+</span> <span class="dv">1</span><span class="op">])</span> <span class="op">{</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">swap</span><span class="op">(</span>data<span class="op">,</span> in<span class="op">,</span> in <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ul>
+<li><p>Total comparisons: <span class="math display">$$ \frac{(n-1)n}{2}
+$$</span></p></li>
+<li><p>Total swaps: <span class="math display">$$ \frac{(n-1)n}{4}
+$$</span></p>
+<ul>
+<li>Arithmetic series formula</li>
+<li>Binomial coefficient: <span class="math display">$$ {n \choose k} =
+\frac{n!}{k!(n-k)!} $$</span></li>
+</ul></li>
+</ul>
+<h3 id="selection-sort">Selection Sort</h3>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Selection sort<span class="co">,</span> O<span class="co">(</span>n<span class="co">^2).</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Focus on the smallest value<span class="co">!</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Faster than bubble sort mainly due to less number of swaps<span class="co">.</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">data,</span><span class="co"> </span>an array of int to sort</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">selectionSort</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> data<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> min<span class="op">;</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> out <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> out <span class="op">&lt;</span> data<span class="op">.</span><span class="fu">length</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> out<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>        min <span class="op">=</span> out<span class="op">;</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> in <span class="op">=</span> out <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> in <span class="op">&lt;</span> data<span class="op">.</span><span class="fu">length</span><span class="op">;</span> in<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>data<span class="op">[</span>in<span class="op">]</span> <span class="op">&lt;</span> data<span class="op">[</span>min<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>                min <span class="op">=</span> in<span class="op">;</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Swap the min value with out index&#39;s value</span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>out <span class="op">!=</span> min<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>            <span class="fu">swap</span><span class="op">(</span>data<span class="op">,</span> out<span class="op">,</span> min<span class="op">);</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ul>
+<li>Less number of swaps</li>
+</ul>
+<h3 id="insertion-sort">Insertion Sort</h3>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Insertion sort<span class="co">,</span> O<span class="co">(</span>n<span class="co">^2)</span> in the worst case<span class="co">.</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Best case runntime complexity is O<span class="co">(</span>n<span class="co">).</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Sensitive to the input values<span class="co">.</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Less number of comparisons on average<span class="co">.</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Uses shifting <span class="co">(</span>copying<span class="co">)</span> instead of swapping <span class="co">(</span>one swap equals to three copies<span class="co">).</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">data,</span><span class="co"> </span>an array of int to sort</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">insertionSort</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> data<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> out <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> out <span class="op">&lt;</span> data<span class="op">.</span><span class="fu">length</span><span class="op">;</span> out<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> tmp <span class="op">=</span> data<span class="op">[</span>out<span class="op">];</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> in <span class="op">=</span> out<span class="op">;</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">/**</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>         <span class="co">*</span> Loop backward through the sorted section but not necessarily to <span class="co">0-</span>th</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>         <span class="co">*</span> On average<span class="co">,</span> go halfway through the sorted section</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>         <span class="co">*/</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>in <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> data<span class="op">[</span>in <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">&gt;=</span> tmp<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>            data<span class="op">[</span>in<span class="op">]</span> <span class="op">=</span> data<span class="op">[</span>in <span class="op">-</span> <span class="dv">1</span><span class="op">];</span> <span class="co">// Shift to right</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>            in<span class="op">--;</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">// INSERT the tmp value into the right position of the sorted section</span></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>out <span class="op">!=</span> in<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>            data<span class="op">[</span>in<span class="op">]</span> <span class="op">=</span> tmp<span class="op">;</span></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ul>
+<li>Total comparisons: <span class="math display">$$ \frac{n(n-1)}{4}
+$$</span></li>
+</ul>
+<p><a href="#">Back to Top</a></p>
+<h2 id="comparablecomparator">9. Comparable/Comparator</h2>
+<h3 id="comparable">Comparable</h3>
+<ul>
+<li><p>Implement Comparable interface and override
+<code>compareTo()</code>, the default way to compare</p></li>
+<li><p><code>compareTo()</code> is used to implement the
+<strong>natural/default ordering</strong> of the class</p></li>
+<li><p>Note that the class’s <code>compareTo()</code> should be
+consistent to <code>equals()</code> and <code>hashCode()</code> such
+that:</p>
+<ul>
+<li>If <code>x.equals(y)</code> is true, then
+<code>x.compareTo(y)</code> must equal to 0</li>
+<li>If <code>x.equals(y)</code> is true, then <code>x.hashCode()</code>
+must equal to <code>y.hashCode()</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Card <span class="kw">implements</span> <span class="bu">Comparable</span><span class="op">&lt;</span>Card<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> suit<span class="op">;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">int</span> rank<span class="op">;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Constructs a card with suit and rank<span class="co">.</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">suit</span><span class="co"> </span>suit of a card</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">rank</span><span class="co"> </span>rank of a card</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="fu">Card</span><span class="op">(</span><span class="bu">String</span> s<span class="op">,</span> <span class="dt">int</span> r<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>        suit <span class="op">=</span> s<span class="op">;</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>        rank <span class="op">=</span> r<span class="op">;</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Returns suit of a card<span class="co">.</span></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> suit</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">getSuit</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> suit<span class="op">;</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Returns rank of a card<span class="co">.</span></span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> rank</span>
+<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getRank</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> rank<span class="op">;</span></span>
+<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-31"><a href="#cb37-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb37-32"><a href="#cb37-32" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Returns String representation of card objects<span class="co">.</span></span>
+<span id="cb37-33"><a href="#cb37-33" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> String representation of card objects</span>
+<span id="cb37-34"><a href="#cb37-34" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb37-35"><a href="#cb37-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb37-36"><a href="#cb37-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">toString</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb37-37"><a href="#cb37-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> suit <span class="op">+</span> <span class="st">&quot;, &quot;</span> <span class="op">+</span> rank<span class="op">;</span></span>
+<span id="cb37-38"><a href="#cb37-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-39"><a href="#cb37-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-40"><a href="#cb37-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb37-41"><a href="#cb37-41" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Uses rank to compare cards</span>
+<span id="cb37-42"><a href="#cb37-42" aria-hidden="true" tabindex="-1"></a><span class="co">     * </span><span class="an">@return</span> positive<span class="co">,</span> <span class="co">0</span> or negative</span>
+<span id="cb37-43"><a href="#cb37-43" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb37-44"><a href="#cb37-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb37-45"><a href="#cb37-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">compareTo</span><span class="op">(</span>Card other<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb37-46"><a href="#cb37-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">compare</span><span class="op">(</span>rank<span class="op">,</span> other<span class="op">.</span><span class="fu">rank</span><span class="op">);</span></span>
+<span id="cb37-47"><a href="#cb37-47" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-48"><a href="#cb37-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-49"><a href="#cb37-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-50"><a href="#cb37-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">/******************************************************************************</span></span>
+<span id="cb37-51"><a href="#cb37-51" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
+<span id="cb37-52"><a href="#cb37-52" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Example of compareTo<span class="co">,</span> equals and hashCode methods using Apache Commons Lang</span>
+<span id="cb37-53"><a href="#cb37-53" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
+<span id="cb37-54"><a href="#cb37-54" aria-hidden="true" tabindex="-1"></a>     <span class="co">******************************************************************************/</span></span>
+<span id="cb37-55"><a href="#cb37-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-56"><a href="#cb37-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb37-57"><a href="#cb37-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">compareTo</span><span class="op">(</span>Card other<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb37-58"><a href="#cb37-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">new</span> <span class="fu">CompareToBuilder</span><span class="op">()</span></span>
+<span id="cb37-59"><a href="#cb37-59" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">append</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">suit</span><span class="op">,</span> other<span class="op">.</span><span class="fu">suit</span><span class="op">)</span></span>
+<span id="cb37-60"><a href="#cb37-60" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">append</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">rank</span><span class="op">,</span> other<span class="op">.</span><span class="fu">rank</span><span class="op">)</span></span>
+<span id="cb37-61"><a href="#cb37-61" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">toComparison</span><span class="op">();</span></span>
+<span id="cb37-62"><a href="#cb37-62" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-63"><a href="#cb37-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-64"><a href="#cb37-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb37-65"><a href="#cb37-65" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">equals</span><span class="op">(</span><span class="bu">Object</span> other<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb37-66"><a href="#cb37-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(!(</span>other <span class="kw">instanceof</span> Card<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb37-67"><a href="#cb37-67" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb37-68"><a href="#cb37-68" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb37-69"><a href="#cb37-69" aria-hidden="true" tabindex="-1"></a>        Card castOther <span class="op">=</span> <span class="op">(</span>Card<span class="op">)</span> other<span class="op">;</span></span>
+<span id="cb37-70"><a href="#cb37-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">new</span> <span class="fu">EqualsBuilder</span><span class="op">()</span></span>
+<span id="cb37-71"><a href="#cb37-71" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">append</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">suit</span><span class="op">,</span> castOther<span class="op">.</span><span class="fu">suit</span><span class="op">)</span></span>
+<span id="cb37-72"><a href="#cb37-72" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">append</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">rank</span><span class="op">,</span> castOther<span class="op">.</span><span class="fu">rank</span><span class="op">)</span></span>
+<span id="cb37-73"><a href="#cb37-73" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">isEquals</span><span class="op">();</span></span>
+<span id="cb37-74"><a href="#cb37-74" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-75"><a href="#cb37-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-76"><a href="#cb37-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb37-77"><a href="#cb37-77" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">hashCode</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb37-78"><a href="#cb37-78" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">new</span> <span class="fu">HashCodeBuilder</span><span class="op">().</span><span class="fu">append</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">suit</span><span class="op">).</span><span class="fu">append</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">rank</span><span class="op">).</span><span class="fu">toHashCode</span><span class="op">();</span></span>
+<span id="cb37-79"><a href="#cb37-79" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-80"><a href="#cb37-80" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-81"><a href="#cb37-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-82"><a href="#cb37-82" aria-hidden="true" tabindex="-1"></a>    <span class="co">/************************************************************************</span></span>
+<span id="cb37-83"><a href="#cb37-83" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
+<span id="cb37-84"><a href="#cb37-84" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span>  Example of compareTo<span class="co">,</span> equals and hashCode methods using Google Guava</span>
+<span id="cb37-85"><a href="#cb37-85" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
+<span id="cb37-86"><a href="#cb37-86" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span>  Note<span class="co">:</span> When using Java <span class="co">7</span> or later version<span class="co">,</span> you can use Objects class</span>
+<span id="cb37-87"><a href="#cb37-87" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span>  in java<span class="co">.</span>util instead of using Guava</span>
+<span id="cb37-88"><a href="#cb37-88" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
+<span id="cb37-89"><a href="#cb37-89" aria-hidden="true" tabindex="-1"></a>     <span class="co">************************************************************************/</span></span>
+<span id="cb37-90"><a href="#cb37-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-91"><a href="#cb37-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb37-92"><a href="#cb37-92" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">compareTo</span><span class="op">(</span>Card other<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb37-93"><a href="#cb37-93" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ComparisonChain<span class="op">.</span><span class="fu">start</span><span class="op">()</span></span>
+<span id="cb37-94"><a href="#cb37-94" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">compare</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">suit</span><span class="op">,</span> other<span class="op">.</span><span class="fu">suit</span><span class="op">)</span></span>
+<span id="cb37-95"><a href="#cb37-95" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">compare</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">rank</span><span class="op">,</span> other<span class="op">.</span><span class="fu">rank</span><span class="op">)</span></span>
+<span id="cb37-96"><a href="#cb37-96" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">result</span><span class="op">();</span></span>
+<span id="cb37-97"><a href="#cb37-97" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-98"><a href="#cb37-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-99"><a href="#cb37-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb37-100"><a href="#cb37-100" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">equals</span><span class="op">(</span><span class="bu">Object</span> obj<span class="op">){</span></span>
+<span id="cb37-101"><a href="#cb37-101" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(!(</span>obj <span class="kw">instanceof</span> Card<span class="op">)){</span></span>
+<span id="cb37-102"><a href="#cb37-102" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb37-103"><a href="#cb37-103" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb37-104"><a href="#cb37-104" aria-hidden="true" tabindex="-1"></a>        Card other <span class="op">=</span> <span class="op">(</span>Card<span class="op">)</span> obj<span class="op">;</span></span>
+<span id="cb37-105"><a href="#cb37-105" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> Objects<span class="op">.</span><span class="fu">equal</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">suit</span><span class="op">,</span> other<span class="op">.</span><span class="fu">suit</span><span class="op">)</span></span>
+<span id="cb37-106"><a href="#cb37-106" aria-hidden="true" tabindex="-1"></a>                <span class="op">&amp;&amp;</span> Objects<span class="op">.</span><span class="fu">equal</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">rank</span><span class="op">,</span> other<span class="op">.</span><span class="fu">rank</span><span class="op">);</span></span>
+<span id="cb37-107"><a href="#cb37-107" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-108"><a href="#cb37-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-109"><a href="#cb37-109" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb37-110"><a href="#cb37-110" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">hashCode</span><span class="op">(){</span></span>
+<span id="cb37-111"><a href="#cb37-111" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> Objects<span class="op">.</span><span class="fu">hashCode</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">suit</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="fu">rank</span><span class="op">);</span></span>
+<span id="cb37-112"><a href="#cb37-112" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb37-113"><a href="#cb37-113" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-114"><a href="#cb37-114" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="comparator">Comparator</h3>
+<ul>
+<li><p>Implement Comparator interface and override
+<code>compare()</code></p></li>
+<li><p><code>compare()</code> allows for defining multiple
+<strong>custom/alternative orderings</strong> for a class</p></li>
+</ul>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> CompareBySuit <span class="kw">implements</span> <span class="bu">Comparator</span><span class="op">&lt;</span>Card<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Implementation of compare method by suit<span class="co">.</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> positive<span class="co">,</span> <span class="co">0</span> or negative</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">compare</span><span class="op">(</span>Card x<span class="op">,</span> Card y<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x<span class="op">.</span><span class="fu">getSuit</span><span class="op">().</span><span class="fu">compareToIgnoreCase</span><span class="op">(</span>y<span class="op">.</span><span class="fu">getSuit</span><span class="op">());</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> CompareBySuitRank <span class="kw">implements</span> <span class="bu">Comparator</span><span class="op">&lt;</span>Card<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Implementation of compare method using both suit and rank<span class="co">.</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> positive<span class="co">,</span> <span class="co">0,</span> or negative</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">compare</span><span class="op">(</span>Card x<span class="op">,</span> Card y<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> suitResult <span class="op">=</span> x<span class="op">.</span><span class="fu">getSuit</span><span class="op">().</span><span class="fu">compareToIgnoreCase</span><span class="op">(</span>y<span class="op">.</span><span class="fu">getSuit</span><span class="op">());</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>suitResult <span class="op">!=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> suitResult<span class="op">;</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">compare</span><span class="op">(</span>x<span class="op">.</span><span class="fu">getRank</span><span class="op">(),</span> y<span class="op">.</span><span class="fu">getRank</span><span class="op">());</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="collections-1">Collections</h3>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Default: uses compareTo method implemented</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Collections</span><span class="op">.</span><span class="fu">sort</span><span class="op">(</span>cards<span class="op">);</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Uses compare method implemented in Comparator class</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="bu">Collections</span><span class="op">.</span><span class="fu">sort</span><span class="op">(</span>cards<span class="op">,</span> <span class="kw">new</span> <span class="fu">CompareBySuit</span><span class="op">());</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="bu">Collections</span><span class="op">.</span><span class="fu">sort</span><span class="op">(</span>cards<span class="op">,</span> <span class="kw">new</span> <span class="fu">CompareBySuitRank</span><span class="op">());</span></span></code></pre></div>
+<p><a href="#">Back to Top</a></p>
+<h2 id="recursion">10. Recursion</h2>
+<h3 id="characteristics">Characteristics</h3>
+<p>Recursion is characterized by the following features: 1.
+<strong>Self-referential Functionality:</strong> A recursive function is
+distinguished by its ability to call itself, enabling the function to
+operate on smaller subsets of the problem. 2. <strong>Base
+Case:</strong> This acts as a termination criterion, preventing infinite
+recursion and ensuring that each recursive call progresses toward this
+condition. 3. <strong>Bookkeeping Overhead:</strong> Recursive calls
+involve considerable management of function states and return addresses,
+which can lead to increased memory usage.</p>
+<h3 id="iterativerecursive-comparison">Iterative/Recursive
+Comparison</h3>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Sums from <span class="co">1</span> to n iteratively<span class="co">.</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">n,</span><span class="co"> </span>positive integer</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> sum from <span class="co">1</span> to n</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">sum</span><span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> result <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> result <span class="op">+</span> i<span class="op">;</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Sums from <span class="co">1</span> to n recursively<span class="co">.</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> recSum<span class="co">(5)</span>                               <span class="co">15</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span>    <span class="co">5+</span>recSum<span class="co">(4)</span>                     <span class="co">10+5=15</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span>      <span class="co">4+</span>recSum<span class="co">(3)</span>               <span class="co">6+4=10</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span>        <span class="co">3+</span>recSum<span class="co">(2)</span>         <span class="co">3+3=6</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span>          <span class="co">2+</span>recSum<span class="co">(1)</span> <span class="co">=</span> <span class="co">1+2=3</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">n</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> sum from <span class="co">1</span> to n</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">recSum</span><span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n<span class="op">;</span>               <span class="co">// base case</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">+</span> <span class="fu">recSum</span><span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">);</span> <span class="co">// recursive case</span></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="fibonacci-numbers">Fibonacci Numbers</h3>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Finds n<span class="co">-</span>th fibonacci number<span class="co">.</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">n,</span><span class="co"> </span>positive value or <span class="co">0</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> n<span class="co">-</span>th fibonacci number</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">long</span> <span class="fu">fib</span><span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="dv">0</span> <span class="op">||</span> n <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n<span class="op">;</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">fib</span><span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu">fib</span><span class="op">(</span>n <span class="op">-</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Below is the recursion tree for <code>fib(6)</code>: <img
+src="./fibonacci_diagram.png" /></p>
+<h3 id="binary-search-recursive">Binary Search (Recursive)</h3>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Binary search in a non<span class="co">-</span>null array<span class="co">.</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">data,</span><span class="co"> </span>int array to search against <span class="co">(</span>ordered in ascending order<span class="co">)</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key,</span><span class="co"> </span>int key value to search for</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> index if found<span class="co">,</span> <span class="co">-1</span> if not found</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">find</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> data<span class="op">,</span> <span class="dt">int</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">find</span><span class="op">(</span>data<span class="op">,</span> key<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> data<span class="op">.</span><span class="fu">length</span> <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Private helper method for binary search that uses recursion<span class="co">.</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">data,</span><span class="co"> </span>int array to search against <span class="co">(</span>ordered in ascending order<span class="co">)</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key,</span><span class="co"> </span>int key value to search for</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">lowerBound,</span><span class="co"> </span>lower bound index of the array</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">upperBound,</span><span class="co"> </span>upper bound index of the array</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> index if found<span class="co">,</span> <span class="co">-1</span> if not found</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">find</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> data<span class="op">,</span> <span class="dt">int</span> key<span class="op">,</span> <span class="dt">int</span> lowerBound<span class="op">,</span> <span class="dt">int</span> upperBound<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Base case 1: not found</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>lowerBound <span class="op">&gt;</span> upperBound<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> mid <span class="op">=</span> lowerBound <span class="op">+</span> <span class="op">(</span>upperBound <span class="op">-</span> lowerBound<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Base case 2: found</span></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>data<span class="op">[</span>mid<span class="op">]</span> <span class="op">==</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> mid<span class="op">;</span></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Recursive cases</span></span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>data<span class="op">[</span>mid<span class="op">]</span> <span class="op">&lt;</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">find</span><span class="op">(</span>data<span class="op">,</span> key<span class="op">,</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> upperBound<span class="op">);</span></span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">find</span><span class="op">(</span>data<span class="op">,</span> key<span class="op">,</span> lowerBound<span class="op">,</span> mid <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><a href="#">Back to Top</a></p>
 </body>
 </html>
