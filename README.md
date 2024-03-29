@@ -5,8 +5,6 @@
 
 
 
-
-
 ## Table of Contents
 1. [The Big Picture - When to use what and how much does it cost?](#1-the-big-picture---when-to-use-what-and-how-much-does-it-cost)
     - [Big-O Classifications](#big-o-classifications)
@@ -41,9 +39,16 @@
     - [Insertion Sort](#insertion-sort)
 
 9. [Comparable/Comparator](#9-comparablecomparator)
+    - [Comparable](#comparable)
+    - [Comparator](#comparator)
+    - [Collections](#collections)
 
 
-
+10. [Recursion](#10-recursion)
+    - [Characteristics](#characteristics)
+    - [Iterative/Recursive Comparison](#iterativerecursive-comparison)
+    - [Fibonacci Numbers](#fibonacci-numbers)
+    - [Binary Search (Recursive)](#binary-search-recursive)
 
 
 
@@ -1385,9 +1390,13 @@ Collections.sort(cards, new CompareBySuitRank());
 
 ### Characteristics
 Recursion is characterized by the following features:
+
 1. **Self-referential Functionality:** A recursive function is distinguished by its ability to call itself, enabling the function to operate on smaller subsets of the problem.
+
 2. **Base Case:** This acts as a termination criterion, preventing infinite recursion and ensuring that each recursive call progresses toward this condition.
+
 3. **Bookkeeping Overhead:** Recursive calls involve considerable management of function states and return addresses, which can lead to increased memory usage.
+
 
 
 
