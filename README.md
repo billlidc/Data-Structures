@@ -43,9 +43,6 @@
     - [Comparator](#comparator)
 
 10. [Recursion](#10-recursion)
-    - [Characteristics](#characteristics)
-    - [Iterative/Recursive Comparison](#iterativerecursive-comparison)
-    - [Fibonacci Numbers](#fibonacci-numbers)
     - [Binary Search (Recursive)](#binary-search-recursive)
 
 
