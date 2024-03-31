@@ -46,7 +46,7 @@
     - [Binary Search (Recursive)](#binary-search-recursive)
 
 
-
+---
 
 
 ## 1. The Big Picture - When to use what and how much does it cost?
@@ -112,6 +112,8 @@
 [Back to Top](#)
 
 
+---
+
 
 
 
@@ -149,6 +151,9 @@
 
 
 [Back to Top](#)
+
+
+---
 
 
 
@@ -252,6 +257,11 @@ public static char[] delete(char[] data, int index) {
 
 
 [Back to Top](#)
+
+
+
+---
+
 
 
 
@@ -412,6 +422,9 @@ Consider:
 [Back to Top](#)
 
 
+
+
+---
 
 
 
@@ -702,6 +715,10 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 
 
 
+---
+
+
+
 
 
 
@@ -898,6 +915,12 @@ public class Reverser {
 
 
 
+---
+
+
+
+
+
 ## 7. Queue (FIFO)
 
 
@@ -1058,6 +1081,10 @@ theQueue.removeFirst();
 
 
 
+---
+
+
+
 
 
 
@@ -1177,6 +1204,12 @@ public static void insertionSort(int[] data) {
 
 
 [Back to Top](#)
+
+
+
+
+---
+
 
 
 
@@ -1374,6 +1407,10 @@ Collections.sort(cards, new CompareBySuitRank());
 
 [Back to Top](#)
 
+
+
+
+---
 
 
 
