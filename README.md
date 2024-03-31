@@ -1452,7 +1452,7 @@ public static long fib(int n) {
 ```
 
 Below is the recursion tree for `fib(6)`:
-![](./fibonacci_diagram.png)
+![](./res/fibonacci_diagram.png)
 
 
 ### Binary Search (Recursive)
