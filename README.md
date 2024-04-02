@@ -33,7 +33,7 @@
     - [Queue Implementation using Array](#queue-implementation-using-array)
     - [Queue Methods using Array](#queue-methods-using-array)
 
-8. [Sorting](#8-sorting)
+8. [Simple Sorting](#8-simple-sorting)
     - [Bubble Sort](#bubble-sort)
     - [Selection Sort](#selection-sort)
     - [Insertion Sort](#insertion-sort)
@@ -1054,8 +1054,9 @@ theQueue.removeFirst();
 
 
 
-## 8. Sorting
+## 8. Simple Sorting
 
+### swap
 ```Java
 /**
  * A helper method that swaps two values in an integer array.
@@ -1379,7 +1380,6 @@ Collections.sort(cards, new CompareBySuitRank());
 
 
 ### Characteristics
-Recursion is characterized by the following features:
 
 1. **Self-referential Functionality:** A recursive function is distinguished by its ability to call itself, enabling the function to operate on smaller subsets of the problem.
 
