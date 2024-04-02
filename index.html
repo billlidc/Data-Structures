@@ -264,7 +264,7 @@ Search</a>
 <li><a href="#java-linkedlist-implementation">Java LinkedList
 Implementation</a></li>
 <li><a href="#linkedlist-methods">LinkedList Methods</a></li>
-<li><a href="#iterator">Iterator</a></li>
+<li><a href="#iterableiterator">Iterable/Iterator</a></li>
 </ul></li>
 <li><a href="#6-stack-lifo">Stack (LIFO)</a>
 <ul>
@@ -923,19 +923,20 @@ and methods of the outer class.</li>
 </ul></li>
 </ul>
 <h3 id="linkedlist-methods">LinkedList Methods</h3>
-<h4 id="addfirst">addFirst</h4>
+<h4 id="addfirst---o1">addFirst - O(1)</h4>
 <div class="sourceCode" id="cb10"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Inserts a new item at the beginning of the list</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">addFirst</span><span class="op">(</span>AnyType item<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    head <span class="op">=</span> <span class="kw">new</span> <span class="bu">Node</span><span class="op">&lt;</span>AnyType<span class="op">&gt;(</span>item<span class="op">,</span> head<span class="op">);</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h4 id="traverse-to-the-last-node">Traverse to the last node</h4>
+<h4 id="traverse-to-the-last-node---on">Traverse to the last node -
+O(n)</h4>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Node</span><span class="op">&lt;</span>AnyType<span class="op">&gt;</span> tmp <span class="op">=</span> head<span class="op">;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>tmp<span class="op">.</span><span class="fu">next</span> <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span> <span class="co">// Stop at the last node</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    tmp <span class="op">=</span> tmp<span class="op">.</span><span class="fu">next</span><span class="op">;</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h4 id="addlast">addLast</h4>
+<h4 id="addlast---on">addLast - O(n)</h4>
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Inserts a new item to the end of the list<span class="co">.</span></span>
@@ -957,7 +958,7 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href=
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Insert to the end of the list</span></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    tmp<span class="op">.</span><span class="fu">next</span> <span class="op">=</span> <span class="kw">new</span> <span class="bu">Node</span><span class="op">&lt;</span>AnyType<span class="op">&gt;(</span>item<span class="op">,</span> <span class="kw">null</span><span class="op">);</span></span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h4 id="insertafter">insertAfter</h4>
+<h4 id="insertafter---on">insertAfter - O(n)</h4>
 <div class="sourceCode" id="cb13"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Finds a node containing the key and inserts a new item after the node<span class="co">.</span></span>
@@ -977,7 +978,7 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb13-1"><a href=
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        tmp<span class="op">.</span><span class="fu">next</span> <span class="op">=</span> newNode<span class="op">;</span></span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h4 id="insertbefore">insertBefore</h4>
+<h4 id="insertbefore---on">insertBefore - O(n)</h4>
 <div class="sourceCode" id="cb14"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Finds a node containing the key and inserts a new item before the node<span class="co">.</span></span>
@@ -1013,7 +1014,7 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb14-1"><a href=
 <span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>        prev<span class="op">.</span><span class="fu">next</span> <span class="op">=</span> <span class="kw">new</span> <span class="bu">Node</span><span class="op">&lt;</span>AnyType<span class="op">&gt;(</span>item<span class="op">,</span> cur<span class="op">);</span></span>
 <span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h4 id="remove">remove</h4>
+<h4 id="remove---on">remove - O(n)</h4>
 <div class="sourceCode" id="cb15"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Removes the first occurrence of a key from the list<span class="co">.</span></span>
@@ -1047,15 +1048,7 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb15-1"><a href=
 <span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>        prev<span class="op">.</span><span class="fu">next</span> <span class="op">=</span> cur<span class="op">.</span><span class="fu">next</span><span class="op">;</span></span>
 <span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h3 id="time-complexities">Time Complexities</h3>
-<ul>
-<li>addFirst: <code>O(1)</code></li>
-<li>insertBefore/insertAfter: <code>O(n)</code></li>
-<li>remove: <code>O(n)</code></li>
-<li>search: <code>O(n)</code></li>
-</ul>
-<h3 id="iterator">Iterator</h3>
-<p>Modifications to the LinkedList class:</p>
+<h3 id="iterableiterator">Iterable/Iterator</h3>
 <div class="sourceCode" id="cb16"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">util</span><span class="op">.*;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1458,14 +1451,14 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb34-1"><a href=
 <span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <ul>
 <li><p>Total comparisons: <span class="math display">$$ \frac{(n-1)n}{2}
-$$</span></p></li>
-<li><p>Total swaps: <span class="math display">$$ \frac{(n-1)n}{4}
 $$</span></p>
 <ul>
 <li>Arithmetic series formula</li>
 <li>Binomial coefficient: <span class="math display">$$ {n \choose k} =
 \frac{n!}{k!(n-k)!} $$</span></li>
 </ul></li>
+<li><p>Total swaps: <span class="math display">$$ \frac{(n-1)n}{4}
+$$</span></p></li>
 </ul>
 <h3 id="selection-sort">Selection Sort</h3>
 <div class="sourceCode" id="cb35"><pre
