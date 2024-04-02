@@ -23,7 +23,7 @@
 5. [LinkedList](#5-linkedlist)
     - [Java LinkedList Implementation](#java-linkedlist-implementation)
     - [LinkedList Methods](#linkedlist-methods)
-    - [Iterator](#iterator)
+    - [Iterable/Iterator](#iterableiterator)
 
 6. [Stack (LIFO)](#6-stack-lifo)
     - [Stack Implementation using Array](#stack-implementation-using-array)
@@ -470,7 +470,7 @@ public class LinkedList<AnyType> {
 
 ### LinkedList Methods
 
-#### addFirst
+#### addFirst - O(1)
 
 ```Java
 // Inserts a new item at the beginning of the list
@@ -479,7 +479,7 @@ public void addFirst(AnyType item) {
 }
 ```
 
-#### Traverse to the last node
+#### Traverse to the last node - O(n)
 
 ```Java
 Node<AnyType> tmp = head;
@@ -488,7 +488,7 @@ while (tmp.next != null) { // Stop at the last node
 }
 ```
 
-#### addLast
+#### addLast - O(n)
 
 ```Java
 /**
@@ -514,7 +514,7 @@ public void addLast(AnyType item) {
 
 ```
 
-#### insertAfter
+#### insertAfter - O(n)
 
 ```Java
 /**
@@ -538,7 +538,7 @@ public void insertAfter(AnyType key, AnyType item) {
 ```
 
 
-#### insertBefore
+#### insertBefore - O(n)
 
 ```Java
 /**
@@ -579,7 +579,7 @@ public void insertBefore(AnyType key, AnyType item) {
 ```
 
 
-#### remove
+#### remove - O(n)
 
 ```Java
 /**
@@ -617,16 +617,8 @@ public void remove(AnyType key) {
 
 ```
 
-### Time Complexities
-* addFirst: `O(1)`
-* insertBefore/insertAfter: `O(n)`
-* remove: `O(n)`
-* search: `O(n)`
 
-
-### Iterator
-
-Modifications to the LinkedList class:
+### Iterable/Iterator
 
 ```Java
 import java.util.*;
@@ -1096,12 +1088,13 @@ public static void bubbleSort(int[] data) {
 
 * Total comparisons:
     $$ \frac{(n-1)n}{2} $$
-
-* Total swaps:
-    $$ \frac{(n-1)n}{4} $$
+    
     - Arithmetic series formula
     - Binomial coefficient:
         $$ {n \choose k} = \frac{n!}{k!(n-k)!} $$
+
+* Total swaps:
+    $$ \frac{(n-1)n}{4} $$
 
 
 
