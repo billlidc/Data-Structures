@@ -700,7 +700,9 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 ## 6. Stack (LIFO)
 
 ### Conceptual View
-* A web browser's back button can be implemented using a stack data structure because it mirrors the behavior of a stack in terms of the order of visited pages. When a user visits a webpage, the URL of that page is pushed onto the stack. When a user clicks the back button in the browser, it pops the top URL from the stack.
+* A web browser's back button can be implemented using a stack by mirroring the behavior of a stack in terms of the order of visited pages.
+    - When the user visits a webpage, the URL of the page is pushed onto the stack.
+    - When the user clicks the back button in the browser, it pops the top URL from the stack.
 
 * Operations
     - push(), push an item onto the top of the stack
@@ -894,9 +896,8 @@ public class Reverser {
 
 
 ### Conceptual View
-- Methods
-    - **Enqueue**: inserting a new item to the back of the queue
-    - **Dequeue**: removing the first item from the queue
+- **enqueue**: inserting a new item to the back of the queue
+- **dequeue**: removing the first item from the queue
 
 
 ### Queue Interface
