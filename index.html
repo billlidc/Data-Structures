@@ -1118,12 +1118,16 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb16-1"><a href=
 <h2 id="stack-lifo">6. Stack (LIFO)</h2>
 <h3 id="conceptual-view">Conceptual View</h3>
 <ul>
-<li><p>A web browser’s back button can be implemented using a stack data
-structure because it mirrors the behavior of a stack in terms of the
-order of visited pages. When a user visits a webpage, the URL of that
-page is pushed onto the stack. When a user clicks the back button in the
-browser, it pops the top URL from the stack.</p></li>
-<li><p>Operations</p>
+<li>A web browser’s back button can be implemented using a stack by
+mirroring the behavior of a stack in terms of the order of visited
+pages.
+<ul>
+<li>When the user visits a webpage, the URL of the page is pushed onto
+the stack.</li>
+<li>When the user clicks the back button in the browser, it pops the top
+URL from the stack.</li>
+</ul></li>
+<li>Operations
 <ul>
 <li>push(), push an item onto the top of the stack</li>
 <li>pop(), pop the item from the top of the stack</li>
@@ -1296,13 +1300,10 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb24-1"><a href=
 <h2 id="queue-fifo">7. Queue (FIFO)</h2>
 <h3 id="conceptual-view-1">Conceptual View</h3>
 <ul>
-<li>Methods
-<ul>
-<li><strong>Enqueue</strong>: inserting a new item to the back of the
+<li><strong>enqueue</strong>: inserting a new item to the back of the
 queue</li>
-<li><strong>Dequeue</strong>: removing the first item from the
+<li><strong>dequeue</strong>: removing the first item from the
 queue</li>
-</ul></li>
 </ul>
 <h3 id="queue-interface">Queue Interface</h3>
 <div class="sourceCode" id="cb25"><pre
