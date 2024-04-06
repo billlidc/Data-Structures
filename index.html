@@ -237,65 +237,67 @@
 Structures for Application Programmers</h1>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ol type="1">
-<li><a
+<li><p><a
 href="#1-the-big-picture---when-to-use-what-and-how-much-does-it-cost">The
-Big Picture - When to use what and how much does it cost?</a>
+Big Picture - When to use what and how much does it cost?</a></p>
 <ul>
 <li><a href="#big-o-classifications">Big-O Classifications</a></li>
 </ul></li>
-<li><a href="#2-collections">Collections</a>
+<li><p><a href="#2-collections">Collections</a></p>
 <ul>
 <li><a href="#java-collection-hierarchy">Java Collection
 Hierarchy</a></li>
 </ul></li>
-<li><a href="#3-arrays">Arrays</a>
+<li><p><a href="#3-arrays">Arrays</a></p>
 <ul>
 <li><a href="#arrays-class">Arrays Class</a></li>
 </ul></li>
-<li><a href="#4-arraylist-and-binary-search">ArrayList and Binary
-Search</a>
+<li><p><a href="#4-arraylist-and-binary-search">ArrayList and Binary
+Search</a></p>
 <ul>
 <li><a href="#java-arraylist">Java ArrayList</a></li>
 <li><a href="#amortized-analysis">Amortized Analysis</a></li>
 <li><a href="#binary-search">Binary Search</a></li>
 </ul></li>
-<li><a href="#5-linkedlist">LinkedList</a>
+<li><p><a href="#5-linkedlist">LinkedList</a></p>
 <ul>
 <li><a href="#java-linkedlist-implementation">Java LinkedList
 Implementation</a></li>
 <li><a href="#linkedlist-methods">LinkedList Methods</a></li>
 <li><a href="#iterableiterator">Iterable/Iterator</a></li>
 </ul></li>
-<li><a href="#6-stack-lifo">Stack (LIFO)</a>
+<li><p><a href="#6-stack-lifo">Stack (LIFO)</a></p>
 <ul>
 <li><a href="#stack-implementation-using-array">Stack Implementation
 using Array</a></li>
 <li><a href="#stack-methods-using-array">Stack Methods using
 Array</a></li>
 </ul></li>
-<li><a href="#7-queue-fifo">Queue (FIFO)</a>
+<li><p><a href="#7-queue-fifo">Queue (FIFO)</a></p>
 <ul>
 <li><a href="#queue-implementation-using-array">Queue Implementation
 using Array</a></li>
 <li><a href="#queue-methods-using-array">Queue Methods using
 Array</a></li>
 </ul></li>
-<li><a href="#8-simple-sorting">Simple Sorting</a>
+<li><p><a href="#8-simple-sorting">Simple Sorting</a></p>
 <ul>
 <li><a href="#bubble-sort">Bubble Sort</a></li>
 <li><a href="#selection-sort">Selection Sort</a></li>
 <li><a href="#insertion-sort">Insertion Sort</a></li>
 </ul></li>
-<li><a href="#9-comparablecomparator">Comparable/Comparator</a>
+<li><p><a href="#9-comparablecomparator">Comparable/Comparator</a></p>
 <ul>
 <li><a href="#comparable">Comparable</a></li>
 <li><a href="#comparator">Comparator</a></li>
 </ul></li>
-<li><a href="#10-recursion">Recursion</a>
+<li><p><a href="#10-recursion">Recursion</a></p>
 <ul>
 <li><a href="#binary-search-recursive">Binary Search
 (Recursive)</a></li>
 </ul></li>
+<li><p><a href="#11-hashing">Hashing</a></p></li>
+<li><p><a href="#12-hash-table">Hash Table</a></p></li>
 </ol>
 <h2 id="the-big-picture---when-to-use-what-and-how-much-does-it-cost">1.
 The Big Picture - When to use what and how much does it cost?</h2>
@@ -1799,6 +1801,216 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb45-1"><a href=
 <span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">find</span><span class="op">(</span>data<span class="op">,</span> key<span class="op">,</span> lowerBound<span class="op">,</span> mid <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
 <span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><a href="#">Back to Top</a></p>
+<h2 id="hashing">11. Hashing</h2>
+<h3 id="overview">Overview</h3>
+<p><strong>Hashing</strong> transforms input data into a fixed-size
+string of bytes. - Improves the speed of searching</p>
+<h3 id="conceptual">Conceptual</h3>
+<ol type="1">
+<li>Adding the digits
+<ul>
+<li><code>cats</code> stores at <span
+class="math inline">3 + 1 + 20 + 19 = 43</span>
+<ul>
+<li><span class="math inline">50, 000/260</span> words at the same
+index</li>
+</ul></li>
+</ul></li>
+<li>Polynomial hash table
+<ul>
+<li><code>cats</code> stores at <span
+class="math inline">3 * 27<sup>3</sup> + 1 * 27<sup>2</sup> + 20 * 27<sup>1</sup> + 19 * 27<sup>0</sup> = 60, 337</span>
+<ul>
+<li>Impossible to have such array</li>
+<li>Most array indices are empty</li>
+</ul></li>
+</ul></li>
+<li>Modulus (%) operator
+<ul>
+<li>Collisions still happen</li>
+</ul></li>
+</ol>
+<h3 id="load-factor-alpha">Load factor (<span
+class="math inline"><em>α</em></span>)</h3>
+<ul>
+<li>Performance degrades seriously if beyond <strong>two-thirds</strong>
+full</li>
+</ul>
+<p><span class="math display">$$ \alpha = \frac{n}{N} $$</span> <span
+class="math inline"><em>n</em></span> is the number of elements stored
+in the hash table.<br />
+<span class="math inline"><em>N</em></span> is the total number of slots
+(or buckets) available in the hash table.</p>
+<ul>
+<li>Rehashing: creates a new array twice as large and rehashes
+everything
+<ul>
+<li>Amortized constant time</li>
+</ul></li>
+</ul>
+<h3 id="workarounds-for-collisions">Workarounds for Collisions</h3>
+<ol type="1">
+<li>Open Addressing</li>
+<li>Separate Chaining</li>
+</ol>
+<h4 id="open-addressing">1. Open Addressing</h4>
+<ul>
+<li><strong>Linear Probing</strong>: searches sequentially through the
+table until an empty slot is found.
+<ul>
+<li>Problem: <strong>Primary Clustering</strong></li>
+</ul></li>
+<li><strong>Quadratic Probing</strong>: searches using a quadratic
+function.
+<ul>
+<li>Problem: <strong>Secondary Clustering</strong></li>
+</ul></li>
+<li><strong>Double Hashing</strong>:
+<ul>
+<li>Hash function 1: initial index</li>
+<li>Hash function 2: step size</li>
+</ul></li>
+</ul>
+<h4 id="separate-chaining-closed-addressing">2. Separate Chaining
+(Closed Addressing)</h4>
+<p>Separate Chaining creates a linked list at each slot to store all
+elements that hash to that particular slot. - Load factor (<span
+class="math inline"><em>α</em></span>) can rise above 1</p>
+<p><a href="#">Back to Top</a></p>
+<h2 id="hash-table">12. Hash Table</h2>
+<h3 id="operations">Operations</h3>
+<ul>
+<li>search(int key)</li>
+<li>delete(int key)</li>
+<li>insert(int key)</li>
+</ul>
+<h3 id="implementation">Implementation</h3>
+<div class="sourceCode" id="cb46"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> HashTable <span class="kw">implements</span> HashTableInterface <span class="op">{</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> DataItem DELETED <span class="op">=</span> <span class="kw">new</span> <span class="fu">DataItem</span><span class="op">(-</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> DataItem<span class="op">[]</span> hashArray<span class="op">;</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Constructs a new hashtable with the specified initial capacity<span class="co">.</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> precondition<span class="co">:</span> initialCapacity is a positive integer <span class="co">(</span>reasonably big<span class="co">)</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">initialCapacity</span><span class="co"> </span>initial capacity of the table</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="fu">HashTable</span><span class="op">(</span><span class="dt">int</span> initialCapacity<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>        hashArray <span class="op">=</span> <span class="kw">new</span> DataItem<span class="op">[</span>initialCapacity<span class="op">];</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Returns true when the key is found<span class="co">.</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key</span><span class="co"> </span>to search for</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> true if found<span class="co">,</span> false if not found</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">search</span><span class="op">(</span><span class="dt">int</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> hashVal <span class="op">=</span> <span class="fu">hashFunc</span><span class="op">(</span>key<span class="op">);</span></span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>hashArray<span class="op">[</span>hashVal<span class="op">]</span> <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>            <span class="co">// If the key is found</span></span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>hashArray<span class="op">[</span>hashVal<span class="op">].</span><span class="fu">key</span> <span class="op">==</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Linear probing with step size of 1</span></span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a>            hashVal <span class="op">=</span> hashVal <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a>            hashVal <span class="op">=</span> hashVal <span class="op">%</span> hashArray<span class="op">.</span><span class="fu">length</span><span class="op">;</span></span>
+<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Deletes and returns the int key found in the table<span class="co">.</span></span>
+<span id="cb46-38"><a href="#cb46-38" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key</span><span class="co"> </span>to delete</span>
+<span id="cb46-39"><a href="#cb46-39" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> deleted int from the table <span class="co">(</span>if not found<span class="co">,</span> <span class="co">-1)</span></span>
+<span id="cb46-40"><a href="#cb46-40" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb46-41"><a href="#cb46-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb46-42"><a href="#cb46-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">delete</span><span class="op">(</span><span class="dt">int</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb46-43"><a href="#cb46-43" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> hashVal <span class="op">=</span> <span class="fu">hashFunc</span><span class="op">(</span>key<span class="op">);</span></span>
+<span id="cb46-44"><a href="#cb46-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-45"><a href="#cb46-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>hashArray<span class="op">[</span>hashVal<span class="op">]</span> <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span>    </span>
+<span id="cb46-46"><a href="#cb46-46" aria-hidden="true" tabindex="-1"></a>            <span class="co">// If the key is found</span></span>
+<span id="cb46-47"><a href="#cb46-47" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>hashArray<span class="op">[</span>hashVal<span class="op">].</span><span class="fu">key</span> <span class="op">==</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb46-48"><a href="#cb46-48" aria-hidden="true" tabindex="-1"></a>                DataItem item <span class="op">=</span> hashArray<span class="op">[</span>hashVal<span class="op">];</span></span>
+<span id="cb46-49"><a href="#cb46-49" aria-hidden="true" tabindex="-1"></a>                hashArray<span class="op">[</span>hashVal<span class="op">]</span> <span class="op">=</span> DELETED<span class="op">;</span></span>
+<span id="cb46-50"><a href="#cb46-50" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> item<span class="op">.</span><span class="fu">key</span><span class="op">;</span></span>
+<span id="cb46-51"><a href="#cb46-51" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb46-52"><a href="#cb46-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-53"><a href="#cb46-53" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Linear probing with step size of 1</span></span>
+<span id="cb46-54"><a href="#cb46-54" aria-hidden="true" tabindex="-1"></a>            hashVal <span class="op">=</span> hashVal <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb46-55"><a href="#cb46-55" aria-hidden="true" tabindex="-1"></a>            hashVal <span class="op">=</span> hashVal <span class="op">%</span> hashArray<span class="op">.</span><span class="fu">length</span><span class="op">;</span></span>
+<span id="cb46-56"><a href="#cb46-56" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb46-57"><a href="#cb46-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb46-58"><a href="#cb46-58" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb46-59"><a href="#cb46-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-60"><a href="#cb46-60" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb46-61"><a href="#cb46-61" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Inserts a positive int key to the table<span class="co">.</span></span>
+<span id="cb46-62"><a href="#cb46-62" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key</span><span class="co"> </span>to insert <span class="co">(</span>positive and unique<span class="co">)</span></span>
+<span id="cb46-63"><a href="#cb46-63" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb46-64"><a href="#cb46-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb46-65"><a href="#cb46-65" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">insert</span><span class="op">(</span><span class="dt">int</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb46-66"><a href="#cb46-66" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> hashVal <span class="op">=</span> <span class="fu">hashFunc</span><span class="op">(</span>key<span class="op">);</span></span>
+<span id="cb46-67"><a href="#cb46-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-68"><a href="#cb46-68" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Search for an empty slot or a reusable slot, flagged as DELETED</span></span>
+<span id="cb46-69"><a href="#cb46-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">((</span>hashArray<span class="op">[</span>hashVal<span class="op">]</span> <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">(</span>hashArray<span class="op">[</span>hashVal<span class="op">]</span> <span class="op">!=</span> DELETED<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb46-70"><a href="#cb46-70" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Linear probing with step size of 1</span></span>
+<span id="cb46-71"><a href="#cb46-71" aria-hidden="true" tabindex="-1"></a>            hashVal <span class="op">=</span> hashVal <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb46-72"><a href="#cb46-72" aria-hidden="true" tabindex="-1"></a>            hashVal <span class="op">=</span> hashVal <span class="op">%</span> hashArray<span class="op">.</span><span class="fu">length</span><span class="op">;</span></span>
+<span id="cb46-73"><a href="#cb46-73" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb46-74"><a href="#cb46-74" aria-hidden="true" tabindex="-1"></a>        hashArray<span class="op">[</span>hashVal<span class="op">]</span> <span class="op">=</span> <span class="kw">new</span> <span class="fu">DataItem</span><span class="op">(</span>key<span class="op">);</span></span>
+<span id="cb46-75"><a href="#cb46-75" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb46-76"><a href="#cb46-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-77"><a href="#cb46-77" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb46-78"><a href="#cb46-78" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Rudimentary modular hashing function<span class="co">.</span></span>
+<span id="cb46-79"><a href="#cb46-79" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key</span><span class="co"> </span>for which hash value need to be calculated <span class="co">(</span>only positive integers<span class="co">)</span></span>
+<span id="cb46-80"><a href="#cb46-80" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> index<span class="co">/</span>hash value of the specified key</span>
+<span id="cb46-81"><a href="#cb46-81" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb46-82"><a href="#cb46-82" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">int</span> <span class="fu">hashFunc</span><span class="op">(</span><span class="dt">int</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb46-83"><a href="#cb46-83" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> key <span class="op">%</span> hashArray<span class="op">.</span><span class="fu">length</span><span class="op">;</span></span>
+<span id="cb46-84"><a href="#cb46-84" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb46-85"><a href="#cb46-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-86"><a href="#cb46-86" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb46-87"><a href="#cb46-87" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Static nested class for DataItem<span class="co">.</span></span>
+<span id="cb46-88"><a href="#cb46-88" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb46-89"><a href="#cb46-89" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">static</span> <span class="kw">class</span> DataItem <span class="op">{</span></span>
+<span id="cb46-90"><a href="#cb46-90" aria-hidden="true" tabindex="-1"></a>        <span class="kw">private</span> <span class="dt">int</span> key<span class="op">;</span></span>
+<span id="cb46-91"><a href="#cb46-91" aria-hidden="true" tabindex="-1"></a>        <span class="fu">DataItem</span><span class="op">(</span><span class="dt">int</span> k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb46-92"><a href="#cb46-92" aria-hidden="true" tabindex="-1"></a>            key <span class="op">=</span> k<span class="op">;</span></span>
+<span id="cb46-93"><a href="#cb46-93" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb46-94"><a href="#cb46-94" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb46-95"><a href="#cb46-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-96"><a href="#cb46-96" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="what-makes-a-good-hash-function">What makes a good hash
+function?</h3>
+<p>Examine key values carefully and implement hash function to remove
+any irregularity in the distribution of the key values.</p>
+<ol type="1">
+<li><p>Random key values</p>
+<p>Simply use <code>index = key % hashArray.length;</code></p></li>
+<li><p>Non-random key values</p>
+<p>Generate a range of more random numbers</p>
+<ul>
+<li><p><strong>Optimize Data Usage</strong>: Ensure that non-data values
+are removed or squeezed to optimize the use of actual data. For
+instance, converting category codes to a narrower range and excluding
+checksums that do not contribute new information.</p></li>
+<li><p><strong>Utilize All Data</strong>: Incorporate all available data
+into the hashing process, avoiding truncation of key values. Ensure that
+the entire key, not just a portion of it, contributes to the hashing
+algorithm.</p></li>
+<li><p><strong>Choose Prime Modulo Base</strong>: Select a prime number
+as the base for modulo operations when determining the hash table size.
+This prevents clustering of keys that are multiples of the base,
+promoting a more uniform distribution of hash values.</p></li>
+<li><p><strong>Apply Folding</strong>: Employ folding as an effective
+hash function by dividing keys into groups of digits and summing these
+groups. This method enhances randomness and reduces the likelihood of
+collisions in the hash table.</p></li>
+</ul></li>
+</ol>
 <p><a href="#">Back to Top</a></p>
 </body>
 </html>
