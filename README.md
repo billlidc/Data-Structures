@@ -46,6 +46,11 @@
     - [Binary Search (Recursive)](#binary-search-recursive)
 
 
+11. [Hashing](#11-hashing)
+
+
+12. [Hash Table](#12-hash-table)
+
 
 
 
@@ -1492,6 +1497,207 @@ private static int find(int[] data, int key, int lowerBound, int upperBound) {
     return find(data, key, lowerBound, mid - 1);
 }
 ```
+
+
+[Back to Top](#)
+
+
+
+
+## 11. Hashing
+
+### Overview
+
+**Hashing** transforms input data into a fixed-size string of bytes.
+- Improves the speed of searching
+
+
+### Conceptual
+
+1. Adding the digits
+    - `cats` stores at $3 + 1 + 20 + 19 = 43$
+        - $50,000/260$ words at the same index
+
+2. Polynomial hash table
+    - `cats` stores at $3*27^3 + 1*27^2 + 20*27^1 + 19*27^0 = 60,337$
+        - Impossible to have such array
+        - Most array indices are empty
+
+3. Modulus (%) operator
+    - Collisions still happen
+
+
+### Load factor ($\alpha$)
+- Performance degrades seriously if beyond **two-thirds** full
+
+$$ \alpha = \frac{n}{N} $$
+$n$ is the number of elements stored in the hash table.  
+$N$ is the total number of slots (or buckets) available in the hash table.
+
+- Rehashing: creates a new array twice as large and rehashes everything
+    - Amortized constant time
+
+
+### Workarounds for Collisions
+1. Open Addressing
+2. Separate Chaining
+
+#### 1. Open Addressing
+- **Linear Probing**: searches sequentially through the table until an empty slot is found.
+    - Problem: **Primary Clustering**
+
+- **Quadratic Probing**: searches using a quadratic function.
+    - Problem: **Secondary Clustering**
+
+- **Double Hashing**:
+    - Hash function 1: initial index
+    - Hash function 2: step size
+
+
+#### 2. Separate Chaining (Closed Addressing)
+Separate Chaining creates a linked list at each slot to store all elements that hash to that particular slot.
+- Load factor ($\alpha$) can rise above 1
+
+
+
+
+[Back to Top](#)
+
+
+
+
+
+
+
+## 12. Hash Table
+
+### Operations
+- search(int key)
+- delete(int key)
+- insert(int key)
+
+
+### Implementation
+
+```Java
+public class HashTable implements HashTableInterface {
+
+    private static final DataItem DELETED = new DataItem(-1);
+    
+    private DataItem[] hashArray;
+
+    /**
+     * Constructs a new hashtable with the specified initial capacity.
+     * precondition: initialCapacity is a positive integer (reasonably big)
+     * @param initialCapacity initial capacity of the table
+     */
+    public HashTable(int initialCapacity) {
+        hashArray = new DataItem[initialCapacity];
+    }
+
+    /**
+     * Returns true when the key is found.
+     * @param key to search for
+     * @return true if found, false if not found
+     */
+    @Override
+    public boolean search(int key) {
+        int hashVal = hashFunc(key);
+        while (hashArray[hashVal] != null) {
+            // If the key is found
+            if (hashArray[hashVal].key == key) {
+                return true;
+            }
+            // Linear probing with step size of 1
+            hashVal = hashVal + 1;
+            hashVal = hashVal % hashArray.length;
+        }
+        return false;
+    }
+
+    /**
+     * Deletes and returns the int key found in the table.
+     * @param key to delete
+     * @return deleted int from the table (if not found, -1)
+     */
+    @Override
+    public int delete(int key) {
+        int hashVal = hashFunc(key);
+
+        while (hashArray[hashVal] != null) {    
+            // If the key is found
+            if (hashArray[hashVal].key == key) {
+                DataItem item = hashArray[hashVal];
+                hashArray[hashVal] = DELETED;
+                return item.key;
+            }
+
+            // Linear probing with step size of 1
+            hashVal = hashVal + 1;
+            hashVal = hashVal % hashArray.length;
+        }
+        return -1;
+    }
+
+    /**
+     * Inserts a positive int key to the table.
+     * @param key to insert (positive and unique)
+     */
+    @Override
+    public void insert(int key) {
+        int hashVal = hashFunc(key);
+
+        // Search for an empty slot or a reusable slot, flagged as DELETED
+        while ((hashArray[hashVal] != null) && (hashArray[hashVal] != DELETED)) {
+            // Linear probing with step size of 1
+            hashVal = hashVal + 1;
+            hashVal = hashVal % hashArray.length;
+        }
+        hashArray[hashVal] = new DataItem(key);
+    }
+
+    /**
+     * Rudimentary modular hashing function.
+     * @param key for which hash value need to be calculated (only positive integers)
+     * @return index/hash value of the specified key
+     */
+    private int hashFunc(int key) {
+        return key % hashArray.length;
+    }
+
+    /**
+     * Static nested class for DataItem.
+     */
+    private static class DataItem {
+        private int key;
+        DataItem(int k) {
+            key = k;
+        }
+    }
+
+}
+```
+
+### What makes a good hash function?
+
+Examine key values carefully and implement hash function to remove any irregularity in the distribution of the key values.
+
+1. Random key values
+
+    Simply use `index = key % hashArray.length;`
+
+2. Non-random key values
+
+    Generate a range of more random numbers
+
+    - **Optimize Data Usage**: Ensure that non-data values are removed or squeezed to optimize the use of actual data. For instance, converting category codes to a narrower range and excluding checksums that do not contribute new information.
+
+    - **Utilize All Data**: Incorporate all available data into the hashing process, avoiding truncation of key values. Ensure that the entire key, not just a portion of it, contributes to the hashing algorithm.
+
+    - **Choose Prime Modulo Base**: Select a prime number as the base for modulo operations when determining the hash table size. This prevents clustering of keys that are multiples of the base, promoting a more uniform distribution of hash values.
+
+    - **Apply Folding**: Employ folding as an effective hash function by dividing keys into groups of digits and summing these groups. This method enhances randomness and reduces the likelihood of collisions in the hash table.
+
 
 
 [Back to Top](#)
