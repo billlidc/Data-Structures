@@ -1693,7 +1693,7 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb39-1"><a href=
 <span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="collections.sort">Collections.sort</h3>
 <div class="sourceCode" id="cb40"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Default: uses compareTo method implemented</span></span>
+class="sourceCode java"><code class="sourceCode java"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Default: uses compareTo method implemented in Comparable class</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Collections</span><span class="op">.</span><span class="fu">sort</span><span class="op">(</span>cards<span class="op">);</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Uses compare method implemented in Comparator class</span></span>
@@ -1804,7 +1804,10 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb45-1"><a href=
 <h2 id="hashing">11. Hashing</h2>
 <h3 id="overview">Overview</h3>
 <p><strong>Hashing</strong> transforms input data into a fixed-size
-string of bytes. - Improves the speed of searching</p>
+string of bytes.</p>
+<ul>
+<li>Improves the speed of searching</li>
+</ul>
 <h3 id="conceptual">Conceptual</h3>
 <ol type="1">
 <li>Adding the digits
@@ -1867,15 +1870,19 @@ function.
 </ul></li>
 <li><strong>Double Hashing</strong>:
 <ul>
-<li>Hash function 1: initial index</li>
-<li>Hash function 2: step size</li>
+<li>Hash function 1 <span class="math inline">→</span> Initial
+index</li>
+<li>Hash function 2 <span class="math inline">→</span> Step size</li>
 </ul></li>
 </ul>
 <h4 id="separate-chaining-closed-addressing">2. Separate Chaining
 (Closed Addressing)</h4>
 <p>Separate Chaining creates a linked list at each slot to store all
-elements that hash to that particular slot. - Load factor (<span
-class="math inline"><em>α</em></span>) can rise above 1</p>
+elements that hash to that particular slot.</p>
+<ul>
+<li>Load factor (<span class="math inline"><em>α</em></span>) can rise
+above 1</li>
+</ul>
 <p><a href="#">Back to Top</a></p>
 <h2 id="hash-table">12. Hash Table</h2>
 <h3 id="operations">Operations</h3>
