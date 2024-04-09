@@ -930,7 +930,7 @@ public class ArrayQueue<AnyType> implements QueueInterface<AnyType> {
     public ArrayQueue() {
         elements = new Object[DEFAULT_CAPACITY]; 
         front = 0;
-        back = 0; // or back = -1; depending on the implementation
+        back = -1; // Similar to top in Stack
         nItems = 0;
     }
 
@@ -938,8 +938,6 @@ public class ArrayQueue<AnyType> implements QueueInterface<AnyType> {
     ...
 }
 ```
-
-
 
 ### Queue Methods using Array
 
@@ -981,7 +979,6 @@ public void enqueue(AnyType item) {
     if (isFull()) {
         throw new RuntimeException("Queue is full");
     }
-
     back++;
 
     int index = back % elements.length;
@@ -1036,7 +1033,6 @@ public AnyType peekFront() {
 }
 ```
 
-
 ### Queue using LinkedList Methods
 
 ```Java
@@ -1051,9 +1047,7 @@ theQueue.removeFirst();
 
 
 
-
 [Back to Top](#)
-
 
 
 
@@ -1072,6 +1066,7 @@ private static void swap(int[] data, int one, int two) {
     data[two] = temp;
 }
 ```
+
 
 ### Bubble Sort
 
@@ -1174,11 +1169,7 @@ public static void insertionSort(int[] data) {
 
 
 
-
-
 [Back to Top](#)
-
-
 
 
 
