@@ -1352,7 +1352,7 @@ public class CompareBySuitRank implements Comparator<Card> {
 ### Collections.sort
 
 ```Java
-// Default: uses compareTo method implemented
+// Default: uses compareTo method implemented in Comparable class
 Collections.sort(cards);
 
 // Uses compare method implemented in Comparator class
@@ -1500,6 +1500,7 @@ private static int find(int[] data, int key, int lowerBound, int upperBound) {
 ### Overview
 
 **Hashing** transforms input data into a fixed-size string of bytes.
+
 - Improves the speed of searching
 
 
@@ -1541,12 +1542,13 @@ $N$ is the total number of slots (or buckets) available in the hash table.
     - Problem: **Secondary Clustering**
 
 - **Double Hashing**:
-    - Hash function 1: initial index
-    - Hash function 2: step size
+    - Hash function 1 $\rightarrow$ Initial index
+    - Hash function 2 $\rightarrow$ Step size
 
 
 #### 2. Separate Chaining (Closed Addressing)
 Separate Chaining creates a linked list at each slot to store all elements that hash to that particular slot.
+
 - Load factor ($\alpha$) can rise above 1
 
 
