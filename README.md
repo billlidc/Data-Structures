@@ -45,11 +45,15 @@
 10. [Recursion](#10-recursion)
     - [Binary Search (Recursive)](#binary-search-recursive)
 
-
 11. [Hashing](#11-hashing)
 
-
 12. [Hash Table](#12-hash-table)
+
+13. [Hashing, HashMap and HashSet in Java](#13-hashing-hashmap-and-hashset-in-java)
+
+14. [Advanced Sorting](#14-advanced-sorting)
+    - [Merge Sort](#merge-sort)
+    - [Quick Sort](#quick-sort)
 
 
 
@@ -188,6 +192,7 @@ System.out.println(c.toString());
 ```
 
 ---
+
 Array indexing conventionally begins at 0:
     `Element's memory location = Array's memory location + Element length * Element`
 
@@ -1385,8 +1390,6 @@ Collections.sort(cards, new CompareBySuitRank());
 
 
 
-
-
 ### Iterative/Recursive Comparison
 ```Java
 /**
@@ -1494,45 +1497,42 @@ private static int find(int[] data, int key, int lowerBound, int upperBound) {
 
 
 
-
 ## 11. Hashing
 
 ### Overview
+
+| Data Structure   | Search Method   | Time Complexity |
+|------------------|-----------------|-----------------|
+| Unordered array  | Linear search   | $O(n)$          |
+| Ordered array    | Binary search   | $O(\log n)$     |
+| Array            | Random access   | $O(1)$          |
 
 **Hashing** transforms input data into a fixed-size string of bytes.
 
 - Improves the speed of searching
 
-
 ### Conceptual
 
-1. Adding the digits
-    - `cats` stores at $3 + 1 + 20 + 19 = 43$
-        - $50,000/260$ words at the same index
+1. **Digit Addition**
+    - `cats` is stored at $3 + 1 + 20 + 19 = 43$
+    - `zzzzzzzzzzz` is stored at $26 * 10 = 260$
+        - Approximately $50,000/260$ words at the same index
 
-2. Polynomial hash table
-    - `cats` stores at $3*27^3 + 1*27^2 + 20*27^1 + 19*27^0 = 60,337$
-        - Impossible to have such array
-        - Most array indices are empty
+2. **Polynomial Hashcode**
+    - `cats` is stored at $3*27^3 + 1*27^2 + 20*27^1 + 19*27^0 = 60,337$
+    - `zzzzzzzzzzz` is stored at $26*27^9 + 26*27^8 + 26*27^7 + \dots + 26*27^0$
+        - Such array is impossible - Integer overflow
+        - Most array indices are empty - Waste of memory
 
-3. Modulus (%) operator
-    - Collisions still happen
+3. **Modulus (%)**
+    - Information loss
+    - Collisions become inevitable due to the Pigeonhole Principle
 
-
-### Load factor ($\alpha$)
-- Performance degrades seriously if beyond **two-thirds** full
-
-$$ \alpha = \frac{n}{N} $$
-$n$ is the number of elements stored in the hash table.  
-$N$ is the total number of slots (or buckets) available in the hash table.
-
-- Rehashing: creates a new array twice as large and rehashes everything
-    - Amortized constant time
-
+---
 
 ### Workarounds for Collisions
 1. Open Addressing
-2. Separate Chaining
+2. Separate Chaining (Closed Addressing)
 
 #### 1. Open Addressing
 - **Linear Probing**: searches sequentially through the table until an empty slot is found.
@@ -1545,12 +1545,22 @@ $N$ is the total number of slots (or buckets) available in the hash table.
     - Hash function 1 $\rightarrow$ Initial index
     - Hash function 2 $\rightarrow$ Step size
 
-
 #### 2. Separate Chaining (Closed Addressing)
-Separate Chaining creates a linked list at each slot to store all elements that hash to that particular slot.
+- Separate Chaining creates a linked list at each slot to store all elements that hash to that particular slot.
+    - Load factor ($\alpha$) can rise above 1
 
-- Load factor ($\alpha$) can rise above 1
+---
 
+### Load factor ($\alpha$)
+
+- Performance degrades seriously if beyond **two-thirds** full
+
+$$ \alpha = \frac{n}{N} = \frac{\text{number of items}}{\text{length of the array}}$$
+
+
+### Rehashing
+- Rehashing: creates a new array twice as large and rehashes everything.
+    - Amortized constant time
 
 
 
@@ -1560,9 +1570,14 @@ Separate Chaining creates a linked list at each slot to store all elements that 
 
 
 
-
-
 ## 12. Hash Table
+
+### Hashing Steps
+Object -> int -> hashtable (array)
+
+Two steps:
+1. Convert: `hashCode()`
+2. Compress: %
 
 ### Operations
 - search(int key)
@@ -1578,12 +1593,7 @@ public class HashTable implements HashTableInterface {
     private static final DataItem DELETED = new DataItem(-1);
     
     private DataItem[] hashArray;
-
-    /**
-     * Constructs a new hashtable with the specified initial capacity.
-     * precondition: initialCapacity is a positive integer (reasonably big)
-     * @param initialCapacity initial capacity of the table
-     */
+    
     public HashTable(int initialCapacity) {
         hashArray = new DataItem[initialCapacity];
     }
@@ -1671,25 +1681,231 @@ public class HashTable implements HashTableInterface {
 }
 ```
 
-### What makes a good hash function?
+### Aspects of Good Hash Functions
 
-Examine key values carefully and implement hash function to remove any irregularity in the distribution of the key values.
+1. Deterministic
+2. Randomness
+    1. Quick computation - Machine-dependent
+    2. Evenly distributed - Data-dependent
 
-1. Random key values
 
-    Simply use `index = key % hashArray.length;`
+#### 1. Random key values
+- `index = key % hashArray.length;`
 
-2. Non-random key values
+#### 2. Non-random key values
 
-    Generate a range of more random numbers
+- Generate a range of more random numbers
 
-    - **Optimize Data Usage**: Ensure that non-data values are removed or squeezed to optimize the use of actual data. For instance, converting category codes to a narrower range and excluding checksums that do not contribute new information.
+    1. **Remove Non-Data**: Remove or squeeze non-data values to optimize the use of actual data.
 
-    - **Utilize All Data**: Incorporate all available data into the hashing process, avoiding truncation of key values. Ensure that the entire key, not just a portion of it, contributes to the hashing algorithm.
+    2. **Use All Data**: Incorporate all available data into the hashing process, avoiding truncation of key values.
 
-    - **Choose Prime Modulo Base**: Select a prime number as the base for modulo operations when determining the hash table size. This prevents clustering of keys that are multiples of the base, promoting a more uniform distribution of hash values.
+    3. **Use Prime Number for Modulo Base**: Select a prime number as the modulo base (hash table length), which prevents clustering of keys that are multiples of the base, promoting a more uniform distribution of hash values.
 
-    - **Apply Folding**: Employ folding as an effective hash function by dividing keys into groups of digits and summing these groups. This method enhances randomness and reduces the likelihood of collisions in the hash table.
+    4. **Use Folding**: Divide keys into groups of digits and summing these groups, which enhances randomness and reduces the likelihood of collisions in the hash table.
+
+
+
+
+[Back to Top](#)
+
+
+
+## 13. Hashing, HashMap and HashSet in Java
+
+
+### Java HashCode
+
+```Java
+Integer itr = Integer.valueOf(17683);
+itr.hashCode();
+// Output: 17683
+
+String str = new String("17683");
+str.hashCode();
+// Output: s.charAt(0) * 31^(n-1) + s.charAt(1) * 31^(n-2) + ... + s.charAt(n-1)
+```
+
+- Previously: `cats` is $3*27^3 + 1*27^2 + 20*27^1 + 19*27^0$
+- In Javadoc: `cats` is $99*31^3 + 97*31^2 + 116*31^1 + 115*31^0$
+
+
+### ASCII Example
+
+A-Z (65-90), a-z (97-122)
+
+- The uppercase 'B' (ASCII 66) is `01000010` in binary.
+- The lowercase 'b' (ASCII 98) is `01100010` in binary.
+
+![](./res/probability-of-digits.png)
+
+- The fifth bit indicates "lowercase"
+- In the articles, more lowercase letters than uppercase letters
+
+
+### Why 31?
+
+For base of 32:
+- `ab` is $97 * 32 + 98$
+- Since $32 = 2^5$, perform $97 * 32 + 98 = 97 << 5 + 98$
+
+Prbability of fifth bit is not spreaded:
+
+```
+ 110000100000      --> 97 * 32
++     1100010      --> 98
+      △△
+---------------
+ 110010000010
+```
+
+For base of 31:
+- `ab` is $97 * 31 + 98$
+- Since $32 = 2^5$, perform $97 * 31 + 98 = 97 << 5 - 97 + 98$
+
+Spreading out the bits:
+```
+     110000100000
+-         1100001
+      △
+ ----------------
+     101110111111
++         1100010
+ ----------------
+     110000100001
+```
+
+
+
+
+### Analysis of indexFor and hash methods
+
+In the `put` method:
+```Java
+int hash = hash(key.hashCode());
+int i = indexFor(hash, table.length);
+```
+
+#### indexFor()
+
+```Java
+static int indexFor(int h, int length) {
+    return h & (length - 1);
+}
+```
+
+Reason:
+- Modulus is slow
+- Bitwise operation is fast
+
+For example:
+- $86 \% 8 = 6$
+- $86 \& (8 - 1) = 6$
+
+```
+    1010110  <-  86
+AND 0000111  <-   7
+  ----------
+    0000110  <-   6
+```
+
+1. Drop the signed bit (Always positive number)
+2. Ignore higher-order bits (Not using all the data -> Collisions)
+
+
+#### hash()
+
+```Java
+int hash = hash(key.hashCode());
+```
+
+- Splits 32 bits hashcode into two 16 bits and perform XOR
+    - Folding
+
+
+
+
+
+### HashMap Example
+
+```Java
+Map<String, Integer> freqOfWords = new HashMap<String, Integer>(10, 0.65f);
+
+String[] words = "coming together is a beginning keeping together is progress working together is success"
+        .split(" ");
+
+for (String word : words) {
+    Integer frequency = freqOfWords.get(word);
+    if (frequency == null) {
+        frequency = 1;
+    } else {
+        frequency++;
+    }
+    freqOfWords.put(word, frequency);
+}
+```
+
+
+
+### HashSet Example
+
+Use of dummy object seems a waste of memory?
+- HashMap is highly optimized for quick lookups
+- HashSet is for ease of maintainence
+
+
+```Java
+public class HashSet<E> implements Set<E> {
+    private ... HashMap<E, Object> map;
+    
+    // Dummy value to associate with an Object in the backing Map
+    private static final Object PRESENT = new Object();
+
+    public HashSet() {
+        map = new HashMap<>();
+    }
+
+    public boolean add(E e) {
+        return map.put(e, PRESENT)==null;
+    }
+}
+```
+
+
+```Java
+Set<String> distinctWords = new HashSet<String>();
+String[] words = "coming together is a beginning keeping together is progress working together is success"
+        .split(" ");
+
+for (String word : words) {
+    // No duplicate is allowed
+    distinctWords.add(word);
+}
+```
+
+[Back to Top](#)
+
+
+
+
+
+
+## 14. Advanced Sorting
+
+
+
+
+### Merge Sort
+
+
+
+
+### Quick Sort
+
+
+
+
+
 
 
 
