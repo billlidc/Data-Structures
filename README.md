@@ -50,6 +50,8 @@
 12. [Hash Table](#12-hash-table)
 
 13. [Hashing, HashMap and HashSet in Java](#13-hashing-hashmap-and-hashset-in-java)
+    - [HashMap](#hashmap-example)
+    - [HashSet](#hashset-example)
 
 14. [Advanced Sorting](#14-advanced-sorting)
     - [Merge Sort](#merge-sort)
@@ -362,13 +364,13 @@ public static int binarySearch(int[] data, int key) {
 | Bits | Unsigned value | Signed value (Two's complement) | One's Complement | Two's Complement |
 |------|----------------|---------------------------------|------------------|------------------|
 | 000  | 0              | 0                               | 111              | 000              |
-| 001  | 1              | 1                               | 110              | 111              |
-| 010  | 2              | 2                               | 101              | 110              |
-| 011  | 3              | 3                               | 100              | 101              |
+| 001  | 1              | -1                              | 110              | 111              |
+| 010  | 2              | -2                              | 101              | 110              |
+| 011  | 3              | -3                              | 100              | 101              |
 | 100  | 4              | -4                              | 011              | 100              |
-| 101  | 5              | -3                              | 010              | 011              |
-| 110  | 6              | -2                              | 001              | 010              |
-| 111  | 7              | -1                              | 000              | 001              |
+| 101  | 5              | 3                               | 010              | 011              |
+| 110  | 6              | 2                               | 001              | 010              |
+| 111  | 7              | 1                               | 000              | 001              |
 
 * With $n$ bits, we can represent unsigned numbers $0$ to $2^{(n-1)}$.
 * With $n$ bits, we can represent signed numbers $–2^{(n-1)}$ to $2^{(n-1)}–1$.
