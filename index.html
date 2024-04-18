@@ -2165,6 +2165,7 @@ class="math inline">97 * 31 + 98</span></li>
 </ul>
 <h3 id="analysis-of-indexfor-and-hash-methods">Analysis of indexFor and
 hash methods</h3>
+<p>In Java 7 HashMap:</p>
 <div class="sourceCode" id="cb51"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> hash <span class="op">=</span> <span class="fu">hash</span><span class="op">(</span>key<span class="op">.</span><span class="fu">hashCode</span><span class="op">());</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="fu">indexFor</span><span class="op">(</span>hash<span class="op">,</span> table<span class="op">.</span><span class="fu">length</span><span class="op">);</span></span></code></pre></div>
