@@ -2129,9 +2129,16 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb50-1"><a href=
 class="sourceCode java"><code class="sourceCode java"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> <span class="fu">indexFor</span><span class="op">(</span><span class="dt">int</span> h<span class="op">,</span> <span class="dt">int</span> length<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h <span class="op">&amp;</span> <span class="op">(</span>length <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>Reason: - Modulus is slow - Bitwise operation is fast</p>
-<p>For example: - <span class="math inline">86 %8 = 6</span> - <span
-class="math inline">86 &amp;(8−1) = 6</span></p>
+<p>Reason:</p>
+<ul>
+<li>Modulus is slow</li>
+<li>Bitwise operation is fast</li>
+</ul>
+<p>For example:</p>
+<ul>
+<li><span class="math inline">86 %8 = 6</span></li>
+<li><span class="math inline">86 &amp;(8−1) = 6</span></li>
+</ul>
 <pre><code>    1010110  &lt;-  86
 AND 0000111  &lt;-   7
   ----------
