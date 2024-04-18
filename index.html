@@ -2111,7 +2111,8 @@ class="math inline">3 * 27<sup>3</sup> + 1 * 27<sup>2</sup> + 20
 <li>In Javadoc: <code>cats</code> is <span
 class="math inline">99 * 31<sup>3</sup> + 97 * 31<sup>2</sup> + 116 * 31<sup>1</sup> + 115 * 31<sup>0</sup></span></li>
 </ul>
-<h3 id="ascii-example">ASCII Example</h3>
+<h3 id="why-31">Why 31?</h3>
+<h4 id="ascii">ASCII</h4>
 <p>A-Z (65-90), a-z (97-122)</p>
 <p><img src="./res/probability-of-digits.png" /></p>
 <ul>
@@ -2124,42 +2125,46 @@ binary.</li>
 </ul></li>
 <li>In the articles, more lowercase letters than uppercase letters</li>
 </ul>
-<h3 id="why-31">Why 31?</h3>
+<h4 id="comparison-of-base-32-and-31">Comparison of Base 32 and 31</h4>
 <p>For base of 32:</p>
 <ul>
 <li><code>ab</code> is <span
 class="math inline">97 * 32 + 98</span></li>
 <li>Since <span class="math inline">32 = 2<sup>5</sup></span>, perform
-<code>97 * 32 + 98</code> = <code>97 &lt;&lt; 5 + 98</code></li>
-</ul>
-<p>Prbability of fifth bit is not spreaded:</p>
-<pre><code> 110000100000      --&gt; 97 * 32
+<code>97 * 32 + 98</code> = <code>97 &lt;&lt; 5 + 98</code>
+<ul>
+<li><p>Prbability of fifth bit is not spreaded:</p>
+<pre><code>110000100000      --&gt; 97 * 32
 +     1100010      --&gt; 98
-      △△
+    △△
 ---------------
- 110010000010</code></pre>
+110010000010</code></pre></li>
+</ul></li>
+</ul>
 <p>For base of 31:</p>
 <ul>
 <li><code>ab</code> is <span
 class="math inline">97 * 31 + 98</span></li>
 <li>Since <span class="math inline">32 = 2<sup>5</sup></span>, perform
-<code>97 * 31 + 98</code> = <code>97 &lt;&lt; 5 - 97 + 98</code></li>
-</ul>
-<p>Spreading out the bits:</p>
-<pre><code>     110000100000
+<code>97 * 31 + 98</code> = <code>97 &lt;&lt; 5 - 97 + 98</code>
+<ul>
+<li><p>Spreading out the bits:</p>
+<pre><code>    110000100000
 -         1100001
-      △
- ----------------
-     101110111111
+    △
+----------------
+    101110111111
 +         1100010
- ----------------
-     110000100001</code></pre>
+----------------
+    110000100001</code></pre></li>
+</ul></li>
+</ul>
 <h3 id="analysis-of-indexfor-and-hash-methods">Analysis of indexFor and
 hash methods</h3>
 <div class="sourceCode" id="cb51"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> hash <span class="op">=</span> <span class="fu">hash</span><span class="op">(</span>key<span class="op">.</span><span class="fu">hashCode</span><span class="op">());</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="fu">indexFor</span><span class="op">(</span>hash<span class="op">,</span> table<span class="op">.</span><span class="fu">length</span><span class="op">);</span></span></code></pre></div>
-<h4 id="indexfor">indexFor()</h4>
+<h4 id="indexfor">indexFor</h4>
 <div class="sourceCode" id="cb52"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> <span class="fu">indexFor</span><span class="op">(</span><span class="dt">int</span> h<span class="op">,</span> <span class="dt">int</span> length<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h <span class="op">&amp;</span> <span class="op">(</span>length <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
@@ -2184,7 +2189,7 @@ AND 0000111  &lt;-   7
 <li>Ignore higher-order bits (Not using all the data -&gt;
 Collisions)</li>
 </ol>
-<h4 id="hash">hash()</h4>
+<h4 id="hash">hash</h4>
 <div class="sourceCode" id="cb54"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> hash <span class="op">=</span> <span class="fu">hash</span><span class="op">(</span>key<span class="op">.</span><span class="fu">hashCode</span><span class="op">());</span></span></code></pre></div>
 <ul>
