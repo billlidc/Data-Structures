@@ -1724,24 +1724,28 @@ str.hashCode();
 - In Javadoc: `cats` is $99*31^3 + 97*31^2 + 116*31^1 + 115*31^0$
 
 
+
+
 ### ASCII Example
 
 A-Z (65-90), a-z (97-122)
 
-- The uppercase 'B' (ASCII 66) is `01000010` in binary.
-- The lowercase 'b' (ASCII 98) is `01100010` in binary.
-
 ![](./res/probability-of-digits.png)
 
 - The fifth bit indicates "lowercase"
+    - The uppercase 'B' (ASCII 66) is `01000010` in binary.
+    - The lowercase 'b' (ASCII 98) is `01100010` in binary.
+
 - In the articles, more lowercase letters than uppercase letters
+
 
 
 ### Why 31?
 
 For base of 32:
+
 - `ab` is $97 * 32 + 98$
-- Since $32 = 2^5$, perform $97 * 32 + 98 = 97 << 5 + 98$
+- Since $32 = 2^5$, perform `97 * 32 + 98` = `97 << 5 + 98`
 
 Prbability of fifth bit is not spreaded:
 
@@ -1754,8 +1758,9 @@ Prbability of fifth bit is not spreaded:
 ```
 
 For base of 31:
+
 - `ab` is $97 * 31 + 98$
-- Since $32 = 2^5$, perform $97 * 31 + 98 = 97 << 5 - 97 + 98$
+- Since $32 = 2^5$, perform `97 * 31 + 98` = `97 << 5 - 97 + 98`
 
 Spreading out the bits:
 
@@ -1774,8 +1779,6 @@ Spreading out the bits:
 
 
 ### Analysis of indexFor and hash methods
-
-In the `put` method:
 
 ```Java
 int hash = hash(key.hashCode());
