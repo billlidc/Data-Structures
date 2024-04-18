@@ -2047,17 +2047,16 @@ Functions</h3>
 <h4 id="non-random-key-values">2. Non-Random key values</h4>
 <p>Example: Car-part number</p>
 <ul>
-<li><p>No guarantee random between 0 to 999-999-99-99-99-9-999 ```
-033-400-03-94-05-0-535</p>
-<ul>
-<li>Digits 0-2: Supplier number (1 to 999, currently up to 70)</li>
-<li>Digits 3-5: Category code (100, 150, 200, 250, up to 850)</li>
-<li>Digits 6-7: Month of introduction (1 to 12)</li>
-<li>Digits 8-9: Year of introduction (00 to 99)</li>
-<li>Digits 10-11: Serial number (1 to 99, never exceeds 100)</li>
-<li>Digits 12: Toxic risk flag (0 or 1)</li>
-<li>Digits 13-15: Checksum (sum of the other fields) ```</li>
-</ul></li>
+<li><p>No guarantee random between 0 to 999-999-99-99-99-9-999</p>
+<pre><code>033-400-03-94-05-0-535
+
+- Digits 0-2: Supplier number (1 to 999, currently up to 70)
+- Digits 3-5: Category code (100, 150, 200, 250, up to 850)
+- Digits 6-7: Month of introduction (1 to 12)
+- Digits 8-9: Year of introduction (00 to 99)
+- Digits 10-11: Serial number (1 to 99, never exceeds 100)
+- Digits 12: Toxic risk flag (0 or 1)
+- Digits 13-15: Checksum (sum of the other fields)</code></pre></li>
 <li><p>Generate a range of more random numbers</p>
 <ol type="1">
 <li><p><strong>Remove Non-Data</strong>:</p>
@@ -2098,14 +2097,14 @@ class="math inline">12 + 34 + 56 + 78 + 9 = 189%101 = 88
 <h2 id="hashing-hashmap-and-hashset-in-java">13. Hashing, HashMap and
 HashSet in Java</h2>
 <h3 id="java-hashcode">Java HashCode</h3>
-<div class="sourceCode" id="cb47"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Integer</span> itr <span class="op">=</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">valueOf</span><span class="op">(</span><span class="dv">17683</span><span class="op">);</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>itr<span class="op">.</span><span class="fu">hashCode</span><span class="op">();</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Output: 17683</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> str <span class="op">=</span> <span class="kw">new</span> <span class="bu">String</span><span class="op">(</span><span class="st">&quot;17683&quot;</span><span class="op">);</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>str<span class="op">.</span><span class="fu">hashCode</span><span class="op">();</span></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Output: s.charAt(0) * 31^(n-1) + s.charAt(1) * 31^(n-2) + ... + s.charAt(n-1)</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Integer</span> itr <span class="op">=</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">valueOf</span><span class="op">(</span><span class="dv">17683</span><span class="op">);</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>itr<span class="op">.</span><span class="fu">hashCode</span><span class="op">();</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Output: 17683</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> str <span class="op">=</span> <span class="kw">new</span> <span class="bu">String</span><span class="op">(</span><span class="st">&quot;17683&quot;</span><span class="op">);</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>str<span class="op">.</span><span class="fu">hashCode</span><span class="op">();</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Output: s.charAt(0) * 31^(n-1) + s.charAt(1) * 31^(n-2) + ... + s.charAt(n-1)</span></span></code></pre></div>
 <ul>
 <li>Previously: <code>cats</code> is <span
 class="math inline">3 * 27<sup>3</sup> + 1 * 27<sup>2</sup> + 20 * 27<sup>1</sup> + 19 * 27<sup>0</sup></span></li>
@@ -2157,14 +2156,14 @@ class="math inline">97 * 31 + 98</span></li>
      110000100001</code></pre>
 <h3 id="analysis-of-indexfor-and-hash-methods">Analysis of indexFor and
 hash methods</h3>
-<div class="sourceCode" id="cb50"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> hash <span class="op">=</span> <span class="fu">hash</span><span class="op">(</span>key<span class="op">.</span><span class="fu">hashCode</span><span class="op">());</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="fu">indexFor</span><span class="op">(</span>hash<span class="op">,</span> table<span class="op">.</span><span class="fu">length</span><span class="op">);</span></span></code></pre></div>
-<h4 id="indexfor">indexFor()</h4>
 <div class="sourceCode" id="cb51"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> <span class="fu">indexFor</span><span class="op">(</span><span class="dt">int</span> h<span class="op">,</span> <span class="dt">int</span> length<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h <span class="op">&amp;</span> <span class="op">(</span>length <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+class="sourceCode java"><code class="sourceCode java"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> hash <span class="op">=</span> <span class="fu">hash</span><span class="op">(</span>key<span class="op">.</span><span class="fu">hashCode</span><span class="op">());</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="fu">indexFor</span><span class="op">(</span>hash<span class="op">,</span> table<span class="op">.</span><span class="fu">length</span><span class="op">);</span></span></code></pre></div>
+<h4 id="indexfor">indexFor()</h4>
+<div class="sourceCode" id="cb52"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> <span class="fu">indexFor</span><span class="op">(</span><span class="dt">int</span> h<span class="op">,</span> <span class="dt">int</span> length<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h <span class="op">&amp;</span> <span class="op">(</span>length <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Reason:</p>
 <ul>
 <li>Modulus is slow</li>
@@ -2186,8 +2185,8 @@ AND 0000111  &lt;-   7
 Collisions)</li>
 </ol>
 <h4 id="hash">hash()</h4>
-<div class="sourceCode" id="cb53"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> hash <span class="op">=</span> <span class="fu">hash</span><span class="op">(</span>key<span class="op">.</span><span class="fu">hashCode</span><span class="op">());</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> hash <span class="op">=</span> <span class="fu">hash</span><span class="op">(</span>key<span class="op">.</span><span class="fu">hashCode</span><span class="op">());</span></span></code></pre></div>
 <ul>
 <li>Splits 32 bits hashcode into two 16 bits and perform XOR
 <ul>
@@ -2195,65 +2194,65 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb53-1"><a href=
 </ul></li>
 </ul>
 <h3 id="hashmap-example">HashMap Example</h3>
-<div class="sourceCode" id="cb54"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Integer</span><span class="op">&gt;</span> freqOfWords <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Integer</span><span class="op">&gt;(</span><span class="dv">10</span><span class="op">,</span> <span class="fl">0.65f</span><span class="op">);</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span><span class="op">[]</span> words <span class="op">=</span> <span class="st">&quot;coming together is a beginning keeping together is progress working together is success&quot;</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">split</span><span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">);</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">String</span> word <span class="op">:</span> words<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Integer</span> frequency <span class="op">=</span> freqOfWords<span class="op">.</span><span class="fu">get</span><span class="op">(</span>word<span class="op">);</span></span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>frequency <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>        frequency <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>        frequency<span class="op">++;</span></span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>    freqOfWords<span class="op">.</span><span class="fu">put</span><span class="op">(</span>word<span class="op">,</span> frequency<span class="op">);</span></span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb55"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Iterator</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> itr <span class="op">=</span> freqOfWords<span class="op">.</span><span class="fu">keySet</span><span class="op">().</span><span class="fu">iterator</span><span class="op">();</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>itr<span class="op">.</span><span class="fu">hasNext</span><span class="op">())</span> <span class="op">{</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>itr<span class="op">.</span><span class="fu">next</span><span class="op">());</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">();</span></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co">// using enhanced for-loop and keySet method</span></span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">String</span> word <span class="op">:</span> freqOfWords<span class="op">.</span><span class="fu">keySet</span><span class="op">())</span> <span class="op">{</span></span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>word<span class="op">);</span></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">();</span></span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="co">// using enhanced for-loop and values method</span></span>
-<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">Integer</span> frequency <span class="op">:</span> freqOfWords<span class="op">.</span><span class="fu">values</span><span class="op">())</span> <span class="op">{</span></span>
-<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>frequency<span class="op">);</span></span>
-<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+class="sourceCode java"><code class="sourceCode java"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Integer</span><span class="op">&gt;</span> freqOfWords <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Integer</span><span class="op">&gt;(</span><span class="dv">10</span><span class="op">,</span> <span class="fl">0.65f</span><span class="op">);</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span><span class="op">[]</span> words <span class="op">=</span> <span class="st">&quot;coming together is a beginning keeping together is progress working together is success&quot;</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">split</span><span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">);</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">String</span> word <span class="op">:</span> words<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Integer</span> frequency <span class="op">=</span> freqOfWords<span class="op">.</span><span class="fu">get</span><span class="op">(</span>word<span class="op">);</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>frequency <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>        frequency <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>        frequency<span class="op">++;</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>    freqOfWords<span class="op">.</span><span class="fu">put</span><span class="op">(</span>word<span class="op">,</span> frequency<span class="op">);</span></span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Iterator</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> itr <span class="op">=</span> freqOfWords<span class="op">.</span><span class="fu">keySet</span><span class="op">().</span><span class="fu">iterator</span><span class="op">();</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>itr<span class="op">.</span><span class="fu">hasNext</span><span class="op">())</span> <span class="op">{</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>itr<span class="op">.</span><span class="fu">next</span><span class="op">());</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">();</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co">// using enhanced for-loop and keySet method</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">String</span> word <span class="op">:</span> freqOfWords<span class="op">.</span><span class="fu">keySet</span><span class="op">())</span> <span class="op">{</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>word<span class="op">);</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">();</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="co">// using enhanced for-loop and values method</span></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">Integer</span> frequency <span class="op">:</span> freqOfWords<span class="op">.</span><span class="fu">values</span><span class="op">())</span> <span class="op">{</span></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>frequency<span class="op">);</span></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="hashset-example">HashSet Example</h3>
 <p>Use of dummy object seems a waste of memory? - HashMap is highly
 optimized for quick lookups - HashSet is for ease of maintainence</p>
-<div class="sourceCode" id="cb56"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> <span class="bu">HashSet</span><span class="op">&lt;</span>E<span class="op">&gt;</span> <span class="kw">implements</span> <span class="bu">Set</span><span class="op">&lt;</span>E<span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="kw">...</span> <span class="bu">HashMap</span><span class="op">&lt;</span>E<span class="op">,</span> <span class="bu">Object</span><span class="op">&gt;</span> map<span class="op">;</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Dummy value to associate with an Object in the backing Map</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="bu">Object</span> PRESENT <span class="op">=</span> <span class="kw">new</span> <span class="bu">Object</span><span class="op">();</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">HashSet</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>        map <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">add</span><span class="op">(</span>E e<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> map<span class="op">.</span><span class="fu">put</span><span class="op">(</span>e<span class="op">,</span> PRESENT<span class="op">)==</span><span class="kw">null</span><span class="op">;</span></span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb57"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Set</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> distinctWords <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashSet</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;();</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span><span class="op">[]</span> words <span class="op">=</span> <span class="st">&quot;coming together is a beginning keeping together is progress working together is success&quot;</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">split</span><span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">);</span></span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">String</span> word <span class="op">:</span> words<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// No duplicate is allowed</span></span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>    distinctWords<span class="op">.</span><span class="fu">add</span><span class="op">(</span>word<span class="op">);</span></span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+class="sourceCode java"><code class="sourceCode java"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> <span class="bu">HashSet</span><span class="op">&lt;</span>E<span class="op">&gt;</span> <span class="kw">implements</span> <span class="bu">Set</span><span class="op">&lt;</span>E<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="kw">...</span> <span class="bu">HashMap</span><span class="op">&lt;</span>E<span class="op">,</span> <span class="bu">Object</span><span class="op">&gt;</span> map<span class="op">;</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Dummy value to associate with an Object in the backing Map</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="bu">Object</span> PRESENT <span class="op">=</span> <span class="kw">new</span> <span class="bu">Object</span><span class="op">();</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">HashSet</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>        map <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">add</span><span class="op">(</span>E e<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> map<span class="op">.</span><span class="fu">put</span><span class="op">(</span>e<span class="op">,</span> PRESENT<span class="op">)==</span><span class="kw">null</span><span class="op">;</span></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Set</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> distinctWords <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashSet</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;();</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span><span class="op">[]</span> words <span class="op">=</span> <span class="st">&quot;coming together is a beginning keeping together is progress working together is success&quot;</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">split</span><span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">);</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">String</span> word <span class="op">:</span> words<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// No duplicate is allowed</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>    distinctWords<span class="op">.</span><span class="fu">add</span><span class="op">(</span>word<span class="op">);</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p><a href="#">Back to Top</a></p>
 <h2 id="advanced-sorting">14. Advanced Sorting</h2>
 <h3 id="merge-sort">Merge Sort</h3>
@@ -2266,77 +2265,77 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb57-1"><a href=
 </ul></li>
 </ul>
 <h4 id="merge">merge</h4>
-<div class="sourceCode" id="cb58"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Merges two sorted arrays into one<span class="co">.</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Precondition<span class="co">:</span> Two input arrays are sorted in ascending order and not null</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">left</span><span class="co"> </span>sorted array</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">right</span><span class="co"> </span>sorted array</span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> merged array where elements are sorted</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span><span class="op">[]</span> <span class="fu">merge</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> left<span class="op">,</span> <span class="dt">int</span><span class="op">[]</span> right<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">[]</span> merged <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span>left<span class="op">.</span><span class="fu">length</span> <span class="op">+</span> right<span class="op">.</span><span class="fu">length</span><span class="op">];</span></span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> indexLeft <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> indexRight <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> indexMerged <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Traverse and sort values into merged array from left or right</span></span>
-<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>indexLeft <span class="op">&lt;</span> left<span class="op">.</span><span class="fu">length</span> <span class="op">&amp;&amp;</span> indexRight <span class="op">&lt;</span> right<span class="op">.</span><span class="fu">length</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>left<span class="op">[</span>indexLeft<span class="op">]</span> <span class="op">&lt;</span> right<span class="op">[</span>indexRight<span class="op">])</span> <span class="op">{</span></span>
-<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>            merged<span class="op">[</span>indexMerged<span class="op">]</span> <span class="op">=</span> left<span class="op">[</span>indexLeft<span class="op">];</span></span>
-<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>            indexLeft <span class="op">=</span> indexLeft <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>            merged<span class="op">[</span>indexMerged<span class="op">]</span> <span class="op">=</span> right<span class="op">[</span>indexRight<span class="op">];</span></span>
-<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>            indexRight <span class="op">=</span> indexRight <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>        indexMerged <span class="op">=</span> indexMerged <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Not all the elements are copied over to merged array</span></span>
-<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>indexLeft <span class="op">&lt;</span> left<span class="op">.</span><span class="fu">length</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> indexLeft<span class="op">;</span> i <span class="op">&lt;</span> left<span class="op">.</span><span class="fu">length</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>            merged<span class="op">[</span>indexMerged<span class="op">]</span> <span class="op">=</span> left<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a>            indexMerged <span class="op">=</span> indexMerged <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> indexRight<span class="op">;</span> i <span class="op">&lt;</span> right<span class="op">.</span><span class="fu">length</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb58-32"><a href="#cb58-32" aria-hidden="true" tabindex="-1"></a>            merged<span class="op">[</span>indexMerged<span class="op">]</span> <span class="op">=</span> right<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb58-33"><a href="#cb58-33" aria-hidden="true" tabindex="-1"></a>            indexMerged <span class="op">=</span> indexMerged <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb58-34"><a href="#cb58-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb58-35"><a href="#cb58-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb58-36"><a href="#cb58-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-37"><a href="#cb58-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> merged<span class="op">;</span></span>
-<span id="cb58-38"><a href="#cb58-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h4 id="mergesort">mergeSort</h4>
 <div class="sourceCode" id="cb59"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Recursive merge sort<span class="co">.</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Creates new array where values are sorted in ascending order<span class="co">.</span></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">unsorted</span><span class="co"> </span>array</span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> sorted array</span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span><span class="op">[]</span> <span class="fu">mergeSort</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> unsorted<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Base case</span></span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>unsorted<span class="op">.</span><span class="fu">length</span> <span class="op">&lt;=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> unsorted<span class="op">;</span></span>
-<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Recursive case: divide into two halves</span></span>
-<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> mid <span class="op">=</span> unsorted<span class="op">.</span><span class="fu">length</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">[]</span> left <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span>mid<span class="op">];</span></span>
-<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">arraycopy</span><span class="op">(</span>unsorted<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> left<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> mid<span class="op">);</span></span>
-<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">[]</span> right <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span>unsorted<span class="op">.</span><span class="fu">length</span> <span class="op">-</span> mid<span class="op">];</span></span>
-<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">arraycopy</span><span class="op">(</span>unsorted<span class="op">,</span> mid<span class="op">,</span> right<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> right<span class="op">.</span><span class="fu">length</span><span class="op">);</span></span>
-<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// sort the left half using merge sort</span></span>
-<span id="cb59-23"><a href="#cb59-23" aria-hidden="true" tabindex="-1"></a>    left <span class="op">=</span> <span class="fu">mergeSort</span><span class="op">(</span>left<span class="op">);</span></span>
-<span id="cb59-24"><a href="#cb59-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-25"><a href="#cb59-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">// sort the right half using merge sort</span></span>
-<span id="cb59-26"><a href="#cb59-26" aria-hidden="true" tabindex="-1"></a>    right <span class="op">=</span> <span class="fu">mergeSort</span><span class="op">(</span>right<span class="op">);</span></span>
-<span id="cb59-27"><a href="#cb59-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-28"><a href="#cb59-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">// merge sorted halves into the final result</span></span>
-<span id="cb59-29"><a href="#cb59-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">merge</span><span class="op">(</span>left<span class="op">,</span> right<span class="op">);</span></span>
-<span id="cb59-30"><a href="#cb59-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Merges two sorted arrays into one<span class="co">.</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Precondition<span class="co">:</span> Two input arrays are sorted in ascending order and not null</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">left</span><span class="co"> </span>sorted array</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">right</span><span class="co"> </span>sorted array</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> merged array where elements are sorted</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span><span class="op">[]</span> <span class="fu">merge</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> left<span class="op">,</span> <span class="dt">int</span><span class="op">[]</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">[]</span> merged <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span>left<span class="op">.</span><span class="fu">length</span> <span class="op">+</span> right<span class="op">.</span><span class="fu">length</span><span class="op">];</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> indexLeft <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> indexRight <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> indexMerged <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Traverse and sort values into merged array from left or right</span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>indexLeft <span class="op">&lt;</span> left<span class="op">.</span><span class="fu">length</span> <span class="op">&amp;&amp;</span> indexRight <span class="op">&lt;</span> right<span class="op">.</span><span class="fu">length</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>left<span class="op">[</span>indexLeft<span class="op">]</span> <span class="op">&lt;</span> right<span class="op">[</span>indexRight<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>            merged<span class="op">[</span>indexMerged<span class="op">]</span> <span class="op">=</span> left<span class="op">[</span>indexLeft<span class="op">];</span></span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>            indexLeft <span class="op">=</span> indexLeft <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a>            merged<span class="op">[</span>indexMerged<span class="op">]</span> <span class="op">=</span> right<span class="op">[</span>indexRight<span class="op">];</span></span>
+<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a>            indexRight <span class="op">=</span> indexRight <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a>        indexMerged <span class="op">=</span> indexMerged <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb59-23"><a href="#cb59-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-24"><a href="#cb59-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Not all the elements are copied over to merged array</span></span>
+<span id="cb59-25"><a href="#cb59-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>indexLeft <span class="op">&lt;</span> left<span class="op">.</span><span class="fu">length</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb59-26"><a href="#cb59-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> indexLeft<span class="op">;</span> i <span class="op">&lt;</span> left<span class="op">.</span><span class="fu">length</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb59-27"><a href="#cb59-27" aria-hidden="true" tabindex="-1"></a>            merged<span class="op">[</span>indexMerged<span class="op">]</span> <span class="op">=</span> left<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb59-28"><a href="#cb59-28" aria-hidden="true" tabindex="-1"></a>            indexMerged <span class="op">=</span> indexMerged <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb59-29"><a href="#cb59-29" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb59-30"><a href="#cb59-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb59-31"><a href="#cb59-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> indexRight<span class="op">;</span> i <span class="op">&lt;</span> right<span class="op">.</span><span class="fu">length</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb59-32"><a href="#cb59-32" aria-hidden="true" tabindex="-1"></a>            merged<span class="op">[</span>indexMerged<span class="op">]</span> <span class="op">=</span> right<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb59-33"><a href="#cb59-33" aria-hidden="true" tabindex="-1"></a>            indexMerged <span class="op">=</span> indexMerged <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb59-34"><a href="#cb59-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb59-35"><a href="#cb59-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb59-36"><a href="#cb59-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-37"><a href="#cb59-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> merged<span class="op">;</span></span>
+<span id="cb59-38"><a href="#cb59-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="mergesort">mergeSort</h4>
+<div class="sourceCode" id="cb60"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Recursive merge sort<span class="co">.</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Creates new array where values are sorted in ascending order<span class="co">.</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">unsorted</span><span class="co"> </span>array</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> sorted array</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span><span class="op">[]</span> <span class="fu">mergeSort</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> unsorted<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Base case</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>unsorted<span class="op">.</span><span class="fu">length</span> <span class="op">&lt;=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> unsorted<span class="op">;</span></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Recursive case: divide into two halves</span></span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> mid <span class="op">=</span> unsorted<span class="op">.</span><span class="fu">length</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">[]</span> left <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span>mid<span class="op">];</span></span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">arraycopy</span><span class="op">(</span>unsorted<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> left<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> mid<span class="op">);</span></span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">[]</span> right <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span>unsorted<span class="op">.</span><span class="fu">length</span> <span class="op">-</span> mid<span class="op">];</span></span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">arraycopy</span><span class="op">(</span>unsorted<span class="op">,</span> mid<span class="op">,</span> right<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> right<span class="op">.</span><span class="fu">length</span><span class="op">);</span></span>
+<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// sort the left half using merge sort</span></span>
+<span id="cb60-23"><a href="#cb60-23" aria-hidden="true" tabindex="-1"></a>    left <span class="op">=</span> <span class="fu">mergeSort</span><span class="op">(</span>left<span class="op">);</span></span>
+<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">// sort the right half using merge sort</span></span>
+<span id="cb60-26"><a href="#cb60-26" aria-hidden="true" tabindex="-1"></a>    right <span class="op">=</span> <span class="fu">mergeSort</span><span class="op">(</span>right<span class="op">);</span></span>
+<span id="cb60-27"><a href="#cb60-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-28"><a href="#cb60-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">// merge sorted halves into the final result</span></span>
+<span id="cb60-29"><a href="#cb60-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">merge</span><span class="op">(</span>left<span class="op">,</span> right<span class="op">);</span></span>
+<span id="cb60-30"><a href="#cb60-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h4 id="analysis-of-merge-sort">Analysis of Merge Sort</h4>
 <p>Recurrence Relation using substitution method:</p>
 <pre><code>T(n) = 1                if n &lt;= 1
@@ -2361,77 +2360,77 @@ right (larger values) groups.</li>
 <li>Call itself again to sort the right group.</li>
 </ul>
 <h4 id="quicksort">quickSort</h4>
-<div class="sourceCode" id="cb61"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Quick sort<span class="co">.</span></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">unsorted</span><span class="co"> </span>an array to sort</span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">quickSort</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> unsorted<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quickSort</span><span class="op">(</span>unsorted<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> unsorted<span class="op">.</span><span class="fu">length</span> <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb62"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Private helper method for recursive quick sort<span class="co">.</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Sorts values of input array in ascending order<span class="co">.</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">unsorted</span><span class="co"> </span>array</span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">left</span><span class="co"> </span>boundary index</span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">right</span><span class="co"> </span>boundary index</span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">quickSort</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> unsorted<span class="op">,</span> <span class="dt">int</span> left<span class="op">,</span> <span class="dt">int</span> right<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Base case</span></span>
-<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>left <span class="op">&gt;=</span> right<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Recursive case</span></span>
-<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> pivot <span class="op">=</span> unsorted<span class="op">[</span>right<span class="op">];</span></span>
-<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Partition into left and right subgroups using the pivot value and get index of the pivot value in final position</span></span>
-<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> partition <span class="op">=</span> <span class="fu">partition</span><span class="op">(</span>unsorted<span class="op">,</span> left<span class="op">,</span> right<span class="op">,</span> pivot<span class="op">);</span></span>
-<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// call itself again to sort the left half</span></span>
-<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quickSort</span><span class="op">(</span>unsorted<span class="op">,</span> left<span class="op">,</span> partition <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
-<span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// call itself again to sort the right half</span></span>
-<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quickSort</span><span class="op">(</span>unsorted<span class="op">,</span> partition <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> right<span class="op">);</span></span>
-<span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h4 id="partition">partition</h4>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Quick sort<span class="co">.</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">unsorted</span><span class="co"> </span>an array to sort</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">quickSort</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> unsorted<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quickSort</span><span class="op">(</span>unsorted<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> unsorted<span class="op">.</span><span class="fu">length</span> <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb63"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Partitions the input array into two parts using the pivot value<span class="co">.</span></span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">array</span><span class="co"> </span>to partition</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">left</span><span class="co"> </span>index <span class="co">(</span>inclusive<span class="co">)</span></span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">right</span><span class="co"> </span>index <span class="co">(</span>exclusive<span class="co">)</span></span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">pivot</span><span class="co"> </span>value <span class="co">(</span>not index<span class="co">)</span></span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> index of the pivot value after inserted into final position</span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
-<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">partition</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> arr<span class="op">,</span> <span class="dt">int</span> left<span class="op">,</span> <span class="dt">int</span> right<span class="op">,</span> <span class="dt">int</span> pivot<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> leftPointer <span class="op">=</span> left <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> rightPointer <span class="op">=</span> right<span class="op">;</span></span>
-<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Scanning for out-of-place values</span></span>
-<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>arr<span class="op">[++</span>leftPointer<span class="op">]</span> <span class="op">&lt;</span> pivot<span class="op">);</span></span>
-<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>rightPointer <span class="op">&gt;</span> left <span class="op">&amp;&amp;</span> arr<span class="op">[--</span>rightPointer<span class="op">]</span> <span class="op">&gt;</span> pivot<span class="op">);</span></span>
-<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>leftPointer <span class="op">&gt;=</span> rightPointer<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span> <span class="co">// Nothing to swap</span></span>
-<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Swap out-of-place values</span></span>
-<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">swap</span><span class="op">(</span>arr<span class="op">,</span> leftPointer<span class="op">,</span> rightPointer<span class="op">);</span></span>
-<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb63-23"><a href="#cb63-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Put pivot value into the final location</span></span>
-<span id="cb63-24"><a href="#cb63-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">swap</span><span class="op">(</span>arr<span class="op">,</span> leftPointer<span class="op">,</span> right<span class="op">);</span></span>
-<span id="cb63-25"><a href="#cb63-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> leftPointer<span class="op">;</span></span>
-<span id="cb63-26"><a href="#cb63-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Private helper method for recursive quick sort<span class="co">.</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Sorts values of input array in ascending order<span class="co">.</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">unsorted</span><span class="co"> </span>array</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">left</span><span class="co"> </span>boundary index</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">right</span><span class="co"> </span>boundary index</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">quickSort</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> unsorted<span class="op">,</span> <span class="dt">int</span> left<span class="op">,</span> <span class="dt">int</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Base case</span></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>left <span class="op">&gt;=</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Recursive case</span></span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> pivot <span class="op">=</span> unsorted<span class="op">[</span>right<span class="op">];</span></span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Partition into left and right subgroups using the pivot value and get index of the pivot value in final position</span></span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> partition <span class="op">=</span> <span class="fu">partition</span><span class="op">(</span>unsorted<span class="op">,</span> left<span class="op">,</span> right<span class="op">,</span> pivot<span class="op">);</span></span>
+<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// call itself again to sort the left half</span></span>
+<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quickSort</span><span class="op">(</span>unsorted<span class="op">,</span> left<span class="op">,</span> partition <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// call itself again to sort the right half</span></span>
+<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quickSort</span><span class="op">(</span>unsorted<span class="op">,</span> partition <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> right<span class="op">);</span></span>
+<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="partition">partition</h4>
 <div class="sourceCode" id="cb64"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Helper method to swap two elements in the input array<span class="co">.</span></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">data</span><span class="co"> </span>input array to update</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">one</span><span class="co"> </span>one index</span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">two</span><span class="co"> </span>the other index</span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
-<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">swap</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> data<span class="op">,</span> <span class="dt">int</span> one<span class="op">,</span> <span class="dt">int</span> two<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> tmp <span class="op">=</span> data<span class="op">[</span>one<span class="op">];</span></span>
-<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>    data<span class="op">[</span>one<span class="op">]</span> <span class="op">=</span> data<span class="op">[</span>two<span class="op">];</span></span>
-<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    data<span class="op">[</span>two<span class="op">]</span> <span class="op">=</span> tmp<span class="op">;</span></span>
-<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Partitions the input array into two parts using the pivot value<span class="co">.</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">array</span><span class="co"> </span>to partition</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">left</span><span class="co"> </span>index <span class="co">(</span>inclusive<span class="co">)</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">right</span><span class="co"> </span>index <span class="co">(</span>exclusive<span class="co">)</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">pivot</span><span class="co"> </span>value <span class="co">(</span>not index<span class="co">)</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@return</span> index of the pivot value after inserted into final position</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">partition</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> arr<span class="op">,</span> <span class="dt">int</span> left<span class="op">,</span> <span class="dt">int</span> right<span class="op">,</span> <span class="dt">int</span> pivot<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> leftPointer <span class="op">=</span> left <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> rightPointer <span class="op">=</span> right<span class="op">;</span></span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Scanning for out-of-place values</span></span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>arr<span class="op">[++</span>leftPointer<span class="op">]</span> <span class="op">&lt;</span> pivot<span class="op">);</span></span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>rightPointer <span class="op">&gt;</span> left <span class="op">&amp;&amp;</span> arr<span class="op">[--</span>rightPointer<span class="op">]</span> <span class="op">&gt;</span> pivot<span class="op">);</span></span>
+<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>leftPointer <span class="op">&gt;=</span> rightPointer<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span> <span class="co">// Nothing to swap</span></span>
+<span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb64-20"><a href="#cb64-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Swap out-of-place values</span></span>
+<span id="cb64-21"><a href="#cb64-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">swap</span><span class="op">(</span>arr<span class="op">,</span> leftPointer<span class="op">,</span> rightPointer<span class="op">);</span></span>
+<span id="cb64-22"><a href="#cb64-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb64-23"><a href="#cb64-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Put pivot value into the final location</span></span>
+<span id="cb64-24"><a href="#cb64-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">swap</span><span class="op">(</span>arr<span class="op">,</span> leftPointer<span class="op">,</span> right<span class="op">);</span></span>
+<span id="cb64-25"><a href="#cb64-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> leftPointer<span class="op">;</span></span>
+<span id="cb64-26"><a href="#cb64-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Helper method to swap two elements in the input array<span class="co">.</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">data</span><span class="co"> </span>input array to update</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">one</span><span class="co"> </span>one index</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">two</span><span class="co"> </span>the other index</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">swap</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> data<span class="op">,</span> <span class="dt">int</span> one<span class="op">,</span> <span class="dt">int</span> two<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> tmp <span class="op">=</span> data<span class="op">[</span>one<span class="op">];</span></span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>    data<span class="op">[</span>one<span class="op">]</span> <span class="op">=</span> data<span class="op">[</span>two<span class="op">];</span></span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>    data<span class="op">[</span>two<span class="op">]</span> <span class="op">=</span> tmp<span class="op">;</span></span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h4 id="analysis-of-quick-sort">Analysis of Quick Sort</h4>
 <p>In the worst case: - Number of comparisons: <span
 class="math inline"><em>O</em>(<em>n</em>)</span> - Number of swaps:
