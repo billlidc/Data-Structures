@@ -1773,7 +1773,7 @@ For base of 32:
     - Prbability of fifth bit is not spreaded:
 
         ```
-        110000100000      --> 97 * 32
+        110000100000      --> 97 << 5
         +    1100010      --> 98
              △△
         ------------
@@ -1787,12 +1787,12 @@ For base of 31:
     - Spreading out the bits:
 
         ```
-            110000100000
-        -        1100001
+            110000100000  --> 97 << 5
+        -        1100001  --> 97
              △
         ----------------
             101110111111
-        +        1100010
+        +        1100010  --> 98
         ----------------
             110000100001
         ```
@@ -1891,8 +1891,9 @@ for (Integer frequency : freqOfWords.values()) {
 ### HashSet Example
 
 Use of dummy object seems a waste of memory?
-- HashMap is highly optimized for quick lookups
-- HashSet is for ease of maintainence
+
+- HashMap is **highly optimized** for quick lookups
+- HashSet is for **ease of maintainence**
 
 
 ```Java
@@ -2139,6 +2140,7 @@ private static void swap(int[] data, int one, int two) {
 #### Analysis of Quick Sort
 
 In the worst case:
+
 - Number of comparisons: $O(n)$
 - Number of swaps: $O(n/2)$
 
