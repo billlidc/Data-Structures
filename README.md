@@ -1800,6 +1800,8 @@ For base of 31:
 
 ### Analysis of indexFor and hash methods
 
+In Java 7 HashMap:
+
 ```Java
 int hash = hash(key.hashCode());
 int i = indexFor(hash, table.length);
