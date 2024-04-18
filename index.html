@@ -2288,7 +2288,7 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb59-1"><a href=
 <span id="cb59-28"><a href="#cb59-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">// merge sorted halves into the final result</span></span>
 <span id="cb59-29"><a href="#cb59-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">merge</span><span class="op">(</span>left<span class="op">,</span> right<span class="op">);</span></span>
 <span id="cb59-30"><a href="#cb59-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h3 id="analysis-of-merge-sort">Analysis of Merge Sort</h3>
+<h4 id="analysis-of-merge-sort">Analysis of Merge Sort</h4>
 <p>Recurrence Relation using substitution method:</p>
 <pre><code>T(n) = 1                if n &lt;= 1
 T(n) = 2T(n/2) + n      if n &gt; 1
@@ -2383,7 +2383,7 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb64-1"><a href=
 <span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>    data<span class="op">[</span>one<span class="op">]</span> <span class="op">=</span> data<span class="op">[</span>two<span class="op">];</span></span>
 <span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    data<span class="op">[</span>two<span class="op">]</span> <span class="op">=</span> tmp<span class="op">;</span></span>
 <span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<h3 id="analysis-of-quick-sort">Analysis of Quick Sort</h3>
+<h4 id="analysis-of-quick-sort">Analysis of Quick Sort</h4>
 <p>In the worst case: - Number of comparisons: <span
 class="math inline"><em>O</em>(<em>n</em>)</span> - Number of swaps:
 <span class="math inline"><em>O</em>(<em>n</em>/2)</span></p>
@@ -2396,20 +2396,27 @@ class="math inline">$\frac{n(n-1)}{2}$</span></p>
 765
 76
 7</code></pre>
-<h4 id="choice-of-pivot-value">Choice of Pivot Value</h4>
+<p>Choice of pivot value:</p>
 <ul>
-<li>Median</li>
 <li>Pseudo-median - value that serves as an estimation or approximation
 of the true median of a data set</li>
 <li>Otherwise, pick pivot value at <strong>RANDOM</strong></li>
 </ul>
+<h3 id="stability-comparison">Stability Comparison</h3>
+<ol type="1">
+<li>Quick Sort (Not stable, swaps distant elements) =&gt;
+Primitives</li>
+<li>Merge Sort (Stable) =&gt; Objects</li>
+</ol>
 <h3 id="sorting-in-java">Sorting in Java</h3>
-<p>Stability: 1. Quick Sort (Not stable, swaps distant elements) =&gt;
-Primitives 2. Merge Sort (Stable) =&gt; Objects</p>
-<p>In Java 7: - Primitives =&gt; <strong>Dual-pivot Quick Sort</strong>:
-half time of QuickSort - Objects =&gt; <strong>Tim Sort</strong>:
-stable, derived from merge sort and insertion sort - Range &lt; 7 =&gt;
-<strong>Insertion Sort</strong></p>
+<p>In Java 7:</p>
+<ul>
+<li>Primitives =&gt; <strong>Dual-pivot Quick Sort</strong>: half time
+of QuickSort</li>
+<li>Objects =&gt; <strong>Tim Sort</strong>: stable, derived from merge
+sort and insertion sort</li>
+<li>Range &lt; 7 =&gt; <strong>Insertion Sort</strong></li>
+</ul>
 <p><a href="#">Back to Top</a></p>
 </body>
 </html>
