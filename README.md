@@ -374,7 +374,7 @@ public static int binarySearch(int[] data, int key) {
 
 * With $n$ bits, we can represent unsigned numbers $0$ to $2^{(n-1)}$.
 * With $n$ bits, we can represent signed numbers $–2^{(n-1)}$ to $2^{(n-1)}–1$.
-* Therefore, use `mid = l + (r - l)/2` instead of `mid = (l + r)/2` in Binary Search to avoid potential integer overflow issues.
+* Use `mid = l + (r - l)/2` to avoid potential integer overflow issues.
 
 
 #### Time Complexity of Binary Search
@@ -1688,20 +1688,38 @@ public class HashTable implements HashTableInterface {
 #### 1. Random key values
 - `index = key % hashArray.length;`
 
-#### 2. Non-random key values
+#### 2. Non-Random key values
+
+Example: Car-part number
+
+- No guarantee random between 0 to 999-999-99-99-99-9-999
+    ```
+    033-400-03-94-05-0-535
+
+    - Digits 0-2: Supplier number (1 to 999, currently up to 70)
+    - Digits 3-5: Category code (100, 150, 200, 250, up to 850)
+    - Digits 6-7: Month of introduction (1 to 12)
+    - Digits 8-9: Year of introduction (00 to 99)
+    - Digits 10-11: Serial number (1 to 99, never exceeds 100)
+    - Digits 12: Toxic risk flag (0 or 1)
+    - Digits 13-15: Checksum (sum of the other fields)
+    ```
 
 - Generate a range of more random numbers
+    1. **Remove Non-Data**:
+        - Squeeze key values
+            - E.g. Category code should be squeezed to 0-15
+        - Remove non-data values
+            - E.g. Checksum is derived and does not incorporate any new information
 
-    1. **Remove Non-Data**: Remove or squeeze non-data values to optimize the use of actual data.
-
-    2. **Use All Data**: Incorporate all available data into the hashing process, avoiding truncation of key values.
+    2. **Use All Data**: Incorporate all available data, avoiding truncation of key values.
 
     3. **Use Prime Number for Modulo Base**: Select a prime number as the modulo base (hash table length), which prevents clustering of keys that are multiples of the base, promoting a more uniform distribution of hash values.
 
-    4. **Use Folding**: Divide keys into groups of digits and summing these groups, which enhances randomness and reduces the likelihood of collisions in the hash table.
-
-
-
+    4. **Use Folding**: Divide keys into groups of digits and summing up the groups, which enhances randomness and reduces collisions in the hash table.
+        - Example: SSN `123-45-6789`
+            - For table length is $1009$: Break into three groups of three digits: $123 + 456 + 789 = 1368 \% 1009 = 359$
+            - For table length is $101$: Break into three groups of three digits: $12 + 34 + 56 + 78 + 9 = 189 \% 101 = 88$
 
 [Back to Top](#)
 
