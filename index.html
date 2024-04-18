@@ -2083,12 +2083,16 @@ collisions in the hash table.</p>
 <ul>
 <li>Example: SSN <code>123-45-6789</code>
 <ul>
-<li>For table length is <span class="math inline">1009</span>: Break
-into three groups of three digits: <span
+<li>For table length <span class="math inline">1009</span>
+<ul>
+<li>Break into groups of three digits: <span
 class="math inline">123 + 456 + 789 = 1368%1009 = 359</span></li>
-<li>For table length is <span class="math inline">101</span>: Break into
-three groups of three digits: <span
+</ul></li>
+<li>For table length <span class="math inline">101</span>
+<ul>
+<li>Break into groups of two digits: <span
 class="math inline">12 + 34 + 56 + 78 + 9 = 189%101 = 88</span></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ol></li>
