@@ -1794,10 +1794,13 @@ static int indexFor(int h, int length) {
 ```
 
 Reason:
+
 - Modulus is slow
 - Bitwise operation is fast
 
+
 For example:
+
 - $86 \text{ \% } 8 = 6$
 - $86 \text{ \& } (8 - 1) = 6$
 
