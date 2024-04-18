@@ -2138,7 +2138,7 @@ class="math inline">97 * 32 + 98</span></li>
 <code>97 * 32 + 98</code> = <code>97 &lt;&lt; 5 + 98</code>
 <ul>
 <li><p>Prbability of fifth bit is not spreaded:</p>
-<pre><code>110000100000      --&gt; 97 * 32
+<pre><code>110000100000      --&gt; 97 &lt;&lt; 5
 +    1100010      --&gt; 98
      △△
 ------------
@@ -2153,12 +2153,12 @@ class="math inline">97 * 31 + 98</span></li>
 <code>97 * 31 + 98</code> = <code>97 &lt;&lt; 5 - 97 + 98</code>
 <ul>
 <li><p>Spreading out the bits:</p>
-<pre><code>    110000100000
--        1100001
+<pre><code>    110000100000  --&gt; 97 &lt;&lt; 5
+-        1100001  --&gt; 97
      △
 ----------------
     101110111111
-+        1100010
++        1100010  --&gt; 98
 ----------------
     110000100001</code></pre></li>
 </ul></li>
@@ -2236,8 +2236,11 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb56-1"><a href=
 <span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>frequency<span class="op">);</span></span>
 <span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h3 id="hashset-example">HashSet Example</h3>
-<p>Use of dummy object seems a waste of memory? - HashMap is highly
-optimized for quick lookups - HashSet is for ease of maintainence</p>
+<p>Use of dummy object seems a waste of memory?</p>
+<ul>
+<li>HashMap is <strong>highly optimized</strong> for quick lookups</li>
+<li>HashSet is for <strong>ease of maintainence</strong></li>
+</ul>
 <div class="sourceCode" id="cb57"><pre
 class="sourceCode java"><code class="sourceCode java"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> <span class="bu">HashSet</span><span class="op">&lt;</span>E<span class="op">&gt;</span> <span class="kw">implements</span> <span class="bu">Set</span><span class="op">&lt;</span>E<span class="op">&gt;</span> <span class="op">{</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="kw">...</span> <span class="bu">HashMap</span><span class="op">&lt;</span>E<span class="op">,</span> <span class="bu">Object</span><span class="op">&gt;</span> map<span class="op">;</span></span>
@@ -2441,9 +2444,13 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb65-1"><a href=
 <span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>    data<span class="op">[</span>two<span class="op">]</span> <span class="op">=</span> tmp<span class="op">;</span></span>
 <span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h4 id="analysis-of-quick-sort">Analysis of Quick Sort</h4>
-<p>In the worst case: - Number of comparisons: <span
-class="math inline"><em>O</em>(<em>n</em>)</span> - Number of swaps:
-<span class="math inline"><em>O</em>(<em>n</em>/2)</span></p>
+<p>In the worst case:</p>
+<ul>
+<li>Number of comparisons: <span
+class="math inline"><em>O</em>(<em>n</em>)</span></li>
+<li>Number of swaps: <span
+class="math inline"><em>O</em>(<em>n</em>/2)</span></li>
+</ul>
 <p>Worst case runtime: <span
 class="math inline">$\frac{n(n-1)}{2}$</span></p>
 <pre><code>7654321
