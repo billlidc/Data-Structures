@@ -1746,8 +1746,10 @@ str.hashCode();
 
 
 
+### Why 31?
 
-### ASCII Example
+
+#### ASCII
 
 A-Z (65-90), a-z (97-122)
 
@@ -1760,43 +1762,38 @@ A-Z (65-90), a-z (97-122)
 - In the articles, more lowercase letters than uppercase letters
 
 
-
-### Why 31?
+#### Comparison of Base 32 and 31
 
 For base of 32:
 
 - `ab` is $97 * 32 + 98$
 - Since $32 = 2^5$, perform `97 * 32 + 98` = `97 << 5 + 98`
+    - Prbability of fifth bit is not spreaded:
 
-Prbability of fifth bit is not spreaded:
-
-```
- 110000100000      --> 97 * 32
-+     1100010      --> 98
-      △△
----------------
- 110010000010
-```
+        ```
+        110000100000      --> 97 * 32
+        +     1100010      --> 98
+            △△
+        ---------------
+        110010000010
+        ```
 
 For base of 31:
 
 - `ab` is $97 * 31 + 98$
 - Since $32 = 2^5$, perform `97 * 31 + 98` = `97 << 5 - 97 + 98`
+    - Spreading out the bits:
 
-Spreading out the bits:
-
-```
-     110000100000
--         1100001
-      △
- ----------------
-     101110111111
-+         1100010
- ----------------
-     110000100001
-```
-
-
+        ```
+            110000100000
+        -         1100001
+            △
+        ----------------
+            101110111111
+        +         1100010
+        ----------------
+            110000100001
+        ```
 
 
 ### Analysis of indexFor and hash methods
@@ -1806,7 +1803,7 @@ int hash = hash(key.hashCode());
 int i = indexFor(hash, table.length);
 ```
 
-#### indexFor()
+#### indexFor
 
 ```Java
 static int indexFor(int h, int length) {
@@ -1836,7 +1833,7 @@ AND 0000111  <-   7
 2. Ignore higher-order bits (Not using all the data -> Collisions)
 
 
-#### hash()
+#### hash
 
 ```Java
 int hash = hash(key.hashCode());
