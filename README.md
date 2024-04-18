@@ -1993,7 +1993,7 @@ public static int[] mergeSort(int[] unsorted) {
 }
 ```
 
-### Analysis of Merge Sort
+#### Analysis of Merge Sort
 
 Recurrence Relation using substitution method:
 
@@ -2110,8 +2110,7 @@ private static void swap(int[] data, int one, int two) {
 ```
 
 
-
-### Analysis of Quick Sort
+#### Analysis of Quick Sort
 
 In the worst case:
 - Number of comparisons: $O(n)$
@@ -2129,20 +2128,22 @@ Worst case runtime:  $\frac{n(n-1)}{2}$
 7
 ```
 
-#### Choice of Pivot Value
-- Median
+Choice of pivot value:
+
 - Pseudo-median - value that serves as an estimation or approximation of the true median of a data set
-* Otherwise, pick pivot value at **RANDOM**
+- Otherwise, pick pivot value at **RANDOM**
 
 
-### Sorting in Java
+### Stability Comparison
 
-Stability:
 1. Quick Sort (Not stable, swaps distant elements) => Primitives
 2. Merge Sort (Stable) => Objects
 
 
+### Sorting in Java
+
 In Java 7:
+
 - Primitives => **Dual-pivot Quick Sort**: half time of QuickSort
 - Objects => **Tim Sort**: stable, derived from merge sort and insertion sort
 - Range < 7 => **Insertion Sort**
