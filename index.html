@@ -830,8 +830,7 @@ class="math inline">2<sup>(<em>n</em>−1)</sup></span>.</li>
 represent signed numbers <span
 class="math inline">–2<sup>(<em>n</em>−1)</sup></span> to <span
 class="math inline">2<sup>(<em>n</em>−1)</sup>–1</span>.</li>
-<li>Therefore, use <code>mid = l + (r - l)/2</code> instead of
-<code>mid = (l + r)/2</code> in Binary Search to avoid potential integer
+<li>Use <code>mid = l + (r - l)/2</code> to avoid potential integer
 overflow issues.</li>
 </ul>
 <h4 id="time-complexity-of-binary-search">Time Complexity of Binary
@@ -2045,21 +2044,54 @@ Functions</h3>
 <ul>
 <li><code>index = key % hashArray.length;</code></li>
 </ul>
-<h4 id="non-random-key-values">2. Non-random key values</h4>
+<h4 id="non-random-key-values">2. Non-Random key values</h4>
+<p>Example: Car-part number</p>
 <ul>
+<li><p>No guarantee random between 0 to 999-999-99-99-99-9-999 ```
+033-400-03-94-05-0-535</p>
+<ul>
+<li>Digits 0-2: Supplier number (1 to 999, currently up to 70)</li>
+<li>Digits 3-5: Category code (100, 150, 200, 250, up to 850)</li>
+<li>Digits 6-7: Month of introduction (1 to 12)</li>
+<li>Digits 8-9: Year of introduction (00 to 99)</li>
+<li>Digits 10-11: Serial number (1 to 99, never exceeds 100)</li>
+<li>Digits 12: Toxic risk flag (0 or 1)</li>
+<li>Digits 13-15: Checksum (sum of the other fields) ```</li>
+</ul></li>
 <li><p>Generate a range of more random numbers</p>
 <ol type="1">
-<li><p><strong>Remove Non-Data</strong>: Remove or squeeze non-data
-values to optimize the use of actual data.</p></li>
-<li><p><strong>Use All Data</strong>: Incorporate all available data
-into the hashing process, avoiding truncation of key values.</p></li>
+<li><p><strong>Remove Non-Data</strong>:</p>
+<ul>
+<li>Squeeze key values
+<ul>
+<li>E.g. Category code should be squeezed to 0-15</li>
+</ul></li>
+<li>Remove non-data values
+<ul>
+<li>E.g. Checksum is derived and does not incorporate any new
+information</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Use All Data</strong>: Incorporate all available data,
+avoiding truncation of key values.</p></li>
 <li><p><strong>Use Prime Number for Modulo Base</strong>: Select a prime
 number as the modulo base (hash table length), which prevents clustering
 of keys that are multiples of the base, promoting a more uniform
 distribution of hash values.</p></li>
 <li><p><strong>Use Folding</strong>: Divide keys into groups of digits
-and summing these groups, which enhances randomness and reduces the
-likelihood of collisions in the hash table.</p></li>
+and summing up the groups, which enhances randomness and reduces
+collisions in the hash table.</p>
+<ul>
+<li>Example: SSN <code>123-45-6789</code>
+<ul>
+<li>For table length is <span class="math inline">1009</span>: Break
+into three groups of three digits: <span
+class="math inline">123 + 456 + 789 = 1368%1009 = 359</span></li>
+<li>For table length is <span class="math inline">101</span>: Break into
+three groups of three digits: <span
+class="math inline">12 + 34 + 56 + 78 + 9 = 189%101 = 88</span></li>
+</ul></li>
+</ul></li>
 </ol></li>
 </ul>
 <p><a href="#">Back to Top</a></p>
