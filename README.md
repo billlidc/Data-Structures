@@ -1719,8 +1719,10 @@ Example: Car-part number
 
     4. **Use Folding**: Divide keys into groups of digits and summing up the groups, which enhances randomness and reduces collisions in the hash table.
         - Example: SSN `123-45-6789`
-            - For table length is $1009$: Break into three groups of three digits: $123 + 456 + 789 = 1368 \% 1009 = 359$
-            - For table length is $101$: Break into three groups of three digits: $12 + 34 + 56 + 78 + 9 = 189 \% 101 = 88$
+            - For table length $1009$
+                - Break into groups of three digits: $123 + 456 + 789 = 1368 \% 1009 = 359$
+            - For table length $101$
+                - Break into groups of two digits: $12 + 34 + 56 + 78 + 9 = 189 \% 101 = 88$
 
 [Back to Top](#)
 
