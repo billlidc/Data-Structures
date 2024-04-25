@@ -60,6 +60,12 @@ Taught by: [Terry Lee](https://www.cs.cmu.edu/~terrylee/)
 
 15. [Binary Trees, Binary Search Trees](#15-binary-trees-binary-search-trees)
 
+16. [Huffman Coding](#16-huffman-coding)
+
+17. [TreeMap and TreeSet](#17-treemap-and-treeset)
+
+18. [Heaps and HeapSort](#18-heaps-and-heapsortg)
+
 
 ## 1. The Big Picture - When to use what and how much does it cost?
 
@@ -2516,20 +2522,59 @@ public class BST implements BSTInterface {
 ```
 
 
+## 16. Huffman Coding
+
+
+## 17. TreeMap and TreeSet
+```Java
+TreeSet<Integer> schedule = new TreeSet<Integer>();
+schedule.add(1223);
+schedule.add(1430);
+schedule.add(1545);
+schedule.add(1610);
+schedule.add(1705);
+schedule.add(2010);
+schedule.add(2215);
+schedule.add(2320);
+schedule.add(2345);
+
+// show the last bus that leaves PGH before 4pm (strictly less than)
+System.out.println(schedule.headSet(1600).last());
+
+// show the first bus that leaves PGH after 10pm (greater than or equal to)
+System.out.println(schedule.tailSet(2200).first());
+```
+
 
 ```Java
+Map<String, Integer> freqOfWords = new HashMap<String, Integer>();
+String[] words = "coming together is a beginning keeping together is progress working together is success"
+        .split(" ");
 
+for (String word : words) {
+    Integer frequency = freqOfWords.get(word);
+    if (frequency == null) {
+        frequency = 1;
+    } else {
+        frequency++;
+    }
+    freqOfWords.put(word, frequency);
+}
 
+// no specific order in HashMap
+System.out.println("Elements in HashMap: " + freqOfWords);
 
+// print freqOfWords in ascending order
+TreeMap<String, Integer> sortedWords = new TreeMap<String, Integer>(freqOfWords);
 ```
 
 
 
-### 
+## 18. Heaps and HeapSort
 
 
 
-## 16. Binary Trees (Binary Search Trees)
+
 
 
 
