@@ -235,6 +235,8 @@
 <p><a name="top"></a></p>
 <h1 id="data-structures-for-application-programmers">17-683 Data
 Structures for Application Programmers</h1>
+<p>Taught by: <a href="https://www.cs.cmu.edu/~terrylee/">Terry
+Lee</a></p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ol type="1">
 <li><p><a
@@ -309,6 +311,8 @@ HashMap and HashSet in Java</a></p>
 <li><a href="#merge-sort">Merge Sort</a></li>
 <li><a href="#quick-sort">Quick Sort</a></li>
 </ul></li>
+<li><p><a href="#15-binary-trees-binary-search-trees">Binary Trees,
+Binary Search Trees</a></p></li>
 </ol>
 <h2 id="the-big-picture---when-to-use-what-and-how-much-does-it-cost">1.
 The Big Picture - When to use what and how much does it cost?</h2>
@@ -2482,6 +2486,350 @@ of QuickSort</li>
 sort and insertion sort</li>
 <li>Range &lt; 7 =&gt; <strong>Insertion Sort</strong></li>
 </ul>
+<p><a href="#">Back to Top</a></p>
+<h2 id="binary-trees-binary-search-trees">15. Binary Trees (Binary
+Search Trees)</h2>
+<h3 id="overview-1">Overview</h3>
+<ul>
+<li>Binary Trees combines the advantage of both ordered arrays and
+LinkedLists.
+<ol type="1">
+<li>Ordered Array
+<ul>
+<li>Using Binary Search, search in <span
+class="math inline"><em>O</em>(log<em>n</em>)</span></li>
+</ul></li>
+<li>LinkedList
+<ul>
+<li>insert: <span class="math inline"><em>O</em>(1)</span></li>
+<li>delete: <span class="math inline"><em>O</em>(1)</span></li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="binary-trees-terminology">Binary Trees Terminology</h3>
+<ul>
+<li><p>Root: The node at the top of the tree.</p></li>
+<li><p>Parent: When any node (except the root) has exactly one edge
+running upward to another node. The node above is called parent of the
+node.</p></li>
+<li><p>Child: Any node may have one or more lines running downward to
+other nodes. These nodes below the given node called its
+children.</p></li>
+<li><p>Leaf: A node that has no children is called a leaf. There can be
+only one root in a tree but there can be many leaves.</p></li>
+<li><p>Level/Height: the level of a particular node refers to how many
+generations the node is from the root. The root is at level and its
+children are at level 1 and so on.</p>
+<ul>
+<li>Count the number of edges</li>
+<li>Empty binary tree has height of 0.</li>
+<li>Binary Tree with only the root has height of 0.</li>
+</ul></li>
+<li><p>Balanced vs. unbalanced</p></li>
+<li><p>A binary tree has nodes that contain a data element, a
+<em>left</em> reference, and a <em>right</em> reference. In other words,
+every node in a binary tree can have at most two children.</p></li>
+<li><p>A <strong>full</strong> binary tree is a binary tree where each
+node has either zero or two children.</p></li>
+<li><p>A <strong>complete</strong> binary tree is a binary tree that is
+completely filled in reading (from left to right) each row with the
+possible exception of the bottom level.</p></li>
+</ul>
+<h3 id="binary-search-tree">Binary Search Tree</h3>
+<p>The defining characteristic, or the <strong>ordering
+invariant</strong>, of binary search tree:</p>
+<ul>
+<li>At any node with a key value, k, in a binary search tree
+<ul>
+<li>all keys of the elements in the left sub-tree must be less than
+k</li>
+<li>all keys of the elements in the right sub-tree must be greater than
+k.</li>
+<li>Meaning no duplicate keys are allowed.</li>
+</ul></li>
+</ul>
+<h3 id="implementation-1">Implementation</h3>
+<div class="sourceCode" id="cb67"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">interface</span> BSTInterface <span class="op">{</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Searches for the specified key in the tree<span class="co">.</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key</span><span class="co"> </span>key of the element to search</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> boolean value indication of success or failure</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">boolean</span> <span class="fu">find</span><span class="op">(</span><span class="dt">int</span> key<span class="op">);</span></span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Inserts a new element into the tree<span class="co">.</span></span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key</span><span class="co"> </span>key of the element</span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">value</span><span class="co"> </span>value of the element</span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">insert</span><span class="op">(</span><span class="dt">int</span> key<span class="op">,</span> <span class="dt">double</span> value<span class="op">);</span></span>
+<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb67-18"><a href="#cb67-18" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Deletes an element from the tree using the specified key<span class="co">.</span></span>
+<span id="cb67-19"><a href="#cb67-19" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key</span><span class="co"> </span>key of the element to delete</span>
+<span id="cb67-20"><a href="#cb67-20" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb67-21"><a href="#cb67-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">delete</span><span class="op">(</span><span class="dt">int</span> key<span class="op">);</span></span>
+<span id="cb67-22"><a href="#cb67-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-23"><a href="#cb67-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb67-24"><a href="#cb67-24" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Traverses and prints values of the tree in ascending order based on key<span class="co">.</span></span>
+<span id="cb67-25"><a href="#cb67-25" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb67-26"><a href="#cb67-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">traverse</span><span class="op">();</span></span>
+<span id="cb67-27"><a href="#cb67-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> BST <span class="kw">implements</span> BSTInterface <span class="op">{</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">Node</span> root<span class="op">;</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="fu">BST</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>        root <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Searches for the specified key in the tree<span class="co">.</span></span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key</span><span class="co"> </span>key of the element to search</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> boolean value indication of success or failure</span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">find</span><span class="op">(</span><span class="dt">int</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>        <span class="co">// If empty tree</span></span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>root <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb68-20"><a href="#cb68-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-21"><a href="#cb68-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-22"><a href="#cb68-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Node</span> curr <span class="op">=</span> root<span class="op">;</span></span>
+<span id="cb68-23"><a href="#cb68-23" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb68-24"><a href="#cb68-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>curr<span class="op">.</span><span class="fu">key</span> <span class="op">!=</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-25"><a href="#cb68-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>curr<span class="op">.</span><span class="fu">key</span> <span class="op">&lt;</span> key<span class="op">)</span> <span class="op">{</span> <span class="co">// Go right if key is larger than current</span></span>
+<span id="cb68-26"><a href="#cb68-26" aria-hidden="true" tabindex="-1"></a>                curr <span class="op">=</span> curr<span class="op">.</span><span class="fu">right</span><span class="op">;</span></span>
+<span id="cb68-27"><a href="#cb68-27" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> <span class="co">// Go left if key is smaller than current</span></span>
+<span id="cb68-28"><a href="#cb68-28" aria-hidden="true" tabindex="-1"></a>                curr <span class="op">=</span> curr<span class="op">.</span><span class="fu">left</span><span class="op">;</span></span>
+<span id="cb68-29"><a href="#cb68-29" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb68-30"><a href="#cb68-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-31"><a href="#cb68-31" aria-hidden="true" tabindex="-1"></a>            <span class="co">// If not found</span></span>
+<span id="cb68-32"><a href="#cb68-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>curr <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span> </span>
+<span id="cb68-33"><a href="#cb68-33" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb68-34"><a href="#cb68-34" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb68-35"><a href="#cb68-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-36"><a href="#cb68-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb68-37"><a href="#cb68-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb68-38"><a href="#cb68-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-39"><a href="#cb68-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-40"><a href="#cb68-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-41"><a href="#cb68-41" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb68-42"><a href="#cb68-42" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Inserts a new element into the tree<span class="co">.</span></span>
+<span id="cb68-43"><a href="#cb68-43" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key</span><span class="co"> </span>key of the element</span>
+<span id="cb68-44"><a href="#cb68-44" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">value</span><span class="co"> </span>value of the element</span>
+<span id="cb68-45"><a href="#cb68-45" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb68-46"><a href="#cb68-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb68-47"><a href="#cb68-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">insert</span><span class="op">(</span><span class="dt">int</span> key<span class="op">,</span> <span class="dt">double</span> value<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-48"><a href="#cb68-48" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Node</span> newNode <span class="op">=</span> <span class="kw">new</span> <span class="bu">Node</span><span class="op">(</span>key<span class="op">,</span> value<span class="op">);</span></span>
+<span id="cb68-49"><a href="#cb68-49" aria-hidden="true" tabindex="-1"></a>        <span class="co">// If empty tree</span></span>
+<span id="cb68-50"><a href="#cb68-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>root <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-51"><a href="#cb68-51" aria-hidden="true" tabindex="-1"></a>            root <span class="op">=</span> newNode<span class="op">;</span></span>
+<span id="cb68-52"><a href="#cb68-52" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb68-53"><a href="#cb68-53" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-54"><a href="#cb68-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-55"><a href="#cb68-55" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Node</span> parent <span class="op">=</span> root<span class="op">;</span></span>
+<span id="cb68-56"><a href="#cb68-56" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Node</span> curr <span class="op">=</span> root<span class="op">;</span></span>
+<span id="cb68-57"><a href="#cb68-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-58"><a href="#cb68-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-59"><a href="#cb68-59" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Ignore duplicate keys</span></span>
+<span id="cb68-60"><a href="#cb68-60" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>curr<span class="op">.</span><span class="fu">key</span> <span class="op">==</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-61"><a href="#cb68-61" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb68-62"><a href="#cb68-62" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb68-63"><a href="#cb68-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-64"><a href="#cb68-64" aria-hidden="true" tabindex="-1"></a>            parent <span class="op">=</span> curr<span class="op">;</span> <span class="co">// update parent</span></span>
+<span id="cb68-65"><a href="#cb68-65" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>curr<span class="op">.</span><span class="fu">key</span> <span class="op">&lt;</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-66"><a href="#cb68-66" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Go right if key is larger than current</span></span>
+<span id="cb68-67"><a href="#cb68-67" aria-hidden="true" tabindex="-1"></a>                curr <span class="op">=</span> curr<span class="op">.</span><span class="fu">right</span><span class="op">;</span></span>
+<span id="cb68-68"><a href="#cb68-68" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>curr <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span> <span class="co">// Found a spot</span></span>
+<span id="cb68-69"><a href="#cb68-69" aria-hidden="true" tabindex="-1"></a>                    parent<span class="op">.</span><span class="fu">right</span> <span class="op">=</span> newNode<span class="op">;</span></span>
+<span id="cb68-70"><a href="#cb68-70" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb68-71"><a href="#cb68-71" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb68-72"><a href="#cb68-72" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb68-73"><a href="#cb68-73" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Go left if key is smaller than current</span></span>
+<span id="cb68-74"><a href="#cb68-74" aria-hidden="true" tabindex="-1"></a>                curr <span class="op">=</span> curr<span class="op">.</span><span class="fu">left</span><span class="op">;</span></span>
+<span id="cb68-75"><a href="#cb68-75" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>curr <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span> <span class="co">// Found a spot</span></span>
+<span id="cb68-76"><a href="#cb68-76" aria-hidden="true" tabindex="-1"></a>                    parent<span class="op">.</span><span class="fu">left</span> <span class="op">=</span> newNode<span class="op">;</span></span>
+<span id="cb68-77"><a href="#cb68-77" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb68-78"><a href="#cb68-78" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb68-79"><a href="#cb68-79" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb68-80"><a href="#cb68-80" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-81"><a href="#cb68-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-82"><a href="#cb68-82" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb68-83"><a href="#cb68-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-84"><a href="#cb68-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-85"><a href="#cb68-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-86"><a href="#cb68-86" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb68-87"><a href="#cb68-87" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Deletes an element from the tree using the specified key<span class="co">.</span></span>
+<span id="cb68-88"><a href="#cb68-88" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">key</span><span class="co"> </span>key of the element to delete</span>
+<span id="cb68-89"><a href="#cb68-89" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb68-90"><a href="#cb68-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb68-91"><a href="#cb68-91" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">delete</span><span class="op">(</span><span class="dt">int</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-92"><a href="#cb68-92" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb68-93"><a href="#cb68-93" aria-hidden="true" tabindex="-1"></a>        <span class="co">// If empty tree</span></span>
+<span id="cb68-94"><a href="#cb68-94" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>root <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-95"><a href="#cb68-95" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb68-96"><a href="#cb68-96" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-97"><a href="#cb68-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-98"><a href="#cb68-98" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Node</span> parent <span class="op">=</span> root<span class="op">;</span></span>
+<span id="cb68-99"><a href="#cb68-99" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Node</span> curr <span class="op">=</span> root<span class="op">;</span></span>
+<span id="cb68-100"><a href="#cb68-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-101"><a href="#cb68-101" aria-hidden="true" tabindex="-1"></a>        <span class="dt">boolean</span> isLeftChild <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb68-102"><a href="#cb68-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-103"><a href="#cb68-103" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>curr<span class="op">.</span><span class="fu">key</span> <span class="op">!=</span> key<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-104"><a href="#cb68-104" aria-hidden="true" tabindex="-1"></a>            parent <span class="op">=</span> curr<span class="op">;</span></span>
+<span id="cb68-105"><a href="#cb68-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-106"><a href="#cb68-106" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>curr<span class="op">.</span><span class="fu">key</span> <span class="op">&lt;</span> key<span class="op">)</span> <span class="op">{</span> <span class="co">// Go right</span></span>
+<span id="cb68-107"><a href="#cb68-107" aria-hidden="true" tabindex="-1"></a>                isLeftChild <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb68-108"><a href="#cb68-108" aria-hidden="true" tabindex="-1"></a>                curr <span class="op">=</span> curr<span class="op">.</span><span class="fu">right</span><span class="op">;</span></span>
+<span id="cb68-109"><a href="#cb68-109" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> <span class="co">// Go left</span></span>
+<span id="cb68-110"><a href="#cb68-110" aria-hidden="true" tabindex="-1"></a>                isLeftChild <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb68-111"><a href="#cb68-111" aria-hidden="true" tabindex="-1"></a>                curr <span class="op">=</span> curr<span class="op">.</span><span class="fu">left</span><span class="op">;</span></span>
+<span id="cb68-112"><a href="#cb68-112" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb68-113"><a href="#cb68-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-114"><a href="#cb68-114" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Case 1: not found</span></span>
+<span id="cb68-115"><a href="#cb68-115" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>curr <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-116"><a href="#cb68-116" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb68-117"><a href="#cb68-117" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb68-118"><a href="#cb68-118" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-119"><a href="#cb68-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-120"><a href="#cb68-120" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>curr<span class="op">.</span><span class="fu">left</span> <span class="op">==</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> curr<span class="op">.</span><span class="fu">right</span> <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-121"><a href="#cb68-121" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Case 2: a leaf</span></span>
+<span id="cb68-122"><a href="#cb68-122" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb68-123"><a href="#cb68-123" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>curr <span class="op">==</span> root<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-124"><a href="#cb68-124" aria-hidden="true" tabindex="-1"></a>                root <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb68-125"><a href="#cb68-125" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>isLeftChild<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-126"><a href="#cb68-126" aria-hidden="true" tabindex="-1"></a>                parent<span class="op">.</span><span class="fu">left</span> <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb68-127"><a href="#cb68-127" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb68-128"><a href="#cb68-128" aria-hidden="true" tabindex="-1"></a>                parent<span class="op">.</span><span class="fu">right</span> <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb68-129"><a href="#cb68-129" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb68-130"><a href="#cb68-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-131"><a href="#cb68-131" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>curr<span class="op">.</span><span class="fu">right</span> <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-132"><a href="#cb68-132" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Case 3: one child (left child)</span></span>
+<span id="cb68-133"><a href="#cb68-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-134"><a href="#cb68-134" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>curr <span class="op">==</span> root<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-135"><a href="#cb68-135" aria-hidden="true" tabindex="-1"></a>                root <span class="op">=</span> curr<span class="op">.</span><span class="fu">left</span><span class="op">;</span></span>
+<span id="cb68-136"><a href="#cb68-136" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>isLeftChild<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-137"><a href="#cb68-137" aria-hidden="true" tabindex="-1"></a>                parent<span class="op">.</span><span class="fu">left</span> <span class="op">=</span> curr<span class="op">.</span><span class="fu">left</span><span class="op">;</span></span>
+<span id="cb68-138"><a href="#cb68-138" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb68-139"><a href="#cb68-139" aria-hidden="true" tabindex="-1"></a>                parent<span class="op">.</span><span class="fu">right</span> <span class="op">=</span> curr<span class="op">.</span><span class="fu">left</span><span class="op">;</span></span>
+<span id="cb68-140"><a href="#cb68-140" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb68-141"><a href="#cb68-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-142"><a href="#cb68-142" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>curr<span class="op">.</span><span class="fu">left</span> <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-143"><a href="#cb68-143" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Case 3: one child (right child)</span></span>
+<span id="cb68-144"><a href="#cb68-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-145"><a href="#cb68-145" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>curr <span class="op">==</span> root<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-146"><a href="#cb68-146" aria-hidden="true" tabindex="-1"></a>                root <span class="op">=</span> curr<span class="op">.</span><span class="fu">right</span><span class="op">;</span></span>
+<span id="cb68-147"><a href="#cb68-147" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>isLeftChild<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-148"><a href="#cb68-148" aria-hidden="true" tabindex="-1"></a>                parent<span class="op">.</span><span class="fu">left</span> <span class="op">=</span> curr<span class="op">.</span><span class="fu">right</span><span class="op">;</span></span>
+<span id="cb68-149"><a href="#cb68-149" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb68-150"><a href="#cb68-150" aria-hidden="true" tabindex="-1"></a>                parent<span class="op">.</span><span class="fu">right</span> <span class="op">=</span> curr<span class="op">.</span><span class="fu">right</span><span class="op">;</span></span>
+<span id="cb68-151"><a href="#cb68-151" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb68-152"><a href="#cb68-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-153"><a href="#cb68-153" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb68-154"><a href="#cb68-154" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Case 4: two children</span></span>
+<span id="cb68-155"><a href="#cb68-155" aria-hidden="true" tabindex="-1"></a>            <span class="bu">Node</span> successor <span class="op">=</span> <span class="fu">getSuccessor</span><span class="op">(</span>curr<span class="op">);</span></span>
+<span id="cb68-156"><a href="#cb68-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-157"><a href="#cb68-157" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>curr <span class="op">==</span> root<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-158"><a href="#cb68-158" aria-hidden="true" tabindex="-1"></a>                root <span class="op">=</span> successor<span class="op">;</span></span>
+<span id="cb68-159"><a href="#cb68-159" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>isLeftChild<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-160"><a href="#cb68-160" aria-hidden="true" tabindex="-1"></a>                parent<span class="op">.</span><span class="fu">left</span> <span class="op">=</span> successor<span class="op">;</span></span>
+<span id="cb68-161"><a href="#cb68-161" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb68-162"><a href="#cb68-162" aria-hidden="true" tabindex="-1"></a>                parent<span class="op">.</span><span class="fu">right</span> <span class="op">=</span> successor<span class="op">;</span></span>
+<span id="cb68-163"><a href="#cb68-163" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb68-164"><a href="#cb68-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-165"><a href="#cb68-165" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Copy the left subtree</span></span>
+<span id="cb68-166"><a href="#cb68-166" aria-hidden="true" tabindex="-1"></a>            successor<span class="op">.</span><span class="fu">left</span> <span class="op">=</span> curr<span class="op">.</span><span class="fu">left</span><span class="op">;</span></span>
+<span id="cb68-167"><a href="#cb68-167" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-168"><a href="#cb68-168" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb68-169"><a href="#cb68-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-170"><a href="#cb68-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-171"><a href="#cb68-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-172"><a href="#cb68-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-173"><a href="#cb68-173" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb68-174"><a href="#cb68-174" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Helper method to find the successor of the toDelete node<span class="co">.</span></span>
+<span id="cb68-175"><a href="#cb68-175" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> This tries to find the smallest value of the right subtree</span>
+<span id="cb68-176"><a href="#cb68-176" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> of the toDelete node by going down to the left most node in the subtree</span>
+<span id="cb68-177"><a href="#cb68-177" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">toDelete</span><span class="co"> </span>node to delete</span>
+<span id="cb68-178"><a href="#cb68-178" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> the successor of the toDelete node</span>
+<span id="cb68-179"><a href="#cb68-179" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb68-180"><a href="#cb68-180" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">Node</span> <span class="fu">getSuccessor</span><span class="op">(</span><span class="bu">Node</span> toDelete<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-181"><a href="#cb68-181" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Node</span> successorParent <span class="op">=</span> toDelete<span class="op">;</span></span>
+<span id="cb68-182"><a href="#cb68-182" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Node</span> successor <span class="op">=</span> toDelete<span class="op">;</span></span>
+<span id="cb68-183"><a href="#cb68-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-184"><a href="#cb68-184" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Search from the root of the right subtree</span></span>
+<span id="cb68-185"><a href="#cb68-185" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Node</span> curr <span class="op">=</span> toDelete<span class="op">.</span><span class="fu">right</span><span class="op">;</span></span>
+<span id="cb68-186"><a href="#cb68-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-187"><a href="#cb68-187" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Move down to left as far as possible</span></span>
+<span id="cb68-188"><a href="#cb68-188" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>curr <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-189"><a href="#cb68-189" aria-hidden="true" tabindex="-1"></a>            successorParent <span class="op">=</span> successor<span class="op">;</span></span>
+<span id="cb68-190"><a href="#cb68-190" aria-hidden="true" tabindex="-1"></a>            successor <span class="op">=</span> curr<span class="op">;</span></span>
+<span id="cb68-191"><a href="#cb68-191" aria-hidden="true" tabindex="-1"></a>            curr <span class="op">=</span> curr<span class="op">.</span><span class="fu">left</span><span class="op">;</span></span>
+<span id="cb68-192"><a href="#cb68-192" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-193"><a href="#cb68-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-194"><a href="#cb68-194" aria-hidden="true" tabindex="-1"></a>        <span class="co">/*</span></span>
+<span id="cb68-195"><a href="#cb68-195" aria-hidden="true" tabindex="-1"></a><span class="co">         * Restructure the right subtree if successor is NOT the right child of toDelete</span></span>
+<span id="cb68-196"><a href="#cb68-196" aria-hidden="true" tabindex="-1"></a><span class="co">         */</span></span>
+<span id="cb68-197"><a href="#cb68-197" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>successor <span class="op">!=</span> toDelete<span class="op">.</span><span class="fu">right</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-198"><a href="#cb68-198" aria-hidden="true" tabindex="-1"></a>            successorParent<span class="op">.</span><span class="fu">left</span> <span class="op">=</span> successor<span class="op">.</span><span class="fu">right</span><span class="op">;</span></span>
+<span id="cb68-199"><a href="#cb68-199" aria-hidden="true" tabindex="-1"></a>            successor<span class="op">.</span><span class="fu">right</span> <span class="op">=</span> toDelete<span class="op">.</span><span class="fu">right</span><span class="op">;</span></span>
+<span id="cb68-200"><a href="#cb68-200" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-201"><a href="#cb68-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-202"><a href="#cb68-202" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> successor<span class="op">;</span></span>
+<span id="cb68-203"><a href="#cb68-203" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb68-204"><a href="#cb68-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-205"><a href="#cb68-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-206"><a href="#cb68-206" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb68-207"><a href="#cb68-207" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Traverses and prints values of the tree in ascending order based on key<span class="co">.</span></span>
+<span id="cb68-208"><a href="#cb68-208" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb68-209"><a href="#cb68-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb68-210"><a href="#cb68-210" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">traverse</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb68-211"><a href="#cb68-211" aria-hidden="true" tabindex="-1"></a>        <span class="bu">StringBuilder</span> sb <span class="op">=</span> <span class="kw">new</span> <span class="bu">StringBuilder</span><span class="op">();</span></span>
+<span id="cb68-212"><a href="#cb68-212" aria-hidden="true" tabindex="-1"></a>        <span class="fu">inOrderHelper</span><span class="op">(</span>root<span class="op">,</span> sb<span class="op">);</span></span>
+<span id="cb68-213"><a href="#cb68-213" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>sb<span class="op">);</span></span>
+<span id="cb68-214"><a href="#cb68-214" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb68-215"><a href="#cb68-215" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb68-216"><a href="#cb68-216" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb68-217"><a href="#cb68-217" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Recursive helper method to traverse the tree<span class="co">.</span></span>
+<span id="cb68-218"><a href="#cb68-218" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">toVisit</span><span class="co"> </span>node to visit</span>
+<span id="cb68-219"><a href="#cb68-219" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">sb</span><span class="co"> </span>stringbuilder instance to append values of the node</span>
+<span id="cb68-220"><a href="#cb68-220" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb68-221"><a href="#cb68-221" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">void</span> <span class="fu">inOrderHelper</span><span class="op">(</span><span class="bu">Node</span> toVisit<span class="op">,</span> <span class="bu">StringBuilder</span> sb<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-222"><a href="#cb68-222" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>toVisit <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-223"><a href="#cb68-223" aria-hidden="true" tabindex="-1"></a>            <span class="fu">inOrderHelper</span><span class="op">(</span>toVisit<span class="op">.</span><span class="fu">left</span><span class="op">,</span> sb<span class="op">);</span></span>
+<span id="cb68-224"><a href="#cb68-224" aria-hidden="true" tabindex="-1"></a>            sb<span class="op">.</span><span class="fu">append</span><span class="op">(</span><span class="st">&quot;[&quot;</span><span class="op">).</span><span class="fu">append</span><span class="op">(</span>toVisit<span class="op">.</span><span class="fu">key</span><span class="op">).</span><span class="fu">append</span><span class="op">(</span><span class="st">&quot;,&quot;</span><span class="op">).</span><span class="fu">append</span><span class="op">(</span>toVisit<span class="op">.</span><span class="fu">value</span><span class="op">).</span><span class="fu">append</span><span class="op">(</span><span class="st">&quot;]&quot;</span><span class="op">);</span></span>
+<span id="cb68-225"><a href="#cb68-225" aria-hidden="true" tabindex="-1"></a>            <span class="fu">inOrderHelper</span><span class="op">(</span>toVisit<span class="op">.</span><span class="fu">right</span><span class="op">,</span> sb<span class="op">);</span></span>
+<span id="cb68-226"><a href="#cb68-226" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-227"><a href="#cb68-227" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb68-228"><a href="#cb68-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-229"><a href="#cb68-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-230"><a href="#cb68-230" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb68-231"><a href="#cb68-231" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> static nested Node class for Node<span class="co">.</span></span>
+<span id="cb68-232"><a href="#cb68-232" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb68-233"><a href="#cb68-233" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">static</span> <span class="kw">class</span> <span class="bu">Node</span> <span class="op">{</span></span>
+<span id="cb68-234"><a href="#cb68-234" aria-hidden="true" tabindex="-1"></a>        <span class="kw">private</span> <span class="dt">int</span> key<span class="op">;</span></span>
+<span id="cb68-235"><a href="#cb68-235" aria-hidden="true" tabindex="-1"></a>        <span class="kw">private</span> <span class="dt">double</span> value<span class="op">;</span></span>
+<span id="cb68-236"><a href="#cb68-236" aria-hidden="true" tabindex="-1"></a>        <span class="kw">private</span> <span class="bu">Node</span> left<span class="op">;</span></span>
+<span id="cb68-237"><a href="#cb68-237" aria-hidden="true" tabindex="-1"></a>        <span class="kw">private</span> <span class="bu">Node</span> right<span class="op">;</span></span>
+<span id="cb68-238"><a href="#cb68-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-239"><a href="#cb68-239" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Node</span><span class="op">(</span><span class="dt">int</span> k<span class="op">,</span> <span class="dt">double</span> v<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb68-240"><a href="#cb68-240" aria-hidden="true" tabindex="-1"></a>            key <span class="op">=</span> k<span class="op">;</span></span>
+<span id="cb68-241"><a href="#cb68-241" aria-hidden="true" tabindex="-1"></a>            value <span class="op">=</span> v<span class="op">;</span></span>
+<span id="cb68-242"><a href="#cb68-242" aria-hidden="true" tabindex="-1"></a>            left <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb68-243"><a href="#cb68-243" aria-hidden="true" tabindex="-1"></a>            right <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb68-244"><a href="#cb68-244" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb68-245"><a href="#cb68-245" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb68-246"><a href="#cb68-246" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<h3 id="section"></h3>
+<h2 id="binary-trees-binary-search-trees-1">16. Binary Trees (Binary
+Search Trees)</h2>
 <p><a href="#">Back to Top</a></p>
 </body>
 </html>
