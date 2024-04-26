@@ -313,6 +313,10 @@ HashMap and HashSet in Java</a></p>
 </ul></li>
 <li><p><a href="#15-binary-trees-binary-search-trees">Binary Trees,
 Binary Search Trees</a></p></li>
+<li><p><a href="#16-huffman-coding">Huffman Coding</a></p></li>
+<li><p><a href="#17-treemap-and-treeset">TreeMap and
+TreeSet</a></p></li>
+<li><p><a href="#18-heaps-and-heapsortg">Heaps and HeapSort</a></p></li>
 </ol>
 <h2 id="the-big-picture---when-to-use-what-and-how-much-does-it-cost">1.
 The Big Picture - When to use what and how much does it cost?</h2>
@@ -2824,12 +2828,46 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb68-1"><a href=
 <span id="cb68-244"><a href="#cb68-244" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
 <span id="cb68-245"><a href="#cb68-245" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb68-246"><a href="#cb68-246" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="huffman-coding">16. Huffman Coding</h2>
+<h2 id="treemap-and-treeset">17. TreeMap and TreeSet</h2>
 <div class="sourceCode" id="cb69"><pre
-class="sourceCode java"><code class="sourceCode java"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
-<h3 id="section"></h3>
-<h2 id="binary-trees-binary-search-trees-1">16. Binary Trees (Binary
-Search Trees)</h2>
+class="sourceCode java"><code class="sourceCode java"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="bu">TreeSet</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> schedule <span class="op">=</span> <span class="kw">new</span> <span class="bu">TreeSet</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;();</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>schedule<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">1223</span><span class="op">);</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>schedule<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">1430</span><span class="op">);</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>schedule<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">1545</span><span class="op">);</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>schedule<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">1610</span><span class="op">);</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>schedule<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">1705</span><span class="op">);</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>schedule<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">2010</span><span class="op">);</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>schedule<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">2215</span><span class="op">);</span></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>schedule<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">2320</span><span class="op">);</span></span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>schedule<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">2345</span><span class="op">);</span></span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="co">// show the last bus that leaves PGH before 4pm (strictly less than)</span></span>
+<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>schedule<span class="op">.</span><span class="fu">headSet</span><span class="op">(</span><span class="dv">1600</span><span class="op">).</span><span class="fu">last</span><span class="op">());</span></span>
+<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a><span class="co">// show the first bus that leaves PGH after 10pm (greater than or equal to)</span></span>
+<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>schedule<span class="op">.</span><span class="fu">tailSet</span><span class="op">(</span><span class="dv">2200</span><span class="op">).</span><span class="fu">first</span><span class="op">());</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Integer</span><span class="op">&gt;</span> freqOfWords <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Integer</span><span class="op">&gt;();</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span><span class="op">[]</span> words <span class="op">=</span> <span class="st">&quot;coming together is a beginning keeping together is progress working together is success&quot;</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">split</span><span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">);</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">String</span> word <span class="op">:</span> words<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Integer</span> frequency <span class="op">=</span> freqOfWords<span class="op">.</span><span class="fu">get</span><span class="op">(</span>word<span class="op">);</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>frequency <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>        frequency <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a>        frequency<span class="op">++;</span></span>
+<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb70-12"><a href="#cb70-12" aria-hidden="true" tabindex="-1"></a>    freqOfWords<span class="op">.</span><span class="fu">put</span><span class="op">(</span>word<span class="op">,</span> frequency<span class="op">);</span></span>
+<span id="cb70-13"><a href="#cb70-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb70-14"><a href="#cb70-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-15"><a href="#cb70-15" aria-hidden="true" tabindex="-1"></a><span class="co">// no specific order in HashMap</span></span>
+<span id="cb70-16"><a href="#cb70-16" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Elements in HashMap: &quot;</span> <span class="op">+</span> freqOfWords<span class="op">);</span></span>
+<span id="cb70-17"><a href="#cb70-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-18"><a href="#cb70-18" aria-hidden="true" tabindex="-1"></a><span class="co">// print freqOfWords in ascending order</span></span>
+<span id="cb70-19"><a href="#cb70-19" aria-hidden="true" tabindex="-1"></a><span class="bu">TreeMap</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Integer</span><span class="op">&gt;</span> sortedWords <span class="op">=</span> <span class="kw">new</span> <span class="bu">TreeMap</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Integer</span><span class="op">&gt;(</span>freqOfWords<span class="op">);</span></span></code></pre></div>
+<h2 id="heaps-and-heapsort">18. Heaps and HeapSort</h2>
 <p><a href="#">Back to Top</a></p>
 </body>
 </html>
