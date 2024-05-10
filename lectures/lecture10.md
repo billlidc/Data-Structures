@@ -19,11 +19,9 @@ MathJax.Hub.Queue(function() {
 
 
 
-## 10. Recursion
+# 10. Recursion
 
-
-
-### Characteristics
+## Characteristics
 
 1. **Self-referential Functionality:** A recursive function is distinguished by its ability to call itself, enabling the function to operate on smaller subsets of the problem.
 
@@ -31,9 +29,8 @@ MathJax.Hub.Queue(function() {
 
 3. **Bookkeeping Overhead:** Recursive calls involve considerable management of function states and return addresses, which can lead to increased memory usage.
 
+## Iterative/Recursive Comparison
 
-
-### Iterative/Recursive Comparison
 ```Java
 /**
  * Sums from 1 to n iteratively.
@@ -87,11 +84,12 @@ public static long fib(int n) {
 }
 ```
 
-Below is the recursion tree for `fib(6)`:
-![](./res/fibonacci_diagram.png)
+Recursion Tree for `fib(6)`:
+
+![](../res/fibonacci_diagram.png)
 
 
-### Binary Search (Recursive)
+## Binary Search (Recursive)
 
 ```Java
 /**
@@ -135,4 +133,7 @@ private static int find(int[] data, int key, int lowerBound, int upperBound) {
 }
 ```
 
-[Back to Home](index.html)
+
+---
+
+[Back to Home](../index.html)

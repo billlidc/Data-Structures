@@ -383,8 +383,8 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="10-recursion">10. Recursion</h2>
-<h3 id="characteristics">Characteristics</h3>
+<h1 id="10-recursion">10. Recursion</h1>
+<h2 id="characteristics">Characteristics</h2>
 <ol>
 <li>
 <p><strong>Self-referential Functionality:</strong> A recursive function is distinguished by its ability to call itself, enabling the function to operate on smaller subsets of the problem.</p>
@@ -396,7 +396,7 @@ MathJax.Hub.Queue(function() {
 <p><strong>Bookkeeping Overhead:</strong> Recursive calls involve considerable management of function states and return addresses, which can lead to increased memory usage.</p>
 </li>
 </ol>
-<h3 id="iterativerecursive-comparison">Iterative/Recursive Comparison</h3>
+<h2 id="iterativerecursive-comparison">Iterative/Recursive Comparison</h2>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Sums from 1 to n iteratively.
  * <span class="hljs-doctag">@param</span> n, positive integer
@@ -441,9 +441,9 @@ MathJax.Hub.Queue(function() {
     <span class="hljs-keyword">return</span> fib(n - <span class="hljs-number">1</span>) + fib(n - <span class="hljs-number">2</span>);
 }
 </div></code></pre>
-<p>Below is the recursion tree for <code>fib(6)</code>:
-<img src="./res/fibonacci_diagram.png" alt=""></p>
-<h3 id="binary-search-recursive">Binary Search (Recursive)</h3>
+<p>Recursion Tree for <code>fib(6)</code>:</p>
+<p><img src="../res/fibonacci_diagram.png" alt=""></p>
+<h2 id="binary-search-recursive">Binary Search (Recursive)</h2>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Binary search in a non-null array.
  * <span class="hljs-doctag">@param</span> data, int array to search against (ordered in ascending order)
@@ -482,7 +482,8 @@ MathJax.Hub.Queue(function() {
     <span class="hljs-keyword">return</span> find(data, key, lowerBound, mid - <span class="hljs-number">1</span>);
 }
 </div></code></pre>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
