@@ -91,7 +91,7 @@ $$
 - **Graphs**
 
 
-## Flow Chart
+## Relationship of General-Purpose Data Structures
 ![](../res/flowchart.png)
 
 
