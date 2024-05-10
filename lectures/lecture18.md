@@ -18,10 +18,9 @@ MathJax.Hub.Queue(function() {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
 
+# 18. Heaps and HeapSort
 
-## 18. Heaps and HeapSort
-
-### Heap Overview
+## Heap Overview
 
 - A heap is a specialized tree-based data structure that satisfies the **shape property** and **heap property**.
 
@@ -51,23 +50,21 @@ MathJax.Hub.Queue(function() {
     - **Peek**: Returning the value at the root of the heap without removing it, providing quick access to the maximum or minimum element.
     - **Heapify**: A key operation for transforming an unordered list into a heap. This process involves arranging the nodes to maintain the heap properties.
 
-### Insert: Percolate Up
+
+## Insert: Percolate Up
 1. Add the new element to the next available position in the tree, ensuring it remains *complete*.
 2. If the new element violates the heap-order property of a max-heap, swap it with its parent. Continue this process up the tree until the heap-order is restored.
 
-### Remove Max/Min: Percolate Down
+
+## Remove Max/Min: Percolate Down
 1. Remove the root (the maximum key) and replace it with the last node from the bottom level to maintain a complete tree structure.
 2. Swap the newly positioned node with its larger child if it violates the max-heap property. Continue this adjustment process down the tree until the heap order is fully restored.
  
 
 
+## Heap Implementation
 
-
-
-### Implementation
-
-
-#### Interface
+### Heap Interface
 
 ```Java
 public interface MaxHeapInterface {
@@ -90,7 +87,6 @@ public interface MaxHeapInterface {
 
 
 ```Java
-
 public class MaxHeap implements MaxHeapInterface {
     /**
      * An array of Node.
@@ -112,12 +108,7 @@ public class MaxHeap implements MaxHeapInterface {
     }
 
 
-
-
-
     ...
-
-
 
 
     /**
@@ -178,8 +169,7 @@ public class MaxHeap implements MaxHeapInterface {
 ```
 
 
-
-#### Insertion
+### Insertion
 
 ```Java
 /**
@@ -207,7 +197,7 @@ public boolean insert(int key) {
 
 
 
-#### Percolate Up
+### Percolate Up
 
 ```Java
 /**
@@ -231,7 +221,7 @@ private void percolateUp(int index) {
 ```
 
 
-#### removeMax
+### removeMax
 
 ```Java
 /**
@@ -263,7 +253,7 @@ public int removeMax() {
 
 ```
 
-#### Percolate Down
+### Percolate Down
 
 ```Java
 /**
@@ -305,7 +295,7 @@ private void percolateDown(int index) {
 ```
 
 
-#### size
+### size
 ```Java
 /**
  * Returns the current size of heap array.
@@ -318,12 +308,10 @@ public int size() {
 
 
 
-### Heap Sort
+## Heap Sort
 
 <div style="border: 1px solid black; padding: 10px; margin: 10px;">
   <p>
-  
-  Procedure
 
   1. Build a heap using `insert()` method.
 
@@ -333,8 +321,8 @@ public int size() {
 </div>
 
 
-
 ```Java
+
 int[] array = {4, 10, 3, 5, 1}; // Example array
 Heap theHeap = new Heap(array.length); // Initialize the heap with the size of the array
 
@@ -357,7 +345,7 @@ for (int i = array.length - 1; i >= 0; i--) {
 
 
 
-### Priority Queue
+## Priority Queue
 - The PriorityQueue class in Java implements a binary heap, which is a min-heap by default.
     - `add(object)` or `offer(object)`: $O(\log n)$
     - `poll()`: $O(\log n)$
@@ -418,9 +406,9 @@ public class EmergencyRoom {
 ```
 
 
-### Comparison of BST and Heap
+## Comparison of BST and Heap
 
-#### Use Cases
+### Use Cases
 
 1. Which tree is for easier searching?
 
@@ -439,7 +427,7 @@ public class EmergencyRoom {
     Neither is guaranteed to be balanced in their basic form. A binary search tree can become unbalanced depending on the order of insertion unless it is a self-balancing binary search tree like an AVL or Red-Black Tree. A heap maintains a complete tree structure but not necessarily a balanced tree height in the sense used for balanced search trees.
 
 
-#### Time Complexities of Operations
+### Time Complexities of Operations
 
 |                  | Binary Search Tree | Max Heap (Min Heap) |
 |------------------|---------------------|---------------------|
@@ -453,4 +441,7 @@ public class EmergencyRoom {
 - $n$ is the number of elements in the heap or tree.
 
 
-[Back to Home](index.html)
+---
+
+[Back to Home](../index.html)
+

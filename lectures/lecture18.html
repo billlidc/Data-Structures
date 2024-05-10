@@ -383,8 +383,8 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="18-heaps-and-heapsort">18. Heaps and HeapSort</h2>
-<h3 id="heap-overview">Heap Overview</h3>
+<h1 id="18-heaps-and-heapsort">18. Heaps and HeapSort</h1>
+<h2 id="heap-overview">Heap Overview</h2>
 <ul>
 <li>
 <p>A heap is a specialized tree-based data structure that satisfies the <strong>shape property</strong> and <strong>heap property</strong>.</p>
@@ -432,18 +432,18 @@ MathJax.Hub.Queue(function() {
 </ul>
 </li>
 </ul>
-<h3 id="insert-percolate-up">Insert: Percolate Up</h3>
+<h2 id="insert-percolate-up">Insert: Percolate Up</h2>
 <ol>
 <li>Add the new element to the next available position in the tree, ensuring it remains <em>complete</em>.</li>
 <li>If the new element violates the heap-order property of a max-heap, swap it with its parent. Continue this process up the tree until the heap-order is restored.</li>
 </ol>
-<h3 id="remove-maxmin-percolate-down">Remove Max/Min: Percolate Down</h3>
+<h2 id="remove-maxmin-percolate-down">Remove Max/Min: Percolate Down</h2>
 <ol>
 <li>Remove the root (the maximum key) and replace it with the last node from the bottom level to maintain a complete tree structure.</li>
 <li>Swap the newly positioned node with its larger child if it violates the max-heap property. Continue this adjustment process down the tree until the heap order is fully restored.</li>
 </ol>
-<h3 id="implementation">Implementation</h3>
-<h4 id="interface">Interface</h4>
+<h2 id="heap-implementation">Heap Implementation</h2>
+<h3 id="heap-interface">Heap Interface</h3>
 <pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">MaxHeapInterface</span> </span>{
     <span class="hljs-comment">/**
      * Inserts a new key into a heap in O(log n) time.
@@ -460,8 +460,7 @@ MathJax.Hub.Queue(function() {
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">removeMax</span><span class="hljs-params">()</span></span>;
 }
 </div></code></pre>
-<pre class="hljs"><code><div>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MaxHeap</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MaxHeapInterface</span> </span>{
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MaxHeap</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MaxHeapInterface</span> </span>{
     <span class="hljs-comment">/**
      * An array of Node.
      */</span>
@@ -482,12 +481,7 @@ MathJax.Hub.Queue(function() {
     }
 
 
-
-
-
     ...
-
-
 
 
     <span class="hljs-comment">/**
@@ -546,7 +540,7 @@ MathJax.Hub.Queue(function() {
 
 }
 </div></code></pre>
-<h4 id="insertion">Insertion</h4>
+<h3 id="insertion">Insertion</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Inserts a new key into a heap in O(log n) time.
  * <span class="hljs-doctag">@param</span> key key to insert
@@ -569,7 +563,7 @@ MathJax.Hub.Queue(function() {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
 }
 </div></code></pre>
-<h4 id="percolate-up">Percolate Up</h4>
+<h3 id="percolate-up">Percolate Up</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Helper method to percolate up for insert operation to restore heap-order property of Max Heap.
  * <span class="hljs-doctag">@param</span> index starting index
@@ -589,7 +583,7 @@ MathJax.Hub.Queue(function() {
     heapArray[index] = bottom;
 }
 </div></code></pre>
-<h4 id="removemax">removeMax</h4>
+<h3 id="removemax">removeMax</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Removes the highest priority key value (maximum key for max heap) in O(log n) time.
  * <span class="hljs-doctag">@return</span> removed key
@@ -618,7 +612,7 @@ MathJax.Hub.Queue(function() {
 }
 
 </div></code></pre>
-<h4 id="percolate-down">Percolate Down</h4>
+<h3 id="percolate-down">Percolate Down</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Helper method to percolate down for removeMax operation to restore the heap-order property of Max Heap.
  * <span class="hljs-doctag">@param</span> index starting index
@@ -656,7 +650,7 @@ MathJax.Hub.Queue(function() {
     heapArray[index] = top;
 }
 </div></code></pre>
-<h4 id="size">size</h4>
+<h3 id="size">size</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Returns the current size of heap array.
  * <span class="hljs-doctag">@return</span> current size
@@ -665,10 +659,9 @@ MathJax.Hub.Queue(function() {
     <span class="hljs-keyword">return</span> currentSize;
 }
 </div></code></pre>
-<h3 id="heap-sort">Heap Sort</h3>
+<h2 id="heap-sort">Heap Sort</h2>
 <div style="border: 1px solid black; padding: 10px; margin: 10px;">
   <p>
-<p>Procedure</p>
 <ol>
 <li>
 <p>Build a heap using <code>insert()</code> method.</p>
@@ -679,7 +672,8 @@ MathJax.Hub.Queue(function() {
 </ol>
   </p>
 </div>
-<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] array = {<span class="hljs-number">4</span>, <span class="hljs-number">10</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>}; <span class="hljs-comment">// Example array</span>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">int</span>[] array = {<span class="hljs-number">4</span>, <span class="hljs-number">10</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>}; <span class="hljs-comment">// Example array</span>
 Heap theHeap = <span class="hljs-keyword">new</span> Heap(array.length); <span class="hljs-comment">// Initialize the heap with the size of the array</span>
 
 <span class="hljs-comment">// Build the heap from the array elements</span>
@@ -702,7 +696,7 @@ Heap theHeap = <span class="hljs-keyword">new</span> Heap(array.length); <span c
 <p>Since each of these operations is applied n times (once for each element in the array), the entire heap sort process runs in $O(n \log n)$ time.</p>
 </li>
 </ul>
-<h3 id="priority-queue">Priority Queue</h3>
+<h2 id="priority-queue">Priority Queue</h2>
 <ul>
 <li>The PriorityQueue class in Java implements a binary heap, which is a min-heap by default.
 <ul>
@@ -764,8 +758,8 @@ Heap theHeap = <span class="hljs-keyword">new</span> Heap(array.length); <span c
     }
 }
 </div></code></pre>
-<h3 id="comparison-of-bst-and-heap">Comparison of BST and Heap</h3>
-<h4 id="use-cases">Use Cases</h4>
+<h2 id="comparison-of-bst-and-heap">Comparison of BST and Heap</h2>
+<h3 id="use-cases">Use Cases</h3>
 <ol>
 <li>
 <p>Which tree is for easier searching?</p>
@@ -784,7 +778,7 @@ Heap theHeap = <span class="hljs-keyword">new</span> Heap(array.length); <span c
 <p>Neither is guaranteed to be balanced in their basic form. A binary search tree can become unbalanced depending on the order of insertion unless it is a self-balancing binary search tree like an AVL or Red-Black Tree. A heap maintains a complete tree structure but not necessarily a balanced tree height in the sense used for balanced search trees.</p>
 </li>
 </ol>
-<h4 id="time-complexities-of-operations">Time Complexities of Operations</h4>
+<h3 id="time-complexities-of-operations">Time Complexities of Operations</h3>
 <table>
 <thead>
 <tr>
@@ -824,7 +818,8 @@ Heap theHeap = <span class="hljs-keyword">new</span> Heap(array.length); <span c
 <p>$n$ is the number of elements in the heap or tree.</p>
 </li>
 </ul>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
