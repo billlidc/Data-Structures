@@ -19,19 +19,21 @@ MathJax.Hub.Queue(function() {
 
 
 
-## 6. Stack (LIFO)
+# 6. Stack (LIFO)
 
-### Conceptual View
-* A web browser's back button can be implemented using a stack by mirroring the behavior of a stack in terms of the order of visited pages.
+## Conceptual View
+
+- A web browser's back button can be implemented using a stack by mirroring the behavior of a stack in terms of the order of visited pages.
     - When the user visits a webpage, the URL of the page is pushed onto the stack.
     - When the user clicks the back button in the browser, it pops the top URL from the stack.
 
-* Operations
-    - push(), push an item onto the top of the stack
-    - pop(), pop the item from the top of the stack
+- Operations
+    - `push()`, push an item onto the top of the stack
+    - `pop()`, pop the item from the top of the stack
 
 
-### Stack Interface
+## Stack Interface
+
 ```Java
 public interface StackInterface<AnyType> {
     void push(AnyType item); // O(1)
@@ -40,10 +42,10 @@ public interface StackInterface<AnyType> {
     boolean isEmpty(); // O(1)
 }
 ```
-The above abstract methods in the interface are already `public` `abstract` so there is no need to include the keywords.
+- Methods in the interface are already `public` and `abstract`
 
 
-### Stack Implementation using Array
+## Stack Implementation using Array
 
 ```Java
 public class ArrayStack<AnyType> implements StackInterface<AnyType> {
@@ -71,10 +73,7 @@ public class ArrayStack<AnyType> implements StackInterface<AnyType> {
 ```
 
 
-### Stack Methods using Array
-
-
-#### isEmpty
+### isEmpty
 
 ```Java
 /**
@@ -88,7 +87,7 @@ public boolean isEmpty() {
 ```
 
 
-#### Push
+### Push
 
 ```Java
 /**
@@ -107,7 +106,7 @@ public void push(AnyType item) {
 ```
 
 
-#### Pop
+### Pop
 ```Java
 /**
  * Gets and removes the top item in O(1).
@@ -127,15 +126,15 @@ public AnyType pop() {
 }
 ```
 
-
 - **Casting Up**: casting an object to a *superclass* or *interface* type
     - **No type check is needed** since every instance of the subclass is also an instance of its superclass
+
 - **Casting Down**: casting an object to a *subclass* type
     - **May throw a ClassCastException** at runtime if the object being cast is not actually an instance of the subclass
     - `@SuppressWarnings("unchecked")` annotation is often used when casting down to suppress the compiler warning about unchecked casts
 
 
-#### Peek
+### Peek
 ```Java
 /**
  * Gets (peeks) the top element but does not delete it in O(1).
@@ -153,7 +152,7 @@ public AnyType peek() {
 ```
 
 
-### Stack using LinkedList Methods
+## Stack Implementation using LinkedList
 
 Treating the first element of the linked list as the top of the stack
 ```Java
@@ -169,7 +168,7 @@ theStack.removeFirst();
 Also, `addLast()`/`removeLast()` methods can be used to implement a stack that treats the last element of the linked list as the top of the stack.
 
 
-### Stack Usage: Reverse a String
+## Stack Usage: Reverse a String
 
 ```Java
 /**
@@ -209,8 +208,6 @@ public class Reverser {
 ```
 
 
+---
 
-
-
-
-[Back to Home](index.html)
+[Back to Home](../index.html)

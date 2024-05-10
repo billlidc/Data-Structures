@@ -383,8 +383,8 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="6-stack-lifo">6. Stack (LIFO)</h2>
-<h3 id="conceptual-view">Conceptual View</h3>
+<h1 id="6-stack-lifo">6. Stack (LIFO)</h1>
+<h2 id="conceptual-view">Conceptual View</h2>
 <ul>
 <li>
 <p>A web browser's back button can be implemented using a stack by mirroring the behavior of a stack in terms of the order of visited pages.</p>
@@ -396,12 +396,12 @@ MathJax.Hub.Queue(function() {
 <li>
 <p>Operations</p>
 <ul>
-<li>push(), push an item onto the top of the stack</li>
-<li>pop(), pop the item from the top of the stack</li>
+<li><code>push()</code>, push an item onto the top of the stack</li>
+<li><code>pop()</code>, pop the item from the top of the stack</li>
 </ul>
 </li>
 </ul>
-<h3 id="stack-interface">Stack Interface</h3>
+<h2 id="stack-interface">Stack Interface</h2>
 <pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">StackInterface</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(AnyType item)</span></span>; <span class="hljs-comment">// O(1)</span>
     <span class="hljs-function">AnyType <span class="hljs-title">pop</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// O(1)</span>
@@ -409,8 +409,10 @@ MathJax.Hub.Queue(function() {
     <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// O(1)</span>
 }
 </div></code></pre>
-<p>The above abstract methods in the interface are already <code>public</code> <code>abstract</code> so there is no need to include the keywords.</p>
-<h3 id="stack-implementation-using-array">Stack Implementation using Array</h3>
+<ul>
+<li>Methods in the interface are already <code>public</code> and <code>abstract</code></li>
+</ul>
+<h2 id="stack-implementation-using-array">Stack Implementation using Array</h2>
 <pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayStack</span>&lt;<span class="hljs-title">AnyType</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">StackInterface</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_CAPACITY = <span class="hljs-number">10</span>; <span class="hljs-comment">// Constant</span>
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> top;
@@ -434,8 +436,7 @@ MathJax.Hub.Queue(function() {
     ...
 }
 </div></code></pre>
-<h3 id="stack-methods-using-array">Stack Methods using Array</h3>
-<h4 id="isempty">isEmpty</h4>
+<h3 id="isempty">isEmpty</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Checks if the stack is empty in O(1).
  * <span class="hljs-doctag">@return</span> true if it is empty, false otherwise
@@ -445,7 +446,7 @@ MathJax.Hub.Queue(function() {
     <span class="hljs-keyword">return</span> top == -<span class="hljs-number">1</span>;
 }
 </div></code></pre>
-<h4 id="push">Push</h4>
+<h3 id="push">Push</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Pushes a new item onto the top of the stack in O(1).
  * <span class="hljs-doctag">@param</span> item, a new item to add
@@ -460,7 +461,7 @@ MathJax.Hub.Queue(function() {
     elements[top] = item;
 }
 </div></code></pre>
-<h4 id="pop">Pop</h4>
+<h3 id="pop">Pop</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Gets and removes the top item in O(1).
  * <span class="hljs-doctag">@return</span> top, item on the top
@@ -479,19 +480,21 @@ MathJax.Hub.Queue(function() {
 }
 </div></code></pre>
 <ul>
-<li><strong>Casting Up</strong>: casting an object to a <em>superclass</em> or <em>interface</em> type
+<li>
+<p><strong>Casting Up</strong>: casting an object to a <em>superclass</em> or <em>interface</em> type</p>
 <ul>
 <li><strong>No type check is needed</strong> since every instance of the subclass is also an instance of its superclass</li>
 </ul>
 </li>
-<li><strong>Casting Down</strong>: casting an object to a <em>subclass</em> type
+<li>
+<p><strong>Casting Down</strong>: casting an object to a <em>subclass</em> type</p>
 <ul>
 <li><strong>May throw a ClassCastException</strong> at runtime if the object being cast is not actually an instance of the subclass</li>
 <li><code>@SuppressWarnings(&quot;unchecked&quot;)</code> annotation is often used when casting down to suppress the compiler warning about unchecked casts</li>
 </ul>
 </li>
 </ul>
-<h4 id="peek">Peek</h4>
+<h3 id="peek">Peek</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Gets (peeks) the top element but does not delete it in O(1).
  * <span class="hljs-doctag">@return</span> top, item on the top
@@ -506,7 +509,7 @@ MathJax.Hub.Queue(function() {
     <span class="hljs-keyword">return</span> (AnyType) elements[top];
 }
 </div></code></pre>
-<h3 id="stack-using-linkedlist-methods">Stack using LinkedList Methods</h3>
+<h2 id="stack-implementation-using-linkedlist">Stack Implementation using LinkedList</h2>
 <p>Treating the first element of the linked list as the top of the stack</p>
 <pre class="hljs"><code><div>LinkedList&lt;Integer&gt; theStack = <span class="hljs-keyword">new</span> LinkedList&lt;Integer&gt;();
 
@@ -517,7 +520,7 @@ theStack.addFirst(<span class="hljs-number">0</span>);
 theStack.removeFirst();
 </div></code></pre>
 <p>Also, <code>addLast()</code>/<code>removeLast()</code> methods can be used to implement a stack that treats the last element of the linked list as the top of the stack.</p>
-<h3 id="stack-usage-reverse-a-string">Stack Usage: Reverse a String</h3>
+<h2 id="stack-usage-reverse-a-string">Stack Usage: Reverse a String</h2>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Simple Application to reverse a String using Stack.
  */</span>
@@ -553,7 +556,8 @@ theStack.removeFirst();
     }
 }
 </div></code></pre>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
