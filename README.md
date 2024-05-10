@@ -1,16 +1,39 @@
 <a name="top"></a>
 
 
+<style TYPE="text/css">
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // removed 'code' entry
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+
+
 # 17-683 Data Structures for Application Programmers
 
+
 ## Credits
+
 Notes by: [Bill Li](https://leeklee0427.github.io)
 
 Taught by: [Terry Lee](https://www.cs.cmu.edu/~terrylee/)
 
 
 ## Table of Contents
-1. [The Big Picture - When to use what and how much does it cost?](#1-the-big-picture---when-to-use-what-and-how-much-does-it-cost)
+1. [The Big Picture](#1-the-big-picture)
     - [Big-O Classifications](#big-o-classifications)
 
 2. [Collections](#2-collections)
@@ -62,19 +85,23 @@ Taught by: [Terry Lee](https://www.cs.cmu.edu/~terrylee/)
     - [Quick Sort](#quick-sort)
 
 15. [Binary Trees, Binary Search Trees](#15-binary-trees-binary-search-trees)
+    - [BST Implementation](#bst-implementation)
 
 16. [Huffman Coding](#16-huffman-coding)
 
 17. [TreeMap and TreeSet](#17-treemap-and-treeset)
+    - [TreeSet](#treeset)
+    - [TreeMap](#treemap)
 
-18. [Heaps and HeapSort](#18-heaps-and-heapsortg)
+18. [Heaps and HeapSort](#18-heaps-and-heapsort)
+    - [Heap Sort](#heap-sort)
 
 
 
 
 
 
-## 1. The Big Picture - When to use what and how much does it cost?
+## 1. The Big Picture
 
 
 ### Perspective
@@ -1742,6 +1769,9 @@ Example: Car-part number
             - For table length $101$
                 - Break into groups of two digits: $12 + 34 + 56 + 78 + 9 = 189 \% 101 = 88$
 
+
+
+
 [Back to Top](#)
 
 
@@ -2248,7 +2278,9 @@ The defining characteristic, or the **ordering invariant**, of binary search tre
     - Meaning no duplicate keys are allowed.
 
 
-### Implementation
+### BST Implementation
+
+#### Interface
 
 ```Java
 public interface BSTInterface {
@@ -2281,8 +2313,6 @@ public interface BSTInterface {
 ```
 
 
-
-
 ```Java
 public class BST implements BSTInterface {
 
@@ -2291,7 +2321,6 @@ public class BST implements BSTInterface {
     public BST() {
         root = null;
     }
-
 
     /**
      * Searches for the specified key in the tree.
@@ -2321,7 +2350,6 @@ public class BST implements BSTInterface {
         }
         return true;
     }
-
 
 
     /**
@@ -2533,7 +2561,7 @@ public class BST implements BSTInterface {
 ```
 
 
-
+[Back to Top](#)
 
 
 
@@ -3072,7 +3100,7 @@ public int size() {
   Procedure
 
   1. Build a heap using `insert()` method.
-  
+
   2. Call `removeMax()` for max heap or `removeMin()` for min heap repeatedly to get items in a sorted order.
 
   </p>
