@@ -208,10 +208,7 @@ $$ O(\log n) $$
 
 * The time complexity of an algorithm with $O(\log n)$ does not grow proportionally with the input size $n$ but only increases by a constant factor.
     $$
-    \begin{align*}
-    c \cdot \log_2(2 * n) & = c \cdot (\log_2 2 + \log_2 n) \\
-    & = c + c \cdot \log_2 n
-    \end{align*}
+    c \cdot \log_2(2 * n) = c \cdot (\log_2 2 + \log_2 n) = c + c \cdot \log_2 n
     $$
 
 
@@ -220,10 +217,11 @@ It is essential to **consider constants** because Big-O notation represents an *
 
 Consider:
     $$
-    \begin{align*}
-    T(n) &= n \log n\\
-    U(n) &= 50 n
-    \end{align*}
+    T(n) = n \log n
+    $$
+
+    $$
+    U(n) = 50 n
     $$
 
 - $T(n) = U(n) \text{ if } n = 2^{50}$

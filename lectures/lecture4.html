@@ -774,10 +774,7 @@ $$c * \log_{10}(x) = \log_2(x) \text{ where } c = \frac{\log (10)}{\log (2)} = 3
 <li>
 <p>The time complexity of an algorithm with $O(\log n)$ does not grow proportionally with the input size $n$ but only increases by a constant factor.
 $$
-\begin{align*}
-c \cdot \log_2(2 * n) &amp; = c \cdot (\log_2 2 + \log_2 n) \
-&amp; = c + c \cdot \log_2 n
-\end{align*}
+c \cdot \log_2(2 * n) = c \cdot (\log_2 2 + \log_2 n) = c + c \cdot \log_2 n
 $$</p>
 </li>
 </ul>
@@ -785,11 +782,12 @@ $$</p>
 <p>It is essential to <strong>consider constants</strong> because Big-O notation represents an <strong>upper bound</strong> on the growth rate of an algorithm's complexity.</p>
 <p>Consider:
 $$
-\begin{align*}
-T(n) &amp;= n \log n\
-U(n) &amp;= 50 n
-\end{align*}
+T(n) = n \log n
 $$</p>
+<pre><code>$$
+U(n) = 50 n
+$$
+</code></pre>
 <ul>
 <li>$T(n) = U(n) \text{ if } n = 2^{50}$</li>
 <li>If $n$ is small ($&lt; 2^{50}$) $ \Rightarrow U(n) \text{ grows more slowly than } T(n)$</li>
