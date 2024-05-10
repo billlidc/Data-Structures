@@ -383,9 +383,22 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="2-collections">2. Collections</h2>
-<h3 id="java-collection-interface">Java Collection Interface</h3>
+<h1 id="2-collections">2. Collections</h1>
+<h2 id="overview">Overview</h2>
+<ul>
+<li>Collection is a set of items or objects procured or gathered together by a person, group, or other agent.</li>
+</ul>
+<h2 id="java-collections-framework">Java Collections Framework</h2>
+<ul>
+<li>
+<p>The Java Collections Framework, part of the <code>java.util</code> package, comprises a sophisticated set of interfaces and classes designed for handling collections of objects.</p>
+<p><img src="../res/hierarchy.png" alt=""></p>
+</li>
+</ul>
+<h2 id="java-collections-interface">Java Collections Interface</h2>
+<blockquote>
 <p><code>java.util.Collection</code></p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -409,27 +422,31 @@ MathJax.Hub.Queue(function() {
 </tbody>
 </table>
 <ul>
-<li><strong>Set</strong> extends Collection but forbids duplicates.</li>
-<li><strong>List</strong> extends Collection also and allows duplicates and introduces positional indexing.</li>
-<li><strong>Map</strong> does not extend Collection, but still considered to be part of the Collection Framework.
+<li>
+<p><strong>List</strong> extends Collection, allows duplicates and introduces positional indexing.</p>
+</li>
+<li>
+<p><strong>Set</strong> extends Collection and does NOT allow duplicates.</p>
+</li>
+<li>
+<p><strong>Map</strong> does NOT extend Collection, but still considered to be part of the Java Collection framework.</p>
 <ul>
-<li>Map is a collection of pairs (key, value).</li>
-<li>Map cannot contain duplicate keys.</li>
+<li>Map is a collection of key-value pairs.</li>
+<li>Map does NOT contain duplicate keys.</li>
 </ul>
 </li>
 </ul>
-<h3 id="java-collection-hierarchy">Java Collection Hierarchy</h3>
-<p><img src="./res/hierarchy.png" alt=""></p>
-<h3 id="general-operations">General Operations</h3>
+<h2 id="common-operations-of-collections">Common Operations of Collections</h2>
 <ul>
-<li>Addition (Insertion)</li>
-<li>Removal (Deletion)</li>
-<li>Sorting</li>
-<li>Searching</li>
-<li>Iteration (Traversal)</li>
-<li>Copying (Cloning)</li>
+<li>Insert</li>
+<li>Delete</li>
+<li>Sort</li>
+<li>Search</li>
+<li>Traverse</li>
+<li>Copy / Clone</li>
 </ul>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
