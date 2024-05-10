@@ -18,18 +18,16 @@ MathJax.Hub.Queue(function() {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
 
-## 9. Comparable/Comparator
+# 9. Comparable/Comparator
 
-### Comparable
+## Comparable
+- Default way to compare is implement `Comparable` interface and override `compareTo()` method:
+    - `compareTo()` method defines the **NATURAL (default)** orders of the class
+    - `compare()` method defines different **CUSTOM (alternative)** orders of the class
 
-* Implement Comparable interface and override `compareTo()`, the default way to compare
-
-* `compareTo()` is used to implement the **natural/default ordering** of the class
-
-* Note that the class's `compareTo()` should be consistent to `equals()` and `hashCode()` such that:
+- The class's `compareTo()` should be consistent to `equals()` and `hashCode()` such that:
     - If `x.equals(y)` is true, then `x.compareTo(y)` must equal to 0
     - If `x.equals(y)` is true, then `x.hashCode()` must equal to `y.hashCode()`
-
 
 
 ```Java
@@ -113,7 +111,6 @@ public class Card implements Comparable<Card> {
         return new HashCodeBuilder().append(this.suit).append(this.rank).toHashCode();
     }
     
-
     /************************************************************************
      *
      *  Example of compareTo, equals and hashCode methods using Google Guava
@@ -150,16 +147,7 @@ public class Card implements Comparable<Card> {
 ```
 
 
-
-
-
-
-### Comparator
-
-* Implement Comparator interface and override `compare()`
-
-* `compare()` allows for defining multiple **custom/alternative orderings** for a class
-
+## Comparator
 
 ```Java
 public class CompareBySuit implements Comparator<Card> {
@@ -193,18 +181,18 @@ public class CompareBySuitRank implements Comparator<Card> {
 }
 ```
 
-
-### Collections.sort
-
+## Collection.sort
 ```Java
-// Default: uses compareTo method implemented in Comparable class
+// Default: Use compareTo() method implemented in Comparable class
 Collections.sort(cards);
 
-// Uses compare method implemented in Comparator class
+// Use compare() method implemented in Comparator class
 Collections.sort(cards, new CompareBySuit());
 Collections.sort(cards, new CompareBySuitRank());
 ```
 
 
 
-[Back to Home](index.html)
+---
+
+[Back to Home](../index.html)

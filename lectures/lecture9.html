@@ -383,17 +383,18 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="9-comparablecomparator">9. Comparable/Comparator</h2>
-<h3 id="comparable">Comparable</h3>
+<h1 id="9-comparablecomparator">9. Comparable/Comparator</h1>
+<h2 id="comparable">Comparable</h2>
 <ul>
 <li>
-<p>Implement Comparable interface and override <code>compareTo()</code>, the default way to compare</p>
+<p>Default way to compare is implement <code>Comparable</code> interface and override <code>compareTo()</code> method:</p>
+<ul>
+<li><code>compareTo()</code> method defines the <strong>NATURAL (default)</strong> orders of the class</li>
+<li><code>compare()</code> method defines different <strong>CUSTOM (alternative)</strong> orders of the class</li>
+</ul>
 </li>
 <li>
-<p><code>compareTo()</code> is used to implement the <strong>natural/default ordering</strong> of the class</p>
-</li>
-<li>
-<p>Note that the class's <code>compareTo()</code> should be consistent to <code>equals()</code> and <code>hashCode()</code> such that:</p>
+<p>The class's <code>compareTo()</code> should be consistent to <code>equals()</code> and <code>hashCode()</code> such that:</p>
 <ul>
 <li>If <code>x.equals(y)</code> is true, then <code>x.compareTo(y)</code> must equal to 0</li>
 <li>If <code>x.equals(y)</code> is true, then <code>x.hashCode()</code> must equal to <code>y.hashCode()</code></li>
@@ -480,7 +481,6 @@ MathJax.Hub.Queue(function() {
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> HashCodeBuilder().append(<span class="hljs-keyword">this</span>.suit).append(<span class="hljs-keyword">this</span>.rank).toHashCode();
     }
     
-
     <span class="hljs-comment">/************************************************************************
      *
      *  Example of compareTo, equals and hashCode methods using Google Guava
@@ -515,15 +515,7 @@ MathJax.Hub.Queue(function() {
     
 }
 </div></code></pre>
-<h3 id="comparator">Comparator</h3>
-<ul>
-<li>
-<p>Implement Comparator interface and override <code>compare()</code></p>
-</li>
-<li>
-<p><code>compare()</code> allows for defining multiple <strong>custom/alternative orderings</strong> for a class</p>
-</li>
-</ul>
+<h2 id="comparator">Comparator</h2>
 <pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CompareBySuit</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Comparator</span>&lt;<span class="hljs-title">Card</span>&gt; </span>{
     <span class="hljs-comment">/**
      * Implementation of compare method by suit.
@@ -551,15 +543,16 @@ MathJax.Hub.Queue(function() {
 
 }
 </div></code></pre>
-<h3 id="collectionssort">Collections.sort</h3>
-<pre class="hljs"><code><div><span class="hljs-comment">// Default: uses compareTo method implemented in Comparable class</span>
+<h2 id="collectionsort">Collection.sort</h2>
+<pre class="hljs"><code><div><span class="hljs-comment">// Default: Use compareTo() method implemented in Comparable class</span>
 Collections.sort(cards);
 
-<span class="hljs-comment">// Uses compare method implemented in Comparator class</span>
+<span class="hljs-comment">// Use compare() method implemented in Comparator class</span>
 Collections.sort(cards, <span class="hljs-keyword">new</span> CompareBySuit());
 Collections.sort(cards, <span class="hljs-keyword">new</span> CompareBySuitRank());
 </div></code></pre>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
