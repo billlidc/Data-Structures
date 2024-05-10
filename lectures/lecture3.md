@@ -19,89 +19,113 @@ MathJax.Hub.Queue(function() {
 
 
 
-## 3. Arrays
+# 3. Arrays
 
-### Arrays in Java
-* Manipulating data: `clone()`
-* Immutable field: `length`, once an array is created, its length is fixed and cannot be changed.
+## Characteristics of Arrays
 
----
+- In Java, arrays can store both primitive types and object references, making them effective for organizing sequential data efficiently.
+
+- An array is characterized by `clone()` method for duplication and an immutable field `length`, which defines its capacity.
+
+
+## Arrays in Java
+
+### Comparison
+Array `a` and `b` are two Object instances:
 
 ```Java
-int[] a = { 1, 2, 3, 4, 5 };
-int[] b = { 1, 2, 3, 4, 5 };
+int[] a = {1, 2, 3, 4, 5};
+int[] b = {1, 2, 3, 4, 5};
+
+if (Arrays.equals(a, b)) {
+    System.out.println("Arrays with same contents");
+}
+
+if (a == b) {
+    System.out.println("a == b is true");
+} else {
+    System.out.println("a == b is false");
+}
 ```
 
-Array `a` and `b` are two instances,
+- `a == b` checks reference/identity, returns `false`;
+- `a.equals(b)` of the Object class also checks reference/identity, returns `false`.
 
-- `a == b` checks reference/identity, returns false;
 
-- `a.equals(b)` of Object class also checks reference/identity, returns false.
-
----
-
-Hexadecimal representation of hashcode of the memory address will be printed
-
+### toString
 ```Java
-System.out.println(c); // the same as c.toString()
+System.out.println(c); // The same as calling c.toString()
 System.out.println(c.toString());
 ```
 
----
+- Hexadecimal representation of hashcode of the memory address will be printed
 
+
+### Array Index
 Array indexing conventionally begins at 0:
-    `Element's memory location = Array's memory location + Element length * Element`
+
+- `Element's memory location = Array's memory location + Element length * Element`
 
 
-### Arrays Class
+## Static Methods in Arrays Class
 
-`java.util.Arrays`
+> `java.util.Arrays`
 
-* Check equality: `Arrays.equals(a, b)`
+### Check equality
+```Java
+Arrays.equals(a, b);
+```
 
-* Printing values: `System.out.print(Arrays.toString(c));`
+### Printing values
+```Java
+System.out.print(Arrays.toString(c));
+```
 
-* Sorting: `Arrays.sort(c);`
+### Sorting
+```Java
+Arrays.sort(c)
+```
 
-* Copying
+### Copying
+1. ```Arrays.copyOf(sA, length);```
 
-    1. `Arrays.copyOf(sA, length);`
+    ```Java
+    int[] d = Arrays.copyOf(a, 2);
+    // d = [1, 2]
 
-        ```Java
-        int[] d = Arrays.copyOf(a, 2);
-        // d = [1, 2]
+    int[] d = Arrays.copyOf(a, 10);
+    // d = [1, 2, 3, 4, 5, 0, 0, 0, 0, 0]
+    ```
 
-        int[] d = Arrays.copyOf(a, 10);
-        // d = [1, 2, 3, 4, 5, 0, 0, 0, 0, 0]
-        ```
+2. ```System.arraycopy(sA, sI, dA, dI, length);```
 
-    2. `System.arraycopy(sA, sI, dA, dI, length);`
+    ```Java
+    int[] e = new int[5];
+    System.arraycopy(a, 0, e, 0, 3);
+    // e = [1, 2, 3, 0, 0]
+    ```
 
-        ```Java
-        int[] e = new int[5];
-        System.arraycopy(a, 0, e, 0, 3);
-        // e = [1, 2, 3, 0, 0]
-        ```
+3. ```clone()```
 
-    3. `clone()`
+    ```Java
+    int[] g = {1, 2, 3, 4, 5};
+    int[] h = g.clone();
+    ```
 
-        ```Java
-        int[] g = {1, 2, 3, 4, 5};
-        int[] h = g.clone();
-        ```
-
-    * The above three ways of copying perform **Shallow Copy/Cloning**, which means it creates a new instance and copies all the fields of the object to that new instance where both are referencing to the same memory in heap memory.
-        * Arrays of **primitive data types**: copies the value;
-        * Arrays of **objects** or **references**: copies the reference of every single object; modifying a object affects other arrays
-            * Write code to perform **Deep Copy**
-
+- The above three ways perform *Shallow Copy*, which means it creates a new instance and copies all the fields of the object to that new instance where both are referencing to the same memory in heap memory.
+    - Arrays of **primitive data types**: copies the value;
+    - Arrays of **objects** or **references**: copies the reference of every single object; modifying a object affects other arrays
+        - Solution: Adjust the code to perform *Deep Copy*
 
 
-### Resizing an Array
+
+## Resizing Array
 
 ```Java
-// Removes item at specified index and returns a new array;
-// If not within bounds, return the same array
+/**
+ * Remove item at the specified index and return a new array;
+ * If the index is not within bounds, return the array
+ */
 public static char[] delete(char[] data, int index) {
     if (index >= 0 && index < data.length) {
         char[] tmp = new char[data.length - 1];
@@ -115,5 +139,6 @@ public static char[] delete(char[] data, int index) {
 
 
 
+---
 
-[Back to Home](index.html)
+[Back to Home](../index.html)

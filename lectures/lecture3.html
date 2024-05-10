@@ -383,47 +383,62 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="3-arrays">3. Arrays</h2>
-<h3 id="arrays-in-java">Arrays in Java</h3>
+<h1 id="3-arrays">3. Arrays</h1>
+<h2 id="characteristics-of-arrays">Characteristics of Arrays</h2>
 <ul>
-<li>Manipulating data: <code>clone()</code></li>
-<li>Immutable field: <code>length</code>, once an array is created, its length is fixed and cannot be changed.</li>
+<li>
+<p>In Java, arrays can store both primitive types and object references, making them effective for organizing sequential data efficiently.</p>
+</li>
+<li>
+<p>An array is characterized by <code>clone()</code> method for duplication and an immutable field <code>length</code>, which defines its capacity.</p>
+</li>
 </ul>
-<hr>
-<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] a = { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> };
-<span class="hljs-keyword">int</span>[] b = { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> };
+<h2 id="arrays-in-java">Arrays in Java</h2>
+<h3 id="comparison">Comparison</h3>
+<p>Array <code>a</code> and <code>b</code> are two Object instances:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] a = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+<span class="hljs-keyword">int</span>[] b = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+
+<span class="hljs-keyword">if</span> (Arrays.equals(a, b)) {
+    System.out.println(<span class="hljs-string">"Arrays with same contents"</span>);
+}
+
+<span class="hljs-keyword">if</span> (a == b) {
+    System.out.println(<span class="hljs-string">"a == b is true"</span>);
+} <span class="hljs-keyword">else</span> {
+    System.out.println(<span class="hljs-string">"a == b is false"</span>);
+}
 </div></code></pre>
-<p>Array <code>a</code> and <code>b</code> are two instances,</p>
 <ul>
-<li>
-<p><code>a == b</code> checks reference/identity, returns false;</p>
-</li>
-<li>
-<p><code>a.equals(b)</code> of Object class also checks reference/identity, returns false.</p>
-</li>
+<li><code>a == b</code> checks reference/identity, returns <code>false</code>;</li>
+<li><code>a.equals(b)</code> of the Object class also checks reference/identity, returns <code>false</code>.</li>
 </ul>
-<hr>
-<p>Hexadecimal representation of hashcode of the memory address will be printed</p>
-<pre class="hljs"><code><div>System.out.println(c); <span class="hljs-comment">// the same as c.toString()</span>
+<h3 id="tostring">toString</h3>
+<pre class="hljs"><code><div>System.out.println(c); <span class="hljs-comment">// The same as calling c.toString()</span>
 System.out.println(c.toString());
 </div></code></pre>
-<hr>
-<p>Array indexing conventionally begins at 0:
-<code>Element's memory location = Array's memory location + Element length * Element</code></p>
-<h3 id="arrays-class">Arrays Class</h3>
-<p><code>java.util.Arrays</code></p>
 <ul>
-<li>
-<p>Check equality: <code>Arrays.equals(a, b)</code></p>
-</li>
-<li>
-<p>Printing values: <code>System.out.print(Arrays.toString(c));</code></p>
-</li>
-<li>
-<p>Sorting: <code>Arrays.sort(c);</code></p>
-</li>
-<li>
-<p>Copying</p>
+<li>Hexadecimal representation of hashcode of the memory address will be printed</li>
+</ul>
+<h3 id="array-index">Array Index</h3>
+<p>Array indexing conventionally begins at 0:</p>
+<ul>
+<li><code>Element's memory location = Array's memory location + Element length * Element</code></li>
+</ul>
+<h2 id="static-methods-in-arrays-class">Static Methods in Arrays Class</h2>
+<blockquote>
+<p><code>java.util.Arrays</code></p>
+</blockquote>
+<h3 id="check-equality">Check equality</h3>
+<pre class="hljs"><code><div>Arrays.equals(a, b);
+</div></code></pre>
+<h3 id="printing-values">Printing values</h3>
+<pre class="hljs"><code><div>System.out.print(Arrays.toString(c));
+</div></code></pre>
+<h3 id="sorting">Sorting</h3>
+<pre class="hljs"><code><div>Arrays.sort(c)
+</div></code></pre>
+<h3 id="copying">Copying</h3>
 <ol>
 <li>
 <p><code>Arrays.copyOf(sA, length);</code></p>
@@ -449,22 +464,22 @@ System.arraycopy(a, <span class="hljs-number">0</span>, e, <span class="hljs-num
 </li>
 </ol>
 <ul>
-<li>The above three ways of copying perform <strong>Shallow Copy/Cloning</strong>, which means it creates a new instance and copies all the fields of the object to that new instance where both are referencing to the same memory in heap memory.
+<li>The above three ways perform <em>Shallow Copy</em>, which means it creates a new instance and copies all the fields of the object to that new instance where both are referencing to the same memory in heap memory.
 <ul>
 <li>Arrays of <strong>primitive data types</strong>: copies the value;</li>
 <li>Arrays of <strong>objects</strong> or <strong>references</strong>: copies the reference of every single object; modifying a object affects other arrays
 <ul>
-<li>Write code to perform <strong>Deep Copy</strong></li>
+<li>Solution: Adjust the code to perform <em>Deep Copy</em></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<h3 id="resizing-an-array">Resizing an Array</h3>
-<pre class="hljs"><code><div><span class="hljs-comment">// Removes item at specified index and returns a new array;</span>
-<span class="hljs-comment">// If not within bounds, return the same array</span>
+<h2 id="resizing-array">Resizing Array</h2>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Remove item at the specified index and return a new array;
+ * If the index is not within bounds, return the array
+ */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">char</span>[] delete(<span class="hljs-keyword">char</span>[] data, <span class="hljs-keyword">int</span> index) {
     <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span> &amp;&amp; index &lt; data.length) {
         <span class="hljs-keyword">char</span>[] tmp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[data.length - <span class="hljs-number">1</span>];
@@ -475,7 +490,8 @@ System.arraycopy(a, <span class="hljs-number">0</span>, e, <span class="hljs-num
     <span class="hljs-keyword">return</span> data;
 }
 </div></code></pre>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
