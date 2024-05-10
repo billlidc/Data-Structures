@@ -383,183 +383,13 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="6-stack-lifo">6. Stack (LIFO)</h2>
-<h3 id="conceptual-view">Conceptual View</h3>
+<h1 id="7-queue-fifo">7. Queue (FIFO)</h1>
+<h2 id="conceptual-view">Conceptual View</h2>
 <ul>
-<li>
-<p>A web browser's back button can be implemented using a stack by mirroring the behavior of a stack in terms of the order of visited pages.</p>
-<ul>
-<li>When the user visits a webpage, the URL of the page is pushed onto the stack.</li>
-<li>When the user clicks the back button in the browser, it pops the top URL from the stack.</li>
+<li><code>enqueue</code>: inserting a new item to the back of the queue</li>
+<li><code>dequeue</code>: removing the first item from the queue</li>
 </ul>
-</li>
-<li>
-<p>Operations</p>
-<ul>
-<li>push(), push an item onto the top of the stack</li>
-<li>pop(), pop the item from the top of the stack</li>
-</ul>
-</li>
-</ul>
-<h3 id="stack-interface">Stack Interface</h3>
-<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">StackInterface</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(AnyType item)</span></span>; <span class="hljs-comment">// O(1)</span>
-    <span class="hljs-function">AnyType <span class="hljs-title">pop</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// O(1)</span>
-    <span class="hljs-function">AnyType <span class="hljs-title">peek</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// O(1)</span>
-    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// O(1)</span>
-}
-</div></code></pre>
-<p>The above abstract methods in the interface are already <code>public</code> <code>abstract</code> so there is no need to include the keywords.</p>
-<h3 id="stack-implementation-using-array">Stack Implementation using Array</h3>
-<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayStack</span>&lt;<span class="hljs-title">AnyType</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">StackInterface</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_CAPACITY = <span class="hljs-number">10</span>; <span class="hljs-comment">// Constant</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> top;
-    <span class="hljs-keyword">private</span> Object[] elements;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ArrayStack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> initialCapacity)</span> </span>{
-        <span class="hljs-keyword">if</span> (initialCapacity &lt;= <span class="hljs-number">0</span>) {
-            elements = <span class="hljs-keyword">new</span> Object[DEFAULT_CAPACITY];
-        } <span class="hljs-keyword">else</span> {
-            elements = <span class="hljs-keyword">new</span> Object[initialCapacity];
-        }
-        <span class="hljs-comment">// Set the top to be -1, indicating the stack is empty</span>
-        top = -<span class="hljs-number">1</span>;
-    }
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ArrayStack</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-keyword">this</span>(DEFAULT_CAPACITY); <span class="hljs-comment">// Calls the constructor with default capacity</span>
-    }
-
-    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> implement all the methods here</span>
-    ...
-}
-</div></code></pre>
-<h3 id="stack-methods-using-array">Stack Methods using Array</h3>
-<h4 id="isempty">isEmpty</h4>
-<pre class="hljs"><code><div><span class="hljs-comment">/**
- * Checks if the stack is empty in O(1).
- * <span class="hljs-doctag">@return</span> true if it is empty, false otherwise
- */</span>
-<span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">return</span> top == -<span class="hljs-number">1</span>;
-}
-</div></code></pre>
-<h4 id="push">Push</h4>
-<pre class="hljs"><code><div><span class="hljs-comment">/**
- * Pushes a new item onto the top of the stack in O(1).
- * <span class="hljs-doctag">@param</span> item, a new item to add
- * <span class="hljs-doctag">@throws</span> StackException if stack is full
- */</span>
-<span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(AnyType item)</span> </span>{
-    <span class="hljs-keyword">if</span> (top == (elements.length - <span class="hljs-number">1</span>)) {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> StackException(<span class="hljs-string">"Stack is full"</span>);
-    }
-    top = top + <span class="hljs-number">1</span>;
-    elements[top] = item;
-}
-</div></code></pre>
-<h4 id="pop">Pop</h4>
-<pre class="hljs"><code><div><span class="hljs-comment">/**
- * Gets and removes the top item in O(1).
- * <span class="hljs-doctag">@return</span> top, item on the top
- * <span class="hljs-doctag">@throws</span> StackException indicating the stack is empty
- */</span>
-<span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> AnyType <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">if</span> (isEmpty()) {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> StackException(<span class="hljs-string">"Stack is empty"</span>);
-    }
-    <span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"unchecked"</span>)
-    AnyType item = (AnyType) elements[top];
-    elements[top] = <span class="hljs-keyword">null</span>;
-    top = top - <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">return</span> item;
-}
-</div></code></pre>
-<ul>
-<li><strong>Casting Up</strong>: casting an object to a <em>superclass</em> or <em>interface</em> type
-<ul>
-<li><strong>No type check is needed</strong> since every instance of the subclass is also an instance of its superclass</li>
-</ul>
-</li>
-<li><strong>Casting Down</strong>: casting an object to a <em>subclass</em> type
-<ul>
-<li><strong>May throw a ClassCastException</strong> at runtime if the object being cast is not actually an instance of the subclass</li>
-<li><code>@SuppressWarnings(&quot;unchecked&quot;)</code> annotation is often used when casting down to suppress the compiler warning about unchecked casts</li>
-</ul>
-</li>
-</ul>
-<h4 id="peek">Peek</h4>
-<pre class="hljs"><code><div><span class="hljs-comment">/**
- * Gets (peeks) the top element but does not delete it in O(1).
- * <span class="hljs-doctag">@return</span> top, item on the top
- * <span class="hljs-doctag">@throws</span> StackException indicating the stack is empty
- */</span>
-<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"unchecked"</span>)
-<span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> AnyType <span class="hljs-title">peek</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">if</span> (isEmpty()) {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> StackException(<span class="hljs-string">"Stack is empty"</span>);
-    }
-    <span class="hljs-keyword">return</span> (AnyType) elements[top];
-}
-</div></code></pre>
-<h3 id="stack-using-linkedlist-methods">Stack using LinkedList Methods</h3>
-<p>Treating the first element of the linked list as the top of the stack</p>
-<pre class="hljs"><code><div>LinkedList&lt;Integer&gt; theStack = <span class="hljs-keyword">new</span> LinkedList&lt;Integer&gt;();
-
-<span class="hljs-comment">// Push onto the stack</span>
-theStack.addFirst(<span class="hljs-number">0</span>);
-
-<span class="hljs-comment">// Pop from the stack</span>
-theStack.removeFirst();
-</div></code></pre>
-<p>Also, <code>addLast()</code>/<code>removeLast()</code> methods can be used to implement a stack that treats the last element of the linked list as the top of the stack.</p>
-<h3 id="stack-usage-reverse-a-string">Stack Usage: Reverse a String</h3>
-<pre class="hljs"><code><div><span class="hljs-comment">/**
- * Simple Application to reverse a String using Stack.
- */</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Reverser</span> </span>{
-    <span class="hljs-comment">/**
-     * Input string.
-     */</span>
-    <span class="hljs-keyword">private</span> String input;
-
-    <span class="hljs-comment">/**
-     * Constructor with a specific input string.
-     * <span class="hljs-doctag">@param</span> str string to reverse
-     */</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Reverser</span><span class="hljs-params">(String str)</span> </span>{
-        input = str;
-    }
-
-    <span class="hljs-comment">/**
-     * Performs reversal operation and returns a new string.
-     * <span class="hljs-doctag">@return</span> reversed string
-     */</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">doReverse</span><span class="hljs-params">()</span> </span>{
-        ArrayStack&lt;Character&gt; stack = <span class="hljs-keyword">new</span> ArrayStack&lt;Character&gt;(input.length());
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; input.length(); i++) {
-            stack.push(input.charAt(i));
-        }
-
-        StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();
-        <span class="hljs-keyword">while</span> (!stack.isEmpty()) {
-            sb.append(stack.pop());
-        }
-        <span class="hljs-keyword">return</span> sb.toString();
-    }
-}
-</div></code></pre>
-<h2 id="7-queue-fifo">7. Queue (FIFO)</h2>
-<h3 id="conceptual-view">Conceptual View</h3>
-<ul>
-<li><strong>enqueue</strong>: inserting a new item to the back of the queue</li>
-<li><strong>dequeue</strong>: removing the first item from the queue</li>
-</ul>
-<h3 id="queue-interface">Queue Interface</h3>
+<h2 id="queue-implementation-using-array">Queue Implementation using Array</h2>
 <pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">QueueInterface</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">enqueue</span><span class="hljs-params">(AnyType item)</span></span>;  <span class="hljs-comment">// O(1)</span>
     <span class="hljs-function">AnyType <span class="hljs-title">dequeue</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// O(1)</span>
@@ -567,7 +397,6 @@ theStack.removeFirst();
     <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// O(1)</span>
 }
 </div></code></pre>
-<h3 id="queue-implementation-using-array">Queue Implementation using Array</h3>
 <pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayQueue</span>&lt;<span class="hljs-title">AnyType</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">QueueInterface</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_CAPACITY = <span class="hljs-number">6</span>; <span class="hljs-comment">// Constant</span>
     <span class="hljs-keyword">private</span> Object[] elements; 
@@ -581,13 +410,14 @@ theStack.removeFirst();
         back = -<span class="hljs-number">1</span>; <span class="hljs-comment">// Similar to top in Stack</span>
         nItems = <span class="hljs-number">0</span>;
     }
-
-    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> implement all of the core methods here</span>
+    
     ...
+
+
 }
 </div></code></pre>
-<h3 id="queue-methods-using-array">Queue Methods using Array</h3>
-<h4 id="isempty">isEmpty</h4>
+<h2 id="queue-implementation-using-array">Queue Implementation using Array</h2>
+<h3 id="isempty">isEmpty</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Checks if the queue is empty or not in O(1).
  * <span class="hljs-doctag">@return</span> true if the queue is empty, false if not
@@ -597,7 +427,7 @@ theStack.removeFirst();
     <span class="hljs-keyword">return</span> nItems == <span class="hljs-number">0</span>;
 }
 </div></code></pre>
-<h4 id="isfull">isFull</h4>
+<h3 id="isfull">isFull</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Private helper method to check if queue is full or not.
  * <span class="hljs-doctag">@return</span> true if it is full and false if not
@@ -606,7 +436,7 @@ theStack.removeFirst();
     <span class="hljs-keyword">return</span> nItems == elements.length;
 }
 </div></code></pre>
-<h4 id="enqueue">enqueue</h4>
+<h3 id="enqueue">enqueue</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Enqueues a new item to the end of the queue in O(1).
  * <span class="hljs-doctag">@param</span> item, a new item to add
@@ -625,7 +455,7 @@ theStack.removeFirst();
     nItems++;
 }
 </div></code></pre>
-<h4 id="dequeue">dequeue</h4>
+<h3 id="dequeue">dequeue</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Gets and deletes an item from the front of the queue in O(1).
  * <span class="hljs-doctag">@return</span> item, the first item in the queue
@@ -649,7 +479,7 @@ theStack.removeFirst();
     <span class="hljs-keyword">return</span> item;
 }
 </div></code></pre>
-<h4 id="peekfront">peekFront</h4>
+<h3 id="peekfront">peekFront</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Gets an item from the front of the queue but does not delete it in O(1).
  * <span class="hljs-doctag">@return</span> the first item in the queue
@@ -664,7 +494,7 @@ theStack.removeFirst();
     <span class="hljs-keyword">return</span> (AnyType) elements[front % elements.length];
 }
 </div></code></pre>
-<h3 id="queue-using-linkedlist-methods">Queue using LinkedList Methods</h3>
+<h2 id="queue-implementation-using-linkedlist">Queue Implementation using LinkedList</h2>
 <pre class="hljs"><code><div>LinkedList&lt;Integer&gt; theQueue = <span class="hljs-keyword">new</span> LinkedList&lt;Integer&gt;();
 
 <span class="hljs-comment">// Enqueue into the queue</span>
@@ -673,7 +503,8 @@ theQueue.addLast(<span class="hljs-number">5</span>);
 <span class="hljs-comment">// Dequeue from the queue</span>
 theQueue.removeFirst();
 </div></code></pre>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
