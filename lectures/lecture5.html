@@ -383,23 +383,23 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="5-linkedlist">5. LinkedList</h2>
-<h3 id="java-linkedlist">Java LinkedList</h3>
+<h1 id="5-linkedlist">5. LinkedList</h1>
+<h2 id="java-linkedlist">Java LinkedList</h2>
 <ul>
-<li><code>addFirst(element: Object)</code>: void</li>
-<li><code>addLast(element: Object)</code>: void</li>
-<li><code>getFirst()</code>: Object</li>
-<li><code>getLast()</code>: Object</li>
-<li><code>removeFirst()</code>: Object</li>
-<li><code>removeLast()</code>: Object</li>
+<li><code>addFirst(element: Object): void</code></li>
+<li><code>addLast(element: Object): void</code></li>
+<li><code>getFirst(): Object</code></li>
+<li><code>getLast(): Object</code></li>
+<li><code>removeFirst(): Object</code></li>
+<li><code>removeLast(): Object</code></li>
 </ul>
-<h3 id="types">Types</h3>
+<h2 id="types-of-linkedlist">Types of LinkedList</h2>
 <ol>
 <li>Singly Linked List</li>
 <li>Doubly Linked List</li>
 <li>Circular Linked List</li>
 </ol>
-<h3 id="java-linkedlist-implementation">Java LinkedList Implementation</h3>
+<h2 id="java-linkedlist-implementation">Java LinkedList Implementation</h2>
 <pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinkedList</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
     <span class="hljs-keyword">private</span> Node&lt;AnyType&gt; head;
 
@@ -408,10 +408,7 @@ MathJax.Hub.Queue(function() {
         head = <span class="hljs-keyword">null</span>;
     }
 
-
-    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> implement all the methods below.</span>
     ...
-
 
     <span class="hljs-comment">// Static inner class</span>
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
@@ -427,28 +424,25 @@ MathJax.Hub.Queue(function() {
 
 }
 </div></code></pre>
-<ul>
-<li>Types of nested (inner) classes
+<h3 id="inner-classes">Inner Classes</h3>
 <ul>
 <li><strong>Static</strong>: do not have access to the instance variables and methods of the outer class directly.</li>
 <li><strong>Non-static</strong>:  have access to the instance variables and methods of the outer class.</li>
 </ul>
-</li>
-</ul>
-<h3 id="linkedlist-methods">LinkedList Methods</h3>
-<h4 id="addfirst---o1">addFirst - O(1)</h4>
+<h2 id="linkedlist-methods">LinkedList Methods</h2>
+<h3 id="addfirst---o1">addFirst - O(1)</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">// Inserts a new item at the beginning of the list</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addFirst</span><span class="hljs-params">(AnyType item)</span> </span>{
     head = <span class="hljs-keyword">new</span> Node&lt;AnyType&gt;(item, head);
 }
 </div></code></pre>
-<h4 id="traverse-to-the-last-node---on">Traverse to the last node - O(n)</h4>
+<h3 id="traverse-to-the-last-node---on">Traverse to the last node - O(n)</h3>
 <pre class="hljs"><code><div>Node&lt;AnyType&gt; tmp = head;
 <span class="hljs-keyword">while</span> (tmp.next != <span class="hljs-keyword">null</span>) { <span class="hljs-comment">// Stop at the last node</span>
     tmp = tmp.next;
 }
 </div></code></pre>
-<h4 id="addlast---on">addLast - O(n)</h4>
+<h3 id="addlast---on">addLast - O(n)</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Inserts a new item to the end of the list.
  */</span>
@@ -471,7 +465,7 @@ MathJax.Hub.Queue(function() {
 }
 
 </div></code></pre>
-<h4 id="insertafter---on">insertAfter - O(n)</h4>
+<h3 id="insertafter---on">insertAfter - O(n)</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Finds a node containing the key and inserts a new item after the node.
  */</span>
@@ -491,7 +485,7 @@ MathJax.Hub.Queue(function() {
     }
 }
 </div></code></pre>
-<h4 id="insertbefore---on">insertBefore - O(n)</h4>
+<h3 id="insertbefore---on">insertBefore - O(n)</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Finds a node containing the key and inserts a new item before the node.
  * <span class="hljs-doctag">@param</span> key, a key to be found to add a new element
@@ -528,7 +522,7 @@ MathJax.Hub.Queue(function() {
 }
 
 </div></code></pre>
-<h4 id="remove---on">remove - O(n)</h4>
+<h3 id="remove---on">remove - O(n)</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Removes the first occurrence of a key from the list.
  * <span class="hljs-doctag">@param</span> key, a key to be deleted
@@ -555,7 +549,7 @@ MathJax.Hub.Queue(function() {
         prev = cur;
         cur = cur.next;
     }
-    
+
     <span class="hljs-comment">// If current node has the key</span>
     <span class="hljs-keyword">if</span> (cur != <span class="hljs-keyword">null</span>) {
         prev.next = cur.next;
@@ -563,7 +557,7 @@ MathJax.Hub.Queue(function() {
 }
 
 </div></code></pre>
-<h3 id="iterableiterator">Iterable/Iterator</h3>
+<h2 id="iterableiterator">Iterable/Iterator</h2>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> java.util.*;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinkedList</span>&lt;<span class="hljs-title">AnyType</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">Iterable</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
@@ -574,10 +568,7 @@ MathJax.Hub.Queue(function() {
         head = <span class="hljs-keyword">null</span>;
     }
 
-
     ...
-
-
 
     <span class="hljs-comment">/**
      * Iterator implementation that returns iterator object.
@@ -616,7 +607,7 @@ MathJax.Hub.Queue(function() {
     }
 }
 </div></code></pre>
-<h3 id="arraylist-vs-linkedlist">ArrayList v.s. LinkedList</h3>
+<h2 id="runtime-complexity-comparison">Runtime Complexity Comparison</h2>
 <ul>
 <li>
 <p>ArrayList:</p>
@@ -633,7 +624,8 @@ MathJax.Hub.Queue(function() {
 </ul>
 </li>
 </ul>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>

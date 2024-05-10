@@ -19,22 +19,24 @@ MathJax.Hub.Queue(function() {
 
 
 
-## 5. LinkedList
+# 5. LinkedList
 
-### Java LinkedList
-* `addFirst(element: Object)`: void
-* `addLast(element: Object)`: void
-* `getFirst()`: Object
-* `getLast()`: Object
-* `removeFirst()`: Object
-* `removeLast()`: Object
+## Java LinkedList
+- `addFirst(element: Object): void`
+- `addLast(element: Object): void`
+- `getFirst(): Object`
+- `getLast(): Object`
+- `removeFirst(): Object`
+- `removeLast(): Object`
 
-### Types
+
+## Types of LinkedList
 1. Singly Linked List
 2. Doubly Linked List
 3. Circular Linked List
 
-### Java LinkedList Implementation
+
+## Java LinkedList Implementation
 
 ```Java
 public class LinkedList<AnyType> {
@@ -45,10 +47,7 @@ public class LinkedList<AnyType> {
         head = null;
     }
 
-
-    // TODO: implement all the methods below.
     ...
-
 
     // Static inner class
     private static class Node<AnyType> {
@@ -65,14 +64,14 @@ public class LinkedList<AnyType> {
 }
 ```
 
-* Types of nested (inner) classes
-    * **Static**: do not have access to the instance variables and methods of the outer class directly.
-    * **Non-static**:  have access to the instance variables and methods of the outer class.
+### Inner Classes
+- **Static**: do not have access to the instance variables and methods of the outer class directly.
+- **Non-static**:  have access to the instance variables and methods of the outer class.
 
 
-### LinkedList Methods
+## LinkedList Methods
 
-#### addFirst - O(1)
+### addFirst - O(1)
 
 ```Java
 // Inserts a new item at the beginning of the list
@@ -81,7 +80,7 @@ public void addFirst(AnyType item) {
 }
 ```
 
-#### Traverse to the last node - O(n)
+### Traverse to the last node - O(n)
 
 ```Java
 Node<AnyType> tmp = head;
@@ -90,7 +89,7 @@ while (tmp.next != null) { // Stop at the last node
 }
 ```
 
-#### addLast - O(n)
+### addLast - O(n)
 
 ```Java
 /**
@@ -116,7 +115,7 @@ public void addLast(AnyType item) {
 
 ```
 
-#### insertAfter - O(n)
+### insertAfter - O(n)
 
 ```Java
 /**
@@ -139,8 +138,7 @@ public void insertAfter(AnyType key, AnyType item) {
 }
 ```
 
-
-#### insertBefore - O(n)
+### insertBefore - O(n)
 
 ```Java
 /**
@@ -180,8 +178,7 @@ public void insertBefore(AnyType key, AnyType item) {
 
 ```
 
-
-#### remove - O(n)
+### remove - O(n)
 
 ```Java
 /**
@@ -210,7 +207,7 @@ public void remove(AnyType key) {
         prev = cur;
         cur = cur.next;
     }
-    
+
     // If current node has the key
     if (cur != null) {
         prev.next = cur.next;
@@ -220,7 +217,7 @@ public void remove(AnyType key) {
 ```
 
 
-### Iterable/Iterator
+## Iterable/Iterator
 
 ```Java
 import java.util.*;
@@ -233,10 +230,7 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
         head = null;
     }
 
-
     ...
-
-
 
     /**
      * Iterator implementation that returns iterator object.
@@ -277,16 +271,17 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 ```
 
 
-
-### ArrayList v.s. LinkedList
-* ArrayList:
+## Runtime Complexity Comparison
+- ArrayList:
     - Locate element: `O(1)`
     - Perform insertion/deletion: `O(n)`  
 
-* LinkedList
+- LinkedList
     - Locate element: `O(n)`
     - Perform insertion/deletion: `O(1)`  
 
 
     
-[Back to Home](index.html)
+---
+
+[Back to Home](../index.html)
