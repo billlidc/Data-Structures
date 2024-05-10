@@ -476,6 +476,10 @@ System.arraycopy(a, <span class="hljs-number">0</span>, e, <span class="hljs-num
 </li>
 </ul>
 <h2 id="resizing-array">Resizing Array</h2>
+<ul>
+<li>Once an array is created, the length is fixed and cannot be changed.</li>
+<li>Resize by creating a new array with a different length and copying all or some of the values from the old array to the new array.</li>
+</ul>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Remove item at the specified index and return a new array;
  * If the index is not within bounds, return the array
@@ -490,6 +494,15 @@ System.arraycopy(a, <span class="hljs-number">0</span>, e, <span class="hljs-num
     <span class="hljs-keyword">return</span> data;
 }
 </div></code></pre>
+<h2 id="worst-case-efficiencies-of-arrays">Worst-Case Efficiencies of Arrays</h2>
+<ul>
+<li>Insertion at back: $O(1)$</li>
+<li>Insertion at front: $O(n)$</li>
+<li>Insertion in middle: $O(n)$</li>
+<li>Searching (linear search): $O(n)$</li>
+<li>Deletion: $O(n)$</li>
+<li>Access to an element with its index: $O(1)$</li>
+</ul>
 <hr>
 <p><a href="../index.html">Back to Home</a></p>
 

@@ -121,6 +121,9 @@ Arrays.sort(c)
 
 ## Resizing Array
 
+- Once an array is created, the length is fixed and cannot be changed.
+- Resize by creating a new array with a different length and copying all or some of the values from the old array to the new array.
+
 ```Java
 /**
  * Remove item at the specified index and return a new array;
@@ -137,6 +140,14 @@ public static char[] delete(char[] data, int index) {
 }
 ```
 
+
+## Worst-Case Efficiencies of Arrays
+- Insertion at back: $O(1)$
+- Insertion at front: $O(n)$
+- Insertion in middle: $O(n)$
+- Searching (linear search): $O(n)$
+- Deletion: $O(n)$
+- Access to an element with its index: $O(1)$
 
 
 ---
