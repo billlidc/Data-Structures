@@ -383,18 +383,21 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="14-advanced-sorting">14. Advanced Sorting</h2>
-<h3 id="merge-sort">Merge Sort</h3>
+<h1 id="14-advanced-sorting">14. Advanced Sorting</h1>
+<h2 id="merge-sort">Merge Sort</h2>
 <ul>
-<li>Divide and conquer algorithm:
-<ul>
-<li>Sort the first half using merge sort.</li>
-<li>Sort the second half using merge sort.</li>
-<li>Merge the sorted two halves to create the final sorted result.</li>
+<li>&quot;Divide and Conquer&quot; algorithm</li>
 </ul>
-</li>
-</ul>
-<h4 id="merge">merge</h4>
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+<ol>
+<li>Sort the first half using merge sort</li>
+<li>Sort the second half using merge sort</li>
+<li>Merge the sorted two halves</li>
+</ol>
+  </p>
+</div>
+<h3 id="merge">merge</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Merges two sorted arrays into one.
  * Precondition: Two input arrays are sorted in ascending order and not null
@@ -434,7 +437,7 @@ MathJax.Hub.Queue(function() {
     <span class="hljs-keyword">return</span> merged;
 }
 </div></code></pre>
-<h4 id="mergesort">mergeSort</h4>
+<h3 id="mergesort">mergeSort</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Recursive merge sort.
  * Creates new array where values are sorted in ascending order.
@@ -466,8 +469,8 @@ MathJax.Hub.Queue(function() {
     <span class="hljs-keyword">return</span> merge(left, right);
 }
 </div></code></pre>
-<h4 id="analysis-of-merge-sort">Analysis of Merge Sort</h4>
-<p>Recurrence Relation using substitution method:</p>
+<h3 id="analysis-of-merge-sort">Analysis of Merge Sort</h3>
+<p>Recurrence relation using substitution method:</p>
 <pre class="hljs"><code><div>T(n) = 1                if n &lt;= 1
 T(n) = 2T(n/2) + n      if n &gt; 1
 
@@ -477,19 +480,23 @@ T(n) = 2T(n/2) + n      if n &gt; 1
 =&gt; 16 * T(n/16) + 4n
 ...
 =&gt; 2^k * T(n/2^k) + k * n
-=&gt; n + log_2{n} * n
+=&gt; n + log2{n} * n
 
 n/2^k = 1
 n = 2^k
-k = log_2{n}
+k = log2{n}
 </div></code></pre>
-<h3 id="quick-sort">Quick Sort</h3>
-<ul>
-<li>Partition the array or sub-arrays into left (smaller values) and right (larger values) groups.</li>
-<li>Call itself again to sort the left group.</li>
-<li>Call itself again to sort the right group.</li>
-</ul>
-<h4 id="quicksort">quickSort</h4>
+<h2 id="quick-sort">Quick Sort</h2>
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+<ol>
+<li>Partition the array or sub-arrays into left (smaller values) and right (larger values) groups</li>
+<li>Call itself to sort the left group</li>
+<li>Call itself to sort the right group</li>
+</ol>
+  </p>
+</div>
+<h3 id="quicksort">quickSort</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Quick sort.
  * <span class="hljs-doctag">@param</span> unsorted an array to sort
@@ -521,7 +528,7 @@ k = log_2{n}
     quickSort(unsorted, partition + <span class="hljs-number">1</span>, right);
 }
 </div></code></pre>
-<h4 id="partition">partition</h4>
+<h3 id="partition">partition</h3>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Partitions the input array into two parts using the pivot value.
  * <span class="hljs-doctag">@param</span> array to partition
@@ -561,13 +568,13 @@ k = log_2{n}
     data[two] = tmp;
 }
 </div></code></pre>
-<h4 id="analysis-of-quick-sort">Analysis of Quick Sort</h4>
+<h3 id="analysis-of-quick-sort">Analysis of Quick Sort</h3>
 <p>In the worst case:</p>
 <ul>
-<li>Number of comparisons: $O(n)$</li>
-<li>Number of swaps: $O(n/2)$</li>
+<li>Number of comparisons: $$O(n)$$</li>
+<li>Number of swaps: $$O(n/2)$$</li>
 </ul>
-<p>Worst case runtime:  $\frac{n(n-1)}{2}$</p>
+<p>Worst case runtime: $$\frac{n(n-1)}{2}$$</p>
 <pre class="hljs"><code><div>7654321
 765432
 76543
@@ -576,24 +583,25 @@ k = log_2{n}
 76
 7
 </div></code></pre>
-<p>Choice of pivot value:</p>
+<h3 id="choice-of-pivot-value">Choice of pivot value:</h3>
 <ul>
-<li>Pseudo-median - value that serves as an estimation or approximation of the true median of a data set</li>
+<li><strong>Pseudo-median</strong>: value that serves as an estimation or approximation of the true median of a data set</li>
 <li>Otherwise, pick pivot value at <strong>RANDOM</strong></li>
 </ul>
-<h3 id="stability-comparison">Stability Comparison</h3>
+<h2 id="stability-comparison">Stability Comparison</h2>
 <ol>
 <li>Quick Sort (Not stable, swaps distant elements) =&gt; Primitives</li>
 <li>Merge Sort (Stable) =&gt; Objects</li>
 </ol>
-<h3 id="sorting-in-java">Sorting in Java</h3>
+<h2 id="sortings-used-in-java">Sortings Used in Java</h2>
 <p>In Java 7:</p>
 <ul>
-<li>Primitives =&gt; <strong>Dual-pivot Quick Sort</strong>: half time of QuickSort</li>
-<li>Objects =&gt; <strong>Tim Sort</strong>: stable, derived from merge sort and insertion sort</li>
-<li>Range &lt; 7 =&gt; <strong>Insertion Sort</strong></li>
+<li>Primitives =&gt; <strong>Dual-Pivot Quick Sort</strong>: half the time of Quick Sort</li>
+<li>Objects =&gt; <strong>Tim Sort</strong>: stable, derived from Merge Sort and Insertion Sort</li>
+<li>Range $&lt; 7$ =&gt; <strong>Insertion Sort</strong></li>
 </ul>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>

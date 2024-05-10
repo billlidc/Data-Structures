@@ -18,21 +18,23 @@ MathJax.Hub.Queue(function() {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
 
+# 14. Advanced Sorting
 
-## 14. Advanced Sorting
+## Merge Sort
+
+- "Divide and Conquer" algorithm
+
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+
+  1. Sort the first half using merge sort
+  2. Sort the second half using merge sort
+  3. Merge the sorted two halves
+  </p>
+</div>
 
 
-
-
-### Merge Sort
-
-- Divide and conquer algorithm:
-    - Sort the first half using merge sort.
-    - Sort the second half using merge sort.
-    - Merge the sorted two halves to create the final sorted result.
-
-
-#### merge
+### merge
 
 ```Java
 /**
@@ -75,7 +77,7 @@ private static int[] merge(int[] left, int[] right) {
 }
 ```
 
-#### mergeSort
+### mergeSort
 
 ```Java
 /**
@@ -110,9 +112,9 @@ public static int[] mergeSort(int[] unsorted) {
 }
 ```
 
-#### Analysis of Merge Sort
+### Analysis of Merge Sort
 
-Recurrence Relation using substitution method:
+Recurrence relation using substitution method:
 
 ```
 T(n) = 1                if n <= 1
@@ -124,27 +126,28 @@ T(n) = 2T(n/2) + n      if n > 1
 => 16 * T(n/16) + 4n
 ...
 => 2^k * T(n/2^k) + k * n
-=> n + log_2{n} * n
+=> n + log2{n} * n
 
 n/2^k = 1
 n = 2^k
-k = log_2{n}
+k = log2{n}
 ```
 
 
+## Quick Sort
+
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+
+  1. Partition the array or sub-arrays into left (smaller values) and right (larger values) groups
+  2. Call itself to sort the left group
+  3. Call itself to sort the right group
+  </p>
+</div>
 
 
 
-
-
-### Quick Sort
-
-- Partition the array or sub-arrays into left (smaller values) and right (larger values) groups.
-- Call itself again to sort the left group.
-- Call itself again to sort the right group.
-
-
-#### quickSort
+### quickSort
 
 ```Java
 /**
@@ -181,7 +184,7 @@ private static void quickSort(int[] unsorted, int left, int right) {
 }
 ```
 
-#### partition
+### partition
 
 ```Java
 /**
@@ -227,14 +230,14 @@ private static void swap(int[] data, int one, int two) {
 ```
 
 
-#### Analysis of Quick Sort
+### Analysis of Quick Sort
 
 In the worst case:
 
-- Number of comparisons: $O(n)$
-- Number of swaps: $O(n/2)$
+- Number of comparisons: $$O(n)$$
+- Number of swaps: $$O(n/2)$$
 
-Worst case runtime:  $\frac{n(n-1)}{2}$
+Worst case runtime: $$\frac{n(n-1)}{2}$$
 
 ```
 7654321
@@ -246,26 +249,25 @@ Worst case runtime:  $\frac{n(n-1)}{2}$
 7
 ```
 
-Choice of pivot value:
-
-- Pseudo-median - value that serves as an estimation or approximation of the true median of a data set
+### Choice of pivot value:
+- **Pseudo-median**: value that serves as an estimation or approximation of the true median of a data set
 - Otherwise, pick pivot value at **RANDOM**
 
 
-### Stability Comparison
-
+## Stability Comparison
 1. Quick Sort (Not stable, swaps distant elements) => Primitives
 2. Merge Sort (Stable) => Objects
 
 
-### Sorting in Java
+## Sortings Used in Java
 
 In Java 7:
 
-- Primitives => **Dual-pivot Quick Sort**: half time of QuickSort
-- Objects => **Tim Sort**: stable, derived from merge sort and insertion sort
-- Range < 7 => **Insertion Sort**
+- Primitives => **Dual-Pivot Quick Sort**: half the time of Quick Sort
+- Objects => **Tim Sort**: stable, derived from Merge Sort and Insertion Sort
+- Range $< 7$ => **Insertion Sort**
 
 
+---
 
-[Back to Home](index.html)
+[Back to Home](../index.html)
