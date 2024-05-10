@@ -51,15 +51,28 @@ MathJax.Hub.Queue(function() {
     - **Heapify**: A key operation for transforming an unordered list into a heap. This process involves arranging the nodes to maintain the heap properties.
 
 
-## Insert: Percolate Up
-1. Add the new element to the next available position in the tree, ensuring it remains *complete*.
-2. If the new element violates the heap-order property of a max-heap, swap it with its parent. Continue this process up the tree until the heap-order is restored.
+### Insert: Percolate Up
+
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+
+  1. Add the new element to the next available position in the tree, ensuring it remains *complete*.
+  2. If the new element violates the heap-order property of a max-heap, swap it with its parent. Continue this process up the tree until the heap-order is restored.
+  </p>
+</div>
 
 
-## Remove Max/Min: Percolate Down
-1. Remove the root (the maximum key) and replace it with the last node from the bottom level to maintain a complete tree structure.
-2. Swap the newly positioned node with its larger child if it violates the max-heap property. Continue this adjustment process down the tree until the heap order is fully restored.
- 
+
+### Remove Max/Min: Percolate Down
+
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+
+  1. Remove the root (the maximum key) and replace it with the last node from the bottom level to maintain a complete tree structure.
+  2. Swap the newly positioned node with its larger child if it violates the max-heap property. Continue this adjustment process down the tree until the heap order is fully restored.
+  </p>
+</div>
+
 
 
 ## Heap Implementation
