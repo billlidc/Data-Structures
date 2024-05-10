@@ -17,22 +17,31 @@ MathJax.Hub.Queue(function() {
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
-## 12. Hash Table
-
-### Hashing Steps
-Object -> int -> hashtable (array)
-
-Two steps:
-1. Convert: `hashCode()`
-2. Compress: %
-
-### Operations
-- search(int key)
-- delete(int key)
-- insert(int key)
 
 
-### Implementation
+# 12. Hash Table
+
+## Hashing Steps
+
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+  Object -> int -> hashtable (array)
+
+  1. Convert (Object -> int): `hashCode()`
+  2. Compress (int -> hashtable (array)): `Modulus(%)`
+  </p>
+</div>
+
+
+
+
+## Hash Table Operations
+- `search(int key)`
+- `delete(int key)`
+- `insert(int key)`
+
+
+## Hash Table Implementation
 
 ```Java
 public class HashTable implements HashTableInterface {
@@ -128,23 +137,27 @@ public class HashTable implements HashTableInterface {
 }
 ```
 
-### Aspects of Good Hash Functions
+## Aspects of Hash Functions
 
 1. Deterministic
+
 2. Randomness
     1. Quick computation - Machine-dependent
     2. Evenly distributed - Data-dependent
 
 
-#### 1. Random key values
-- `index = key % hashArray.length;`
+## Randomness
 
-#### 2. Non-Random key values
+### 1. Random key values
+```Java
+index = key % hashArray.length;
+```
+
+### 2. Non-Random key values
 
 Example: Car-part number
 
-- No guarantee random between 0 to 999-999-99-99-99-9-999
-
+- Not guaranteed to be random between `0` to `999-999-99-99-99-9-999`
     ```
     033-400-03-94-05-0-535
 
@@ -157,23 +170,26 @@ Example: Car-part number
     - Digits 13-15: Checksum (sum of the other fields)
     ```
 
-- Generate a range of more random numbers
-    1. **Remove Non-Data**:
-        - Squeeze key values
-            - E.g. Category code should be squeezed to 0-15
-        - Remove non-data values
-            - E.g. Checksum is derived and does not incorporate any new information
 
-    2. **Use All Data**: Incorporate all available data, avoiding truncation of key values.
+#### Generate a range of more random numbers
+1. **Remove Non-Data**:
+    - Squeeze key values
+        - E.g. Category code should be squeezed to 0-15
+    - Remove non-data values
+        - E.g. Checksum is derived and does not incorporate any new information
 
-    3. **Use Prime Number for Modulo Base**: Select a prime number as the modulo base (hash table length), which prevents clustering of keys that are multiples of the base, promoting a more uniform distribution of hash values.
+2. **Use All Data**: Incorporate all available data, avoiding truncation of key values.
 
-    4. **Use Folding**: Divide keys into groups of digits and summing up the groups, which enhances randomness and reduces collisions in the hash table.
-        - Example: SSN `123-45-6789`
-            - For table length $1009$
-                - Break into groups of three digits: $123 + 456 + 789 = 1368 \% 1009 = 359$
-            - For table length $101$
-                - Break into groups of two digits: $12 + 34 + 56 + 78 + 9 = 189 \% 101 = 88$
+3. **Use Prime Number for Modulo Base**: Select a prime number as the modulo base (hash table length), which prevents clustering of keys that are multiples of the base, promoting a more uniform distribution of hash values.
+
+4. **Use Folding**: Divide keys into groups of digits and summing up the groups, which enhances randomness and reduces collisions in the hash table.
+    - Example: SSN `123-45-6789`
+        - For table length $1009$:
+            - Break into groups of three digits: $$123 + 456 + 789 = 1368 \% 1009 = 359$$
+        - For table length $101$:
+            - Break into groups of two digits: $$12 + 34 + 56 + 78 + 9 = 189 \% 101 = 88$$
 
 
-[Back to Home](index.html)
+---
+
+[Back to Home](../index.html)

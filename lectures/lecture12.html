@@ -383,21 +383,24 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="12-hash-table">12. Hash Table</h2>
-<h3 id="hashing-steps">Hashing Steps</h3>
-<p>Object -&gt; int -&gt; hashtable (array)</p>
-<p>Two steps:</p>
+<h1 id="12-hash-table">12. Hash Table</h1>
+<h2 id="hashing-steps">Hashing Steps</h2>
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+  Object -> int -> hashtable (array)
 <ol>
-<li>Convert: <code>hashCode()</code></li>
-<li>Compress: %</li>
+<li>Convert (Object -&gt; int): <code>hashCode()</code></li>
+<li>Compress (int -&gt; hashtable (array)): <code>Modulus(%)</code></li>
 </ol>
-<h3 id="operations">Operations</h3>
+  </p>
+</div>
+<h2 id="hash-table-operations">Hash Table Operations</h2>
 <ul>
-<li>search(int key)</li>
-<li>delete(int key)</li>
-<li>insert(int key)</li>
+<li><code>search(int key)</code></li>
+<li><code>delete(int key)</code></li>
+<li><code>insert(int key)</code></li>
 </ul>
-<h3 id="implementation">Implementation</h3>
+<h2 id="hash-table-implementation">Hash Table Implementation</h2>
 <pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HashTable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HashTableInterface</span> </span>{
 
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> DataItem DELETED = <span class="hljs-keyword">new</span> DataItem(-<span class="hljs-number">1</span>);
@@ -490,26 +493,27 @@ MathJax.Hub.Queue(function() {
 
 }
 </div></code></pre>
-<h3 id="aspects-of-good-hash-functions">Aspects of Good Hash Functions</h3>
+<h2 id="aspects-of-hash-functions">Aspects of Hash Functions</h2>
 <ol>
-<li>Deterministic</li>
-<li>Randomness
+<li>
+<p>Deterministic</p>
+</li>
+<li>
+<p>Randomness</p>
 <ol>
 <li>Quick computation - Machine-dependent</li>
 <li>Evenly distributed - Data-dependent</li>
 </ol>
 </li>
 </ol>
-<h4 id="1-random-key-values">1. Random key values</h4>
-<ul>
-<li><code>index = key % hashArray.length;</code></li>
-</ul>
-<h4 id="2-non-random-key-values">2. Non-Random key values</h4>
+<h2 id="randomness">Randomness</h2>
+<h3 id="1-random-key-values">1. Random key values</h3>
+<pre class="hljs"><code><div>index = key % hashArray.length;
+</div></code></pre>
+<h3 id="2-non-random-key-values">2. Non-Random key values</h3>
 <p>Example: Car-part number</p>
 <ul>
-<li>
-<p>No guarantee random between 0 to 999-999-99-99-99-9-999</p>
-<pre class="hljs"><code><div>033-400-03-94-05-0-535
+<li>Not guaranteed to be random between <code>0</code> to <code>999-999-99-99-99-9-999</code><pre class="hljs"><code><div>033-400-03-94-05-0-535
 
 - Digits 0-2: Supplier number (1 to 999, currently up to 70)
 - Digits 3-5: Category code (100, 150, 200, 250, up to 850)
@@ -520,8 +524,8 @@ MathJax.Hub.Queue(function() {
 - Digits 13-15: Checksum (sum of the other fields)
 </div></code></pre>
 </li>
-<li>
-<p>Generate a range of more random numbers</p>
+</ul>
+<h4 id="generate-a-range-of-more-random-numbers">Generate a range of more random numbers</h4>
 <ol>
 <li>
 <p><strong>Remove Non-Data</strong>:</p>
@@ -549,14 +553,14 @@ MathJax.Hub.Queue(function() {
 <ul>
 <li>Example: SSN <code>123-45-6789</code>
 <ul>
-<li>For table length $1009$
+<li>For table length $1009$:
 <ul>
-<li>Break into groups of three digits: $123 + 456 + 789 = 1368 % 1009 = 359$</li>
+<li>Break into groups of three digits: $$123 + 456 + 789 = 1368 % 1009 = 359$$</li>
 </ul>
 </li>
-<li>For table length $101$
+<li>For table length $101$:
 <ul>
-<li>Break into groups of two digits: $12 + 34 + 56 + 78 + 9 = 189 % 101 = 88$</li>
+<li>Break into groups of two digits: $$12 + 34 + 56 + 78 + 9 = 189 % 101 = 88$$</li>
 </ul>
 </li>
 </ul>
@@ -564,9 +568,8 @@ MathJax.Hub.Queue(function() {
 </ul>
 </li>
 </ol>
-</li>
-</ul>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
