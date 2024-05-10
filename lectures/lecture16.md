@@ -18,11 +18,9 @@ MathJax.Hub.Queue(function() {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
 
+# 16. Huffman Coding
 
-## 16. Huffman Coding
-
-
-### BST Review
+## BST Review
 - BST can degenerate to LinkedList whose input values are sorted or inversely sorted
     - Thus, the worst-case running time complexity for major operations is $O(n)$, not $O(log n)$.
 
@@ -30,9 +28,7 @@ MathJax.Hub.Queue(function() {
     - Red-Black Tree
     - AVL Tree
 
-
-
-### Fixed Width Encoding Scheme
+## Fixed Width Encoding Scheme
 
 | Character | Decimal | Binary  |
 |-----------|---------|---------|
@@ -53,10 +49,9 @@ MathJax.Hub.Queue(function() {
 - Using a fixed width encoding scheme where we use $n$ bits for a character set and we want to store or transmit $m$ characters, we need $m * n$ bits for the entire file.
 
 
+## BST Usage: Huffman Coding
 
-### BST Usage: Huffman Coding
-
-#### Overview
+### Overview
 - Huffman Coding: an algorithm that uses binary tree to compress data.
 
 - Use cases:
@@ -70,7 +65,7 @@ MathJax.Hub.Queue(function() {
     - **Cryptographic Functions**: Combines with cryptographic techniques to compress and secure data simultaneously, enhancing transmission security and efficiency.
 
 
-#### Example
+### Example
 > "SUSIE SAYS IT IS EASY"
 
 | Frequency Table     | Count (Frequency) |
@@ -86,7 +81,7 @@ MathJax.Hub.Queue(function() {
 | Linefeed            | 1                 |
 
 
-#### Steps to create a Huffman Tree
+### Steps to create a Huffman Tree
 1. Create nodes that have two data items of each character and its frequency.
 2. Combine lowest two frequency nodes into a tree with a new parent with the sum of their frequencies.
 3. Combine lowest two frequency nodes, including the new node we just created, into a tree with a new parent with the sum of their frequencies.
@@ -95,13 +90,11 @@ MathJax.Hub.Queue(function() {
 
 
 Step 1
-
 ```
 If(1)   U(1)    T(1)    Y(2)    E(2)    A(2)    I(3)    SP(4)   S(6)
 ```
 
 Step 2
-
 ```
 T(1)    (2)     Y(2)    E(2)    A(2)    I(3)    SP(4)   S(6)
        /   \
@@ -109,7 +102,6 @@ T(1)    (2)     Y(2)    E(2)    A(2)    I(3)    SP(4)   S(6)
 ```
 
 Step 3
-
 ```
 Y(2)    E(2)    A(2)    (3)     I(3)    SP(4)   S(6)
                        /   \
@@ -118,9 +110,7 @@ Y(2)    E(2)    A(2)    (3)     I(3)    SP(4)   S(6)
                         If(1) U(1)
 ```
 
-
 Step 4
-
 ```
 A(2)    (3)     I(3)    (4)     SP(4)   S(6)
        /   \           /   \
@@ -129,9 +119,7 @@ A(2)    (3)     I(3)    (4)     SP(4)   S(6)
         If(1) U(1)
 ```
 
-
 Final Huffman Tree
-
 ```
                               Root(24)
                         _________|_________
@@ -173,7 +161,7 @@ Final Huffman Tree
 
 
 
-#### Comparison with Fixed Width Encoding
+### Comparison with Fixed Width Encoding
 
 | Encoding Method     | Total Number of Bits                                            |
 |---------------------|-----------------------------------------------------------------|
@@ -181,5 +169,7 @@ Final Huffman Tree
 | Huffman coding      | $6*1 + 4*2 + 3*3 + 2*4 + 2*5 + 2*6 + 1*7 + 1*8 + 1*8 = 77$      |
 
 
-[Back to Home](index.html)
+---
+
+[Back to Home](../index.html)
 
