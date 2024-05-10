@@ -19,9 +19,9 @@ MathJax.Hub.Queue(function() {
 
 
 
-## 11. Hashing
+# 11. Hashing
 
-### Overview
+## Overview
 
 | Data Structure   | Search Method   | Time Complexity |
 |------------------|-----------------|-----------------|
@@ -33,7 +33,8 @@ MathJax.Hub.Queue(function() {
 
 - Improves the speed of searching
 
-### Conceptual
+
+## Conceptual
 
 1. **Digit Addition**
     - `cats` is stored at $3 + 1 + 20 + 19 = 43$
@@ -48,15 +49,19 @@ MathJax.Hub.Queue(function() {
 
 3. **Modulus (%)**
     - Information loss
-    - Collisions become inevitable due to the Pigeonhole Principle
+    - Collisions are inevitable due to the Pigeonhole Principle
 
----
 
-### Workarounds for Collisions
-1. Open Addressing
-2. Separate Chaining (Closed Addressing)
+## Workarounds for Collisions
 
-#### 1. Open Addressing
+### Load factor ($\alpha$)
+
+- Performance degrades seriously if beyond **two-thirds** full
+
+$$ \alpha = \frac{n}{N} = \frac{\text{number of items}}{\text{length of the array}}$$
+
+### 1. Open Addressing
+
 - **Linear Probing**: searches sequentially through the table until an empty slot is found.
     - Problem: **Primary Clustering**
 
@@ -67,23 +72,16 @@ MathJax.Hub.Queue(function() {
     - Hash function 1 $\rightarrow$ Initial index
     - Hash function 2 $\rightarrow$ Step size
 
-#### 2. Separate Chaining (Closed Addressing)
+### 2. Separate Chaining (Closed Addressing)
 - Separate Chaining creates a linked list at each slot to store all elements that hash to that particular slot.
     - Load factor ($\alpha$) can rise above 1
 
----
 
-### Load factor ($\alpha$)
-
-- Performance degrades seriously if beyond **two-thirds** full
-
-$$ \alpha = \frac{n}{N} = \frac{\text{number of items}}{\text{length of the array}}$$
-
-
-### Rehashing
-- Rehashing: creates a new array twice as large and rehashes everything.
+## Rehashing
+- Rehashing: creates a new array twice as large and rehashes every item.
     - Amortized constant time
 
 
+---
 
-[Back to Home](index.html)
+[Back to Home](../index.html)

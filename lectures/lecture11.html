@@ -383,8 +383,8 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="11-hashing">11. Hashing</h2>
-<h3 id="overview">Overview</h3>
+<h1 id="11-hashing">11. Hashing</h1>
+<h2 id="overview">Overview</h2>
 <table>
 <thead>
 <tr>
@@ -415,7 +415,7 @@ MathJax.Hub.Queue(function() {
 <ul>
 <li>Improves the speed of searching</li>
 </ul>
-<h3 id="conceptual">Conceptual</h3>
+<h2 id="conceptual">Conceptual</h2>
 <ol>
 <li>
 <p><strong>Digit Addition</strong></p>
@@ -444,17 +444,17 @@ MathJax.Hub.Queue(function() {
 <p><strong>Modulus (%)</strong></p>
 <ul>
 <li>Information loss</li>
-<li>Collisions become inevitable due to the Pigeonhole Principle</li>
+<li>Collisions are inevitable due to the Pigeonhole Principle</li>
 </ul>
 </li>
 </ol>
-<hr>
-<h3 id="workarounds-for-collisions">Workarounds for Collisions</h3>
-<ol>
-<li>Open Addressing</li>
-<li>Separate Chaining (Closed Addressing)</li>
-</ol>
-<h4 id="1-open-addressing">1. Open Addressing</h4>
+<h2 id="workarounds-for-collisions">Workarounds for Collisions</h2>
+<h3 id="load-factor-alpha">Load factor ($\alpha$)</h3>
+<ul>
+<li>Performance degrades seriously if beyond <strong>two-thirds</strong> full</li>
+</ul>
+<p>$$ \alpha = \frac{n}{N} = \frac{\text{number of items}}{\text{length of the array}}$$</p>
+<h3 id="1-open-addressing">1. Open Addressing</h3>
 <ul>
 <li>
 <p><strong>Linear Probing</strong>: searches sequentially through the table until an empty slot is found.</p>
@@ -476,7 +476,7 @@ MathJax.Hub.Queue(function() {
 </ul>
 </li>
 </ul>
-<h4 id="2-separate-chaining-closed-addressing">2. Separate Chaining (Closed Addressing)</h4>
+<h3 id="2-separate-chaining-closed-addressing">2. Separate Chaining (Closed Addressing)</h3>
 <ul>
 <li>Separate Chaining creates a linked list at each slot to store all elements that hash to that particular slot.
 <ul>
@@ -484,21 +484,16 @@ MathJax.Hub.Queue(function() {
 </ul>
 </li>
 </ul>
-<hr>
-<h3 id="load-factor-alpha">Load factor ($\alpha$)</h3>
+<h2 id="rehashing">Rehashing</h2>
 <ul>
-<li>Performance degrades seriously if beyond <strong>two-thirds</strong> full</li>
-</ul>
-<p>$$ \alpha = \frac{n}{N} = \frac{\text{number of items}}{\text{length of the array}}$$</p>
-<h3 id="rehashing">Rehashing</h3>
-<ul>
-<li>Rehashing: creates a new array twice as large and rehashes everything.
+<li>Rehashing: creates a new array twice as large and rehashes every item.
 <ul>
 <li>Amortized constant time</li>
 </ul>
 </li>
 </ul>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
