@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lecture18.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style TYPE="text/css">
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // removed 'code' entry
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<h2 id="18-heaps-and-heapsort">18. Heaps and HeapSort</h2>
+<h3 id="heap-overview">Heap Overview</h3>
+<ul>
+<li>
+<p>A heap is a specialized tree-based data structure that satisfies the <strong>shape property</strong> and <strong>heap property</strong>.</p>
+<ul>
+<li><strong>Max Heap</strong>
+<ul>
+<li>In a max heap, the keys of parent nodes are always greater than or equal to those of their children.</li>
+<li>The largest element is found at the root.</li>
+</ul>
+</li>
+<li><strong>Min Heap</strong>
+<ul>
+<li>In a min heap, the keys of parent nodes are always less than or equal to those of their children.</li>
+<li>The smallest element is found at the root.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Properties</p>
+<ul>
+<li>
+<p><strong>Shape Property</strong>: A heap is a <em>complete</em> binary tree.</p>
+</li>
+<li>
+<p><strong>Heap Property</strong>: Each node's key is either greater than or equal to (max heap) or less than or equal to (min heap) the keys of its children.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Analyses</p>
+<ul>
+<li>A heap is NOT a sorted data structure but can be considered as <strong>PARTIALLY ordered</strong>.</li>
+<li>A heap always have the smallest possible height which is logarithmic.</li>
+<li>Heaps are useful to keep getting the object with the highest priority.</li>
+</ul>
+</li>
+<li>
+<p>Operations</p>
+<ul>
+<li><strong>Insert</strong>: Adding a new key to the heap. This is done by adding the new key at the end of the tree (maintaining the shape property) and then adjusting the tree to maintain the heap property, a process known as &quot;heapifying up.&quot;</li>
+<li><strong>Remove Max/Min</strong>: Removing and returning the root element from the heap (the maximum in a max heap or the minimum in a min heap) and then re-adjusting the heap to maintain the heap structure and property.</li>
+<li><strong>Peek</strong>: Returning the value at the root of the heap without removing it, providing quick access to the maximum or minimum element.</li>
+<li><strong>Heapify</strong>: A key operation for transforming an unordered list into a heap. This process involves arranging the nodes to maintain the heap properties.</li>
+</ul>
+</li>
+</ul>
+<h3 id="insert-percolate-up">Insert: Percolate Up</h3>
+<ol>
+<li>Add the new element to the next available position in the tree, ensuring it remains <em>complete</em>.</li>
+<li>If the new element violates the heap-order property of a max-heap, swap it with its parent. Continue this process up the tree until the heap-order is restored.</li>
+</ol>
+<h3 id="remove-maxmin-percolate-down">Remove Max/Min: Percolate Down</h3>
+<ol>
+<li>Remove the root (the maximum key) and replace it with the last node from the bottom level to maintain a complete tree structure.</li>
+<li>Swap the newly positioned node with its larger child if it violates the max-heap property. Continue this adjustment process down the tree until the heap order is fully restored.</li>
+</ol>
+<h3 id="implementation">Implementation</h3>
+<h4 id="interface">Interface</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">MaxHeapInterface</span> </span>{
+    <span class="hljs-comment">/**
+     * Inserts a new key into a heap in O(log n) time.
+     * <span class="hljs-doctag">@param</span> key key to insert
+     * <span class="hljs-doctag">@return</span> boolean to check whether it is successfully inserted or not
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span></span>;
+
+    <span class="hljs-comment">/**
+     * Removes the highest priority key value (maximum key for max heap) in O(log n) time.
+     * <span class="hljs-doctag">@return</span> removed key
+     * <span class="hljs-doctag">@throws</span> NoSuchElementExcpetion when there is nothing to remove (empty heap)
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">removeMax</span><span class="hljs-params">()</span></span>;
+}
+</div></code></pre>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MaxHeap</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MaxHeapInterface</span> </span>{
+    <span class="hljs-comment">/**
+     * An array of Node.
+     */</span>
+    <span class="hljs-keyword">private</span> Node[] heapArray;
+    <span class="hljs-comment">/**
+     * current size of heap array.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> currentSize;
+
+   <span class="hljs-comment">/**
+     * Constructs max heap with initial capacity.
+     * precondition : initialCapacity &gt; 0 and reasonably large enough
+     * <span class="hljs-doctag">@param</span> initialCapacity initial capacity of heap array
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MaxHeap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> initialCapacity)</span> </span>{
+        heapArray = <span class="hljs-keyword">new</span> Node[initialCapacity];
+        currentSize = <span class="hljs-number">0</span>;
+    }
+
+
+
+
+
+    ...
+
+
+
+
+    <span class="hljs-comment">/**
+     * static nested class for Node.
+     *
+     * No references to left and right children
+     * because heap is a complete binary tree and we can use an array
+     * and indices to find children and their parent
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span> </span>{
+        <span class="hljs-comment">/**
+         * Key of node.
+         */</span>
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> key;
+
+        <span class="hljs-comment">/**
+         * Constructs a new node with key.
+         * <span class="hljs-doctag">@param</span> k key
+         */</span>
+        Node(<span class="hljs-keyword">int</span> k) {
+            key = k;
+        }
+    }
+
+    <span class="hljs-comment">/**
+     * A few simple test cases.
+     * Building a max heap and use it to sort in descending order (heap sort)
+     * <span class="hljs-doctag">@param</span> args arguments
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        MaxHeap theHeap = <span class="hljs-keyword">new</span> MaxHeap(<span class="hljs-number">20</span>);
+
+        <span class="hljs-comment">// initial removeMax method should throw NoSuchElementException</span>
+        <span class="hljs-comment">// theHeap.removeMax();</span>
+
+        <span class="hljs-comment">// build a max heap</span>
+        theHeap.insert(<span class="hljs-number">24</span>);
+        theHeap.insert(<span class="hljs-number">5</span>);
+        theHeap.insert(<span class="hljs-number">45</span>);
+        theHeap.insert(<span class="hljs-number">10</span>);
+        theHeap.insert(<span class="hljs-number">45</span>);
+        theHeap.insert(<span class="hljs-number">56</span>);
+        theHeap.insert(<span class="hljs-number">17</span>);
+        theHeap.insert(<span class="hljs-number">24</span>);
+        theHeap.insert(<span class="hljs-number">19</span>);
+        theHeap.insert(<span class="hljs-number">20</span>);
+
+        <span class="hljs-comment">// Now we can use the heap to sort (heap sort)</span>
+        <span class="hljs-keyword">int</span>[] sorted = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[theHeap.size()];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; sorted.length; i++) {
+            sorted[i] = theHeap.removeMax();
+        }
+
+        System.out.println(<span class="hljs-string">"Sorted in descending order: "</span> + Arrays.toString(sorted));
+    }
+
+}
+</div></code></pre>
+<h4 id="insertion">Insertion</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Inserts a new key into a heap in O(log n) time.
+ * <span class="hljs-doctag">@param</span> key key to insert
+ * <span class="hljs-doctag">@return</span> whether insertion is successful
+ */</span>
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span> </span>{
+    <span class="hljs-comment">// If the array is full</span>
+    <span class="hljs-keyword">if</span> (currentSize == heapArray.length) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-comment">// Insert into the next available index position to make sure the heap is complete</span>
+    heapArray[currentSize] = <span class="hljs-keyword">new</span> Node(key);
+
+    <span class="hljs-comment">// Restore the heap-order property</span>
+    percolateUp(currentSize);
+    currentSize = currentSize + <span class="hljs-number">1</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+}
+</div></code></pre>
+<h4 id="percolate-up">Percolate Up</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Helper method to percolate up for insert operation to restore heap-order property of Max Heap.
+ * <span class="hljs-doctag">@param</span> index starting index
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">percolateUp</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>{
+    Node bottom = heapArray[index];
+    <span class="hljs-keyword">int</span> parent = (index - <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;
+
+    <span class="hljs-comment">// Compare with parent and move it down if necessary</span>
+    <span class="hljs-keyword">while</span> (index &gt; <span class="hljs-number">0</span> &amp;&amp; heapArray[parent].key &lt; bottom.key) {
+        heapArray[index] = heapArray[parent]; <span class="hljs-comment">// move parent's node down</span>
+        index = parent; <span class="hljs-comment">// index goes up</span>
+        parent = (parent - <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>; <span class="hljs-comment">// parent also goes up</span>
+    }
+
+    <span class="hljs-comment">// Put the bottom node into the right position</span>
+    heapArray[index] = bottom;
+}
+</div></code></pre>
+<h4 id="removemax">removeMax</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Removes the highest priority key value (maximum key for max heap) in O(log n) time.
+ * <span class="hljs-doctag">@return</span> removed key
+ * <span class="hljs-doctag">@throws</span> NoSuchElementExcpetion when there is nothing to remove (empty heap)
+ */</span>
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">removeMax</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// If array is empty</span>
+    <span class="hljs-keyword">if</span> (currentSize == <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NoSuchElementException(<span class="hljs-string">"The heap is empty"</span>);
+    }
+
+    Node root = heapArray[<span class="hljs-number">0</span>];
+    currentSize = currentSize - <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// Promote the last node to the root</span>
+    heapArray[<span class="hljs-number">0</span>] = heapArray[currentSize];
+    
+    <span class="hljs-comment">// Remove the last node</span>
+    heapArray[currentSize] = <span class="hljs-keyword">null</span>;
+    
+    <span class="hljs-comment">// Restore the heap-order property</span>
+    percolateDown(<span class="hljs-number">0</span>);
+    
+    <span class="hljs-keyword">return</span> root.key;
+}
+
+</div></code></pre>
+<h4 id="percolate-down">Percolate Down</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Helper method to percolate down for removeMax operation to restore the heap-order property of Max Heap.
+ * <span class="hljs-doctag">@param</span> index starting index
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">percolateDown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>{
+    Node top = heapArray[index];
+    
+    <span class="hljs-comment">// Keep track of larger child</span>
+    <span class="hljs-keyword">int</span> largerChild;
+
+    <span class="hljs-comment">// While there is left child (about half of the nodes are leaves)</span>
+    <span class="hljs-keyword">while</span> (index &lt; (currentSize / <span class="hljs-number">2</span>)) {
+        <span class="hljs-keyword">int</span> leftChild = (index * <span class="hljs-number">2</span>) + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">int</span> rightChild = leftChild + <span class="hljs-number">1</span>; <span class="hljs-comment">// or (index + 1) * 2;</span>
+
+        <span class="hljs-comment">// Check the right child is within the boundary of current size and find larger child</span>
+        <span class="hljs-keyword">if</span> ((rightChild &lt; currentSize) &amp;&amp; 
+                heapArray[leftChild].key &lt; heapArray[rightChild].key) {
+            largerChild = rightChild;
+        } <span class="hljs-keyword">else</span> {
+            largerChild = leftChild;
+        }
+
+        <span class="hljs-comment">// If the top's key is bigger than or equal to the largerChild's key, no need to go down any more</span>
+        <span class="hljs-keyword">if</span> (heapArray[largerChild].key &lt;= top.key) {
+            <span class="hljs-keyword">break</span>;
+        }
+
+        <span class="hljs-comment">// Move larger child up</span>
+        heapArray[index] = heapArray[largerChild];
+        index = largerChild;
+    }
+
+    <span class="hljs-comment">// Insert the top node into the right position</span>
+    heapArray[index] = top;
+}
+</div></code></pre>
+<h4 id="size">size</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Returns the current size of heap array.
+ * <span class="hljs-doctag">@return</span> current size
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> currentSize;
+}
+</div></code></pre>
+<h3 id="heap-sort">Heap Sort</h3>
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+<p>Procedure</p>
+<ol>
+<li>
+<p>Build a heap using <code>insert()</code> method.</p>
+</li>
+<li>
+<p>Call <code>removeMax()</code> for max heap or <code>removeMin()</code> for min heap repeatedly to get items in a sorted order.</p>
+</li>
+</ol>
+  </p>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] array = {<span class="hljs-number">4</span>, <span class="hljs-number">10</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>}; <span class="hljs-comment">// Example array</span>
+Heap theHeap = <span class="hljs-keyword">new</span> Heap(array.length); <span class="hljs-comment">// Initialize the heap with the size of the array</span>
+
+<span class="hljs-comment">// Build the heap from the array elements</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; array.length; i++) {
+    theHeap.insert(array[i]); <span class="hljs-comment">// Insert element into the heap</span>
+}
+
+<span class="hljs-comment">// Extract elements from the heap to sort the array</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = array.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+    array[i] = theHeap.removeMax(); <span class="hljs-comment">// Remove the largest element for sorting in ascending order</span>
+}
+
+<span class="hljs-comment">// The array is now sorted in ascending order</span>
+</div></code></pre>
+<ul>
+<li>
+<p>The <code>insert()</code> and <code>removeMax()</code> methods of a heap both operate with a worst-case time complexity of $O(\log n)$;</p>
+</li>
+<li>
+<p>Since each of these operations is applied n times (once for each element in the array), the entire heap sort process runs in $O(n \log n)$ time.</p>
+</li>
+</ul>
+<h3 id="priority-queue">Priority Queue</h3>
+<ul>
+<li>The PriorityQueue class in Java implements a binary heap, which is a min-heap by default.
+<ul>
+<li><code>add(object)</code> or <code>offer(object)</code>: $O(\log n)$</li>
+<li><code>poll()</code>: $O(\log n)$</li>
+<li><code>peek()</code>: $O(1)$</li>
+<li><code>remove(object)</code>: $O(n)$</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> java.util.PriorityQueue;
+<span class="hljs-keyword">import</span> java.util.Comparator;
+
+<span class="hljs-comment">// Define a class to represent a patient</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Patient</span> </span>{
+    String name;
+    <span class="hljs-keyword">int</span> priority;  <span class="hljs-comment">// Higher numbers indicate higher priority</span>
+
+    <span class="hljs-comment">// Constructor for patient</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Patient</span><span class="hljs-params">(String name, <span class="hljs-keyword">int</span> priority)</span> </span>{
+        <span class="hljs-keyword">this</span>.name = name;
+        <span class="hljs-keyword">this</span>.priority = priority;
+    }
+
+    <span class="hljs-comment">// Override toString to display patient information nicely</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> name + <span class="hljs-string">" ("</span> + priority + <span class="hljs-string">")"</span>;
+    }
+}
+
+<span class="hljs-comment">// Main class for the emergency room scenario</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmergencyRoom</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        <span class="hljs-comment">// Comparator for the Patient class to make PriorityQueue a max-heap based on patient priority</span>
+        Comparator&lt;Patient&gt; patientPriorityComparator = <span class="hljs-keyword">new</span> Comparator&lt;Patient&gt;() {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(Patient p1, Patient p2)</span> </span>{
+                <span class="hljs-keyword">return</span> Integer.compare(p2.priority, p1.priority);  <span class="hljs-comment">// Reverse order for max-heap</span>
+            }
+        };
+
+        <span class="hljs-comment">// Create a PriorityQueue with the custom comparator</span>
+        PriorityQueue&lt;Patient&gt; erQueue = <span class="hljs-keyword">new</span> PriorityQueue&lt;&gt;(patientPriorityComparator);
+
+        <span class="hljs-comment">// Adding patients to the ER queue</span>
+        erQueue.add(<span class="hljs-keyword">new</span> Patient(<span class="hljs-string">"Alice"</span>, <span class="hljs-number">2</span>));
+        erQueue.add(<span class="hljs-keyword">new</span> Patient(<span class="hljs-string">"Bob"</span>, <span class="hljs-number">5</span>));
+        erQueue.add(<span class="hljs-keyword">new</span> Patient(<span class="hljs-string">"Charlie"</span>, <span class="hljs-number">1</span>));
+        erQueue.add(<span class="hljs-keyword">new</span> Patient(<span class="hljs-string">"Dana"</span>, <span class="hljs-number">4</span>));
+
+        <span class="hljs-comment">// Processing patients based on priority</span>
+        System.out.println(<span class="hljs-string">"Patients are being treated in the order of their priority:"</span>);
+        <span class="hljs-keyword">while</span> (!erQueue.isEmpty()) {
+            Patient nextPatient = erQueue.poll(); <span class="hljs-comment">// Retrieves and removes the highest priority patient</span>
+            System.out.println(<span class="hljs-string">"Treating patient: "</span> + nextPatient);
+        }
+    }
+}
+</div></code></pre>
+<h3 id="comparison-of-bst-and-heap">Comparison of BST and Heap</h3>
+<h4 id="use-cases">Use Cases</h4>
+<ol>
+<li>
+<p>Which tree is for easier searching?</p>
+<p><strong>BST</strong>: Easier for general searching as it allows for ordered operations like finding the minimum, maximum, predecessor, and successor.</p>
+</li>
+<li>
+<p>Which tree is for retrieving the maximum key quickly?</p>
+<p><strong>Max Heap</strong> (Min Heap for minimum): A max heap is designed to allow quick retrieval of the maximum element.</p>
+</li>
+<li>
+<p>Which tree is guaranteed to be complete or almost complete?</p>
+<p><strong>Max Heap</strong> (or any Heap): Heaps are always complete binary trees by definition.</p>
+</li>
+<li>
+<p>Which tree is guaranteed to be balanced?</p>
+<p>Neither is guaranteed to be balanced in their basic form. A binary search tree can become unbalanced depending on the order of insertion unless it is a self-balancing binary search tree like an AVL or Red-Black Tree. A heap maintains a complete tree structure but not necessarily a balanced tree height in the sense used for balanced search trees.</p>
+</li>
+</ol>
+<h4 id="time-complexities-of-operations">Time Complexities of Operations</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Binary Search Tree</th>
+<th>Max Heap (Min Heap)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Insertion</strong></td>
+<td>O(h)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td><strong>Deletion</strong></td>
+<td>O(h)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td><strong>Search</strong></td>
+<td>O(h)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td><strong>Peek Max (Min)</strong></td>
+<td>N/A</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>$h$ represents the height of the binary search tree, which in the worst case (unbalanced tree) can be O(n), but for balanced BSTs (like AVL, Red-Black trees), it is O(log n).</p>
+</li>
+<li>
+<p>$n$ is the number of elements in the heap or tree.</p>
+</li>
+</ul>
+<p><a href="index.html">Back to Home</a></p>
+
+</body>
+</html>

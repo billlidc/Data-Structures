@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lecture5.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style TYPE="text/css">
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // removed 'code' entry
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<h2 id="5-linkedlist">5. LinkedList</h2>
+<h3 id="java-linkedlist">Java LinkedList</h3>
+<ul>
+<li><code>addFirst(element: Object)</code>: void</li>
+<li><code>addLast(element: Object)</code>: void</li>
+<li><code>getFirst()</code>: Object</li>
+<li><code>getLast()</code>: Object</li>
+<li><code>removeFirst()</code>: Object</li>
+<li><code>removeLast()</code>: Object</li>
+</ul>
+<h3 id="types">Types</h3>
+<ol>
+<li>Singly Linked List</li>
+<li>Doubly Linked List</li>
+<li>Circular Linked List</li>
+</ol>
+<h3 id="java-linkedlist-implementation">Java LinkedList Implementation</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinkedList</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
+    <span class="hljs-keyword">private</span> Node&lt;AnyType&gt; head;
+
+    <span class="hljs-comment">// Constructs an empty list</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LinkedList</span><span class="hljs-params">()</span> </span>{
+        head = <span class="hljs-keyword">null</span>;
+    }
+
+
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> implement all the methods below.</span>
+    ...
+
+
+    <span class="hljs-comment">// Static inner class</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
+        <span class="hljs-keyword">private</span> AnyType data;
+        <span class="hljs-keyword">private</span> Node&lt;AnyType&gt; next;
+
+        <span class="hljs-comment">// Constructor with data and next node</span>
+        Node(AnyType d, Node&lt;AnyType&gt; n) {
+            data = d;
+            next = n;
+        }
+    }
+
+}
+</div></code></pre>
+<ul>
+<li>Types of nested (inner) classes
+<ul>
+<li><strong>Static</strong>: do not have access to the instance variables and methods of the outer class directly.</li>
+<li><strong>Non-static</strong>:  have access to the instance variables and methods of the outer class.</li>
+</ul>
+</li>
+</ul>
+<h3 id="linkedlist-methods">LinkedList Methods</h3>
+<h4 id="addfirst---o1">addFirst - O(1)</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">// Inserts a new item at the beginning of the list</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addFirst</span><span class="hljs-params">(AnyType item)</span> </span>{
+    head = <span class="hljs-keyword">new</span> Node&lt;AnyType&gt;(item, head);
+}
+</div></code></pre>
+<h4 id="traverse-to-the-last-node---on">Traverse to the last node - O(n)</h4>
+<pre class="hljs"><code><div>Node&lt;AnyType&gt; tmp = head;
+<span class="hljs-keyword">while</span> (tmp.next != <span class="hljs-keyword">null</span>) { <span class="hljs-comment">// Stop at the last node</span>
+    tmp = tmp.next;
+}
+</div></code></pre>
+<h4 id="addlast---on">addLast - O(n)</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Inserts a new item to the end of the list.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addLast</span><span class="hljs-params">(AnyType item)</span> </span>{
+    <span class="hljs-comment">// If the list is empty, insert head</span>
+    <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-comment">//head = new Node&lt;AnyType&gt;(item, null);</span>
+        addFirst(item);
+        <span class="hljs-keyword">return</span>;
+    }
+    
+    <span class="hljs-comment">// Traverse to the last element</span>
+    Node&lt;AnyType&gt; tmp = head;
+    <span class="hljs-keyword">while</span> (tmp.next != <span class="hljs-keyword">null</span>) {
+        tmp = tmp.next;
+    }
+    
+    <span class="hljs-comment">// Insert to the end of the list</span>
+    tmp.next = <span class="hljs-keyword">new</span> Node&lt;AnyType&gt;(item, <span class="hljs-keyword">null</span>);
+}
+
+</div></code></pre>
+<h4 id="insertafter---on">insertAfter - O(n)</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Finds a node containing the key and inserts a new item after the node.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insertAfter</span><span class="hljs-params">(AnyType key, AnyType item)</span> </span>{
+    Node&lt;AnyType&gt; tmp = head;
+
+    <span class="hljs-comment">// Find the location with the given key</span>
+    <span class="hljs-keyword">while</span> (tmp != <span class="hljs-keyword">null</span> &amp;&amp; !tmp.data.equals(key)) {
+        tmp = tmp.next;
+    }
+    
+    <span class="hljs-comment">// If the key is found</span>
+    <span class="hljs-keyword">if</span> (tmp != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-comment">// Insert after the node</span>
+        Node&lt;AnyType&gt; newNode = <span class="hljs-keyword">new</span> Node&lt;AnyType&gt;(item, tmp.next);
+        tmp.next = newNode;
+    }
+}
+</div></code></pre>
+<h4 id="insertbefore---on">insertBefore - O(n)</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Finds a node containing the key and inserts a new item before the node.
+ * <span class="hljs-doctag">@param</span> key, a key to be found to add a new element
+ * <span class="hljs-doctag">@param</span> item, a data to be added into the list
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insertBefore</span><span class="hljs-params">(AnyType key, AnyType item)</span> </span>{
+    <span class="hljs-comment">// If the list is empty</span>
+    <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">return</span>;
+    }
+    
+    <span class="hljs-comment">// If head has the key</span>
+    <span class="hljs-keyword">if</span> (head.data.equals(key)) {
+        <span class="hljs-comment">//head = new Node&lt;AnyType&gt;(item, head);</span>
+        addFirst(item);
+        <span class="hljs-keyword">return</span>;
+    }
+    
+    <span class="hljs-comment">/*
+     * If key is not in the head;
+     * Needs to keep track of previous node of current node
+     */</span>
+    Node&lt;AnyType&gt; prev = <span class="hljs-keyword">null</span>;
+    Node&lt;AnyType&gt; cur = head;
+    <span class="hljs-keyword">while</span> (cur != <span class="hljs-keyword">null</span> &amp;&amp; !cur.data.equals(key)) {
+        prev = cur;
+        cur = cur.next;
+    }
+    
+    <span class="hljs-comment">// Found it, add new node before the current node</span>
+    <span class="hljs-keyword">if</span> (cur != <span class="hljs-keyword">null</span>) {
+        prev.next = <span class="hljs-keyword">new</span> Node&lt;AnyType&gt;(item, cur);
+    }
+}
+
+</div></code></pre>
+<h4 id="remove---on">remove - O(n)</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Removes the first occurrence of a key from the list.
+ * <span class="hljs-doctag">@param</span> key, a key to be deleted
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(AnyType key)</span> </span>{
+    <span class="hljs-comment">// If the list is empty</span>
+    <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">return</span>;
+    }
+    
+    <span class="hljs-comment">// If head has the key</span>
+    <span class="hljs-keyword">if</span> (head.data.equals(key)) {
+        head = head.next;
+        <span class="hljs-keyword">return</span>;
+    }
+    
+    <span class="hljs-comment">/*
+     * If key is not in the head;
+     * Needs to keep track of previous node of current node
+     */</span>
+    Node&lt;AnyType&gt; prev = <span class="hljs-keyword">null</span>;
+    Node&lt;AnyType&gt; cur = head;
+    <span class="hljs-keyword">while</span> (cur != <span class="hljs-keyword">null</span> &amp;&amp; !cur.data.equals(key)) {
+        prev = cur;
+        cur = cur.next;
+    }
+    
+    <span class="hljs-comment">// If current node has the key</span>
+    <span class="hljs-keyword">if</span> (cur != <span class="hljs-keyword">null</span>) {
+        prev.next = cur.next;
+    }
+}
+
+</div></code></pre>
+<h3 id="iterableiterator">Iterable/Iterator</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinkedList</span>&lt;<span class="hljs-title">AnyType</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">Iterable</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
+    <span class="hljs-keyword">private</span> Node&lt;AnyType&gt; head;
+
+    <span class="hljs-comment">// Constructs an empty list</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LinkedList</span><span class="hljs-params">()</span> </span>{
+        head = <span class="hljs-keyword">null</span>;
+    }
+
+
+    ...
+
+
+
+    <span class="hljs-comment">/**
+     * Iterator implementation that returns iterator object.
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Iterator&lt;AnyType&gt; <span class="hljs-title">iterator</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> LinkedListIterator&lt;&gt;();
+    }
+
+    <span class="hljs-comment">/**
+     * (Non-static) inner class for LinkedListIterator that implements Iterator interface.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinkedListIterator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Iterator</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
+        <span class="hljs-keyword">private</span> Node&lt;AnyType&gt; nextNode;
+
+        LinkedListIterator() {
+            nextNode = head;
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> nextNode != <span class="hljs-keyword">null</span>;
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> AnyType <span class="hljs-title">next</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-comment">// When there is no next element</span>
+            <span class="hljs-keyword">if</span> (!hasNext()) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NoSuchElementException();
+            }
+
+            AnyType tmp = nextNode.data;
+            nextNode = nextNode.next;
+            <span class="hljs-keyword">return</span> tmp;
+        }
+    }
+}
+</div></code></pre>
+<h3 id="arraylist-vs-linkedlist">ArrayList v.s. LinkedList</h3>
+<ul>
+<li>
+<p>ArrayList:</p>
+<ul>
+<li>Locate element: <code>O(1)</code></li>
+<li>Perform insertion/deletion: <code>O(n)</code></li>
+</ul>
+</li>
+<li>
+<p>LinkedList</p>
+<ul>
+<li>Locate element: <code>O(n)</code></li>
+<li>Perform insertion/deletion: <code>O(1)</code></li>
+</ul>
+</li>
+</ul>
+<p><a href="index.html">Back to Home</a></p>
+
+</body>
+</html>

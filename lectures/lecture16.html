@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lecture16.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style TYPE="text/css">
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // removed 'code' entry
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<h2 id="16-huffman-coding">16. Huffman Coding</h2>
+<h3 id="bst-review">BST Review</h3>
+<ul>
+<li>
+<p>BST can degenerate to LinkedList whose input values are sorted or inversely sorted</p>
+<ul>
+<li>Thus, the worst-case running time complexity for major operations is $O(n)$, not $O(log n)$.</li>
+</ul>
+</li>
+<li>
+<p>Self-Balanced Trees</p>
+<ul>
+<li>Red-Black Tree</li>
+<li>AVL Tree</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed-width-encoding-scheme">Fixed Width Encoding Scheme</h3>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Decimal</th>
+<th>Binary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>65</td>
+<td>1000001</td>
+</tr>
+<tr>
+<td>B</td>
+<td>66</td>
+<td>1000010</td>
+</tr>
+<tr>
+<td>C</td>
+<td>67</td>
+<td>1000011</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>X</td>
+<td>88</td>
+<td>1011000</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>89</td>
+<td>1011001</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>90</td>
+<td>1011010</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Standard ASCII is a fixed width encoding and each character is encoded with 7 bits.</p>
+<ul>
+<li>
+<p>With 7 bits, we can encode $2^7$ different code</p>
+</li>
+<li>
+<p>To encode alphabet A-Z (uppercase only), the smallest number of bit needed is $\log_2 26 = 5$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Using a fixed width encoding scheme where we use $n$ bits for a character set and we want to store or transmit $m$ characters, we need $m * n$ bits for the entire file.</p>
+</li>
+</ul>
+<h3 id="bst-usage-huffman-coding">BST Usage: Huffman Coding</h3>
+<h4 id="overview">Overview</h4>
+<ul>
+<li>
+<p>Huffman Coding: an algorithm that uses binary tree to compress data.</p>
+</li>
+<li>
+<p>Use cases:</p>
+<ul>
+<li><strong>File Compression</strong>: Used in ZIP and GZIP formats to reduce file sizes by encoding frequently used characters with shorter codes.</li>
+<li><strong>Data Transmission</strong>: Optimizes network data transmission by minimizing the data volume, thus saving bandwidth.</li>
+<li><strong>Image Compression</strong>: Integral to the JPEG image compression standard for reducing data size after image transformation and quantization.</li>
+<li><strong>Video Compression</strong>: Utilized in MPEG-2 and other video compression standards to encode common pixel patterns efficiently.</li>
+<li><strong>Error Correction Codes</strong>: Helps in creating efficient error-correcting codes for communication systems to detect and correct data transmission errors.</li>
+<li><strong>Medical Imaging</strong>: Compresses high-resolution medical images to reduce storage demands and facilitate faster network transmission.</li>
+<li><strong>Speech Recognition</strong>: Compresses speech data in speech recognition systems to store and transmit more data efficiently.</li>
+<li><strong>Cryptographic Functions</strong>: Combines with cryptographic techniques to compress and secure data simultaneously, enhancing transmission security and efficiency.</li>
+</ul>
+</li>
+</ul>
+<h4 id="example">Example</h4>
+<blockquote>
+<p>&quot;SUSIE SAYS IT IS EASY&quot;</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Frequency Table</th>
+<th>Count (Frequency)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Space</td>
+<td>4</td>
+</tr>
+<tr>
+<td>I</td>
+<td>3</td>
+</tr>
+<tr>
+<td>A</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>2</td>
+</tr>
+<tr>
+<td>T</td>
+<td>1</td>
+</tr>
+<tr>
+<td>U</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Linefeed</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="steps-to-create-a-huffman-tree">Steps to create a Huffman Tree</h4>
+<ol>
+<li>Create nodes that have two data items of each character and its frequency.</li>
+<li>Combine lowest two frequency nodes into a tree with a new parent with the sum of their frequencies.</li>
+<li>Combine lowest two frequency nodes, including the new node we just created, into a tree with a new parent with the sum of their frequencies.</li>
+<li>Repeat the previous step until we have one tree with all nodes are linked.</li>
+<li>Label all left branches (edges) with 0 and all right branches (edges) with 1.</li>
+</ol>
+<p>Step 1</p>
+<pre class="hljs"><code><div>If(1)   U(1)    T(1)    Y(2)    E(2)    A(2)    I(3)    SP(4)   S(6)
+</div></code></pre>
+<p>Step 2</p>
+<pre class="hljs"><code><div>T(1)    (2)     Y(2)    E(2)    A(2)    I(3)    SP(4)   S(6)
+       /   \
+     If(1) U(1)
+</div></code></pre>
+<p>Step 3</p>
+<pre class="hljs"><code><div>Y(2)    E(2)    A(2)    (3)     I(3)    SP(4)   S(6)
+                       /   \
+                     T(1)  (2)
+                          /   \
+                        If(1) U(1)
+</div></code></pre>
+<p>Step 4</p>
+<pre class="hljs"><code><div>A(2)    (3)     I(3)    (4)     SP(4)   S(6)
+       /   \           /   \
+     T(1)  (2)       Y(2)  E(2)
+          /   \
+        If(1) U(1)
+</div></code></pre>
+<p>Final Huffman Tree</p>
+<pre class="hljs"><code><div>                              Root(24)
+                        _________|_________
+                      0|                  1|
+                     S(6)                 (18)
+                                      _____|_____
+                                    0|          1|
+                                   SP(4)        (14)
+                                             ____|____
+                                           0|        1|
+                                          I(3)       (11)
+                                                   ___|___
+                                                 0|      1|
+                                                 (5)     (6)
+                                               __|__    __|__
+                                             0|    1| 0|    1|
+                                            (3)   A(2) E(2) Y(2)
+                                            __|__
+                                          0|    1|
+                                          T(1)  (2)
+                                              __|__
+                                            0|    1|
+                                            U(1) Lf(1)
+
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Huffman Code</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Space</td>
+<td>10</td>
+<td>4</td>
+</tr>
+<tr>
+<td>I</td>
+<td>110</td>
+<td>3</td>
+</tr>
+<tr>
+<td>A</td>
+<td>1110</td>
+<td>2</td>
+</tr>
+<tr>
+<td>E</td>
+<td>11110</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>111110</td>
+<td>2</td>
+</tr>
+<tr>
+<td>T</td>
+<td>1111110</td>
+<td>1</td>
+</tr>
+<tr>
+<td>U</td>
+<td>11111110</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Linefeed</td>
+<td>11111111</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="comparison-with-fixed-width-encoding">Comparison with Fixed Width Encoding</h4>
+<table>
+<thead>
+<tr>
+<th>Encoding Method</th>
+<th>Total Number of Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fixed width encoding</td>
+<td>$22 * 7 = 154$</td>
+</tr>
+<tr>
+<td>Huffman coding</td>
+<td>$6<em>1 + 4</em>2 + 3<em>3 + 2</em>4 + 2<em>5 + 2</em>6 + 1<em>7 + 1</em>8 + 1*8 = 77$</td>
+</tr>
+</tbody>
+</table>
+<p><a href="index.html">Back to Home</a></p>
+
+</body>
+</html>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lecture15.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style TYPE="text/css">
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // removed 'code' entry
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<h2 id="15-binary-trees-binary-search-trees">15. Binary Trees (Binary Search Trees)</h2>
+<h3 id="overview">Overview</h3>
+<ul>
+<li>Binary Trees combines the advantage of both ordered arrays and LinkedLists.
+<ol>
+<li>Ordered Array
+<ul>
+<li>Using Binary Search, search in $O(\log n)$</li>
+</ul>
+</li>
+<li>LinkedList
+<ul>
+<li>insert: $O(1)$</li>
+<li>delete: $O(1)$</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="binary-trees-terminology">Binary Trees Terminology</h3>
+<ul>
+<li>
+<p>Root: The node at the top of the tree.</p>
+</li>
+<li>
+<p>Parent: When any node (except the root) has exactly one edge running upward to another node. The node above is called parent of the node.</p>
+</li>
+<li>
+<p>Child: Any node may have one or more lines running downward to other nodes. These nodes below the given node called its children.</p>
+</li>
+<li>
+<p>Leaf: A node that has no children is called a leaf. There can be only one root in a tree but there can be many leaves.</p>
+</li>
+<li>
+<p>Level/Height: the level of a particular node refers to how many generations the node is from the root. The root is at level and its children are at level 1 and so on.</p>
+<ul>
+<li>Count the number of edges</li>
+<li>Empty binary tree has height of 0.</li>
+<li>Binary Tree with only the root has height of 0.</li>
+</ul>
+</li>
+<li>
+<p>Balanced vs. unbalanced</p>
+</li>
+<li>
+<p>A binary tree has nodes that contain a data element, a <em>left</em> reference, and a <em>right</em> reference. In other words, every node in a binary tree can have at most two children.</p>
+</li>
+<li>
+<p>A <strong>full</strong> binary tree is a binary tree where each node has either zero or two children.</p>
+</li>
+<li>
+<p>A <strong>complete</strong> binary tree is a binary tree that is completely filled in reading (from left to right) each row with the possible exception of the bottom level.</p>
+</li>
+</ul>
+<h3 id="binary-search-tree">Binary Search Tree</h3>
+<p>The defining characteristic, or the <strong>ordering invariant</strong>, of binary search tree:</p>
+<ul>
+<li>At any node with a key value, k, in a binary search tree
+<ul>
+<li>all keys of the elements in the left sub-tree must be less than k</li>
+<li>all keys of the elements in the right sub-tree must be greater than k.</li>
+<li>Meaning no duplicate keys are allowed.</li>
+</ul>
+</li>
+</ul>
+<h3 id="bst-implementation">BST Implementation</h3>
+<h4 id="interface">Interface</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">BSTInterface</span> </span>{
+
+    <span class="hljs-comment">/**
+     * Searches for the specified key in the tree.
+     * <span class="hljs-doctag">@param</span> key key of the element to search
+     * <span class="hljs-doctag">@return</span> boolean value indication of success or failure
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span></span>;
+
+    <span class="hljs-comment">/**
+     * Inserts a new element into the tree.
+     * <span class="hljs-doctag">@param</span> key key of the element
+     * <span class="hljs-doctag">@param</span> value value of the element
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key, <span class="hljs-keyword">double</span> value)</span></span>;
+
+    <span class="hljs-comment">/**
+     * Deletes an element from the tree using the specified key.
+     * <span class="hljs-doctag">@param</span> key key of the element to delete
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span></span>;
+
+    <span class="hljs-comment">/**
+     * Traverses and prints values of the tree in ascending order based on key.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">traverse</span><span class="hljs-params">()</span></span>;
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BST</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">BSTInterface</span> </span>{
+
+    <span class="hljs-keyword">private</span> Node root;
+    
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">BST</span><span class="hljs-params">()</span> </span>{
+        root = <span class="hljs-keyword">null</span>;
+    }
+
+    <span class="hljs-comment">/**
+     * Searches for the specified key in the tree.
+     * <span class="hljs-doctag">@param</span> key key of the element to search
+     * <span class="hljs-doctag">@return</span> boolean value indication of success or failure
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span> </span>{
+        <span class="hljs-comment">// If empty tree</span>
+        <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+
+        Node curr = root;
+        
+        <span class="hljs-keyword">while</span> (curr.key != key) {
+            <span class="hljs-keyword">if</span> (curr.key &lt; key) { <span class="hljs-comment">// Go right if key is larger than current</span>
+                curr = curr.right;
+            } <span class="hljs-keyword">else</span> { <span class="hljs-comment">// Go left if key is smaller than current</span>
+                curr = curr.left;
+            }
+
+            <span class="hljs-comment">// If not found</span>
+            <span class="hljs-keyword">if</span> (curr == <span class="hljs-keyword">null</span>) { 
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+
+    <span class="hljs-comment">/**
+     * Inserts a new element into the tree.
+     * <span class="hljs-doctag">@param</span> key key of the element
+     * <span class="hljs-doctag">@param</span> value value of the element
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key, <span class="hljs-keyword">double</span> value)</span> </span>{
+        Node newNode = <span class="hljs-keyword">new</span> Node(key, value);
+        <span class="hljs-comment">// If empty tree</span>
+        <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span>) {
+            root = newNode;
+            <span class="hljs-keyword">return</span>;
+        }
+
+        Node parent = root;
+        Node curr = root;
+
+        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+            <span class="hljs-comment">// Ignore duplicate keys</span>
+            <span class="hljs-keyword">if</span> (curr.key == key) {
+                <span class="hljs-keyword">return</span>;
+            }
+
+            parent = curr; <span class="hljs-comment">// update parent</span>
+            <span class="hljs-keyword">if</span> (curr.key &lt; key) {
+                <span class="hljs-comment">// Go right if key is larger than current</span>
+                curr = curr.right;
+                <span class="hljs-keyword">if</span> (curr == <span class="hljs-keyword">null</span>) { <span class="hljs-comment">// Found a spot</span>
+                    parent.right = newNode;
+                    <span class="hljs-keyword">return</span>;
+                }
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-comment">// Go left if key is smaller than current</span>
+                curr = curr.left;
+                <span class="hljs-keyword">if</span> (curr == <span class="hljs-keyword">null</span>) { <span class="hljs-comment">// Found a spot</span>
+                    parent.left = newNode;
+                    <span class="hljs-keyword">return</span>;
+                }
+            }
+        }
+
+    }
+
+
+
+    <span class="hljs-comment">/**
+     * Deletes an element from the tree using the specified key.
+     * <span class="hljs-doctag">@param</span> key key of the element to delete
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span> </span>{
+        
+        <span class="hljs-comment">// If empty tree</span>
+        <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        Node parent = root;
+        Node curr = root;
+
+        <span class="hljs-keyword">boolean</span> isLeftChild = <span class="hljs-keyword">true</span>;
+
+        <span class="hljs-keyword">while</span> (curr.key != key) {
+            parent = curr;
+
+            <span class="hljs-keyword">if</span> (curr.key &lt; key) { <span class="hljs-comment">// Go right</span>
+                isLeftChild = <span class="hljs-keyword">false</span>;
+                curr = curr.right;
+            } <span class="hljs-keyword">else</span> { <span class="hljs-comment">// Go left</span>
+                isLeftChild = <span class="hljs-keyword">true</span>;
+                curr = curr.left;
+            }
+
+            <span class="hljs-comment">// Case 1: not found</span>
+            <span class="hljs-keyword">if</span> (curr == <span class="hljs-keyword">null</span>) {
+                <span class="hljs-keyword">return</span>;
+            }
+        }
+
+        <span class="hljs-keyword">if</span> (curr.left == <span class="hljs-keyword">null</span> &amp;&amp; curr.right == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// Case 2: a leaf</span>
+            
+            <span class="hljs-keyword">if</span> (curr == root) {
+                root = <span class="hljs-keyword">null</span>;
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isLeftChild) {
+                parent.left = <span class="hljs-keyword">null</span>;
+            } <span class="hljs-keyword">else</span> {
+                parent.right = <span class="hljs-keyword">null</span>;
+            }
+
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (curr.right == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// Case 3: one child (left child)</span>
+
+            <span class="hljs-keyword">if</span> (curr == root) {
+                root = curr.left;
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isLeftChild) {
+                parent.left = curr.left;
+            } <span class="hljs-keyword">else</span> {
+                parent.right = curr.left;
+            }
+
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (curr.left == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// Case 3: one child (right child)</span>
+
+            <span class="hljs-keyword">if</span> (curr == root) {
+                root = curr.right;
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isLeftChild) {
+                parent.left = curr.right;
+            } <span class="hljs-keyword">else</span> {
+                parent.right = curr.right;
+            }
+
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// Case 4: two children</span>
+            Node successor = getSuccessor(curr);
+
+            <span class="hljs-keyword">if</span> (curr == root) {
+                root = successor;
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isLeftChild) {
+                parent.left = successor;
+            } <span class="hljs-keyword">else</span> {
+                parent.right = successor;
+            }
+
+            <span class="hljs-comment">// Copy the left subtree</span>
+            successor.left = curr.left;
+        }
+    }
+
+
+
+
+    <span class="hljs-comment">/**
+     * Helper method to find the successor of the toDelete node.
+     * This tries to find the smallest value of the right subtree
+     * of the toDelete node by going down to the left most node in the subtree
+     * <span class="hljs-doctag">@param</span> toDelete node to delete
+     * <span class="hljs-doctag">@return</span> the successor of the toDelete node
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> Node <span class="hljs-title">getSuccessor</span><span class="hljs-params">(Node toDelete)</span> </span>{
+        Node successorParent = toDelete;
+        Node successor = toDelete;
+
+        <span class="hljs-comment">// Search from the root of the right subtree</span>
+        Node curr = toDelete.right;
+
+        <span class="hljs-comment">// Move down to left as far as possible</span>
+        <span class="hljs-keyword">while</span> (curr != <span class="hljs-keyword">null</span>) {
+            successorParent = successor;
+            successor = curr;
+            curr = curr.left;
+        }
+
+        <span class="hljs-comment">/*
+         * Restructure the right subtree if successor is NOT the right child of toDelete
+         */</span>
+        <span class="hljs-keyword">if</span> (successor != toDelete.right) {
+            successorParent.left = successor.right;
+            successor.right = toDelete.right;
+        }
+
+        <span class="hljs-keyword">return</span> successor;
+    }
+
+
+    <span class="hljs-comment">/**
+     * Traverses and prints values of the tree in ascending order based on key.
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">traverse</span><span class="hljs-params">()</span> </span>{
+        StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();
+        inOrderHelper(root, sb);
+        System.out.println(sb);
+    }
+    
+    <span class="hljs-comment">/**
+     * Recursive helper method to traverse the tree.
+     * <span class="hljs-doctag">@param</span> toVisit node to visit
+     * <span class="hljs-doctag">@param</span> sb stringbuilder instance to append values of the node
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">inOrderHelper</span><span class="hljs-params">(Node toVisit, StringBuilder sb)</span> </span>{
+        <span class="hljs-keyword">if</span> (toVisit != <span class="hljs-keyword">null</span>) {
+            inOrderHelper(toVisit.left, sb);
+            sb.append(<span class="hljs-string">"["</span>).append(toVisit.key).append(<span class="hljs-string">","</span>).append(toVisit.value).append(<span class="hljs-string">"]"</span>);
+            inOrderHelper(toVisit.right, sb);
+        }
+    }
+
+
+    <span class="hljs-comment">/**
+     * static nested Node class for Node.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span> </span>{
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> key;
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> value;
+        <span class="hljs-keyword">private</span> Node left;
+        <span class="hljs-keyword">private</span> Node right;
+
+        Node(<span class="hljs-keyword">int</span> k, <span class="hljs-keyword">double</span> v) {
+            key = k;
+            value = v;
+            left = <span class="hljs-keyword">null</span>;
+            right = <span class="hljs-keyword">null</span>;
+        }
+    }
+}
+</div></code></pre>
+<p><a href="index.html">Back to Home</a></p>
+
+</body>
+</html>

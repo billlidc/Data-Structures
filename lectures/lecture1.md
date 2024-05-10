@@ -1,11 +1,31 @@
-## 1. The Big Picture - When to use what and how much does it cost?
+<style TYPE="text/css">
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // removed 'code' entry
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
+
+## 1. The Big Picture
 
 ### Perspective
 
 * **The first priority** as an application programmer is to make the code **work** and **clear** to understand.
 * **Performance** is important.
 * Focusing too much on **performance** can lead to complicated code that is difficult to understand.
+
 
 ### “Big O” Notation
 
@@ -14,8 +34,7 @@
 * Definition: $T(n)=O(f(n))$ if and only if there exists constants $c > 0$ and $n_0 > 0$ such that $T(n) \leq c \cdot f(n)$, $\forall n \geq n_0$.
 
 
-![](./res/graph_of_T_n_f_n_and_2f_n.png)
-
+![](res/graph_of_T_n_f_n_and_2f_n.png)
 
 * Characterstics
 
@@ -23,11 +42,12 @@
 
     - Ignore low order terms: $n^3 + n^2 + n = O(n^3)$
 
+
 ### Big-O Classifications
 
 [Time complexity (Big O) cheat sheet](https://leetcode.com/explore/interview/card/cheatsheets/720/resources/4725/)
 
-![](./res/big_o.png)
+![](res/big_o.png)
 
 * $O(1)$: `Constant`
     * An algorithm does NOT depend on the input size.
@@ -51,11 +71,10 @@
     * Bubble Sort, Selection Sort, Insertion Sort, Quick Sort, Merge Sort, Heap Sort, Linear Search and Binary Search
 * **Graphs**
 
+
+
 ### Flow Chart
-![](./res/flowchart.png)
+![](res/flowchart.png)
 
 
-
-
-
-[Back to Top](#)
+[Back to Home](index.html)

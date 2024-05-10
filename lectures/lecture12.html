@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lecture12.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style TYPE="text/css">
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // removed 'code' entry
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<h2 id="12-hash-table">12. Hash Table</h2>
+<h3 id="hashing-steps">Hashing Steps</h3>
+<p>Object -&gt; int -&gt; hashtable (array)</p>
+<p>Two steps:</p>
+<ol>
+<li>Convert: <code>hashCode()</code></li>
+<li>Compress: %</li>
+</ol>
+<h3 id="operations">Operations</h3>
+<ul>
+<li>search(int key)</li>
+<li>delete(int key)</li>
+<li>insert(int key)</li>
+</ul>
+<h3 id="implementation">Implementation</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HashTable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HashTableInterface</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> DataItem DELETED = <span class="hljs-keyword">new</span> DataItem(-<span class="hljs-number">1</span>);
+    
+    <span class="hljs-keyword">private</span> DataItem[] hashArray;
+    
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashTable</span><span class="hljs-params">(<span class="hljs-keyword">int</span> initialCapacity)</span> </span>{
+        hashArray = <span class="hljs-keyword">new</span> DataItem[initialCapacity];
+    }
+
+    <span class="hljs-comment">/**
+     * Returns true when the key is found.
+     * <span class="hljs-doctag">@param</span> key to search for
+     * <span class="hljs-doctag">@return</span> true if found, false if not found
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span> </span>{
+        <span class="hljs-keyword">int</span> hashVal = hashFunc(key);
+        <span class="hljs-keyword">while</span> (hashArray[hashVal] != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// If the key is found</span>
+            <span class="hljs-keyword">if</span> (hashArray[hashVal].key == key) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            }
+            <span class="hljs-comment">// Linear probing with step size of 1</span>
+            hashVal = hashVal + <span class="hljs-number">1</span>;
+            hashVal = hashVal % hashArray.length;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-comment">/**
+     * Deletes and returns the int key found in the table.
+     * <span class="hljs-doctag">@param</span> key to delete
+     * <span class="hljs-doctag">@return</span> deleted int from the table (if not found, -1)
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">delete</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span> </span>{
+        <span class="hljs-keyword">int</span> hashVal = hashFunc(key);
+
+        <span class="hljs-keyword">while</span> (hashArray[hashVal] != <span class="hljs-keyword">null</span>) {    
+            <span class="hljs-comment">// If the key is found</span>
+            <span class="hljs-keyword">if</span> (hashArray[hashVal].key == key) {
+                DataItem item = hashArray[hashVal];
+                hashArray[hashVal] = DELETED;
+                <span class="hljs-keyword">return</span> item.key;
+            }
+
+            <span class="hljs-comment">// Linear probing with step size of 1</span>
+            hashVal = hashVal + <span class="hljs-number">1</span>;
+            hashVal = hashVal % hashArray.length;
+        }
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-comment">/**
+     * Inserts a positive int key to the table.
+     * <span class="hljs-doctag">@param</span> key to insert (positive and unique)
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span> </span>{
+        <span class="hljs-keyword">int</span> hashVal = hashFunc(key);
+
+        <span class="hljs-comment">// Search for an empty slot or a reusable slot, flagged as DELETED</span>
+        <span class="hljs-keyword">while</span> ((hashArray[hashVal] != <span class="hljs-keyword">null</span>) &amp;&amp; (hashArray[hashVal] != DELETED)) {
+            <span class="hljs-comment">// Linear probing with step size of 1</span>
+            hashVal = hashVal + <span class="hljs-number">1</span>;
+            hashVal = hashVal % hashArray.length;
+        }
+        hashArray[hashVal] = <span class="hljs-keyword">new</span> DataItem(key);
+    }
+
+    <span class="hljs-comment">/**
+     * Rudimentary modular hashing function.
+     * <span class="hljs-doctag">@param</span> key for which hash value need to be calculated (only positive integers)
+     * <span class="hljs-doctag">@return</span> index/hash value of the specified key
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashFunc</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span> </span>{
+        <span class="hljs-keyword">return</span> key % hashArray.length;
+    }
+
+    <span class="hljs-comment">/**
+     * Static nested class for DataItem.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataItem</span> </span>{
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> key;
+        DataItem(<span class="hljs-keyword">int</span> k) {
+            key = k;
+        }
+    }
+
+}
+</div></code></pre>
+<h3 id="aspects-of-good-hash-functions">Aspects of Good Hash Functions</h3>
+<ol>
+<li>Deterministic</li>
+<li>Randomness
+<ol>
+<li>Quick computation - Machine-dependent</li>
+<li>Evenly distributed - Data-dependent</li>
+</ol>
+</li>
+</ol>
+<h4 id="1-random-key-values">1. Random key values</h4>
+<ul>
+<li><code>index = key % hashArray.length;</code></li>
+</ul>
+<h4 id="2-non-random-key-values">2. Non-Random key values</h4>
+<p>Example: Car-part number</p>
+<ul>
+<li>
+<p>No guarantee random between 0 to 999-999-99-99-99-9-999</p>
+<pre class="hljs"><code><div>033-400-03-94-05-0-535
+
+- Digits 0-2: Supplier number (1 to 999, currently up to 70)
+- Digits 3-5: Category code (100, 150, 200, 250, up to 850)
+- Digits 6-7: Month of introduction (1 to 12)
+- Digits 8-9: Year of introduction (00 to 99)
+- Digits 10-11: Serial number (1 to 99, never exceeds 100)
+- Digits 12: Toxic risk flag (0 or 1)
+- Digits 13-15: Checksum (sum of the other fields)
+</div></code></pre>
+</li>
+<li>
+<p>Generate a range of more random numbers</p>
+<ol>
+<li>
+<p><strong>Remove Non-Data</strong>:</p>
+<ul>
+<li>Squeeze key values
+<ul>
+<li>E.g. Category code should be squeezed to 0-15</li>
+</ul>
+</li>
+<li>Remove non-data values
+<ul>
+<li>E.g. Checksum is derived and does not incorporate any new information</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Use All Data</strong>: Incorporate all available data, avoiding truncation of key values.</p>
+</li>
+<li>
+<p><strong>Use Prime Number for Modulo Base</strong>: Select a prime number as the modulo base (hash table length), which prevents clustering of keys that are multiples of the base, promoting a more uniform distribution of hash values.</p>
+</li>
+<li>
+<p><strong>Use Folding</strong>: Divide keys into groups of digits and summing up the groups, which enhances randomness and reduces collisions in the hash table.</p>
+<ul>
+<li>Example: SSN <code>123-45-6789</code>
+<ul>
+<li>For table length $1009$
+<ul>
+<li>Break into groups of three digits: $123 + 456 + 789 = 1368 % 1009 = 359$</li>
+</ul>
+</li>
+<li>For table length $101$
+<ul>
+<li>Break into groups of two digits: $12 + 34 + 56 + 78 + 9 = 189 % 101 = 88$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><a href="index.html">Back to Home</a></p>
+
+</body>
+</html>
