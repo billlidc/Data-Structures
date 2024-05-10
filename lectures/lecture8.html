@@ -383,8 +383,7 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="8-simple-sorting">8. Simple Sorting</h2>
-<h3 id="swap">swap</h3>
+<h1 id="8-simple-sorting">8. Simple Sorting</h1>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * A helper method that swaps two values in an integer array.
  */</span>
@@ -394,7 +393,7 @@ MathJax.Hub.Queue(function() {
     data[two] = temp;
 }
 </div></code></pre>
-<h3 id="bubble-sort">Bubble Sort</h3>
+<h2 id="bubble-sort">Bubble Sort</h2>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Bubble sort, O(n^2) in the worst-case.
  * Focus on the largest value!
@@ -412,18 +411,17 @@ MathJax.Hub.Queue(function() {
 }
 </div></code></pre>
 <ul>
-<li>
-<p>Total comparisons: $\frac{(n-1)n}{2}$</p>
+<li>Total comparisons:
 <ul>
-<li>Arithmetic series formula</li>
-<li>Binomial coefficient: ${n \choose k} = \frac{n!}{k!(n-k)!}$</li>
+<li>Arithmetic series formula
+$$\frac{n(n-1)}{2}$$</li>
+<li>Binomial coefficient
+$${n \choose 2} = \frac{n!}{2!(n-2)!}$$</li>
 </ul>
 </li>
-<li>
-<p>Total swaps: $\frac{(n-1)n}{4}$</p>
-</li>
+<li>Total swaps: $$\frac{n(n-1)}{4}$$</li>
 </ul>
-<h3 id="selection-sort">Selection Sort</h3>
+<h2 id="selection-sort">Selection Sort</h2>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Selection sort, O(n^2).
  * Focus on the smallest value!
@@ -449,7 +447,7 @@ MathJax.Hub.Queue(function() {
 <ul>
 <li>Less number of swaps</li>
 </ul>
-<h3 id="insertion-sort">Insertion Sort</h3>
+<h2 id="insertion-sort">Insertion Sort</h2>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Insertion sort, O(n^2) in the worst case.
  * Best case runntime complexity is O(n).
@@ -481,9 +479,10 @@ MathJax.Hub.Queue(function() {
 }
 </div></code></pre>
 <ul>
-<li>Total comparisons: $\frac{n(n-1)}{4}$</li>
+<li>Total comparisons: $$\frac{n(n-1)}{4}$$</li>
 </ul>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>

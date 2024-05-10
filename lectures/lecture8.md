@@ -19,9 +19,8 @@ MathJax.Hub.Queue(function() {
 
 
 
-## 8. Simple Sorting
+# 8. Simple Sorting
 
-### swap
 ```Java
 /**
  * A helper method that swaps two values in an integer array.
@@ -34,7 +33,7 @@ private static void swap(int[] data, int one, int two) {
 ```
 
 
-### Bubble Sort
+## Bubble Sort
 
 ```Java
 /**
@@ -54,16 +53,16 @@ public static void bubbleSort(int[] data) {
 }
 ```
 
-* Total comparisons: $\frac{(n-1)n}{2}$
-    
+- Total comparisons:
     - Arithmetic series formula
-    - Binomial coefficient: ${n \choose k} = \frac{n!}{k!(n-k)!}$
+        $$\frac{n(n-1)}{2}$$
+    - Binomial coefficient
+        $${n \choose 2} = \frac{n!}{2!(n-2)!}$$
+- Total swaps: $$\frac{n(n-1)}{4}$$
 
-* Total swaps: $\frac{(n-1)n}{4}$
 
 
-
-### Selection Sort
+## Selection Sort
 
 ```Java
 /**
@@ -89,10 +88,10 @@ public static void selectionSort(int[] data) {
 }
 ```
 
-* Less number of swaps
+- Less number of swaps
 
 
-### Insertion Sort
+## Insertion Sort
 
 ```Java
 /**
@@ -126,8 +125,10 @@ public static void insertionSort(int[] data) {
 }
 ```
 
-* Total comparisons: $\frac{n(n-1)}{4}$
+- Total comparisons: $$\frac{n(n-1)}{4}$$
 
 
 
-[Back to Home](index.html)
+---
+
+[Back to Home](../index.html)
