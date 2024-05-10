@@ -19,10 +19,9 @@ MathJax.Hub.Queue(function() {
 
 
 
-## 13. Hashing, HashMap and HashSet in Java
+# 13. Hashing, HashMap and HashSet
 
-
-### Java HashCode
+## Java HashCode
 
 ```Java
 Integer itr = Integer.valueOf(17683);
@@ -38,26 +37,24 @@ str.hashCode();
 - In Javadoc: `cats` is $99*31^3 + 97*31^2 + 116*31^1 + 115*31^0$
 
 
+## Why Base 31?
 
-### Why 31?
-
-
-#### ASCII
+### ASCII Codes
 
 A-Z (65-90), a-z (97-122)
 
-![](./res/probability-of-digits.png)
+- The fifth bit indicates **lowercase**
+    - The uppercase `B` (ASCII 66) is `01000010` in binary.
+    - The lowercase `b` (ASCII 98) is `01100010` in binary.
 
-- The fifth bit indicates "lowercase"
-    - The uppercase 'B' (ASCII 66) is `01000010` in binary.
-    - The lowercase 'b' (ASCII 98) is `01100010` in binary.
+- In the English articles, there are more lowercase letters than uppercase letters
 
-- In the articles, more lowercase letters than uppercase letters
+    ![](../res/probability-of-digits.png)
 
 
-#### Comparison of Base 32 and 31
+### Comparison with Base 32
 
-For base of 32:
+### Base 32
 
 - `ab` is $97 * 32 + 98$
 - Since $32 = 2^5$, perform `97 * 32 + 98` = `97 << 5 + 98`
@@ -71,10 +68,12 @@ For base of 32:
         110010000010
         ```
 
-For base of 31:
+#### Base 31
 
 - `ab` is $97 * 31 + 98$
+
 - Since $32 = 2^5$, perform `97 * 31 + 98` = `97 << 5 - 97 + 98`
+
     - Spreading out the bits:
 
         ```
@@ -89,16 +88,17 @@ For base of 31:
         ```
 
 
-### Analysis of indexFor and hash methods
+## hash() and indexFor()
 
-In Java 7 HashMap:
+In Java 7's HashMap:
 
 ```Java
 int hash = hash(key.hashCode());
 int i = indexFor(hash, table.length);
 ```
 
-#### indexFor
+
+### indexFor()
 
 ```Java
 static int indexFor(int h, int length) {
@@ -106,16 +106,25 @@ static int indexFor(int h, int length) {
 }
 ```
 
-Reason:
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+  Reason:
 
-- Modulus is slow
-- Bitwise operation is fast
+  - Modulus is slow
+  - Bitwise operation (&) is fast
+  </p>
+</div>
 
 
-For example:
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+  Example:
+  
+  - $86 \text{ \% } 8 = 6$
+  - $86 \text{ \& } (8 - 1) = 6$
+  </p>
+</div>
 
-- $86 \% 8 = 6$
-- $86 AND (8 - 1) = 6$
 
 ```
     1010110  <-  86
@@ -124,24 +133,30 @@ AND 0000111  <-   7
     0000110  <-   6
 ```
 
-1. Drop the signed bit (Always positive number)
-2. Ignore higher-order bits (Not using all the data -> Collisions)
+
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
+  Drawbacks:
+
+  1. Drop the signed bit (Always positive number)
+  2. Ignore higher-order bits (Not using all the data -> Collisions)
+  </p>
+</div>
 
 
-#### hash
+
+### hash()
 
 ```Java
 int hash = hash(key.hashCode());
 ```
 
-- Splits 32 bits hashcode into two 16 bits and perform XOR
-    - Folding
+- **Folding**: Splits 32 bits hashcode into two 16 bits and perform XOR
 
 
 
 
-
-### HashMap Example
+## HashMap Example
 
 ```Java
 Map<String, Integer> freqOfWords = new HashMap<String, Integer>(10, 0.65f);
@@ -180,8 +195,7 @@ for (Integer frequency : freqOfWords.values()) {
 ```
 
 
-
-### HashSet Example
+## HashSet Example
 
 Use of dummy object seems a waste of memory?
 
@@ -220,5 +234,7 @@ for (String word : words) {
 
 
 
+---
 
-[Back to Home](index.html)
+[Back to Home](../index.html)
+
