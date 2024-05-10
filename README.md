@@ -3070,7 +3070,9 @@ public int size() {
   <p>
   
   Procedure
+
   1. Build a heap using `insert()` method.
+  
   2. Call `removeMax()` for max heap or `removeMin()` for min heap repeatedly to get items in a sorted order.
 
   </p>
