@@ -18,54 +18,54 @@ MathJax.Hub.Queue(function() {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
 
-## 15. Binary Trees (Binary Search Trees)
+# 15. Binary Trees (Binary Search Trees)
 
+## Overview
 
-### Overview
-- Binary Trees combines the advantage of both ordered arrays and LinkedLists.
+- Binary Trees combines the advantage of both **ordered arrays** and **LinkedLists**.
+
     1. Ordered Array
         - Using Binary Search, search in $O(\log n)$
+
     2. LinkedList
         - insert: $O(1)$
         - delete: $O(1)$
 
 
-### Binary Trees Terminology
+## Binary Trees Terminology
 
-- Root: The node at the top of the tree.
+- **Root**: The node at the top of the tree.
 
-- Parent: When any node (except the root) has exactly one edge running upward to another node. The node above is called parent of the node.
+- **Parent**: When any node (except the root) has exactly one edge running upward to another node. The node above is called parent of the node.
 
-- Child: Any node may have one or more lines running downward to other nodes. These nodes below the given node called its children.
+- **Child**: Any node may have one or more lines running downward to other nodes. These nodes below the given node called its children.
 
-- Leaf: A node that has no children is called a leaf. There can be only one root in a tree but there can be many leaves.
+- **Leaf**: A node that has no children is called a leaf. There can be only one root in a tree but there can be many leaves.
 
-- Level/Height: the level of a particular node refers to how many generations the node is from the root. The root is at level and its children are at level 1 and so on.
+- **Level/Height**: the level of a particular node refers to how many generations the node is from the root. The root is at level and its children are at level 1 and so on.
     - Count the number of edges
-    - Empty binary tree has height of 0.
-    - Binary Tree with only the root has height of 0.
+        - Empty binary tree has height of 0.
+        - Binary Tree with only the root has height of 0.
 
-- Balanced vs. unbalanced
-
+- Balanced v.s. Unbalanced
 
 - A binary tree has nodes that contain a data element, a *left* reference, and a *right* reference. In other words, every node in a binary tree can have at most two children.
 - A **full** binary tree is a binary tree where each node has either zero or two children.
 - A **complete** binary tree is a binary tree that is completely filled in reading (from left to right) each row with the possible exception of the bottom level.
 
 
-
-### Binary Search Tree
+## Binary Search Tree (BST)
 The defining characteristic, or the **ordering invariant**, of binary search tree:
 
 - At any node with a key value, k, in a binary search tree
-    - all keys of the elements in the left sub-tree must be less than k
-    - all keys of the elements in the right sub-tree must be greater than k.
-    - Meaning no duplicate keys are allowed.
+    - all keys of the elements in the left sub-tree must be less than $k$
+    - all keys of the elements in the right sub-tree must be greater than $k$
+    - Meaning no duplicate keys are allowed
 
 
-### BST Implementation
+## BST Implementation
 
-#### Interface
+### BST Interface
 
 ```Java
 public interface BSTInterface {
@@ -266,9 +266,6 @@ public class BST implements BSTInterface {
         }
     }
 
-
-
-
     /**
      * Helper method to find the successor of the toDelete node.
      * This tries to find the smallest value of the right subtree
@@ -346,6 +343,6 @@ public class BST implements BSTInterface {
 ```
 
 
-[Back to Home](index.html)
+---
 
-
+[Back to Home](../index.html)

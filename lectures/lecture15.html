@@ -383,17 +383,20 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="15-binary-trees-binary-search-trees">15. Binary Trees (Binary Search Trees)</h2>
-<h3 id="overview">Overview</h3>
+<h1 id="15-binary-trees-binary-search-trees">15. Binary Trees (Binary Search Trees)</h1>
+<h2 id="overview">Overview</h2>
 <ul>
-<li>Binary Trees combines the advantage of both ordered arrays and LinkedLists.
+<li>
+<p>Binary Trees combines the advantage of both <strong>ordered arrays</strong> and <strong>LinkedLists</strong>.</p>
 <ol>
-<li>Ordered Array
+<li>
+<p>Ordered Array</p>
 <ul>
 <li>Using Binary Search, search in $O(\log n)$</li>
 </ul>
 </li>
-<li>LinkedList
+<li>
+<p>LinkedList</p>
 <ul>
 <li>insert: $O(1)$</li>
 <li>delete: $O(1)$</li>
@@ -402,30 +405,33 @@ MathJax.Hub.Queue(function() {
 </ol>
 </li>
 </ul>
-<h3 id="binary-trees-terminology">Binary Trees Terminology</h3>
+<h2 id="binary-trees-terminology">Binary Trees Terminology</h2>
 <ul>
 <li>
-<p>Root: The node at the top of the tree.</p>
+<p><strong>Root</strong>: The node at the top of the tree.</p>
 </li>
 <li>
-<p>Parent: When any node (except the root) has exactly one edge running upward to another node. The node above is called parent of the node.</p>
+<p><strong>Parent</strong>: When any node (except the root) has exactly one edge running upward to another node. The node above is called parent of the node.</p>
 </li>
 <li>
-<p>Child: Any node may have one or more lines running downward to other nodes. These nodes below the given node called its children.</p>
+<p><strong>Child</strong>: Any node may have one or more lines running downward to other nodes. These nodes below the given node called its children.</p>
 </li>
 <li>
-<p>Leaf: A node that has no children is called a leaf. There can be only one root in a tree but there can be many leaves.</p>
+<p><strong>Leaf</strong>: A node that has no children is called a leaf. There can be only one root in a tree but there can be many leaves.</p>
 </li>
 <li>
-<p>Level/Height: the level of a particular node refers to how many generations the node is from the root. The root is at level and its children are at level 1 and so on.</p>
+<p><strong>Level/Height</strong>: the level of a particular node refers to how many generations the node is from the root. The root is at level and its children are at level 1 and so on.</p>
 <ul>
-<li>Count the number of edges</li>
+<li>Count the number of edges
+<ul>
 <li>Empty binary tree has height of 0.</li>
 <li>Binary Tree with only the root has height of 0.</li>
 </ul>
 </li>
+</ul>
+</li>
 <li>
-<p>Balanced vs. unbalanced</p>
+<p>Balanced v.s. Unbalanced</p>
 </li>
 <li>
 <p>A binary tree has nodes that contain a data element, a <em>left</em> reference, and a <em>right</em> reference. In other words, every node in a binary tree can have at most two children.</p>
@@ -437,19 +443,19 @@ MathJax.Hub.Queue(function() {
 <p>A <strong>complete</strong> binary tree is a binary tree that is completely filled in reading (from left to right) each row with the possible exception of the bottom level.</p>
 </li>
 </ul>
-<h3 id="binary-search-tree">Binary Search Tree</h3>
+<h2 id="binary-search-tree-bst">Binary Search Tree (BST)</h2>
 <p>The defining characteristic, or the <strong>ordering invariant</strong>, of binary search tree:</p>
 <ul>
 <li>At any node with a key value, k, in a binary search tree
 <ul>
-<li>all keys of the elements in the left sub-tree must be less than k</li>
-<li>all keys of the elements in the right sub-tree must be greater than k.</li>
-<li>Meaning no duplicate keys are allowed.</li>
+<li>all keys of the elements in the left sub-tree must be less than $k$</li>
+<li>all keys of the elements in the right sub-tree must be greater than $k$</li>
+<li>Meaning no duplicate keys are allowed</li>
 </ul>
 </li>
 </ul>
-<h3 id="bst-implementation">BST Implementation</h3>
-<h4 id="interface">Interface</h4>
+<h2 id="bst-implementation">BST Implementation</h2>
+<h3 id="bst-interface">BST Interface</h3>
 <pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">BSTInterface</span> </span>{
 
     <span class="hljs-comment">/**
@@ -645,9 +651,6 @@ MathJax.Hub.Queue(function() {
         }
     }
 
-
-
-
     <span class="hljs-comment">/**
      * Helper method to find the successor of the toDelete node.
      * This tries to find the smallest value of the right subtree
@@ -723,7 +726,8 @@ MathJax.Hub.Queue(function() {
     }
 }
 </div></code></pre>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
