@@ -155,7 +155,7 @@ index = key % hashArray.length;
 
 ### 2. Non-Random key values
 
-Example: Car-part number
+#### Example: Car-part number
 
 - Not guaranteed to be random between `0` to `999-999-99-99-99-9-999`
     ```
