@@ -18,10 +18,9 @@ MathJax.Hub.Queue(function() {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
 
-## 17. TreeMap and TreeSet
+# 17. TreeMap and TreeSet
 
-
-### TreeSet
+## TreeSet
 
 ```Java
 TreeSet<Integer> schedule = new TreeSet<Integer>();
@@ -42,8 +41,7 @@ System.out.println(schedule.headSet(1600).last());
 System.out.println(schedule.tailSet(2200).first());
 ```
 
-
-### TreeMap
+## TreeMap
 
 ```Java
 Map<String, Integer> freqOfWords = new HashMap<String, Integer>();
@@ -68,7 +66,7 @@ TreeMap<String, Integer> sortedWords = new TreeMap<String, Integer>(freqOfWords)
 ```
 
 
+---
 
+[Back to Home](../index.html)
 
-
-[Back to Home](index.html)

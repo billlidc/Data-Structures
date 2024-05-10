@@ -383,8 +383,8 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="17-treemap-and-treeset">17. TreeMap and TreeSet</h2>
-<h3 id="treeset">TreeSet</h3>
+<h1 id="17-treemap-and-treeset">17. TreeMap and TreeSet</h1>
+<h2 id="treeset">TreeSet</h2>
 <pre class="hljs"><code><div>TreeSet&lt;Integer&gt; schedule = <span class="hljs-keyword">new</span> TreeSet&lt;Integer&gt;();
 schedule.add(<span class="hljs-number">1223</span>);
 schedule.add(<span class="hljs-number">1430</span>);
@@ -402,7 +402,7 @@ System.out.println(schedule.headSet(<span class="hljs-number">1600</span>).last(
 <span class="hljs-comment">// show the first bus that leaves PGH after 10pm (greater than or equal to)</span>
 System.out.println(schedule.tailSet(<span class="hljs-number">2200</span>).first());
 </div></code></pre>
-<h3 id="treemap">TreeMap</h3>
+<h2 id="treemap">TreeMap</h2>
 <pre class="hljs"><code><div>Map&lt;String, Integer&gt; freqOfWords = <span class="hljs-keyword">new</span> HashMap&lt;String, Integer&gt;();
 String[] words = <span class="hljs-string">"coming together is a beginning keeping together is progress working together is success"</span>
         .split(<span class="hljs-string">" "</span>);
@@ -423,7 +423,8 @@ System.out.println(<span class="hljs-string">"Elements in HashMap: "</span> + fr
 <span class="hljs-comment">// print freqOfWords in ascending order</span>
 TreeMap&lt;String, Integer&gt; sortedWords = <span class="hljs-keyword">new</span> TreeMap&lt;String, Integer&gt;(freqOfWords);
 </div></code></pre>
-<p><a href="index.html">Back to Home</a></p>
+<hr>
+<p><a href="../index.html">Back to Home</a></p>
 
 </body>
 </html>
