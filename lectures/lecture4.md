@@ -219,7 +219,6 @@ Consider:
     $$
     T(n) = n \log n
     $$
-
     $$
     U(n) = 50 n
     $$
