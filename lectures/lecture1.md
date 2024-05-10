@@ -18,63 +18,85 @@ MathJax.Hub.Queue(function() {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
 
-## 1. The Big Picture
+# 1. The Big Picture
 
-### Perspective
+## Perspectives
+- Primary goal for programmers is to create code that is functional and easy to understand.
+- While ensuring good performance is important, it is crucial not to over-prioritize it.
+- Overemphasizing performance can result in unnecessarily complex code, making it hard to manage.
 
-* **The first priority** as an application programmer is to make the code **work** and **clear** to understand.
-* **Performance** is important.
-* Focusing too much on **performance** can lead to complicated code that is difficult to understand.
+## Big-O Notation
+- Big-O notation is a *generalized* metric used to describe the upper bound of an algorithm's runtime or space complexity, expressing how an algorithm's performance scales as input size increases.
 
+- Definition
 
-### “Big O” Notation
+$$
+f(n) = O(g(n)) \text{ if there exist constants } c > 0 \text{ and } n_0 > 0 \text{ such that } 0 \leq f(n) \leq c \cdot g(n) \text{ for all } n \geq n_0.
+$$
 
-* Generalized metric for measuring performance
+![](../res/graph_of_T_n.png)
 
-* Definition: $T(n)=O(f(n))$ if and only if there exists constants $c > 0$ and $n_0 > 0$ such that $T(n) \leq c \cdot f(n)$, $\forall n \geq n_0$.
-
-
-![](res/graph_of_T_n_f_n_and_2f_n.png)
-
-* Characterstics
-
-    - Ignore constants: $1000n = O(n)$
-
-    - Ignore low order terms: $n^3 + n^2 + n = O(n^3)$
+- Characterstics
+    - Constants are ignored: $$ 1000n = O(n) $$
+    - Low-order terms are ignored: $$ n^3 + n^2 + n = O(n^3) $$
 
 
-### Big-O Classifications
+## Big-O Classifications
 
-[Time complexity (Big O) cheat sheet](https://leetcode.com/explore/interview/card/cheatsheets/720/resources/4725/)
+![](../res/big_o.png)
 
-![](res/big_o.png)
 
-* $O(1)$: `Constant`
-    * An algorithm does NOT depend on the input size.
-* $O(log n)$: `Logarithmic`
-    * An algorithm gets **slightly slower** as $n$ grows.
-* $O(n)$: `Linear`
-    * The running time grows as much as $n$ grows (When $n$ doubles, runtime doubles).
-* $O(n \cdot log n)$: `Linearithmic`
-    * Usually the result of performing $O(log n)$ operation $n$ times or performing $O(n)$ operation $log n$ times.
-* $O(n^2)$: `Quadratic`
-* $O(2^n)$: `Exponential`
-* $O(n!)$: `Factorial`
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
 
-### Categories of Data Structures
+  - $O(1)$: **Constant**
+    - The algorithm does NOT depend on the input size.
+  - $O(\log n)$: **Logarithmic**
+    - The algorithm gets slightly slower as $n$ grows.
+  - $O(n)$: **Linear**
+    - The runtime grows as much as $n$ grows (When $n$ doubles, runtime doubles).
+  - $O(n \cdot \log n)$: **Linearithmic**
+    - Usually the result of performing $O(\log n)$ operation $n$ times or performing $O(n)$ operation $log n$ times.
+  - $O(n^2)$: **Quadratic**
+  - $O(2^n)$: **Exponential**
+  - $O(n!)$: **Factorial**
 
-* **General-Purpose Data Structures**
-    * Arrays, Linked Lists, Binary Search Trees and Hash Tables.
-* **Special-Purpose Data Structures (Abstract Data Types (ADTs))**
-    * Stack (LIFO), Queue (FIFO) and Priority Queue
-* **Sorting and Searching**
-    * Bubble Sort, Selection Sort, Insertion Sort, Quick Sort, Merge Sort, Heap Sort, Linear Search and Binary Search
-* **Graphs**
+  </p>
+</div>
 
 
 
-### Flow Chart
-![](res/flowchart.png)
+## Data Structures
+
+- **General-Purpose Data Structures**
+    - Arrays
+    - Linked Lists
+    - Hash Tables
+    - Binary Search Trees
+
+- **Special-Purpose Data Structures (Abstract Data Types (ADTs))**
+    - Stack (LIFO)
+    - Queue (FIFO)
+    - Priority Queues
+
+- **Sorting and Searching**
+    - Linear Search and Binary Search
+    - Bubble Sort
+    - Selection Sort
+    - Insertion Sort
+    - Quick Sort
+    - Merge Sort
+    - Heap Sort
+
+- **Graphs**
 
 
-[Back to Home](index.html)
+## Flow Chart
+![](../res/flowchart.png)
+
+
+
+
+---
+
+[Back to Home](../index.html)

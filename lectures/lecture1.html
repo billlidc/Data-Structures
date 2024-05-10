@@ -383,85 +383,103 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
-<h2 id="1-the-big-picture">1. The Big Picture</h2>
-<h3 id="perspective">Perspective</h3>
+<h1 id="1-the-big-picture">1. The Big Picture</h1>
+<h2 id="perspectives">Perspectives</h2>
 <ul>
-<li><strong>The first priority</strong> as an application programmer is to make the code <strong>work</strong> and <strong>clear</strong> to understand.</li>
-<li><strong>Performance</strong> is important.</li>
-<li>Focusing too much on <strong>performance</strong> can lead to complicated code that is difficult to understand.</li>
+<li>Primary goal for programmers is to create code that is functional and easy to understand.</li>
+<li>While ensuring good performance is important, it is crucial not to over-prioritize it.</li>
+<li>Overemphasizing performance can result in unnecessarily complex code, making it hard to manage.</li>
 </ul>
-<h3 id="big-o-notation">“Big O” Notation</h3>
-<ul>
-<li>
-<p>Generalized metric for measuring performance</p>
-</li>
-<li>
-<p>Definition: $T(n)=O(f(n))$ if and only if there exists constants $c &gt; 0$ and $n_0 &gt; 0$ such that $T(n) \leq c \cdot f(n)$, $\forall n \geq n_0$.</p>
-</li>
-</ul>
-<p><img src="./res/graph_of_T_n_f_n_and_2f_n.png" alt=""></p>
+<h2 id="big-o-notation">Big-O Notation</h2>
 <ul>
 <li>
-<p>Characterstics</p>
-<ul>
-<li>
-<p>Ignore constants: $1000n = O(n)$</p>
+<p>Big-O notation is a <em>generalized</em> metric used to describe the upper bound of an algorithm's runtime or space complexity, expressing how an algorithm's performance scales as input size increases.</p>
 </li>
 <li>
-<p>Ignore low order terms: $n^3 + n^2 + n = O(n^3)$</p>
+<p>Definition</p>
 </li>
 </ul>
+<p>$$
+f(n) = O(g(n)) \text{ if there exist constants } c &gt; 0 \text{ and } n_0 &gt; 0 \text{ such that } 0 \leq f(n) \leq c \cdot g(n) \text{ for all } n \geq n_0.
+$$</p>
+<p><img src="../res/graph_of_T_n.png" alt=""></p>
+<ul>
+<li>Characterstics
+<ul>
+<li>Constants are ignored: $$ 1000n = O(n) $$</li>
+<li>Low-order terms are ignored: $$ n^3 + n^2 + n = O(n^3) $$</li>
+</ul>
 </li>
 </ul>
-<h3 id="big-o-classifications">Big-O Classifications</h3>
-<p><a href="https://leetcode.com/explore/interview/card/cheatsheets/720/resources/4725/">Time complexity (Big O) cheat sheet</a></p>
-<p><img src="./res/big_o.png" alt=""></p>
+<h2 id="big-o-classifications">Big-O Classifications</h2>
+<p><img src="../res/big_o.png" alt=""></p>
+<div style="border: 1px solid black; padding: 10px; margin: 10px;">
+  <p>
 <ul>
-<li>$O(1)$: <code>Constant</code>
+<li>$O(1)$: <strong>Constant</strong>
 <ul>
-<li>An algorithm does NOT depend on the input size.</li>
+<li>The algorithm does NOT depend on the input size.</li>
 </ul>
 </li>
-<li>$O(log n)$: <code>Logarithmic</code>
+<li>$O(\log n)$: <strong>Logarithmic</strong>
 <ul>
-<li>An algorithm gets <strong>slightly slower</strong> as $n$ grows.</li>
+<li>The algorithm gets slightly slower as $n$ grows.</li>
 </ul>
 </li>
-<li>$O(n)$: <code>Linear</code>
+<li>$O(n)$: <strong>Linear</strong>
 <ul>
-<li>The running time grows as much as $n$ grows (When $n$ doubles, runtime doubles).</li>
+<li>The runtime grows as much as $n$ grows (When $n$ doubles, runtime doubles).</li>
 </ul>
 </li>
-<li>$O(n \cdot log n)$: <code>Linearithmic</code>
+<li>$O(n \cdot \log n)$: <strong>Linearithmic</strong>
 <ul>
-<li>Usually the result of performing $O(log n)$ operation $n$ times or performing $O(n)$ operation $log n$ times.</li>
+<li>Usually the result of performing $O(\log n)$ operation $n$ times or performing $O(n)$ operation $log n$ times.</li>
 </ul>
 </li>
-<li>$O(n^2)$: <code>Quadratic</code></li>
-<li>$O(2^n)$: <code>Exponential</code></li>
-<li>$O(n!)$: <code>Factorial</code></li>
+<li>$O(n^2)$: <strong>Quadratic</strong></li>
+<li>$O(2^n)$: <strong>Exponential</strong></li>
+<li>$O(n!)$: <strong>Factorial</strong></li>
 </ul>
-<h3 id="categories-of-data-structures">Categories of Data Structures</h3>
+  </p>
+</div>
+<h2 id="data-structures">Data Structures</h2>
 <ul>
-<li><strong>General-Purpose Data Structures</strong>
+<li>
+<p><strong>General-Purpose Data Structures</strong></p>
 <ul>
-<li>Arrays, Linked Lists, Binary Search Trees and Hash Tables.</li>
+<li>Arrays</li>
+<li>Linked Lists</li>
+<li>Hash Tables</li>
+<li>Binary Search Trees</li>
 </ul>
 </li>
-<li><strong>Special-Purpose Data Structures (Abstract Data Types (ADTs))</strong>
+<li>
+<p><strong>Special-Purpose Data Structures (Abstract Data Types (ADTs))</strong></p>
 <ul>
-<li>Stack (LIFO), Queue (FIFO) and Priority Queue</li>
+<li>Stack (LIFO)</li>
+<li>Queue (FIFO)</li>
+<li>Priority Queues</li>
 </ul>
 </li>
-<li><strong>Sorting and Searching</strong>
+<li>
+<p><strong>Sorting and Searching</strong></p>
 <ul>
-<li>Bubble Sort, Selection Sort, Insertion Sort, Quick Sort, Merge Sort, Heap Sort, Linear Search and Binary Search</li>
+<li>Linear Search and Binary Search</li>
+<li>Bubble Sort</li>
+<li>Selection Sort</li>
+<li>Insertion Sort</li>
+<li>Quick Sort</li>
+<li>Merge Sort</li>
+<li>Heap Sort</li>
 </ul>
 </li>
-<li><strong>Graphs</strong></li>
+<li>
+<p><strong>Graphs</strong></p>
+</li>
 </ul>
-<h3 id="flow-chart">Flow Chart</h3>
+<h2 id="flow-chart">Flow Chart</h2>
 <p><img src="../res/flowchart.png" alt=""></p>
+<hr>
 <p><a href="../index.html">Back to Home</a></p>
 
 </body>
