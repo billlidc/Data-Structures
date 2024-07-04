@@ -137,7 +137,8 @@ List<Integer> numbers = new ArrayList<Integer>(4);
 
 ### Latency Issue of Amortized Constant Time
 
-![](../res/list-append-time-per-operation-showing-amortised-linear-complexity.png)
+<!-- ![](../res/list-append-time-per-operation-showing-amortised-linear-complexity.png) -->
+<img src="../res/list-append-time-per-operation-showing-amortised-linear-complexity.png" alt="Alt text" width="300">
 
 
 ## Binary Search
@@ -169,7 +170,7 @@ public static int binarySearch(int[] data, int key) {
 }
 ```
 
-### Why mid = (l + r)/2?
+### Why NOT `mid = (l + r)/2`
 
 - The **ones' complement** of a binary number is the value obtained by **inverting (flipping) all the bits** in the binary representation of the number.
 
@@ -194,7 +195,7 @@ public static int binarySearch(int[] data, int key) {
 - With $n$ bits, we can represent signed numbers of range:
     $$[–2^{(n-1)}, 2^{(n-1)}–1]$$
 
-- Therefore, use `mid = l + (r - l)/2` to avoid potential integer overflow issue
+- Therefore, do not use ``mid = (l + r)/2` but use `mid = l + (r - l)/2` to avoid potential integer overflow issue
 
 
 ### Time Complexity of Binary Search
