@@ -34,7 +34,8 @@ $$
 f(n) = O(g(n)) \text{ if there exist constants } c > 0 \text{ and } n_0 > 0 \text{ such that } 0 \leq f(n) \leq c \cdot g(n) \text{ for all } n \geq n_0.
 $$
 
-![](../res/graph_of_T_n.png)
+<!-- ![](../res/graph_of_T_n.png) -->
+<img src="../res/graph_of_T_n.png" alt="" width="500">
 
 - Characterstics
     - Constants are ignored: $$ 1000n = O(n) $$
@@ -43,7 +44,8 @@ $$
 
 ## Big-O Classifications
 
-![](../res/big_o.png)
+<!-- ![](../res/big_o.png) -->
+<img src="../res/big_o.png" alt="" width="500">
 
 
 <div style="border: 1px solid black; padding: 10px; margin: 10px;">
