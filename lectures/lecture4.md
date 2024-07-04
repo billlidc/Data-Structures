@@ -138,7 +138,7 @@ List<Integer> numbers = new ArrayList<Integer>(4);
 ### Latency Issue of Amortized Constant Time
 
 <!-- ![](../res/list-append-time-per-operation-showing-amortised-linear-complexity.png) -->
-<img src="../res/list-append-time-per-operation-showing-amortised-linear-complexity.png" alt="Alt text" width="300">
+<img src="../res/list-append-time-per-operation-showing-amortised-linear-complexity.png" alt="" width="300">
 
 
 ## Binary Search
