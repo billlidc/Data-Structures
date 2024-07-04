@@ -28,7 +28,8 @@ MathJax.Hub.Queue(function() {
 ## Java Collections Framework
 - The Java Collections Framework, part of the `java.util` package, comprises a sophisticated set of interfaces and classes designed for handling collections of objects.
 
-    ![](../res/hierarchy.png)
+    <!-- ![](../res/hierarchy.png) -->
+    <img src="../res/hierarchy.png" alt="" width="500">
 
 
 ## Java Collections Interface
