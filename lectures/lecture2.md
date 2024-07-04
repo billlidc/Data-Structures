@@ -63,3 +63,4 @@ MathJax.Hub.Queue(function() {
 ---
 
 [Back to Home](../index.html)
+[Next Lecture](./lecture3.html)

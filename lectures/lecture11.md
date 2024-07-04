@@ -85,3 +85,4 @@ $$ \alpha = \frac{n}{N} = \frac{\text{number of items}}{\text{length of the arra
 ---
 
 [Back to Home](../index.html)
+[Next Lecture](./lecture12.html)

@@ -168,3 +168,4 @@ theQueue.removeFirst();
 ---
 
 [Back to Home](../index.html)
+[Next Lecture](./lecture8.html)

@@ -211,3 +211,4 @@ public class Reverser {
 ---
 
 [Back to Home](../index.html)
+[Next Lecture](./lecture7.html)

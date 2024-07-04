@@ -132,3 +132,4 @@ public static void insertionSort(int[] data) {
 ---
 
 [Back to Home](../index.html)
+[Next Lecture](./lecture9.html)

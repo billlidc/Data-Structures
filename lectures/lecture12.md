@@ -193,3 +193,4 @@ index = key % hashArray.length;
 ---
 
 [Back to Home](../index.html)
+[Next Lecture](./lecture13.html)

@@ -153,3 +153,4 @@ public static char[] delete(char[] data, int index) {
 ---
 
 [Back to Home](../index.html)
+[Next Lecture](./lecture4.html)

@@ -240,3 +240,4 @@ Consider:
 ---
 
 [Back to Home](../index.html)
+[Next Lecture](./lecture5.html)

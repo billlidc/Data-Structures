@@ -285,3 +285,4 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 ---
 
 [Back to Home](../index.html)
+[Next Lecture](./lecture6.html)

@@ -196,3 +196,4 @@ Collections.sort(cards, new CompareBySuitRank());
 ---
 
 [Back to Home](../index.html)
+[Next Lecture](./lecture10.html)
