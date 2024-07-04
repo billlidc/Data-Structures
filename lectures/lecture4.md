@@ -195,7 +195,7 @@ public static int binarySearch(int[] data, int key) {
 - With $n$ bits, we can represent signed numbers of range:
     $$[–2^{(n-1)}, 2^{(n-1)}–1]$$
 
-- Therefore, do not use ``mid = (l + r)/2` but use `mid = l + (r - l)/2` to avoid potential integer overflow issue
+- Therefore, do not use `mid = (l + r)/2` but use `mid = l + (r - l)/2` to avoid potential integer overflow issue
 
 
 ### Time Complexity of Binary Search
