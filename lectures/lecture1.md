@@ -38,8 +38,8 @@ $$
 <img src="../res/graph_of_T_n.png" alt="" width="500">
 
 - Characterstics
-    - Constants are ignored: $$ 1000n = O(n) $$
-    - Low-order terms are ignored: $$ n^3 + n^2 + n = O(n^3) $$
+    - Constants are ignored: $1000n = O(n)$
+    - Low-order terms are ignored: $n^3 + n^2 + n = O(n^3)$
 
 
 ## Big-O Classifications
@@ -57,8 +57,8 @@ $$
     - The algorithm gets slightly slower as $n$ grows.
   - $O(n)$: **Linear**
     - The runtime grows as much as $n$ grows (When $n$ doubles, runtime doubles).
-  - $O(n \cdot \log n)$: **Linearithmic**
-    - Usually the result of performing $O(\log n)$ operation $n$ times or performing $O(n)$ operation $log n$ times.
+  - $O(n \log n)$: **Linearithmic**
+    - Usually the result of performing $O(\log n)$ operation $n$ times or performing $O(n)$ operation $\log n$ times.
   - $O(n^2)$: **Quadratic**
   - $O(2^n)$: **Exponential**
   - $O(n!)$: **Factorial**
