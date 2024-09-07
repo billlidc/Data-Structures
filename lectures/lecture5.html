@@ -561,6 +561,14 @@ MathJax.Hub.Queue(function() {
 
 </div></code></pre>
 <h2 id="iterableiterator">Iterable/Iterator</h2>
+<ul>
+<li>
+<p>The <strong>outer</strong> <code>LinkedList</code> class implements the <code>Iterable</code> interface, which requires the class to override the <code>iterator()</code> method. This method returns an instance of the inner <code>LinkedListIterator</code>, enabling the LinkedList to be iterated using a for-each loop or manually via an iterator.</p>
+</li>
+<li>
+<p>The <strong>inner</strong> <code>LinkedListIterator</code> class implements the <code>Iterator</code> interface, which requires overriding the <code>hasNext()</code> and <code>next()</code> methods. These methods respectively check if there are more elements to iterate over and retrieve the next element in the linked list during iteration.</p>
+</li>
+</ul>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> java.util.*;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinkedList</span>&lt;<span class="hljs-title">AnyType</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">Iterable</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{

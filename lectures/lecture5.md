@@ -221,6 +221,11 @@ public void remove(AnyType key) {
 
 ## Iterable/Iterator
 
+- The **outer** `LinkedList` class implements the `Iterable` interface, which requires the class to override the `iterator()` method. This method returns an instance of the inner `LinkedListIterator`, enabling the LinkedList to be iterated using a for-each loop or manually via an iterator.
+
+- The **inner** `LinkedListIterator` class implements the `Iterator` interface, which requires overriding the `hasNext()` and `next()` methods. These methods respectively check if there are more elements to iterate over and retrieve the next element in the linked list during iteration.
+
+
 ```Java
 import java.util.*;
 
