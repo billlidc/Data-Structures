@@ -386,20 +386,48 @@ MathJax.Hub.Queue(function() {
 <h1 id="2-collections">2. Collections</h1>
 <h2 id="overview">Overview</h2>
 <ul>
-<li>Collection is a set of items or objects procured or gathered together by a person, group, or other agent.</li>
+<li><strong>Collection</strong> is a set of items or objects.</li>
 </ul>
-<h2 id="java-collections-framework">Java Collections Framework</h2>
-<ul>
-<li>
-<p>The Java Collections Framework, part of the <code>java.util</code> package, comprises a sophisticated set of interfaces and classes designed for handling collections of objects.</p>
-  <!-- ![](../res/hierarchy.png) -->
-  <img src="../res/hierarchy.png" alt="" width="500">
-</li>
-</ul>
-<h2 id="java-collections-interface">Java Collections Interface</h2>
+<h2 id="java-collections">Java Collections</h2>
 <blockquote>
 <p><code>java.util.Collection</code></p>
 </blockquote>
+<ul>
+<li>
+<p>The Java Collections Framework, comprises a sophisticated set of <strong>interfaces</strong> and <strong>classes</strong> designed for handling collections of objects.</p>
+  <!-- ![](../res/hierarchy.png) -->
+  <img src="../res/hierarchy.png" alt="" width="500">
+<ul>
+<li>
+<p><strong>List</strong> extends (child of) <code>Collection</code></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">List</span>&lt;<span class="hljs-title">E</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">Collection</span>&lt;<span class="hljs-title">E</span>&gt;
+</span></div></code></pre>
+<ul>
+<li><strong>Allows duplicates</strong></li>
+<li>Introduces positional indexing</li>
+</ul>
+</li>
+<li>
+<p><strong>Set</strong> extends (child of) <code>Collection</code></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Set</span>&lt;<span class="hljs-title">E</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">Collection</span>&lt;<span class="hljs-title">E</span>&gt;
+</span></div></code></pre>
+<ul>
+<li><strong>Does NOT allow duplicates</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Map</strong> does NOT extend (not child of) <code>Collection</code>, but still considered to be part of the Java Collection framework.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Map</span>&lt;<span class="hljs-title">K</span>, <span class="hljs-title">V</span>&gt;
+</span></div></code></pre>
+<ul>
+<li>Collection of key-value pairs.</li>
+<li><strong>Does NOT allow duplicate keys</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Interface Implementations</p>
 <table>
 <thead>
 <tr>
@@ -422,19 +450,6 @@ MathJax.Hub.Queue(function() {
 </tr>
 </tbody>
 </table>
-<ul>
-<li>
-<p><strong>List</strong> extends Collection, allows duplicates and introduces positional indexing.</p>
-</li>
-<li>
-<p><strong>Set</strong> extends Collection and does NOT allow duplicates.</p>
-</li>
-<li>
-<p><strong>Map</strong> does NOT extend Collection, but still considered to be part of the Java Collection framework.</p>
-<ul>
-<li>Map is a collection of key-value pairs.</li>
-<li>Map does NOT contain duplicate keys.</li>
-</ul>
 </li>
 </ul>
 <h2 id="common-operations-of-collections">Common Operations of Collections</h2>

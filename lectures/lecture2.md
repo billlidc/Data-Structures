@@ -23,32 +23,45 @@ MathJax.Hub.Queue(function() {
 # 2. Collections
 
 ## Overview
-- Collection is a set of items or objects procured or gathered together by a person, group, or other agent.
+- **Collection** is a set of items or objects.
 
-## Java Collections Framework
-- The Java Collections Framework, part of the `java.util` package, comprises a sophisticated set of interfaces and classes designed for handling collections of objects.
+## Java Collections
+> `java.util.Collection`
+
+- The Java Collections Framework, comprises a sophisticated set of **interfaces** and **classes** designed for handling collections of objects.
 
     <!-- ![](../res/hierarchy.png) -->
     <img src="../res/hierarchy.png" alt="" width="500">
 
+    - **List** extends (child of) `Collection`
+        ```java
+        public interface List<E> extends Collection<E>
+        ```
+        - **Allows duplicates**
+        - Introduces positional indexing
 
-## Java Collections Interface
+    - **Set** extends (child of) `Collection`
+        ```java
+        public interface Set<E> extends Collection<E>
+        ```
+        - **Does NOT allow duplicates**
 
-> `java.util.Collection`
+    - **Map** does NOT extend (not child of) `Collection`, but still considered to be part of the Java Collection framework.
+        ```java
+        public interface Map<K, V>
+        ```
+        - Collection of key-value pairs.
+        - **Does NOT allow duplicate keys**
 
-| Interface | Implementation          |
-|-----------|-------------------------|
-| List      | ArrayList, LinkedList   |
-| Set       | HashSet, TreeSet        |
-| Map       | HashMap, TreeMap        |
 
-- **List** extends Collection, allows duplicates and introduces positional indexing.
+- Interface Implementations
 
-- **Set** extends Collection and does NOT allow duplicates.
+    | Interface | Implementation          |
+    |-----------|-------------------------|
+    | List      | ArrayList, LinkedList   |
+    | Set       | HashSet, TreeSet        |
+    | Map       | HashMap, TreeMap        |
 
-- **Map** does NOT extend Collection, but still considered to be part of the Java Collection framework.
-    - Map is a collection of key-value pairs.
-    - Map does NOT contain duplicate keys.
 
 
 ## Common Operations of Collections
