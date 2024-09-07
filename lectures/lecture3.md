@@ -23,106 +23,95 @@ MathJax.Hub.Queue(function() {
 
 ## Characteristics of Arrays
 
-- In Java, arrays can store both primitive types and object references, making them effective for organizing sequential data efficiently.
+- Arrays in Java can store both **primitive types** and **object references**, effective for organizing sequential data.
 
-- An array is characterized by `clone()` method for duplication and an immutable field `length`, which defines its capacity.
+- An array is characterized by `clone()` method for duplication and an *immutable* field `length`, which defines its capacity.
+
+- Array indexing conventionally begins at $0$:
+
+$$ \text{Element's memory location} = \text{Array's memory location} + \text{Element length} \times \text{No. Element} $$
 
 
-## Arrays in Java
 
-### Comparison
-Array `a` and `b` are two Object instances:
+## Static Methods in Arrays Class
+> `java.util.Arrays`
+
+Array `a` and array `b` are *Object* instances:
 
 ```Java
 int[] a = {1, 2, 3, 4, 5};
 int[] b = {1, 2, 3, 4, 5};
+```
 
+
+### `Arrays.equals(array1, array2)`
+
+```java
 if (Arrays.equals(a, b)) {
     System.out.println("Arrays with same contents");
 }
-
-if (a == b) {
-    System.out.println("a == b is true");
-} else {
-    System.out.println("a == b is false");
-}
 ```
 
-- `a == b` checks reference/identity, returns `false`;
-- `a.equals(b)` of the Object class also checks reference/identity, returns `false`.
+- Using `a == b` will check for reference/identity, returns `false`
+- Using `a.equals(b)` of *Object* class will check for reference/identity, returns `false`
 
 
-### toString
-```Java
-System.out.println(c); // The same as calling c.toString()
-System.out.println(c.toString());
-```
+### `Arrays.toString(array)`
 
-- Hexadecimal representation of hashcode of the memory address will be printed
-
-
-### Array Index
-Array indexing conventionally begins at 0:
-
-- `Element's memory location = Array's memory location + Element length * Element`
-
-
-## Static Methods in Arrays Class
-
-> `java.util.Arrays`
-
-### Check equality
-```Java
-Arrays.equals(a, b);
-```
-
-### Printing values
 ```Java
 System.out.print(Arrays.toString(c));
 ```
 
-### Sorting
+- Using `arr` and `arr.toString()` will return the hexadecimal representation of hashcode of the memory address
+
+
+### `Arrays.sort(array)`
+
 ```Java
-Arrays.sort(c)
+Arrays.sort(a);
 ```
 
 ### Copying
-1. ```Arrays.copyOf(sA, length);```
 
-    ```Java
-    int[] d = Arrays.copyOf(a, 2);
-    // d = [1, 2]
+```Arrays.copyOf(srcArr, length);```
 
-    int[] d = Arrays.copyOf(a, 10);
-    // d = [1, 2, 3, 4, 5, 0, 0, 0, 0, 0]
-    ```
+```Java
+int[] d = Arrays.copyOf(a, 2);
+// d = [1, 2]
 
-2. ```System.arraycopy(sA, sI, dA, dI, length);```
+int[] d = Arrays.copyOf(a, 10);
+// d = [1, 2, 3, 4, 5, 0, 0, 0, 0, 0]
+```
 
-    ```Java
-    int[] e = new int[5];
-    System.arraycopy(a, 0, e, 0, 3);
-    // e = [1, 2, 3, 0, 0]
-    ```
 
-3. ```clone()```
+```System.arraycopy(srcArr, srcIdx, desArr, desIdx, length);```
 
-    ```Java
-    int[] g = {1, 2, 3, 4, 5};
-    int[] h = g.clone();
-    ```
+```Java
+int[] e = new int[5];
+System.arraycopy(a, 0, e, 0, 3);
+// e = [1, 2, 3, 0, 0]
+```
+
+```array.clone()```
+
+```Java
+int[] g = {1, 2, 3, 4, 5};
+int[] h = g.clone();
+```
 
 - The above three ways perform *Shallow Copy*, which means it creates a new instance and copies all the fields of the object to that new instance where both are referencing to the same memory in heap memory.
-    - Arrays of **primitive data types**: copies the value;
-    - Arrays of **objects** or **references**: copies the reference of every single object; modifying a object affects other arrays
+    
+    - Arrays of **primitive types**: copies the value
+    
+    - Arrays of **objects references**: copies the reference of every single object; modifying a object will affect other arrays
+        
         - Solution: Adjust the code to perform *Deep Copy*
-
 
 
 ## Resizing Array
 
 - Once an array is created, the length is fixed and cannot be changed.
-- Resize by creating a new array with a different length and copying all or some of the values from the old array to the new array.
+- Resize the array by creating a new array with a different length and copying all or some of the values from the old array to the new array.
 
 ```Java
 /**
@@ -145,9 +134,9 @@ public static char[] delete(char[] data, int index) {
 - Insertion at back: $O(1)$
 - Insertion at front: $O(n)$
 - Insertion in middle: $O(n)$
-- Searching (linear search): $O(n)$
+- Searching (Linear Search): $O(n)$
 - Deletion: $O(n)$
-- Access to an element with its index: $O(1)$
+- Access to an element with index: $O(1)$
 
 
 ---

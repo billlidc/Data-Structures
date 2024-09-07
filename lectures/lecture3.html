@@ -387,87 +387,68 @@ MathJax.Hub.Queue(function() {
 <h2 id="characteristics-of-arrays">Characteristics of Arrays</h2>
 <ul>
 <li>
-<p>In Java, arrays can store both primitive types and object references, making them effective for organizing sequential data efficiently.</p>
+<p>Arrays in Java can store both <strong>primitive types</strong> and <strong>object references</strong>, effective for organizing sequential data.</p>
 </li>
 <li>
-<p>An array is characterized by <code>clone()</code> method for duplication and an immutable field <code>length</code>, which defines its capacity.</p>
+<p>An array is characterized by <code>clone()</code> method for duplication and an <em>immutable</em> field <code>length</code>, which defines its capacity.</p>
+</li>
+<li>
+<p>Array indexing conventionally begins at $0$:</p>
 </li>
 </ul>
-<h2 id="arrays-in-java">Arrays in Java</h2>
-<h3 id="comparison">Comparison</h3>
-<p>Array <code>a</code> and <code>b</code> are two Object instances:</p>
-<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] a = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
-<span class="hljs-keyword">int</span>[] b = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
-
-<span class="hljs-keyword">if</span> (Arrays.equals(a, b)) {
-    System.out.println(<span class="hljs-string">"Arrays with same contents"</span>);
-}
-
-<span class="hljs-keyword">if</span> (a == b) {
-    System.out.println(<span class="hljs-string">"a == b is true"</span>);
-} <span class="hljs-keyword">else</span> {
-    System.out.println(<span class="hljs-string">"a == b is false"</span>);
-}
-</div></code></pre>
-<ul>
-<li><code>a == b</code> checks reference/identity, returns <code>false</code>;</li>
-<li><code>a.equals(b)</code> of the Object class also checks reference/identity, returns <code>false</code>.</li>
-</ul>
-<h3 id="tostring">toString</h3>
-<pre class="hljs"><code><div>System.out.println(c); <span class="hljs-comment">// The same as calling c.toString()</span>
-System.out.println(c.toString());
-</div></code></pre>
-<ul>
-<li>Hexadecimal representation of hashcode of the memory address will be printed</li>
-</ul>
-<h3 id="array-index">Array Index</h3>
-<p>Array indexing conventionally begins at 0:</p>
-<ul>
-<li><code>Element's memory location = Array's memory location + Element length * Element</code></li>
-</ul>
+<p>$$ \text{Element's memory location} = \text{Array's memory location} + \text{Element length} \times \text{No. Element} $$</p>
 <h2 id="static-methods-in-arrays-class">Static Methods in Arrays Class</h2>
 <blockquote>
 <p><code>java.util.Arrays</code></p>
 </blockquote>
-<h3 id="check-equality">Check equality</h3>
-<pre class="hljs"><code><div>Arrays.equals(a, b);
+<p>Array <code>a</code> and array <code>b</code> are <em>Object</em> instances:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] a = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+<span class="hljs-keyword">int</span>[] b = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
 </div></code></pre>
-<h3 id="printing-values">Printing values</h3>
+<h3 id="arraysequalsarray1-array2"><code>Arrays.equals(array1, array2)</code></h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (Arrays.equals(a, b)) {
+    System.out.println(<span class="hljs-string">"Arrays with same contents"</span>);
+}
+</div></code></pre>
+<ul>
+<li>Using <code>a == b</code> will check for reference/identity, returns <code>false</code></li>
+<li>Using <code>a.equals(b)</code> of <em>Object</em> class will check for reference/identity, returns <code>false</code></li>
+</ul>
+<h3 id="arraystostringarray"><code>Arrays.toString(array)</code></h3>
 <pre class="hljs"><code><div>System.out.print(Arrays.toString(c));
 </div></code></pre>
-<h3 id="sorting">Sorting</h3>
-<pre class="hljs"><code><div>Arrays.sort(c)
+<ul>
+<li>Using <code>arr</code> and <code>arr.toString()</code> will return the hexadecimal representation of hashcode of the memory address</li>
+</ul>
+<h3 id="arrayssortarray"><code>Arrays.sort(array)</code></h3>
+<pre class="hljs"><code><div>Arrays.sort(a);
 </div></code></pre>
 <h3 id="copying">Copying</h3>
-<ol>
-<li>
-<p><code>Arrays.copyOf(sA, length);</code></p>
+<p><code>Arrays.copyOf(srcArr, length);</code></p>
 <pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] d = Arrays.copyOf(a, <span class="hljs-number">2</span>);
 <span class="hljs-comment">// d = [1, 2]</span>
 
 <span class="hljs-keyword">int</span>[] d = Arrays.copyOf(a, <span class="hljs-number">10</span>);
 <span class="hljs-comment">// d = [1, 2, 3, 4, 5, 0, 0, 0, 0, 0]</span>
 </div></code></pre>
-</li>
-<li>
-<p><code>System.arraycopy(sA, sI, dA, dI, length);</code></p>
+<p><code>System.arraycopy(srcArr, srcIdx, desArr, desIdx, length);</code></p>
 <pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] e = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">5</span>];
 System.arraycopy(a, <span class="hljs-number">0</span>, e, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>);
 <span class="hljs-comment">// e = [1, 2, 3, 0, 0]</span>
 </div></code></pre>
-</li>
-<li>
-<p><code>clone()</code></p>
+<p><code>array.clone()</code></p>
 <pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] g = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
 <span class="hljs-keyword">int</span>[] h = g.clone();
 </div></code></pre>
+<ul>
+<li>
+<p>The above three ways perform <em>Shallow Copy</em>, which means it creates a new instance and copies all the fields of the object to that new instance where both are referencing to the same memory in heap memory.</p>
+<ul>
+<li>
+<p>Arrays of <strong>primitive types</strong>: copies the value</p>
 </li>
-</ol>
-<ul>
-<li>The above three ways perform <em>Shallow Copy</em>, which means it creates a new instance and copies all the fields of the object to that new instance where both are referencing to the same memory in heap memory.
-<ul>
-<li>Arrays of <strong>primitive data types</strong>: copies the value;</li>
-<li>Arrays of <strong>objects</strong> or <strong>references</strong>: copies the reference of every single object; modifying a object affects other arrays
+<li>
+<p>Arrays of <strong>objects references</strong>: copies the reference of every single object; modifying a object will affect other arrays</p>
 <ul>
 <li>Solution: Adjust the code to perform <em>Deep Copy</em></li>
 </ul>
@@ -478,7 +459,7 @@ System.arraycopy(a, <span class="hljs-number">0</span>, e, <span class="hljs-num
 <h2 id="resizing-array">Resizing Array</h2>
 <ul>
 <li>Once an array is created, the length is fixed and cannot be changed.</li>
-<li>Resize by creating a new array with a different length and copying all or some of the values from the old array to the new array.</li>
+<li>Resize the array by creating a new array with a different length and copying all or some of the values from the old array to the new array.</li>
 </ul>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Remove item at the specified index and return a new array;
@@ -499,9 +480,9 @@ System.arraycopy(a, <span class="hljs-number">0</span>, e, <span class="hljs-num
 <li>Insertion at back: $O(1)$</li>
 <li>Insertion at front: $O(n)$</li>
 <li>Insertion in middle: $O(n)$</li>
-<li>Searching (linear search): $O(n)$</li>
+<li>Searching (Linear Search): $O(n)$</li>
 <li>Deletion: $O(n)$</li>
-<li>Access to an element with its index: $O(1)$</li>
+<li>Access to an element with index: $O(1)$</li>
 </ul>
 <hr>
 <p><a href="../index.html">Back to Home</a>
