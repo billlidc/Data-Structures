@@ -41,6 +41,19 @@ $$
     - Constants are ignored: $1000n = O(n)$
     - Low-order terms are ignored: $n^3 + n^2 + n = O(n^3)$
 
+- It is essential to consider **constants** sincne Big-O represents an **upper bound** on the growth rate of an algorithm's complexity.
+
+    Consider:
+  
+    $$ T(n) = n \log n $$
+    $$ U(n) = 50 n $$
+
+  - $T(n) = U(n) \text{ if } n = 2^{50}$
+      - If $n$ is small ($< 2^{50}$) $ \Rightarrow U(n) \text{ grows more slowly than } T(n)$
+      - If $n$ is large ($> 2^{50}$) $ \Rightarrow T(n) \text{ grows more slowly than } U(n)$
+  - In the case, **$U(n)$ might be preferred** since $n$ is more likely to be $< 2^{50}$
+
+
 
 ## Big-O Classifications
 

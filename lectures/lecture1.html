@@ -405,10 +405,26 @@ $$</p>
 <!-- ![](../res/graph_of_T_n.png) -->
 <img src="../res/graph_of_T_n.png" alt="" width="500">
 <ul>
-<li>Characterstics
+<li>
+<p>Characterstics</p>
 <ul>
 <li>Constants are ignored: $1000n = O(n)$</li>
 <li>Low-order terms are ignored: $n^3 + n^2 + n = O(n^3)$</li>
+</ul>
+</li>
+<li>
+<p>It is essential to consider <strong>constants</strong> sincne Big-O represents an <strong>upper bound</strong> on the growth rate of an algorithm's complexity.</p>
+<p>Consider:</p>
+<p>$$ T(n) = n \log n $$
+$$ U(n) = 50 n $$</p>
+<ul>
+<li>$T(n) = U(n) \text{ if } n = 2^{50}$
+<ul>
+<li>If $n$ is small ($&lt; 2^{50}$) $ \Rightarrow U(n) \text{ grows more slowly than } T(n)$</li>
+<li>If $n$ is large ($&gt; 2^{50}$) $ \Rightarrow T(n) \text{ grows more slowly than } U(n)$</li>
+</ul>
+</li>
+<li>In the case, <strong>$U(n)$ might be preferred</strong> since $n$ is more likely to be $&lt; 2^{50}$</li>
 </ul>
 </li>
 </ul>
