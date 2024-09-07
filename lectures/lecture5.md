@@ -21,7 +21,16 @@ MathJax.Hub.Queue(function() {
 
 # 5. LinkedList
 
+## Types of LinkedList
+1. Singly Linked List
+2. Doubly Linked List
+3. Circular Linked List
+
+
 ## Java LinkedList
+
+
+### Methods
 - `addFirst(element: Object): void`
 - `addLast(element: Object): void`
 - `getFirst(): Object`
@@ -30,13 +39,7 @@ MathJax.Hub.Queue(function() {
 - `removeLast(): Object`
 
 
-## Types of LinkedList
-1. Singly Linked List
-2. Doubly Linked List
-3. Circular Linked List
-
-
-## Java LinkedList Implementation
+### Implementation
 
 ```Java
 public class LinkedList<AnyType> {
@@ -64,14 +67,13 @@ public class LinkedList<AnyType> {
 }
 ```
 
-### Inner Classes
-- **Static**: do not have access to the instance variables and methods of the outer class directly.
-- **Non-static**:  have access to the instance variables and methods of the outer class.
+- Inner Classes
+    - **Static**: No access to the instance variables and methods of the outer class.
+    - **Non-static**: Can access to the instance variables and methods of the outer class.
 
 
-## LinkedList Methods
 
-### addFirst - O(1)
+#### `addFirst(E e)`: O(1)
 
 ```Java
 // Inserts a new item at the beginning of the list
@@ -80,7 +82,7 @@ public void addFirst(AnyType item) {
 }
 ```
 
-### Traverse to the last node - O(n)
+#### Traverse: O(n)
 
 ```Java
 Node<AnyType> tmp = head;
@@ -89,7 +91,7 @@ while (tmp.next != null) { // Stop at the last node
 }
 ```
 
-### addLast - O(n)
+#### `addLast(E e)`: O(n)
 
 ```Java
 /**
@@ -115,7 +117,7 @@ public void addLast(AnyType item) {
 
 ```
 
-### insertAfter - O(n)
+#### `insertAfter()`: O(n)
 
 ```Java
 /**
@@ -138,7 +140,7 @@ public void insertAfter(AnyType key, AnyType item) {
 }
 ```
 
-### insertBefore - O(n)
+#### `insertBefore()`: O(n)
 
 ```Java
 /**
@@ -178,7 +180,7 @@ public void insertBefore(AnyType key, AnyType item) {
 
 ```
 
-### remove - O(n)
+#### `remove(E e)` - O(n)
 
 ```Java
 /**
@@ -271,14 +273,11 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 ```
 
 
-## Runtime Complexity Comparison
-- ArrayList:
-    - Locate element: `O(1)`
-    - Perform insertion/deletion: `O(n)`  
-
-- LinkedList
-    - Locate element: `O(n)`
-    - Perform insertion/deletion: `O(1)`  
+## ArrayList & LinkedList
+| Operation                  | ArrayList             | LinkedList            |
+|----------------------------|-----------------------|-----------------------|
+| Locate element             | O(1)                  | O(n)                  |
+| Perform insertion/deletion | O(n)                  | O(1)                  |
 
 
     

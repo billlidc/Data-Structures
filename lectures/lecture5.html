@@ -384,7 +384,14 @@ MathJax.Hub.Queue(function() {
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 <h1 id="5-linkedlist">5. LinkedList</h1>
+<h2 id="types-of-linkedlist">Types of LinkedList</h2>
+<ol>
+<li>Singly Linked List</li>
+<li>Doubly Linked List</li>
+<li>Circular Linked List</li>
+</ol>
 <h2 id="java-linkedlist">Java LinkedList</h2>
+<h3 id="methods">Methods</h3>
 <ul>
 <li><code>addFirst(element: Object): void</code></li>
 <li><code>addLast(element: Object): void</code></li>
@@ -393,13 +400,7 @@ MathJax.Hub.Queue(function() {
 <li><code>removeFirst(): Object</code></li>
 <li><code>removeLast(): Object</code></li>
 </ul>
-<h2 id="types-of-linkedlist">Types of LinkedList</h2>
-<ol>
-<li>Singly Linked List</li>
-<li>Doubly Linked List</li>
-<li>Circular Linked List</li>
-</ol>
-<h2 id="java-linkedlist-implementation">Java LinkedList Implementation</h2>
+<h3 id="implementation">Implementation</h3>
 <pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinkedList</span>&lt;<span class="hljs-title">AnyType</span>&gt; </span>{
     <span class="hljs-keyword">private</span> Node&lt;AnyType&gt; head;
 
@@ -424,25 +425,27 @@ MathJax.Hub.Queue(function() {
 
 }
 </div></code></pre>
-<h3 id="inner-classes">Inner Classes</h3>
 <ul>
-<li><strong>Static</strong>: do not have access to the instance variables and methods of the outer class directly.</li>
-<li><strong>Non-static</strong>:  have access to the instance variables and methods of the outer class.</li>
+<li>Inner Classes
+<ul>
+<li><strong>Static</strong>: No access to the instance variables and methods of the outer class.</li>
+<li><strong>Non-static</strong>: Can access to the instance variables and methods of the outer class.</li>
 </ul>
-<h2 id="linkedlist-methods">LinkedList Methods</h2>
-<h3 id="addfirst---o1">addFirst - O(1)</h3>
+</li>
+</ul>
+<h4 id="addfirste-e-o1"><code>addFirst(E e)</code>: O(1)</h4>
 <pre class="hljs"><code><div><span class="hljs-comment">// Inserts a new item at the beginning of the list</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addFirst</span><span class="hljs-params">(AnyType item)</span> </span>{
     head = <span class="hljs-keyword">new</span> Node&lt;AnyType&gt;(item, head);
 }
 </div></code></pre>
-<h3 id="traverse-to-the-last-node---on">Traverse to the last node - O(n)</h3>
+<h4 id="traverse-on">Traverse: O(n)</h4>
 <pre class="hljs"><code><div>Node&lt;AnyType&gt; tmp = head;
 <span class="hljs-keyword">while</span> (tmp.next != <span class="hljs-keyword">null</span>) { <span class="hljs-comment">// Stop at the last node</span>
     tmp = tmp.next;
 }
 </div></code></pre>
-<h3 id="addlast---on">addLast - O(n)</h3>
+<h4 id="addlaste-e-on"><code>addLast(E e)</code>: O(n)</h4>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Inserts a new item to the end of the list.
  */</span>
@@ -465,7 +468,7 @@ MathJax.Hub.Queue(function() {
 }
 
 </div></code></pre>
-<h3 id="insertafter---on">insertAfter - O(n)</h3>
+<h4 id="insertafter-on"><code>insertAfter()</code>: O(n)</h4>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Finds a node containing the key and inserts a new item after the node.
  */</span>
@@ -485,7 +488,7 @@ MathJax.Hub.Queue(function() {
     }
 }
 </div></code></pre>
-<h3 id="insertbefore---on">insertBefore - O(n)</h3>
+<h4 id="insertbefore-on"><code>insertBefore()</code>: O(n)</h4>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Finds a node containing the key and inserts a new item before the node.
  * <span class="hljs-doctag">@param</span> key, a key to be found to add a new element
@@ -522,7 +525,7 @@ MathJax.Hub.Queue(function() {
 }
 
 </div></code></pre>
-<h3 id="remove---on">remove - O(n)</h3>
+<h4 id="removee-e---on"><code>remove(E e)</code> - O(n)</h4>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Removes the first occurrence of a key from the list.
  * <span class="hljs-doctag">@param</span> key, a key to be deleted
@@ -607,23 +610,28 @@ MathJax.Hub.Queue(function() {
     }
 }
 </div></code></pre>
-<h2 id="runtime-complexity-comparison">Runtime Complexity Comparison</h2>
-<ul>
-<li>
-<p>ArrayList:</p>
-<ul>
-<li>Locate element: <code>O(1)</code></li>
-<li>Perform insertion/deletion: <code>O(n)</code></li>
-</ul>
-</li>
-<li>
-<p>LinkedList</p>
-<ul>
-<li>Locate element: <code>O(n)</code></li>
-<li>Perform insertion/deletion: <code>O(1)</code></li>
-</ul>
-</li>
-</ul>
+<h2 id="arraylist--linkedlist">ArrayList &amp; LinkedList</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>ArrayList</th>
+<th>LinkedList</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Locate element</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Perform insertion/deletion</td>
+<td>O(n)</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
 <hr>
 <p><a href="../index.html">Back to Home</a>
 <a href="./lecture6.html">Next Lecture</a></p>
