@@ -384,57 +384,73 @@ MathJax.Hub.Queue(function() {
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 <h1 id="4-arraylist-and-binary-search">4. ArrayList and Binary Search</h1>
-<h2 id="java-arraylist-methods">Java ArrayList Methods</h2>
+<h2 id="java-arraylist">Java ArrayList</h2>
 <blockquote>
 <p><code>java.util.ArrayList</code></p>
 </blockquote>
+<h3 id="methods">Methods</h3>
 <ul>
-<li><code>add(object)</code>: adds a new element to the end</li>
-<li><code>add(index, object)</code>: inserts a new element at the specified index</li>
-<li><code>set(index, object)</code>: replaces an existing element at the specified index with the new element</li>
-<li><code>get(index)</code>: returns the element at the specified index</li>
-<li><code>remove(index)</code>: deletes the element at the specified index</li>
-<li><code>size()</code>: returns the number of elements</li>
+<li>
+<p><code>add(E e)</code></p>
+</li>
+<li>
+<p><code>add(int index, E e)</code></p>
+</li>
+<li>
+<p><code>set(int index, E e)</code></p>
+</li>
+<li>
+<p><code>get(int index)</code></p>
+</li>
+<li>
+<p><code>remove(int index)</code></p>
+</li>
+<li>
+<p><code>size()</code></p>
+</li>
+<li>
+<p><code>addAll(Collection&lt;? extends E&gt; c)</code></p>
+</li>
+<li>
+<p><code>addAll(int index, Collection&lt;? extends E&gt; c)</code></p>
+</li>
+<li>
+<p><code>clone()</code>: Returns a shallow copy of the ArrayList instance</p>
+</li>
+<li>
+<p><code>indexOf(Object o)</code></p>
+</li>
+<li>
+<p><code>isEmpty()</code></p>
+</li>
+<li>
+<p><code>removeIf(Predicate&lt;? super E&gt; filter)</code></p>
+</li>
 </ul>
-<h2 id="java-arraylist">Java ArrayList</h2>
-<h3 id="example">Example</h3>
-<pre class="hljs"><code><div><span class="hljs-comment">// Initialize with initial length of 0</span>
-List&lt;Integer&gt; numbers = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;(<span class="hljs-number">0</span>);
-
-<span class="hljs-comment">// Add numbers by calling add</span>
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) numbers.add(i);
-System.out.println(numbers);
-
-<span class="hljs-comment">// Delete numbers by calling remove</span>
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = numbers.size() – <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
-    <span class="hljs-keyword">if</span> (numbers.get(i) % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) numbers.remove(i);
-}
-System.out.println(numbers);
-</div></code></pre>
 <h3 id="characteristics">Characteristics</h3>
 <ul>
 <li>
-<p>ArrayList in Java is created <em>by default</em> with a capacity of $10$</p>
+<p><code>ArrayList</code> in Java is created <em>by default</em> with a capacity of $10$</p>
 <ul>
 <li>Can be initialized with a capacity of $0$</li>
 </ul>
 </li>
 <li>
-<p>ArrayList will <strong>expand</strong> when <code>add()</code> is called, but <strong>DOES NOT shrink</strong> when <code>remove()</code></p>
+<p><code>ArrayList</code> will <strong>expand</strong> when <code>add()</code> is called, but <strong>DOES NOT shrink</strong> when <code>remove()</code></p>
 <ul>
-<li>Manually invoke <code>trimToSize()</code> method to free up the memory by shrinking size to the number of elements to avoid any memory issue</li>
+<li>Programmers should manually invoke <code>void trimToSize()</code> method (shrink size to No. elements) to free up the memory</li>
 </ul>
 </li>
 </ul>
 <h3 id="dynamically-change-length">Dynamically Change Length</h3>
 <ul>
 <li>
-<p>ArrayList used to implement the <strong>Doubling-up Policy</strong></p>
+<p><code>ArrayList</code> used to implement the <strong>Doubling-up Policy</strong></p>
 </li>
 <li>
-<p>In Java 6: $$(\text{oldCapacity} * 3) / 2 + 1$$</p>
+<p>In Java 6: $(\text{oldCapacity} * 3) / 2 + 1$</p>
 <ul>
-<li>Note that for corner cases where <code>oldCapacity</code> takes value of ${0, 1}$, add $1$ to ensure that there is always at least some increase</li>
+<li>Add $1$ to ensure at least some increase for corner cases: $\text{oldCapacity} \in {0, 1}$</li>
 </ul>
 <pre class="hljs"><code><div><span class="hljs-comment">/**
  * Appends the specified element to the end of this list.
@@ -448,7 +464,8 @@ System.out.println(numbers);
 }
 
 <span class="hljs-comment">/**
- * Increases the capacity of this &lt;tt&gt;ArrayList&lt;/tt&gt; instance, if necessary, to ensure that it can hold at least the number of * elements specified by the minimum capacity argument.
+ * Increases the capacity of this ArrayList instance, if necessary, to ensure that it can hold
+ * at least the number of elements specified by the minimum capacity argument.
  * <span class="hljs-doctag">@param</span> minCapacity the desired minimum capacity
  */</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ensureCapacity</span><span class="hljs-params">(<span class="hljs-keyword">int</span> minCapacity)</span> </span>{
@@ -464,10 +481,11 @@ System.out.println(numbers);
 </div></code></pre>
 </li>
 </ul>
+<hr>
 <h2 id="amortized-analysis">Amortized Analysis</h2>
+<h3 id="runtime-complexity-analysis-of-adde-e-method">Runtime Complexity Analysis of <code>add(E e)</code> Method</h3>
 <pre class="hljs"><code><div>List&lt;Integer&gt; numbers = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;(<span class="hljs-number">4</span>);
 </div></code></pre>
-<h3 id="runtime-complexity-analysis-of-adde-e-method">Runtime Complexity Analysis of add(E e) Method</h3>
 <blockquote>
 <p>Assuming doubling up the array</p>
 </blockquote>
@@ -642,10 +660,11 @@ System.out.println(numbers);
 <h3 id="latency-issue-of-amortized-constant-time">Latency Issue of Amortized Constant Time</h3>
 <!-- ![](../res/list-append-time-per-operation-showing-amortised-linear-complexity.png) -->
 <img src="../res/list-append-time-per-operation-showing-amortised-linear-complexity.png" alt="" width="500">
+<hr>
 <h2 id="binary-search">Binary Search</h2>
-<ul>
-<li>Prerequisite: <strong>The array should be sorted</strong>.</li>
-</ul>
+<blockquote>
+<p>Prerequisite: The array is <strong>sorted</strong>.</p>
+</blockquote>
 <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">binarySearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] data, <span class="hljs-keyword">int</span> key)</span> </span>{
     <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>;
     <span class="hljs-keyword">int</span> r = data.length - <span class="hljs-number">1</span>;
@@ -656,7 +675,7 @@ System.out.println(numbers);
             <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
         }
 
-        mid = (l + r)/<span class="hljs-number">2</span>; <span class="hljs-comment">// Avoid overflow issue</span>
+        mid = l + (r - l) / <span class="hljs-number">2</span>; <span class="hljs-comment">// Not mid = (l + r)/2</span>
         
         <span class="hljs-keyword">if</span> (data[mid] == key) {
             <span class="hljs-keyword">return</span> mid;
@@ -670,16 +689,42 @@ System.out.println(numbers);
     }
 }
 </div></code></pre>
-<h3 id="why-not-mid--l--r2">Why NOT <code>mid = (l + r)/2</code></h3>
+<h3 id="time-complexity">Time Complexity</h3>
+<blockquote>
+<p>Binary Search: $O(\log n)$</p>
+</blockquote>
 <ul>
 <li>
-<p>The <strong>ones' complement</strong> of a binary number is the value obtained by <strong>inverting (flipping) all the bits</strong> in the binary representation of the number.</p>
+<p>In general, $\lfloor \log_{2} n \rfloor+ 1$ operations to split an array in half before it is empty.</p>
 </li>
 <li>
-<p>The <strong>most significant bit (MSB)</strong>, i.e. the number on the left, is known as the sign bit, which is used to represent whether the number is positive (0) or negative (1).</p>
+<p>The base of $\log$ does not significantly impact the complexity class:
+$$c * \log_{10}(x) = \log_2(x) \text{ where } c = \frac{\log (10)}{\log (2)} = 3.3219 $$</p>
 </li>
 <li>
-<p>The <strong>twos' complement</strong>, which is the negative equivalent of the original binary number, is get by <strong>taking ones' complement</strong> and <strong>adding 1</strong>.</p>
+<p>$O(\log n)$ does NOT grow proportionally with the input size $n$ but only increases by a constant factor.
+$$
+c \cdot \log_2(2 * n) = c \cdot (\log_2 2 + \log_2 n) = c + c \cdot \log_2 n
+$$</p>
+</li>
+</ul>
+<h3 id="integer-overflow">Integer Overflow</h3>
+<blockquote>
+<p>Avoid potential integer overflow issue with <code>mid = l + (r - l) / 2</code></p>
+</blockquote>
+<ul>
+<li>
+<p><strong>Ones' Complement</strong> of a binary number is the value obtained by <strong>flipping all the bits</strong> in the binary representation of the number.</p>
+</li>
+<li>
+<p><strong>Most Significant Bit (MSB)</strong> is known as the <strong>sign bit</strong>, used to represent whether the number is positive (0) or negative (1).</p>
+</li>
+<li>
+<p><strong>Twos' Complement</strong>, the negative equivalent of the original binary number, is get by:</p>
+<ol>
+<li>Taking Ones' Complement</li>
+<li>Adding 1</li>
+</ol>
 <table>
 <thead>
 <tr>
@@ -751,50 +796,15 @@ System.out.println(numbers);
 </table>
 </li>
 <li>
-<p>With $n$ bits, we can represent unsigned numbers of range:
+<p>With $n$ bits, we can represent <em>unsigned</em> numbers of range:
 $$[0, 2^{(n-1)}]$$</p>
 </li>
 <li>
-<p>With $n$ bits, we can represent signed numbers of range:
+<p>With $n$ bits, we can represent <em>signed</em> numbers of range:
 $$[–2^{(n-1)}, 2^{(n-1)}–1]$$</p>
 </li>
-<li>
-<p>Therefore, do not use <code>mid = (l + r)/2</code> but use <code>mid = l + (r - l)/2</code> to avoid potential integer overflow issue</p>
-</li>
 </ul>
-<h3 id="time-complexity-of-binary-search">Time Complexity of Binary Search</h3>
-<p>$$ O(\log n) $$</p>
-<ul>
-<li>
-<p>In general, $\lfloor \log_{2} n \rfloor+ 1$ operations to split an array in half before it is empty.</p>
-</li>
-<li>
-<p>The base of logarithm does not significantly impact the complexity class:
-$$c * \log_{10}(x) = \log_2(x) \text{ where } c = \frac{\log (10)}{\log (2)} = 3.3219 $$</p>
-</li>
-<li>
-<p>The time complexity of an algorithm with $O(\log n)$ does not grow proportionally with the input size $n$ but only increases by a constant factor.
-$$
-c \cdot \log_2(2 * n) = c \cdot (\log_2 2 + \log_2 n) = c + c \cdot \log_2 n
-$$</p>
-</li>
-</ul>
-<h2 id="constants-in-big-o-analysis">Constants in Big-O Analysis</h2>
-<p>It is essential to <strong>consider constants</strong> because Big-O notation represents an <strong>upper bound</strong> on the growth rate of an algorithm's complexity.</p>
-<p>Consider:
-$$
-T(n) = n \log n
-$$
-$$
-U(n) = 50 n
-$$</p>
-<ul>
-<li>$T(n) = U(n) \text{ if } n = 2^{50}$</li>
-<li>If $n$ is small ($&lt; 2^{50}$) $ \Rightarrow U(n) \text{ grows more slowly than } T(n)$</li>
-<li>If $n$ is large ($&gt; 2^{50}$) $ \Rightarrow T(n) \text{ grows more slowly than } U(n)$</li>
-<li>In the case, <strong>$U(n)$ might be preferred</strong> since $n$ is more likely to be $&lt; 2^{50}$</li>
-</ul>
-<h2 id="array--arraylist-summary">Array &amp; ArrayList Summary</h2>
+<h2 id="array--arraylist">Array &amp; ArrayList</h2>
 <ol>
 <li>Random access</li>
 <li>No holes allowed -&gt; Shifts</li>

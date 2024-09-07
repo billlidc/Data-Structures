@@ -21,48 +21,44 @@ MathJax.Hub.Queue(function() {
 
 # 4. ArrayList and Binary Search
 
-## Java ArrayList Methods
-> `java.util.ArrayList`
-
-- `add(object)`: adds a new element to the end
-- `add(index, object)`: inserts a new element at the specified index
-- `set(index, object)`: replaces an existing element at the specified index with the new element
-- `get(index)`: returns the element at the specified index
-- `remove(index)`: deletes the element at the specified index
-- `size()`: returns the number of elements
 
 
 ## Java ArrayList
 
-### Example
+> `java.util.ArrayList`
 
-```Java
-// Initialize with initial length of 0
-List<Integer> numbers = new ArrayList<Integer>(0);
 
-// Add numbers by calling add
-for (int i = 0; i < 10; i++) numbers.add(i);
-System.out.println(numbers);
 
-// Delete numbers by calling remove
-for (int i = numbers.size() – 1; i >= 0; i--) {
-    if (numbers.get(i) % 2 == 0) numbers.remove(i);
-}
-System.out.println(numbers);
-```
+### Methods
+
+- `add(E e)`
+- `add(int index, E e)`
+- `set(int index, E e)`
+- `get(int index)`
+- `remove(int index)`
+- `size()`
+
+- `addAll(Collection<? extends E> c)`
+- `addAll(int index, Collection<? extends E> c)`
+- `clone()`: Returns a shallow copy of the ArrayList instance
+- `indexOf(Object o)`
+- `isEmpty()`
+- `removeIf(Predicate<? super E> filter)`
+
 
 ### Characteristics
-- ArrayList in Java is created *by default* with a capacity of $10$
+- `ArrayList` in Java is created *by default* with a capacity of $10$
     - Can be initialized with a capacity of $0$
 
-- ArrayList will **expand** when `add()` is called, but **DOES NOT shrink** when `remove()`
-    - Manually invoke `trimToSize()` method to free up the memory by shrinking size to the number of elements to avoid any memory issue
+- `ArrayList` will **expand** when `add()` is called, but **DOES NOT shrink** when `remove()`
+    - Programmers should manually invoke `void trimToSize()` method (shrink size to No. elements) to free up the memory
 
 
 ### Dynamically Change Length
-- ArrayList used to implement the **Doubling-up Policy**
-- In Java 6: $$(\text{oldCapacity} * 3) / 2 + 1$$
-    - Note that for corner cases where `oldCapacity` takes value of $\{0, 1\}$, add $1$ to ensure that there is always at least some increase
+- `ArrayList` used to implement the **Doubling-up Policy**
+
+- In Java 6: $(\text{oldCapacity} * 3) / 2 + 1$
+    - Add $1$ to ensure at least some increase for corner cases: $\text{oldCapacity} \in \{0, 1\}$
 
     ```Java
     /**
@@ -77,7 +73,8 @@ System.out.println(numbers);
     }
 
     /**
-     * Increases the capacity of this <tt>ArrayList</tt> instance, if necessary, to ensure that it can hold at least the number of * elements specified by the minimum capacity argument.
+     * Increases the capacity of this ArrayList instance, if necessary, to ensure that it can hold
+     * at least the number of elements specified by the minimum capacity argument.
      * @param minCapacity the desired minimum capacity
      */
     public void ensureCapacity(int minCapacity) {
@@ -94,15 +91,18 @@ System.out.println(numbers);
 
 
 
+---
+
 
 
 ## Amortized Analysis
 
+
+### Runtime Complexity Analysis of `add(E e)` Method
+
 ```Java
 List<Integer> numbers = new ArrayList<Integer>(4);
 ```
-
-### Runtime Complexity Analysis of add(E e) Method
 
 > Assuming doubling up the array
 
@@ -117,7 +117,6 @@ List<Integer> numbers = new ArrayList<Integer>(4);
 | numbers.add(7)       | 1            | 7             | 8            |
 | numbers.add(8)       | 1            | 8             | 8            |
 | **numbers.add(9)**   | 9            | 9             | 16           |
-
 
 > Use banker’s (accounting) method to show Amortized Analysis
 
@@ -135,14 +134,23 @@ List<Integer> numbers = new ArrayList<Integer>(4);
 
 > Conclude that `add(E e)` method has **amortized constant time** due to the allocated dollars per operation
 
+
 ### Latency Issue of Amortized Constant Time
 
 <!-- ![](../res/list-append-time-per-operation-showing-amortised-linear-complexity.png) -->
 <img src="../res/list-append-time-per-operation-showing-amortised-linear-complexity.png" alt="" width="500">
 
 
+
+
+---
+
+
+
+
 ## Binary Search
-- Prerequisite: **The array should be sorted**.
+
+> Prerequisite: The array is **sorted**.
 
 ```Java
 public static int binarySearch(int[] data, int key) {
@@ -155,7 +163,7 @@ public static int binarySearch(int[] data, int key) {
             return -1;
         }
 
-        mid = (l + r)/2; // Avoid overflow issue
+        mid = l + (r - l) / 2; // Not mid = (l + r)/2
         
         if (data[mid] == key) {
             return mid;
@@ -170,13 +178,32 @@ public static int binarySearch(int[] data, int key) {
 }
 ```
 
-### Why NOT `mid = (l + r)/2`
+### Time Complexity
 
-- The **ones' complement** of a binary number is the value obtained by **inverting (flipping) all the bits** in the binary representation of the number.
+> Binary Search: $O(\log n)$
 
-- The **most significant bit (MSB)**, i.e. the number on the left, is known as the sign bit, which is used to represent whether the number is positive (0) or negative (1).
+* In general, $\lfloor \log_{2} n \rfloor+ 1$ operations to split an array in half before it is empty.
 
-- The **twos' complement**, which is the negative equivalent of the original binary number, is get by **taking ones' complement** and **adding 1**.
+* The base of $\log$ does not significantly impact the complexity class:
+    $$c * \log_{10}(x) = \log_2(x) \text{ where } c = \frac{\log (10)}{\log (2)} = 3.3219 $$
+
+* $O(\log n)$ does NOT grow proportionally with the input size $n$ but only increases by a constant factor.
+    $$
+    c \cdot \log_2(2 * n) = c \cdot (\log_2 2 + \log_2 n) = c + c \cdot \log_2 n
+    $$
+
+
+### Integer Overflow
+
+> Avoid potential integer overflow issue with `mid = l + (r - l) / 2`
+
+- **Ones' Complement** of a binary number is the value obtained by **flipping all the bits** in the binary representation of the number.
+
+- **Most Significant Bit (MSB)** is known as the **sign bit**, used to represent whether the number is positive (0) or negative (1).
+
+- **Twos' Complement**, the negative equivalent of the original binary number, is get by:
+    1. Taking Ones' Complement
+    2. Adding 1
 
     | Bits | Unsigned value | Signed value (Two's complement) | One's Complement | Two's Complement |
     |------|----------------|---------------------------------|------------------|------------------|
@@ -189,48 +216,17 @@ public static int binarySearch(int[] data, int key) {
     | 110  | 6              | 2                               | 001              | 010              |
     | 111  | 7              | 1                               | 000              | 001              |
 
-- With $n$ bits, we can represent unsigned numbers of range:
+- With $n$ bits, we can represent *unsigned* numbers of range:
     $$[0, 2^{(n-1)}]$$
 
-- With $n$ bits, we can represent signed numbers of range:
+- With $n$ bits, we can represent *signed* numbers of range:
     $$[–2^{(n-1)}, 2^{(n-1)}–1]$$
 
-- Therefore, do not use `mid = (l + r)/2` but use `mid = l + (r - l)/2` to avoid potential integer overflow issue
 
 
-### Time Complexity of Binary Search
-
-$$ O(\log n) $$
-
-* In general, $\lfloor \log_{2} n \rfloor+ 1$ operations to split an array in half before it is empty.
-
-* The base of logarithm does not significantly impact the complexity class:
-    $$c * \log_{10}(x) = \log_2(x) \text{ where } c = \frac{\log (10)}{\log (2)} = 3.3219 $$
-
-* The time complexity of an algorithm with $O(\log n)$ does not grow proportionally with the input size $n$ but only increases by a constant factor.
-    $$
-    c \cdot \log_2(2 * n) = c \cdot (\log_2 2 + \log_2 n) = c + c \cdot \log_2 n
-    $$
 
 
-## Constants in Big-O Analysis
-It is essential to **consider constants** because Big-O notation represents an **upper bound** on the growth rate of an algorithm's complexity.
-
-Consider:
-    $$
-    T(n) = n \log n
-    $$
-    $$
-    U(n) = 50 n
-    $$
-
-- $T(n) = U(n) \text{ if } n = 2^{50}$
-- If $n$ is small ($< 2^{50}$) $ \Rightarrow U(n) \text{ grows more slowly than } T(n)$
-- If $n$ is large ($> 2^{50}$) $ \Rightarrow T(n) \text{ grows more slowly than } U(n)$
-- In the case, **$U(n)$ might be preferred** since $n$ is more likely to be $< 2^{50}$
-
-
-## Array & ArrayList Summary
+## Array & ArrayList
 1. Random access
 2. No holes allowed -> Shifts
 3. Immutable length -> Memory/Latency issue
